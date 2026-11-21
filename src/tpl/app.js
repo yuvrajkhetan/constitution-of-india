@@ -474,11 +474,11 @@ function vHome() {
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>Browse by Part</h2><p>The Constitution is arranged in Parts, each covering one area of government.</p></div><a class="more" href="#contents">Full contents ${I.chev}</a></div>
-    <div class="cols2">${[0, 1].map(col => `<div class="group">${PARTS.filter((p, i) => (i < Math.ceil(PARTS.length / 2)) === (col === 0)).map(p => partRow(p)).join("")}</div>`).join("")}</div>
+    ${cols2(PARTS.map(p => partRow(p)))}
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>Schedules</h2><p>Lists, tables and forms at the end of the Constitution.</p></div><a class="more" href="#schedules">Schedules and appendices ${I.chev}</a></div>
-    <div class="cols2">${[0, 1].map(col => `<div class="group">${SCH.filter((s, i) => (i < 6) === (col === 0)).map((s, j) => schRow(s, col * 6 + j)).join("")}</div>`).join("")}</div>
+    ${cols2(SCH.map((s, i) => schRow(s, i)))}
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>How the text has changed</h2><p>Each bar is a Constitution Amendment Act cited in this edition's footnotes. Taller bars changed more provisions.</p></div><a class="more" href="#amendments">All amendments ${I.chev}</a></div>
@@ -490,12 +490,21 @@ function vHome() {
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>Most amended articles</h2><p>The articles with the most amendment notes in the official text, which is where the Constitution has changed most.</p></div><a class="more" href="#amendments">All amendments ${I.chev}</a></div>
-    <div class="cols2">${(() => { const top = ORDER.filter(n => !ART.get(n).o).sort((x, y) => ART.get(y).c - ART.get(x).c || ART.get(x).i - ART.get(y).i).slice(0, 10); return [top.slice(0, 5), top.slice(5)].map(col => `<div class="group">${col.map(n => { const a = ART.get(n); return `<a class="row" href="#art-${n}"><span class="num">${n}</span><span><span class="tt">${esc(a.t.replace(/\.$/, ""))}</span><span class="ss" style="-webkit-line-clamp:1">Part ${PARTS[a.p].n} · ${esc(PARTS[a.p].t)}</span></span><span class="aux">${a.c} notes ${I.chev}</span></a>`; }).join("")}</div>`).join(""); })()}</div>
+    ${(() => { const top = ORDER.filter(n => !ART.get(n).o).sort((x, y) => ART.get(y).c - ART.get(x).c || ART.get(x).i - ART.get(y).i).slice(0, 10); return cols2(top.map(n => { const a = ART.get(n); return `<a class="row" href="#art-${n}"><span class="num">${n}</span><span><span class="tt">${esc(a.t.replace(/\.$/, ""))}</span><span class="ss" style="-webkit-line-clamp:1">Part ${PARTS[a.p].n} · ${esc(PARTS[a.p].t)}</span></span><span class="aux">${a.c} notes ${I.chev}</span></a>`; })); })()}
   </section>`;
 }
 function themeCard(t) {
   const n = t.i.length;
   return `<a class="theme" href="#theme-${t.id}"><span class="ico c-${t.c}">${I[t.ic] || I.book}</span><div><h3>${esc(t.q)}</h3><p>${esc(t.t)}</p></div><div class="ft"><span>${n} provisions</span>${I.chev.replace("<svg", '<svg width="14" height="14"')}</div></a>`;
+}
+/* a two-column list whose rows line up across the columns: it fills the first column, then the second,
+   and each row is as tall as the taller of its two items. Stacks into one list on narrow screens. */
+function cols2(rows) {
+  const R = Math.ceil(rows.length / 2);
+  return `<div class="cgrid" style="grid-template-rows:repeat(${R},auto)">${rows.map((h, i) => {
+    const c = [i === 0 && "t1", i === R - 1 && "b1", i === R && "t2", i === rows.length - 1 && "b2"].filter(Boolean).join(" ");
+    return c ? h.replace('class="row', 'class="row ' + c) : h;
+  }).join("")}</div>`;
 }
 function partRow(p) {
   const i = PART_BY.get(p.n), r = partRange(p);
@@ -1126,7 +1135,32 @@ const canSpeak = "speechSynthesis" in window && typeof SpeechSynthesisUtterance 
 let speaking = false;
 const sayable = s => plain(s).replace(/[\[\]*]/g, "").replace(/\barts?\.\s*/gi, m => /s/i.test(m[3]) ? "articles " : "article ").replace(/\bcls?\.\s*/gi, "clause ").replace(/[—–]/g, ", ").replace(/\s+/g, " ").trim();
 function setListen(on) { $$("[data-listen]").forEach(b => { b.setAttribute("aria-pressed", String(on)); b.setAttribute("aria-label", on ? "Stop reading aloud" : "Read aloud"); b.innerHTML = `${on ? I.stop : I.speaker}<span class="bl">${on ? "Stop" : "Listen"}</span>`; }); }
-function stopSpeak() { if (!canSpeak) return; speaking = false; restartSpeak = null; if (curU) { curU.onend = curU.onerror = null; curU = null; } try { speechSynthesis.cancel(); } catch (e) {} $$(".speaking").forEach(e => e.classList.remove("speaking")); setListen(false); }
+/* iPhones and iPads mute speech when the ringer is off, because a page's sound counts as "ambient" audio.
+   Asking for "playback" audio (Safari 16.4+), and on older versions playing a silent loop started by the
+   same tap, moves it to media audio, which plays with the ringer off, like a video. */
+const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+let silentAudio = null;
+function silentWav() {
+  const n = 800, b = new Uint8Array(44 + n), d = new DataView(b.buffer), put = (o, t) => { for (let i = 0; i < t.length; i++) b[o + i] = t.charCodeAt(i); };
+  put(0, "RIFF"); d.setUint32(4, 36 + n, true); put(8, "WAVEfmt "); d.setUint32(16, 16, true); d.setUint16(20, 1, true); d.setUint16(22, 1, true);
+  d.setUint32(24, 8000, true); d.setUint32(28, 8000, true); d.setUint16(32, 1, true); d.setUint16(34, 8, true); put(36, "data"); d.setUint32(40, n, true); b.fill(128, 44);
+  return URL.createObjectURL(new Blob([b], { type: "audio/wav" }));
+}
+function mediaAudio(on, title) {
+  if (!isIOS) return;
+  try { if (navigator.audioSession) navigator.audioSession.type = on ? "playback" : "auto"; } catch (e) {}
+  try {
+    if (on) {
+      if (!silentAudio) { silentAudio = new Audio(silentWav()); silentAudio.loop = true; silentAudio.setAttribute("playsinline", ""); }
+      const p = silentAudio.play(); if (p && p.catch) p.catch(() => {});
+      if ("mediaSession" in navigator && window.MediaMetadata) {
+        navigator.mediaSession.metadata = new MediaMetadata({ title: title || "Constitution of India", artist: "Constitution of India" });
+        ["pause", "stop"].forEach(a => { try { navigator.mediaSession.setActionHandler(a, () => stopSpeak()); } catch (e) {} });
+      }
+    } else if (silentAudio) silentAudio.pause();
+  } catch (e) {}
+}
+function stopSpeak() { if (!canSpeak) return; mediaAudio(false); speaking = false; restartSpeak = null; if (curU) { curU.onend = curU.onerror = null; curU = null; } try { speechSynthesis.cancel(); } catch (e) {} $$(".speaking").forEach(e => e.classList.remove("speaking")); setListen(false); }
 function pickVoice() { const v = speechSynthesis.getVoices(); return v.find(x => /^en[-_]IN/i.test(x.lang)) || v.find(x => /^en[-_]GB/i.test(x.lang)) || v.find(x => /^en/i.test(x.lang)) || null; }
 function chunks(s) { const out = []; s.replace(/([.;:])\s+/g, "$1\n").split("\n").forEach(p => { if (out.length && (out[out.length - 1] + " " + p).length < 220) out[out.length - 1] += " " + p; else if (p) out.push(p); }); return out; }
 const RATES = [0.75, 1, 1.25, 1.5, 1.75, 2];
@@ -1136,8 +1170,9 @@ function setRate(r) {
   $$("[data-rate]").forEach(el => { el.value = String(r); });
   if (speaking && restartSpeak) restartSpeak();
 }
-function speak(items) {
+function speak(items, title) {
   stopSpeak(); if (!canSpeak) return;
+  mediaAudio(true, title); /* must run inside the tap, before speaking starts */
   speaking = true; setListen(true);
   const v = pickVoice(), q = []; let i = 0;
   items.forEach(([el, tx]) => chunks(tx).forEach(c => q.push([el, c])));
@@ -1157,8 +1192,8 @@ function speak(items) {
 function listen() {
   if (speaking) { stopSpeak(); return; }
   const r = route;
-  if (r.name === "art" && TEXT) { const n = r.id, t = TEXT.a[n], ps = $$("#text p"); speak([[$(".ahead h1"), `Article ${n}. ${ART.get(n).t}`]].concat(t.p.map((p, i) => [ps[i] || null, sayable(p[1])]))); }
-  else if (r.name === "pre") { const ps = $$(".pre-t p"); speak([[null, "The Preamble."]].concat(CORE.pre.p.map((p, i) => [ps[i] || null, sayable(p[1])]))); }
+  if (r.name === "art" && TEXT) { const n = r.id, t = TEXT.a[n], ps = $$("#text p"); speak([[$(".ahead h1"), `Article ${n}. ${ART.get(n).t}`]].concat(t.p.map((p, i) => [ps[i] || null, sayable(p[1])])), `Article ${n}`); }
+  else if (r.name === "pre") { const ps = $$(".pre-t p"); speak([[null, "The Preamble."]].concat(CORE.pre.p.map((p, i) => [ps[i] || null, sayable(p[1])])), "The Preamble"); }
 }
 if (canSpeak) { try { speechSynthesis.getVoices(); speechSynthesis.addEventListener && speechSynthesis.addEventListener("voiceschanged", () => {}); } catch (e) {} }
 const listenBtn = () => canSpeak ? `<span class="lgrp"><button class="btn" type="button" data-listen aria-pressed="false" aria-label="Read aloud">${I.speaker}<span class="bl">Listen</span></button><label class="spd"><span class="sr">Reading speed</span><select data-rate>${RATES.map(r => `<option value="${r}"${r === rate ? " selected" : ""}>${r}×</option>`).join("")}</select></label></span>` : "";
