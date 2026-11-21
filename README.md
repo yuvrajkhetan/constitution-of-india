@@ -17,6 +17,7 @@ This is an independent reader, not a Government website, and not legal advice.
 | Path | What it is |
 |---|---|
 | `index.html`, `text.json`, `fonts/` | The site itself, served by GitHub Pages |
+| `favicon.*`, `apple-touch-icon.png`, `og.png` | Icons and the link-preview image, made by `src/make_icons.js` |
 | `src/source/` | Text extracted from the official PDF |
 | `src/data/` | Parsed text, themes, glossary, amendments and basic structure data |
 | `src/sum/` | Plain-English summaries and amendment notes |
@@ -31,7 +32,8 @@ Needs Python 3, plus `csso-cli` and `terser` from npm.
 ```
 cd src
 python3 make_data.py     # data + summaries -> site/core.json, site/text.json
-python3 build_site.py    # minify and assemble; copies the page and data to the repo root
+python3 build_site.py    # minify and assemble; copies the page, data and icons to the repo root
+node make_icons.js       # favicons and the share image (then run build_site.py again)
 ```
 
 `./serve.sh` serves `src/site` locally on ports 8765 and 8766, and `python3 test.py` runs the regression checks (needs Playwright).

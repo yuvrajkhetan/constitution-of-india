@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+<!-- Small-size version of the site mark: the same nine quilt patches, with bolder motifs so it reads at 16 to 48 pixels. -->
+<defs><clipPath id="r"><rect width="48" height="48" rx="10"/></clipPath></defs>
+<g clip-path="url(#r)">
+<!-- bandhani -->
+<rect width="16" height="16" fill="#fdad5c"/>
+<g fill="#b96157"><circle cx="8" cy="4.2" r="1.6"/><circle cx="4.2" cy="8" r="1.6"/><circle cx="11.8" cy="8" r="1.6"/><circle cx="8" cy="11.8" r="1.6"/><circle cx="8" cy="8" r="1.6"/></g>
+<!-- leheriya -->
+<rect x="16" width="16" height="16" fill="#4e67bc"/>
+<path d="M16 6.5l4 -3l4 3l4 -3l4 3M16 13l4 -3l4 3l4 -3l4 3" fill="none" stroke="#7fcf6f" stroke-width="2.2"/>
+<!-- ikat -->
+<rect x="32" width="16" height="16" fill="#f4c184"/>
+<path d="M40 2.5L45.5 8L40 13.5L34.5 8Z" fill="#e48f8c"/><circle cx="40" cy="8" r="1.6" fill="#5a6392"/>
+<!-- ajrakh -->
+<rect y="16" width="16" height="16" fill="#45a03b"/>
+<path d="M8 18.5L13.5 24L8 29.5L2.5 24Z" fill="#2e3a78"/><circle cx="8" cy="24" r="2" fill="#f4b266"/>
+<!-- the Chakra -->
+<rect x="16" y="16" width="16" height="16" fill="#fff"/>
+<g transform="translate(17 17) scale(.14)" color="#1f3fae">
+<circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="8"/>
+<path d="M50.0 8.0L50.0 92.0M60.9 9.4L39.1 90.6M71.0 13.6L29.0 86.4M79.7 20.3L20.3 79.7M86.4 29.0L13.6 71.0M90.6 39.1L9.4 60.9M92.0 50.0L8.0 50.0M90.6 60.9L9.4 39.1M86.4 71.0L13.6 29.0M79.7 79.7L20.3 20.3M71.0 86.4L29.0 13.6M60.9 90.6L39.1 9.4" stroke="currentColor" stroke-width="3.4"/>
+<circle cx="50" cy="50" r="12" fill="currentColor"/>
+</g>
+<!-- block print -->
+<rect x="32" y="16" width="16" height="16" fill="#f4c184"/>
+<g fill="#45a03b"><circle cx="36.5" cy="20.5" r="2.2"/><circle cx="43.5" cy="20.5" r="2.2"/><circle cx="36.5" cy="27.5" r="2.2"/><circle cx="43.5" cy="27.5" r="2.2"/></g>
+<!-- paisley -->
+<rect y="32" width="16" height="16" fill="#d38862"/>
+<path d="M10.5 34C6.5 36 3.5 39 3.5 42.2A4.6 4.6 0 0 0 12.7 42.2C12.7 39.5 11.5 37 10.5 34Z" fill="#2e3a78"/><circle cx="8.1" cy="42.4" r="1.4" fill="#f4c184"/>
+<!-- kantha -->
+<rect x="16" y="32" width="16" height="16" fill="#b96157"/>
+<g fill="#f2c45c"><rect x="17" y="35" width="4" height="1.8"/><rect x="23" y="35" width="4" height="1.8"/><rect x="29" y="35" width="3" height="1.8"/><rect x="16" y="39.1" width="2" height="1.8"/><rect x="20" y="39.1" width="4" height="1.8"/><rect x="26" y="39.1" width="4" height="1.8"/><rect x="17" y="43.2" width="4" height="1.8"/><rect x="23" y="43.2" width="4" height="1.8"/><rect x="29" y="43.2" width="3" height="1.8"/></g>
+<!-- mirror work -->
+<rect x="32" y="32" width="16" height="16" fill="#97c57f"/>
+<circle cx="40" cy="40" r="4.6" fill="#fdad5c" stroke="#2e3a78" stroke-width="2.2"/>
+<!-- stitches -->
+<path d="M16 0V48M32 0V48M0 16H48M0 32H48" stroke="#fff" stroke-width=".9" stroke-dasharray="2 1.6" opacity=".9"/>
+</g>
+</svg>

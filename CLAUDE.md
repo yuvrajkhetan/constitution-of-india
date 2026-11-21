@@ -25,7 +25,8 @@ Public, unbranded reader of the Constitution of India for citizens and students.
 ```
 npm i -g csso-cli terser      # once
 cd src
-python3 make_data.py && python3 build_site.py   # also copies index.html and text.json to the repo root
+python3 make_data.py && python3 build_site.py   # also copies index.html, text.json and the icons to the repo root
+node make_icons.js && python3 build_site.py     # only when the mark, favicon (tpl/favicon.svg) or home hero changes
 ./serve.sh                    # serves src/site on 8765 and 8766
 python3 test.py               # Playwright regression; also run qa_crawl.js for every route on 5 devices
 bash lh.sh "http://localhost:8766/preview.html#art-21"   # Lighthouse
@@ -38,3 +39,5 @@ Before pushing: tests pass, no console errors, no horizontal scroll at 320px, Li
 - `pageURL()` in `app.js` points copied links at the claude.ai artifact URL only when the page runs inside a frame. On GitHub Pages it uses the page's own address.
 - `text.json` loads after first paint. Code that needs it must handle the loading state.
 - Commit both the `src/` change and the rebuilt root files.
+- `make_icons.js` makes `favicon.svg`/`.ico`, `apple-touch-icon.png` and the 1200x630 `og.png` share image from the built page. The share tags use absolute GitHub Pages URLs (`SITE` in `build_site.py`); the artifact ignores them.
+- `test.py` needs Python Playwright at the same version as the Node one: `pip install playwright==$(node -p "require('playwright/package.json').version")`.
