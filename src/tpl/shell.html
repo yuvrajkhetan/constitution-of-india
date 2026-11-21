@@ -34,10 +34,13 @@
 <nav class="tabs" aria-label="Tabs">
   <a href="#" data-nav="home" data-ic="home">Explore</a>
   <a href="#contents" data-nav="contents" data-ic="contents">Contents</a>
-  <button type="button" data-search data-ic="search">Search</button>
   <a href="#themes" data-nav="themes" data-ic="themes">Themes</a>
-  <a href="#saved" data-nav="saved" data-ic="saved">Saved</a>
+  <a href="#saved" data-nav="saved" data-ic="saved">Saved<span class="dot" data-saved-dot aria-hidden="true" hidden></span></a>
+  <button type="button" id="morebtn" data-more data-ic="more" aria-haspopup="dialog" aria-expanded="false" aria-controls="more">More</button>
 </nav>
+<div class="msheet" id="more" hidden>
+  <div class="mpanel" role="dialog" aria-modal="true" aria-labelledby="more-h" tabindex="-1"></div>
+</div>
 <div class="sdlg" id="sdlg" hidden>
   <div class="spanel" role="dialog" aria-modal="true" aria-label="Search the Constitution">
     <div class="sbar"><span id="sbar-ic"></span><label class="sr" for="sq">Search</label><input id="sq" type="search" autocomplete="off" spellcheck="false" placeholder="Search the Constitution" enterkeyhint="go"><button class="ib" id="sclose" type="button" aria-label="Close search"></button></div>

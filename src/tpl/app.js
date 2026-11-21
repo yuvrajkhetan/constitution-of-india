@@ -92,6 +92,7 @@ const I = {
   split: P('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M3 12h9"/>'),
   coin: P('<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>'),
   alert: P('<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>'),
+  more: P('<circle cx="12" cy="12" r="9"/><circle cx="8" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.15" fill="currentColor" stroke="none"/>'),
   home: P('<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10M10 20v-6h4v6"/>'),
   people: P('<circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M18 13.5a7 7 0 0 1 4 6.5"/>'),
   pen: P('<path d="M4 20l4-1L19 8a2.1 2.1 0 0 0-3-3L5 16z"/><path d="M14 7l3 3"/>'),
@@ -419,13 +420,14 @@ function render(keepScroll) {
     pendingFrom = null;
   }
   route = parseHash();
-  closePop(); closeSide(); closeMenu(); stopSpeak(); selClause = null; $("#cbar").hidden = true; const kb = $("#kbd"); if (kb) kb.remove();
+  closePop(); closeSide(); closeMenu(); closeMore(false); stopSpeak(); selClause = null; $("#cbar").hidden = true; const kb = $("#kbd"); if (kb) kb.remove();
   const r = route, key = location.hash;
   if (r.name === "home") themeCtx = null;
   const V = { home: vHome, contents: vContents, part: vPart, art: vArt, pre: vPre, sch: vSch, apx: vApx, themes: vThemes, theme: vTheme, amend: vAmend, bs: vBS, glossary: vGlossary, saved: vSaved, about: vAbout }[r.name] || vHome;
   const y = window.scrollY;
   view.innerHTML = `<div class="view">${V(r)}</div>`;
   $$("[data-nav]").forEach(a => a.setAttribute("aria-current", a.dataset.nav === NAVKEY[r.name] ? "page" : "false"));
+  $("#morebtn").setAttribute("aria-current", MORE.some(m => m[0] === NAVKEY[r.name]) ? "true" : "false");
   document.title = (r.name === "art" ? `Article ${r.id}: ${ART.get(r.id).t.replace(/\.$/, "")}` : r.name === "part" ? `Part ${r.id}: ${PARTS[PART_BY.get(r.id)].t}` : r.name === "sch" ? schName(r.id) : r.name === "theme" ? THEME_BY.get(r.id).t : r.name === "apx" ? "Appendix " + r.id : TITLES[r.name] || "Constitution of India") + (r.name === "home" ? "" : " · Constitution of India");
   after(r, keepScroll ? y : null, key !== lastKey);
   lastKey = key;
@@ -1518,6 +1520,71 @@ function openPop(btn) {
   pop.style.top = (r.bottom + scrollY + 8) + "px";
 }
 
+/* ================= More sheet (phones and tablets) ================= */
+/* sections without a tab of their own: [nav key, href, icon, colour, title, one line] */
+const MORE = [
+  ["bs", "#basic-structure", "shield", "navy", "Basic structure", "What no amendment can destroy"],
+  ["amend", "#amendments", "clock", "saffron", "Amendments", `All ${AMD.length} and what they changed`],
+  ["glossary", "#glossary", "abc", "green", "Glossary", "Legal words in plain English"],
+  ["pre", "#preamble", "quote", "saffron", "Preamble", "We, the People of India"],
+  ["about", "#about", "info", "navy", "How this was made", "Sources, methods and limits"]
+];
+const moreEl = $("#more"), morePanel = $("#more .mpanel"), moreBtn = $("#morebtn");
+let moreFocus = null, moreT = 0;
+const moreOpen = () => !moreEl.hidden;
+const themeMode = () => document.documentElement.getAttribute("data-theme") || "auto";
+function fillMore() {
+  const cur = route.name === "pre" ? "pre" : NAVKEY[route.name], tm = themeMode();
+  morePanel.innerHTML = `<div class="grab" aria-hidden="true"></div>
+    <div class="mhead"><h2 id="more-h">More</h2><button class="ib" type="button" data-more-close aria-label="Close">${I.close}</button></div>
+    <nav class="group mlist" aria-label="More sections">${MORE.map(([k, h, ic, c, t, d]) => `<a class="mrow" href="${h}"${k === cur ? ' aria-current="page"' : ""}><span class="ico c-${c}">${I[ic]}</span><span><b>${t}</b><small>${esc(d)}</small></span>${I.chev}</a>`).join("")}</nav>
+    <div class="mset"><span id="ap-l">Appearance</span><div class="seg" role="group" aria-labelledby="ap-l">${[["auto", "Auto"], ["light", "Light"], ["dark", "Dark"]].map(([m, l]) => `<button type="button" data-tmode="${m}" aria-pressed="${m === tm}">${l}</button>`).join("")}</div></div>`;
+}
+function openMore() {
+  if (moreOpen()) return;
+  clearTimeout(moreT); closePop(); closeSide(); closeMenu();
+  moreFocus = document.activeElement; fillMore();
+  moreEl.hidden = false; morePanel.style.transform = "";
+  void moreEl.offsetWidth; /* so the sheet slides up from below */
+  moreEl.classList.add("open"); moreBtn.setAttribute("aria-expanded", "true");
+  document.documentElement.style.overflow = "hidden";
+  morePanel.focus({ preventScroll: true });
+}
+function closeMore(restore = true) {
+  if (!moreOpen()) return;
+  moreEl.classList.remove("open"); moreBtn.setAttribute("aria-expanded", "false");
+  document.documentElement.style.overflow = "";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  clearTimeout(moreT); moreT = setTimeout(() => { moreEl.hidden = true; morePanel.style.transform = ""; }, reduce ? 0 : 300);
+  if (restore && moreFocus && moreFocus.focus) moreFocus.focus({ preventScroll: true });
+}
+moreEl.addEventListener("click", e => {
+  if (e.target === moreEl || e.target.closest("[data-more-close]")) { closeMore(); return; }
+  const tm = e.target.closest("[data-tmode]"); if (tm) { setThemeMode(tm.dataset.tmode); $$("[data-tmode]", moreEl).forEach(b => b.setAttribute("aria-pressed", String(b === tm))); return; }
+  const row = e.target.closest(".mrow"); if (row && row.getAttribute("href") === location.hash) closeMore(false);
+});
+moreEl.addEventListener("keydown", e => {
+  if (e.key === "Escape") { e.stopPropagation(); closeMore(); return; }
+  if (e.key !== "Tab") return;
+  const f = $$("a[href], button", morePanel), first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && (document.activeElement === first || document.activeElement === morePanel)) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+/* swipe the sheet down to close it */
+{
+  let y0 = null, dy = 0;
+  morePanel.addEventListener("touchstart", e => { y0 = morePanel.scrollTop <= 0 ? e.touches[0].clientY : null; dy = 0; morePanel.style.transition = ""; }, { passive: true });
+  morePanel.addEventListener("touchmove", e => { if (y0 == null) return; dy = Math.max(0, e.touches[0].clientY - y0); if (dy) { morePanel.style.transition = "none"; morePanel.style.transform = `translateY(${dy}px)`; } }, { passive: true });
+  morePanel.addEventListener("touchend", () => { if (y0 == null) return; morePanel.style.transition = ""; if (dy > 90) closeMore(); else morePanel.style.transform = ""; y0 = null; });
+}
+/* tapping the tab you are already on takes you back to the top */
+$(".tabs").addEventListener("click", e => {
+  const a = e.target.closest("a[data-nav]");
+  if (a && a.getAttribute("aria-current") === "page" && (location.hash || "#") === a.getAttribute("href")) {
+    e.preventDefault(); scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+});
+
 /* ================= search sheet ================= */
 const dlg = $("#sdlg"), sq = $("#sq"), sres = $("#sres"), sfoot = $("#sfoot");
 let sel = 0, items = [], lastFocus = null;
@@ -1613,6 +1680,7 @@ document.addEventListener("click", e => {
   const yd = t.closest(".chart .yd"); if (yd) { amdFilter = "all"; location.hash = "#amend-" + yd.dataset.n; return; }
   if (route.name === "art" && !t.closest("a, button, .fn") && t.closest("#text p") && !(getSelection && String(getSelection()).trim())) { const cid = clauseFor(t.closest("#text p")); if (cid) { selClause === cid ? clearClause() : selectClause(cid); return; } }
   if (t.closest("[data-search]")) { openSearch(); return; }
+  if (t.closest("[data-more]")) { moreOpen() ? closeMore() : openMore(); return; }
   const sqq = t.closest("[data-search-q]"); if (sqq) { openSearch(sqq.dataset.searchQ); return; }
   const go = t.closest("[data-goto-fn]"); if (go) { gotoNote(go.dataset.gotoFn); return; }
   const fn = t.closest(".fn"); if (fn) { e.preventDefault(); popBtn === fn ? closePop() : openPop(fn); return; }
@@ -1690,7 +1758,11 @@ addEventListener("scroll", () => tip.classList.remove("on"), { passive: true });
 /* theme */
 const curTheme = () => document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 function setThemeIcon() { const b = $("#theme"), d = curTheme() === "dark"; b.innerHTML = d ? I.sun : I.moon; b.setAttribute("aria-label", d ? "Use light appearance" : "Use dark appearance"); }
-function toggleTheme() { const t = curTheme() === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", t); store.set("theme", t); setThemeIcon(); setQuiltVars(); if (route.name === "home") startHeroQuilt(); }
+function setThemeMode(m) {
+  if (m === "auto") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", m);
+  store.set("theme", m === "auto" ? null : m); setThemeIcon(); setQuiltVars(); if (route.name === "home") startHeroQuilt();
+}
+function toggleTheme() { setThemeMode(curTheme() === "dark" ? "light" : "dark"); }
 const savedTheme = store.get("theme", null); if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
 
 /* boot */
@@ -1698,7 +1770,7 @@ $(".brand").insertAdjacentHTML("afterbegin", chakra());
 $(".sbtn").insertAdjacentHTML("afterbegin", I.search);
 $("#sbar-ic").outerHTML = I.search;
 $("#sclose").innerHTML = I.close;
-const TAB_IC = { home: I.explore, contents: I.book, search: I.search, themes: I.grid, saved: I.bookmark };
+const TAB_IC = { home: I.explore, contents: I.book, themes: I.grid, saved: I.bookmark, more: I.more };
 $$(".tabs [data-ic]").forEach(el => el.insertAdjacentHTML("afterbegin", TAB_IC[el.dataset.ic]));
 $$("[data-icon]").forEach(el => el.insertAdjacentHTML("afterbegin", I[el.dataset.icon]));
 setThemeIcon();

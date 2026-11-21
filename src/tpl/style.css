@@ -65,19 +65,47 @@ svg{flex:none}
 .ib svg{width:20px;height:20px}
 .ib .dot{position:absolute;top:7px;right:7px;min-width:15px;height:15px;padding:0 4px;border-radius:999px;background:var(--saffron-fill);color:#000;font:700 10px/15px var(--sys);text-align:center}
 @media (max-width:900px){.nav{display:none}}
-@media (max-width:700px){.sbtn{width:auto;flex:1}.sbtn kbd{display:none}.brand b{display:none}.bar .saved-link{display:none}}
+@media (max-width:900px){.sbtn{width:auto;flex:1;max-width:520px}.bar .saved-link,.bar #theme{display:none}}
+@media (max-width:700px){.sbtn{max-width:none}.sbtn kbd{display:none}.brand b{display:none}}
 
-/* ---------- bottom tab bar (phones) ---------- */
+/* ---------- bottom tab bar (phones and tablets) ---------- */
 .tabs{display:none}
-@media (max-width:700px){
+@media (max-width:900px){
   :root{--tab:calc(56px + env(safe-area-inset-bottom,0px))}
-  .tabs{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:55;height:var(--tab);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--bar);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--sep)}
-  .tabs a,.tabs button{display:grid;justify-items:center;align-content:center;gap:2px;border:0;background:none;color:var(--label-3);font-size:10.5px;font-weight:500;letter-spacing:0;cursor:pointer}
+  .tabs{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:55;height:var(--tab);padding:0 max(0px,calc(50vw - 300px)) env(safe-area-inset-bottom,0px);background:var(--bar);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--sep)}
+  .tabs a,.tabs button{position:relative;display:grid;justify-items:center;align-content:center;gap:2px;border:0;background:none;color:var(--label-3);font-size:10.5px;font-weight:500;letter-spacing:0;cursor:pointer;min-width:0}
   .tabs a:hover{text-decoration:none}
   .tabs svg{width:24px;height:24px}
-  .tabs [aria-current="page"]{color:var(--navy)}
+  .tabs [aria-current="page"],.tabs [aria-current="true"],.tabs [aria-expanded="true"]{color:var(--navy)}
+  .tabs .dot{position:absolute;top:5px;left:calc(50% + 4px);min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:var(--saffron-fill);color:#000;font:700 10px/16px var(--sys);text-align:center}
   body{padding-bottom:var(--tab)}
 }
+
+/* ---------- More sheet ---------- */
+.msheet{position:fixed;inset:0;z-index:88;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,0);transition:background .3s ease}
+.msheet[hidden]{display:none}
+.msheet.open{background:rgba(0,0,0,.32)}
+.mpanel{width:min(560px,100%);max-height:calc(100% - env(safe-area-inset-top,0px) - 24px);overflow:auto;overscroll-behavior:contain;background:var(--bg);border-radius:22px 22px 0 0;padding:8px 16px calc(20px + env(safe-area-inset-bottom,0px));box-shadow:var(--shadow-lg);transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.msheet.open .mpanel{transform:none}
+.mpanel:focus{outline:none}
+.mpanel .grab{width:36px;height:5px;border-radius:3px;background:var(--fill);margin:0 auto 6px}
+.mhead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 0 12px 4px}
+.mhead h2{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.mhead .ib{width:36px;height:36px;background:var(--fill-2)}
+.mhead .ib svg{width:17px;height:17px}
+.mrow{display:grid;grid-template-columns:40px minmax(0,1fr) 14px;gap:14px;align-items:center;min-height:62px;padding:10px 14px;color:var(--label);position:relative}
+.mrow+.mrow::before{content:"";position:absolute;top:0;left:68px;right:0;border-top:.5px solid var(--sep)}
+.mrow:hover{background:var(--surface-2);text-decoration:none}
+.mrow b{display:block;font-size:16.5px;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.mrow small{display:block;font-size:13.5px;line-height:1.35;color:var(--label-3);margin-top:1px}
+.mrow>svg{width:14px;height:14px;color:var(--label-3)}
+.mrow[aria-current="page"]{background:var(--navy-tint)}
+.mrow[aria-current="page"] b{color:var(--navy)}
+.mset{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;padding:10px 10px 10px 16px;border-radius:var(--r);background:var(--surface)}
+.mset>span{font-size:16.5px;font-weight:600;letter-spacing:-.015em}
+.mset .seg button{padding:8px 14px;font-size:14px}
+@media (hover:none){.mrow:active{background:var(--fill-2)}}
+@media (prefers-reduced-motion:reduce){.msheet,.mpanel{transition:none}}
 
 /* ---------- shared bits ---------- */
 .lt{font-size:clamp(34px,5vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.08}
@@ -848,7 +876,7 @@ kbd{display:inline-block;min-width:22px;padding:2px 6px;border-radius:6px;backgr
 .spd select{appearance:none;-webkit-appearance:none;height:36px;border:0;border-radius:0 999px 999px 0;background:var(--fill-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236e6e73' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 10px center/9px 6px;color:var(--navy);font:600 14.5px var(--sys);padding:0 26px 0 11px;cursor:pointer;font-variant-numeric:tabular-nums}
 .spd select:hover{background-color:var(--fill)}
 .spd select:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
-@media (max-width:900px){.lgrp .btn{width:40px!important;padding:0!important}.spd select{height:40px}}
+@media (max-width:700px){.lgrp .btn{width:40px!important;padding:0!important}.spd select{height:40px}}
 @media (max-width:900px){.spd select{padding:0 22px 0 9px;background-position:right 8px center}}
 @media (max-width:460px){.acts:has(.lgrp) .sidebtn{width:40px;padding:0;font-size:0;gap:0}.acts:has(.lgrp) .sidebtn svg{width:17px;height:17px}}
 @media (max-width:360px){.acts:has(.lgrp){gap:5px}.acts:has(.lgrp) .btn{width:36px!important;height:36px!important;padding:0!important}.acts:has(.lgrp) .spd select{height:36px;padding:0 18px 0 7px;background-position:right 6px center}}
