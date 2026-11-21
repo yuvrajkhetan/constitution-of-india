@@ -1135,32 +1135,19 @@ const canSpeak = "speechSynthesis" in window && typeof SpeechSynthesisUtterance 
 let speaking = false;
 const sayable = s => plain(s).replace(/[\[\]*]/g, "").replace(/\barts?\.\s*/gi, m => /s/i.test(m[3]) ? "articles " : "article ").replace(/\bcls?\.\s*/gi, "clause ").replace(/[—–]/g, ", ").replace(/\s+/g, " ").trim();
 function setListen(on) { $$("[data-listen]").forEach(b => { b.setAttribute("aria-pressed", String(on)); b.setAttribute("aria-label", on ? "Stop reading aloud" : "Read aloud"); b.innerHTML = `${on ? I.stop : I.speaker}<span class="bl">${on ? "Stop" : "Listen"}</span>`; }); }
-/* iPhones and iPads mute speech when the ringer is off, because a page's sound counts as "ambient" audio.
-   Asking for "playback" audio (Safari 16.4+), and on older versions playing a silent loop started by the
-   same tap, moves it to media audio, which plays with the ringer off, like a video. */
+/* Safari on iPhone has known speech quirks: a speak() straight after cancel() can be dropped, the end event
+   sometimes never fires, and speech can be left paused after an interruption such as a call. The queue below
+   allows for each. iPhones also mute speech when Silent mode is on, and no web page can change that, so the
+   first Listen on an iPhone or iPad says so. */
 const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-let silentAudio = null;
-function silentWav() {
-  const n = 800, b = new Uint8Array(44 + n), d = new DataView(b.buffer), put = (o, t) => { for (let i = 0; i < t.length; i++) b[o + i] = t.charCodeAt(i); };
-  put(0, "RIFF"); d.setUint32(4, 36 + n, true); put(8, "WAVEfmt "); d.setUint32(16, 16, true); d.setUint16(20, 1, true); d.setUint16(22, 1, true);
-  d.setUint32(24, 8000, true); d.setUint32(28, 8000, true); d.setUint16(32, 1, true); d.setUint16(34, 8, true); put(36, "data"); d.setUint32(40, n, true); b.fill(128, 44);
-  return URL.createObjectURL(new Blob([b], { type: "audio/wav" }));
+let speakGen = 0, watch = 0, silentHint = false;
+function stopSpeak() {
+  if (!canSpeak) return;
+  speaking = false; speakGen++; restartSpeak = null; clearInterval(watch);
+  if (curU) { curU.onend = curU.onerror = curU.onstart = null; curU = null; }
+  try { speechSynthesis.cancel(); } catch (e) {}
+  $$(".speaking").forEach(e => e.classList.remove("speaking")); setListen(false);
 }
-function mediaAudio(on, title) {
-  if (!isIOS) return;
-  try { if (navigator.audioSession) navigator.audioSession.type = on ? "playback" : "auto"; } catch (e) {}
-  try {
-    if (on) {
-      if (!silentAudio) { silentAudio = new Audio(silentWav()); silentAudio.loop = true; silentAudio.setAttribute("playsinline", ""); }
-      const p = silentAudio.play(); if (p && p.catch) p.catch(() => {});
-      if ("mediaSession" in navigator && window.MediaMetadata) {
-        navigator.mediaSession.metadata = new MediaMetadata({ title: title || "Constitution of India", artist: "Constitution of India" });
-        ["pause", "stop"].forEach(a => { try { navigator.mediaSession.setActionHandler(a, () => stopSpeak()); } catch (e) {} });
-      }
-    } else if (silentAudio) silentAudio.pause();
-  } catch (e) {}
-}
-function stopSpeak() { if (!canSpeak) return; mediaAudio(false); speaking = false; restartSpeak = null; if (curU) { curU.onend = curU.onerror = null; curU = null; } try { speechSynthesis.cancel(); } catch (e) {} $$(".speaking").forEach(e => e.classList.remove("speaking")); setListen(false); }
 function pickVoice() { const v = speechSynthesis.getVoices(); return v.find(x => /^en[-_]IN/i.test(x.lang)) || v.find(x => /^en[-_]GB/i.test(x.lang)) || v.find(x => /^en/i.test(x.lang)) || null; }
 function chunks(s) { const out = []; s.replace(/([.;:])\s+/g, "$1\n").split("\n").forEach(p => { if (out.length && (out[out.length - 1] + " " + p).length < 220) out[out.length - 1] += " " + p; else if (p) out.push(p); }); return out; }
 const RATES = [0.75, 1, 1.25, 1.5, 1.75, 2];
@@ -1170,32 +1157,58 @@ function setRate(r) {
   $$("[data-rate]").forEach(el => { el.value = String(r); });
   if (speaking && restartSpeak) restartSpeak();
 }
-function speak(items, title) {
-  stopSpeak(); if (!canSpeak) return;
-  mediaAudio(true, title); /* must run inside the tap, before speaking starts */
+function speak(items) {
+  if (!canSpeak) return;
+  const busy = speechSynthesis.speaking || speechSynthesis.pending;
+  stopSpeak();
+  try { if (speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {}
   speaking = true; setListen(true);
-  const v = pickVoice(), q = []; let i = 0;
+  if (isIOS && !silentHint) { silentHint = true; toast("No sound? Turn off Silent mode"); }
+  const q = []; let i = 0, v = pickVoice(), gen = speakGen, fin = null, started = 0, fails = 0;
   items.forEach(([el, tx]) => chunks(tx).forEach(c => q.push([el, c])));
-  restartSpeak = () => { if (curU) { curU.onend = curU.onerror = null; } try { speechSynthesis.cancel(); } catch (e) {} i = Math.max(0, i - 1); next(); };
-  const next = () => {
-    if (!speaking) return;
+  const say = () => {
+    if (!speaking || gen !== speakGen) return;
     $$(".speaking").forEach(e => e.classList.remove("speaking"));
     if (i >= q.length) { stopSpeak(); return; }
     const [el, tx] = q[i++];
     if (el) { el.classList.add("speaking"); const rc = el.getBoundingClientRect(); if (rc.top < 70 || rc.bottom > innerHeight - 90) el.scrollIntoView({ block: "center", behavior: "smooth" }); }
+    if (!v) v = pickVoice(); /* voices can arrive after the first tap */
     const u = new SpeechSynthesisUtterance(tx); if (v) u.voice = v; u.lang = v ? v.lang : "en-IN"; u.rate = rate;
-    curU = u; u.onend = next; u.onerror = () => { if (speaking) next(); };
+    let done = false;
+    fin = ok => { if (done || gen !== speakGen) return; done = true; fails = ok ? 0 : fails + 1; if (fails >= 3) { stopSpeak(); toast("Read aloud isn't working on this device"); return; } say(); };
+    u.onstart = () => { started = Date.now(); };
+    u.onend = () => fin(true);
+    u.onerror = e => { if (e && (e.error === "interrupted" || e.error === "canceled")) return; fin(false); };
+    curU = u; started = Date.now();
     speechSynthesis.speak(u);
   };
-  next();
+  /* change speed mid-way: restart the current sentence after the cancel has settled */
+  restartSpeak = () => {
+    if (curU) curU.onend = curU.onerror = curU.onstart = null;
+    gen = ++speakGen; try { speechSynthesis.cancel(); } catch (e) {}
+    i = Math.max(0, i - 1); setTimeout(say, 150);
+  };
+  /* if an end event never comes, move on once the engine has gone quiet; if speech was paused, resume it */
+  watch = setInterval(() => {
+    if (!speaking || gen !== speakGen || !fin) return;
+    try {
+      if (speechSynthesis.paused && !document.hidden) speechSynthesis.resume();
+      else if (!speechSynthesis.speaking && !speechSynthesis.pending && Date.now() - started > 700) fin(true);
+    } catch (e) {}
+  }, 250);
+  /* the first speak must happen inside the tap; only wait if something was still speaking */
+  if (busy) setTimeout(say, 150); else say();
 }
 function listen() {
   if (speaking) { stopSpeak(); return; }
   const r = route;
-  if (r.name === "art" && TEXT) { const n = r.id, t = TEXT.a[n], ps = $$("#text p"); speak([[$(".ahead h1"), `Article ${n}. ${ART.get(n).t}`]].concat(t.p.map((p, i) => [ps[i] || null, sayable(p[1])])), `Article ${n}`); }
-  else if (r.name === "pre") { const ps = $$(".pre-t p"); speak([[null, "The Preamble."]].concat(CORE.pre.p.map((p, i) => [ps[i] || null, sayable(p[1])])), "The Preamble"); }
+  if (r.name === "art" && TEXT) { const n = r.id, t = TEXT.a[n], ps = $$("#text p"); speak([[$(".ahead h1"), `Article ${n}. ${ART.get(n).t}`]].concat(t.p.map((p, i) => [ps[i] || null, sayable(p[1])]))); }
+  else if (r.name === "pre") { const ps = $$(".pre-t p"); speak([[null, "The Preamble."]].concat(CORE.pre.p.map((p, i) => [ps[i] || null, sayable(p[1])]))); }
 }
-if (canSpeak) { try { speechSynthesis.getVoices(); speechSynthesis.addEventListener && speechSynthesis.addEventListener("voiceschanged", () => {}); } catch (e) {} }
+if (canSpeak) {
+  try { speechSynthesis.getVoices(); speechSynthesis.addEventListener && speechSynthesis.addEventListener("voiceschanged", () => {}); } catch (e) {}
+  document.addEventListener("visibilitychange", () => { try { if (!document.hidden && speaking && speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {} });
+}
 const listenBtn = () => canSpeak ? `<span class="lgrp"><button class="btn" type="button" data-listen aria-pressed="false" aria-label="Read aloud">${I.speaker}<span class="bl">Listen</span></button><label class="spd"><span class="sr">Reading speed</span><select data-rate>${RATES.map(r => `<option value="${r}"${r === rate ? " selected" : ""}>${r}×</option>`).join("")}</select></label></span>` : "";
 const shareBtn = () => `<button class="btn" type="button" data-share aria-haspopup="menu" aria-expanded="false" aria-label="Share, copy link or cite">${I.share}<span class="bl">Share</span></button>`;
 
