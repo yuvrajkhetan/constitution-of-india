@@ -103,9 +103,6 @@ svg{flex:none}
 .mrow>svg{width:14px;height:14px;color:var(--label-3)}
 .mrow[aria-current="page"]{background:var(--navy-tint)}
 .mrow[aria-current="page"] b{color:var(--navy)}
-.mset{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;padding:10px 10px 10px 16px;border-radius:var(--r);background:var(--surface)}
-.mset>span{font-size:16.5px;font-weight:600;letter-spacing:-.015em}
-.mset .seg button{padding:8px 14px;font-size:14px}
 @media (hover:none){.mrow:active{background:var(--fill-2)}}
 @media (prefers-reduced-motion:reduce){.msheet,.mpanel{transition:none}}
 
@@ -814,6 +811,9 @@ a[href^="#art-"]{-webkit-touch-callout:none}
 .menu button{display:flex;align-items:center;gap:10px;width:100%;height:40px;padding:0 10px;border:0;border-radius:9px;background:none;color:var(--label);font:500 15px var(--sys);cursor:pointer;text-align:left}
 .menu button:hover,.menu button:focus-visible{background:var(--fill-2);outline:none}
 .menu svg{width:18px;height:18px;color:var(--label-2)}
+.menu .mlab{padding:6px 10px 4px;font-size:12px;font-weight:600;color:var(--label-3);letter-spacing:.01em}
+.menu .tick{margin-left:auto;display:flex}.menu .tick svg{color:var(--navy)}
+.menu [aria-checked="true"]{font-weight:600}
 /* ---- read aloud ---- */
 .text p.speaking,.ahead h1.speaking{background:var(--saffron-tint);box-shadow:-8px 0 0 var(--saffron-tint),8px 0 0 var(--saffron-tint);transition:background .2s}
 /* ---- keyboard shortcuts ---- */

@@ -93,6 +93,8 @@ const I = {
   coin: P('<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>'),
   alert: P('<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>'),
   more: P('<circle cx="12" cy="12" r="9"/><circle cx="8" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.15" fill="currentColor" stroke="none"/>'),
+  auto: P('<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/>'),
+  check: P('<path d="m5 12.5 4.5 4.5L19 7.5"/>'),
   home: P('<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10M10 20v-6h4v6"/>'),
   people: P('<circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M18 13.5a7 7 0 0 1 4 6.5"/>'),
   pen: P('<path d="M4 20l4-1L19 8a2.1 2.1 0 0 0-3-3L5 16z"/><path d="M14 7l3 3"/>'),
@@ -1101,22 +1103,31 @@ function doShare() {
   else copy(s.url, "Link copied");
 }
 let menu = null, menuBtn = null;
-function closeMenu() { if (menu) { menu.remove(); menu = null; } if (menuBtn) { menuBtn.setAttribute("aria-expanded", "false"); menuBtn = null; } }
-function openMenu(btn) {
+function closeMenu(restore) { const b = menuBtn; if (menu) { menu.remove(); menu = null; } if (menuBtn) { menuBtn.setAttribute("aria-expanded", "false"); menuBtn = null; } if (restore && b) b.focus({ preventScroll: true }); }
+function showMenu(btn, label, html) {
   closeMenu(); closePop();
+  menuBtn = btn; btn.setAttribute("aria-expanded", "true");
+  menu = document.createElement("div"); menu.className = "pop menu"; menu.setAttribute("role", "menu"); menu.setAttribute("aria-label", label);
+  menu.innerHTML = html;
+  document.body.appendChild(menu);
+  const rc = btn.getBoundingClientRect(), pw = menu.offsetWidth;
+  menu.style.left = Math.max(16 + scrollX, Math.min(rc.right + scrollX - pw, scrollX + document.documentElement.clientWidth - pw - 16)) + "px";
+  menu.style.top = (rc.bottom + scrollY + 8) + "px";
+  (menu.querySelector('[aria-checked="true"]') || menu.querySelector("button")).focus({ preventScroll: true });
+}
+/* appearance: Auto follows the device; the button shows the current choice */
+const THEME_MODES = [["auto", "auto", "Auto"], ["light", "sun", "Light"], ["dark", "moon", "Dark"]];
+function openThemeMenu(btn) {
+  const m = themeMode();
+  showMenu(btn, "Appearance", `<p class="mlab" aria-hidden="true">Appearance</p>` + THEME_MODES.map(([k, ic, l]) => `<button type="button" role="menuitemradio" aria-checked="${k === m}" data-tmode="${k}">${I[ic]}<span>${l}</span>${k === m ? `<span class="tick">${I.check}</span>` : ""}</button>`).join(""));
+}
+function openMenu(btn) {
   const r = route, items = [];
   if (navigator.share) items.push(["share", I.share, "Share…"]);
   items.push(["link", I.link, "Copy link"]);
   if (["art", "pre", "sch"].includes(r.name)) items.push(["cite", I.quote, "Copy citation"]);
   if (r.name === "art" || r.name === "pre") items.push(["text", I.copy, "Copy text"]);
-  menuBtn = btn; btn.setAttribute("aria-expanded", "true");
-  menu = document.createElement("div"); menu.className = "pop menu"; menu.setAttribute("role", "menu");
-  menu.innerHTML = items.map(([k, ic, l]) => `<button type="button" role="menuitem" data-sact="${k}">${ic}<span>${l}</span></button>`).join("");
-  document.body.appendChild(menu);
-  const rc = btn.getBoundingClientRect(), pw = menu.offsetWidth;
-  menu.style.left = Math.max(16 + scrollX, Math.min(rc.right + scrollX - pw, scrollX + document.documentElement.clientWidth - pw - 16)) + "px";
-  menu.style.top = (rc.bottom + scrollY + 8) + "px";
-  menu.querySelector("button").focus({ preventScroll: true });
+  showMenu(btn, "Share", items.map(([k, ic, l]) => `<button type="button" role="menuitem" data-sact="${k}">${ic}<span>${l}</span></button>`).join(""));
 }
 function shareAct(k) {
   const s = shareTarget(), r = route;
@@ -1582,11 +1593,10 @@ let moreFocus = null, moreT = 0;
 const moreOpen = () => !moreEl.hidden;
 const themeMode = () => document.documentElement.getAttribute("data-theme") || "auto";
 function fillMore() {
-  const cur = route.name === "pre" ? "pre" : NAVKEY[route.name], tm = themeMode();
+  const cur = route.name === "pre" ? "pre" : NAVKEY[route.name];
   morePanel.innerHTML = `<div class="grab" aria-hidden="true"></div>
     <div class="mhead"><h2 id="more-h">More</h2><button class="ib" type="button" data-more-close aria-label="Close">${I.close}</button></div>
-    <nav class="group mlist" aria-label="More sections">${MORE.map(([k, h, ic, c, t, d]) => `<a class="mrow" href="${h}"${k === cur ? ' aria-current="page"' : ""}><span class="ico c-${c}">${I[ic]}</span><span><b>${t}</b><small>${esc(d)}</small></span>${I.chev}</a>`).join("")}</nav>
-    <div class="mset"><span id="ap-l">Appearance</span><div class="seg" role="group" aria-labelledby="ap-l">${[["auto", "Auto"], ["light", "Light"], ["dark", "Dark"]].map(([m, l]) => `<button type="button" data-tmode="${m}" aria-pressed="${m === tm}">${l}</button>`).join("")}</div></div>`;
+    <nav class="group mlist" aria-label="More sections">${MORE.map(([k, h, ic, c, t, d]) => `<a class="mrow" href="${h}"${k === cur ? ' aria-current="page"' : ""}><span class="ico c-${c}">${I[ic]}</span><span><b>${t}</b><small>${esc(d)}</small></span>${I.chev}</a>`).join("")}</nav>`;
 }
 function openMore() {
   if (moreOpen()) return;
@@ -1608,7 +1618,6 @@ function closeMore(restore = true) {
 }
 moreEl.addEventListener("click", e => {
   if (e.target === moreEl || e.target.closest("[data-more-close]")) { closeMore(); return; }
-  const tm = e.target.closest("[data-tmode]"); if (tm) { setThemeMode(tm.dataset.tmode); $$("[data-tmode]", moreEl).forEach(b => b.setAttribute("aria-pressed", String(b === tm))); return; }
   const row = e.target.closest(".mrow"); if (row && row.getAttribute("href") === location.hash) closeMore(false);
 });
 moreEl.addEventListener("keydown", e => {
@@ -1716,7 +1725,8 @@ document.addEventListener("click", e => {
   const t = e.target;
   const al = t.closest && t.closest('a[href^="#"]');
   if (al && ["art", "sch", "pre", "apx"].includes(route.name) && (al.closest("#view") || al.closest(".pop") || al.closest(".peek")) && !al.closest(".pager, .crumbs, .side, .acts") && al.getAttribute("href") !== location.hash) pendingFrom = { h: location.hash, l: routeLabel(route) }; else if (al) pendingFrom = null;
-  if (menu && !t.closest(".menu") && !t.closest("[data-share]")) closeMenu();
+  if (menu && !t.closest(".menu") && !t.closest("[data-share]") && !t.closest("#theme")) closeMenu();
+  const tmo = t.closest("[data-tmode]"); if (tmo) { setThemeMode(tmo.dataset.tmode); closeMenu(true); return; }
   const sa = t.closest("[data-sact]"); if (sa) { shareAct(sa.dataset.sact); return; }
   const shb = t.closest("[data-share]"); if (shb) { menuBtn === shb ? closeMenu() : openMenu(shb); return; }
   if (t.closest("[data-listen]")) { listen(); return; }
@@ -1753,7 +1763,7 @@ document.addEventListener("click", e => {
   if (cp) { const n = cp.dataset.copy, a = ART.get(n), x = TEXT && TEXT.a[n]; if (x) copy(`Article ${n}. ${a.t}\n\n${x.p.map(p => plain(p[1])).join("\n")}\n\nThe Constitution of India (as on ${CORE.meta.asOn})`, `Copied Article ${n}`); return; }
   const ci = t.closest("[data-cite]");
   if (ci) { const n = ci.dataset.cite, a = ART.get(n), Pp = PARTS[a.p]; copy(`Constitution of India, Article ${n} (${a.t.replace(/\.$/, "")}), Part ${Pp.n}. Text as on ${CORE.meta.asOn}, Legislative Department, Ministry of Law and Justice, Government of India.`, "Citation copied"); return; }
-  if (t.closest("#theme")) toggleTheme();
+  const thb = t.closest("#theme"); if (thb) { menuBtn === thb ? closeMenu() : openThemeMenu(thb); return; }
   const link = t.closest("a[href^='#']");
   if (link && themeCtx) { const h = link.getAttribute("href"); const th = THEME_BY.get(themeCtx); if (th && !(h.startsWith("#theme-") || th.i.some(id => itemHref(id) === h))) themeCtx = null; }
 });
@@ -1770,7 +1780,7 @@ document.addEventListener("input", e => {
 document.addEventListener("keydown", e => {
   const typing = /input|textarea|select/i.test(e.target.tagName);
   if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !typing)) { e.preventDefault(); dlgOpen() ? closeSearch() : openSearch(); return; }
-  if (e.key === "Escape") { closePop(); closeSide(); closeMenu(); if ($("#kbd")) { toggleKeys(); return; } if (selClause) clearClause(); }
+  if (e.key === "Escape") { closePop(); closeSide(); closeMenu(true); if ($("#kbd")) { toggleKeys(); return; } if (selClause) clearClause(); }
   if (e.key === "Enter" && e.target.id === "sfilter") { const first = $$("#side .sl").find(a => !a.hidden); if (first) location.hash = first.getAttribute("href"); }
   if (typing || dlgOpen() || e.metaKey || e.ctrlKey || e.altKey) return;
   if (e.key === "?") { toggleKeys(); return; }
@@ -1805,12 +1815,11 @@ addEventListener("scroll", () => tip.classList.remove("on"), { passive: true });
 
 /* theme */
 const curTheme = () => document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-function setThemeIcon() { const b = $("#theme"), d = curTheme() === "dark"; b.innerHTML = d ? I.sun : I.moon; b.setAttribute("aria-label", d ? "Use light appearance" : "Use dark appearance"); }
+function setThemeIcon() { const b = $("#theme"), m = THEME_MODES.find(x => x[0] === themeMode()); b.innerHTML = I[m[1]]; b.setAttribute("aria-label", `Appearance: ${m[2]}`); }
 function setThemeMode(m) {
   if (m === "auto") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", m);
   store.set("theme", m === "auto" ? null : m); setThemeIcon(); setQuiltVars(); if (route.name === "home") startHeroQuilt();
 }
-function toggleTheme() { setThemeMode(curTheme() === "dark" ? "light" : "dark"); }
 const savedTheme = store.get("theme", null); if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
 
 /* boot */
