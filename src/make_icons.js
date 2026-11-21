@@ -56,9 +56,9 @@ function ico(pngs) {
   });
   fs.writeFileSync(path.join(out, "apple-touch-icon.png"), await shot(mark, 180));
 
-  /* share image: the home hero, cut down to the mark, the title and one line */
+  /* share image: the home hero, cut down to the mark, the title and the lede */
   await p.addStyleTag({ content: `
-    .tri,.bar,.tabs,.qstrip,.foot,.spot,.hero .pills,.hero~*{display:none!important}
+    .tri,.bar,.tabs,.qstrip,.foot,.spot,.hero .pills,.hero .asof,.hero~*{display:none!important}
     body{padding:0!important}
     .hero{height:630px!important;display:grid!important;place-items:center}
     .hero-in{padding:0!important}
@@ -66,10 +66,8 @@ function ico(pngs) {
     .hero .mark{width:120px!important;margin-bottom:26px!important}
     .hero h1{font-size:86px!important}
     .hero .lede{font-size:31px!important;max-width:none!important;margin-top:18px!important;color:var(--label-2)!important}
-    .hero .asof{font-size:20px!important;margin-top:24px!important;color:var(--label-2)!important}` });
+` });
   await p.evaluate(() => {
-    const a = document.querySelector(".hero .asof");
-    a.textContent = a.textContent.split(" · ")[0] + " · Themes, amendments and the basic structure";
     document.querySelector(".hero .lede").innerHTML = "Every article in the official words,<br>with a plain-English summary to help you understand it.";
   });
   await p.waitForTimeout(300);
