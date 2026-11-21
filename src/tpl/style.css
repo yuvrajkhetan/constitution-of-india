@@ -67,7 +67,7 @@ svg{flex:none}
 .ib svg{width:20px;height:20px}
 .ib .dot{position:absolute;top:7px;right:7px;min-width:15px;height:15px;padding:0 4px;border-radius:999px;background:var(--saffron-fill);color:#000;font:700 10px/15px var(--sys);text-align:center}
 @media (max-width:900px){.nav{display:none}}
-@media (max-width:900px){.sbtn{width:auto;flex:1;max-width:520px}.bar .saved-link,.bar #theme{display:none}}
+@media (max-width:900px){.sbtn{width:auto;flex:1;max-width:520px}.bar .saved-link{display:none}}
 @media (max-width:700px){.sbtn{max-width:none}.sbtn kbd{display:none}.brand b{display:none}}
 
 /* ---------- bottom tab bar (phones and tablets) ---------- */
