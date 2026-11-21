@@ -604,7 +604,7 @@ function vPart(r) {
     });
   });
   if (!pr.nums.length) body = `<div class="status">${I.info}<div>This Part has been omitted. ${P.f.map(f => esc(f[1])).join(" ")}</div></div>`;
-  return `<section class="wrap" style="max-width:900px">
+  return `<section class="wrap col">
     <div class="ph">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="#contents">Contents</a>${I.chev}<span>Part ${P.n}</span></nav>
       <div class="eyebrow" style="color:${partText(i)};font-size:15px">Part ${P.n}</div>
@@ -866,7 +866,7 @@ function vTheme(r) {
     return `<a class="row" href="#sch-${v}"><span class="num">Sch.</span><span><span class="tt">${esc(schName(v))}: ${esc(s.t)}</span><span class="ss">${esc((T && T.s) || s.s || "")}</span></span><span class="aux">${I.chev}</span></a>`;
   }).join("");
   const others = THEMES.filter(x => x.id !== t.id).slice(0, 4);
-  return `<section class="wrap" style="max-width:900px">
+  return `<section class="wrap col">
     <div class="ph"><nav class="crumbs"><a href="#themes">Themes</a>${I.chev}<span>${esc(t.t)}</span></nav>
       <span class="ico c-${t.c}" style="width:52px;height:52px;border-radius:14px">${I[t.ic]}</span>
       <h1 class="lt">${esc(t.q)}</h1><p class="sub">${lx(t.d)}</p>
@@ -874,7 +874,7 @@ function vTheme(r) {
     ${!TEXT && !textErr ? `<p class="eyebrow" style="margin:0 0 10px">Loading summaries…</p>` : ""}
     <div class="group">${rows}</div>
     <div class="sh" style="margin-top:40px"><div><h2 style="font-size:22px">More themes</h2></div><a class="more" href="#themes">All themes ${I.chev}</a></div>
-    <div class="themes">${others.map(themeCard).join("")}</div>
+    <div class="themes two">${others.map(themeCard).join("")}</div>
   </section>`;
 }
 
@@ -887,7 +887,7 @@ function vAmend(r) {
   const decs = [...new Set(AMD.map(a => Math.floor(a.y / 10) * 10))];
   const list = AMD.filter(a => amdFilter === "all" || a.tags.includes(amdFilter) || String(Math.floor(a.y / 10) * 10) === amdFilter).slice().reverse();
   const NC = AMD.filter(a => a.nc).length;
-  return `<section class="wrap" style="max-width:1000px">
+  return `<section class="wrap col" style="--col:920px">
     <div class="ph"><h1 class="lt">Amendments</h1><p class="sub">The Constitution records its changes in footnotes under each provision. Parliament has passed ${AMD.length} Constitution Amendment Acts. This edition's footnotes cite ${AMD.length - NC}. The other ${NC} made changes that were later replaced or ran out, so no footnote mentions them; they are marked below with what happened and the official source used.</p></div>
     <div class="seg2" role="group" aria-label="Chart view"><button type="button" data-amv="year" aria-pressed="${amdView === "year"}">By year</button><button type="button" data-amv="size" aria-pressed="${amdView === "size"}">By size</button></div>
     <div class="card chart" style="margin-bottom:18px">${amdChartNow(r.id)}</div>
@@ -969,7 +969,7 @@ function vBS(r) {
   const provs = p => p.map(x => { const [k, v] = x.split(":"); return k === "a" ? `<a class="pill" href="#art-${v}">Art. ${v}</a>` : `<a class="pill" href="#sch-${v}">${schName(v)}</a>`; }).join("");
   const carriers = id => { const out = []; if (B.art.Preamble && B.art.Preamble[0] <= 2 && B.why[B.art.Preamble[1]][1].includes(id)) out.push(["#preamble", "Preamble"]); ORDER.forEach(n => { const v = B.art[n]; if (v && v[0] <= 2 && B.why[v[1]][1].includes(id)) out.push(["#art-" + n, "Art. " + n]); }); SCH.forEach(s => { const v = B.sch[s.k]; if (v && v[0] <= 2 && B.why[v[1]][1].includes(id)) out.push(["#sch-" + s.k, schName(s.k)]); }); return out; };
   const srcLink = k => { const s = src[k] || k, u = (s.match(/https?:\/\/\S+/) || [])[0]; const label = s.replace(/,?\s*https?:\/\/\S+/, ""); return u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(label)}</a>` : esc(label); };
-  return `<section class="wrap bs" style="max-width:1000px">
+  return `<section class="wrap bs col" style="--col:920px">
     <div class="ph"><div class="eyebrow">Explainer</div><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
     <div class="card bs-sum">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><b>${counts[i]}</b><span>${b.t}</span><small>${b.r}</small></button>`).join("")}</div>
 
@@ -1009,7 +1009,7 @@ function vGlossary(r) {
   const G = TEXT.g, letters = [...new Set(G.map(([t]) => t.replace(/^(the|an?)\s+/i, "").charAt(0).toUpperCase()))].sort();
   const byL = {};
   G.forEach(g => { const L = g[0].replace(/^(the|an?)\s+/i, "").charAt(0).toUpperCase(); (byL[L] = byL[L] || []).push(g); });
-  return `<section class="wrap" style="max-width:900px">
+  return `<section class="wrap col">
     <div class="ph"><h1 class="lt">Glossary</h1><p class="sub">${G.length} terms the Constitution defines for itself, in its Articles and Schedules, with the definition in its own words and where it appears.</p></div>
     <div class="toolbar"><label class="filter" style="flex:1">${I.search}<span class="sr">Filter terms</span><input id="gfilter" type="search" placeholder="Filter terms" autocomplete="off"></label></div>
     <nav class="az" aria-label="Jump to letter">${letters.map(L => `<a href="#glossary" data-jump="gl-${L}">${L}</a>`).join("")}</nav>
@@ -1021,7 +1021,7 @@ function vGlossary(r) {
 function savedList() { return store.get("saved", []).filter(n => ART.has(n)); }
 function vSaved() {
   const s = savedList();
-  return `<section class="wrap" style="max-width:900px"><div class="ph"><h1 class="lt">Saved</h1><p class="sub">Articles you save stay here on this device.</p></div>
+  return `<section class="wrap col"><div class="ph"><h1 class="lt">Saved</h1><p class="sub">Articles you save stay here on this device.</p></div>
     ${s.length ? `<div class="group">${s.map(n => artRow(n)).join("")}</div>` : `<div class="card" style="padding:28px;text-align:center"><p class="sub" style="margin:0 auto">Nothing saved yet. Open any article and select <b>Save</b> to keep it here.</p><a class="btn" href="#theme-rights" style="margin-top:14px">Start with your Fundamental Rights</a></div>`}</section>`;
 }
 
@@ -1248,7 +1248,7 @@ function bsShare() {
 /* ================= how this was made ================= */
 function vAbout() {
   const NC = AMD.filter(a => a.nc).length;
-  return `<section class="wrap about" style="max-width:780px">
+  return `<section class="wrap about col" style="--col:700px">
     <div class="ph"><div class="eyebrow">About this reader</div><h1 class="lt">How this was made</h1><p class="sub">What on this site is the official text, what we added to help you read it, and where everything comes from.</p></div>
     <div class="card prose">
       <h2>The official text</h2>
