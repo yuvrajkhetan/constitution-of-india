@@ -1,10 +1,10 @@
 """Layer 2 and 3 of the basic structure feature: features -> articles, and a band for every provision.
 
-Question answered for each provision: could Parliament repeal or gut this provision by a constitutional
+Question answered for each provision: could Parliament repeal or substantially change this provision by a constitutional
 amendment without breaching a basic feature recognised by the Supreme Court?
 
 Bands: held | vlikely (>90%) | likely (60-90%) | open (40-60%) | unlikely (10-40%) | vunlikely (<10%).
-'held' = the Supreme Court has itself protected this provision's core (or struck down an amendment to it) on basic structure grounds.
+'held' = the Supreme Court has itself ruled this provision's core part of the basic structure (or struck down an amendment to it) on basic structure grounds.
 Everything else is our estimate, made with the rubric in METHOD below, and is labelled as such on the site.
 """
 import json, re
@@ -73,12 +73,12 @@ R = []
 def r(arts, band, why, feats, cases=''):
     R.append(dict(a=arts.split(), b=band, w=why, f=feats.split(), cs=cases))
 
-# HELD: the Court has itself protected the core of these provisions
+# HELD: the Court has itself ruled the core of these provisions part of the basic structure
 r('14 19 21', 'held', 'Minerva Mills (1980) held that abrogating Articles 14 and 19 for a class of laws destroys the basic structure; Coelho (2007) treats the essence of Articles 14, 19 and 21 as the test for Ninth Schedule laws.', 'equality balance rol')
 r('32', 'held', 'Coelho (2007) called Article 32 "an important and integral part of the basic structure", and L. Chandra Kumar (1997) held that judicial review under it cannot be ousted.', 'jr access')
 r('226 227', 'held', 'L. Chandra Kumar (1997) held that the High Courts\' power of judicial review under Article 226, and their superintendence under Article 227, are part of the inviolable basic structure.', 'jr access')
 r('368', 'held', 'Minerva Mills (1980) held that a limited amending power is itself a basic feature, so Parliament cannot amend this article to make its power unlimited.', 'amend supremacy')
-r('124 217', 'held', 'The NJAC case (2015) struck down the Ninety-ninth Amendment\'s new method of appointing judges as a breach of judicial independence, so the core of how judges are appointed is protected.', 'indep sop')
+r('124 217', 'held', 'The NJAC case (2015) struck down the Ninety-ninth Amendment\'s new method of appointing judges as a breach of judicial independence, so the core of how judges are appointed is part of the basic structure.', 'indep sop')
 # VERY LIKELY
 r('1', 'vlikely', 'Names India as a Union of States. Abolishing the Union or the States would undo federalism and India\'s sovereignty, both part of the framework.', 'federal sovereign')
 r('13', 'vlikely', 'This is the hook for testing laws against fundamental rights. Courts have said the power to test legislation "can never be ousted".', 'jr equality')
@@ -91,7 +91,7 @@ r('Preamble', 'vlikely', 'Kesavananda Bharati (Khanna J) held that the part of t
 r('12', 'likely', 'Defines "the State" against which fundamental rights are enforced; gutting it would hollow out the rights.', 'equality jr')
 r('16', 'likely', 'Equality of opportunity in public employment is part of the equality code, though clauses on reservation have been changed and upheld.', 'equality')
 r('20 22', 'likely', 'Basic protections of personal liberty and fair criminal process, closely tied to Article 21.', 'equality rol')
-r('23 24', 'likely', 'Bans on forced labour and child labour in hazardous work protect human dignity; no case has tested their repeal.', 'equality')
+r('23 24', 'likely', 'Bans on forced labour and child labour in hazardous work relate to human dignity; no case has tested their repeal.', 'equality')
 r('26 27 28', 'likely', 'Religious freedom of groups and the bar on State religious instruction carry secularism into practice.', 'secular')
 r('29 30', 'likely', 'Minority rights to culture and to run educational institutions support pluralism and secularism.', 'secular equality')
 r('50', 'likely', 'The Directive to separate the judiciary from the executive expresses separation of powers and judicial independence.', 'sop indep')
@@ -101,7 +101,7 @@ r('73', 'likely', 'Extent of Union executive power, one half of the federal bala
 r('74 75', 'likely', 'Ministers advise the President and answer collectively to the Lok Sabha: the core of parliamentary government.', 'parl democracy')
 r('79 80 81', 'likely', 'An elected Parliament, with the States represented in it. Representation of the States is entrenched.', 'democracy federal')
 r('83', 'likely', 'Fixed terms for the Houses guarantee periodic elections.', 'democracy elections')
-r('121', 'likely', 'Parliament cannot discuss a judge\'s conduct except on a motion for removal, protecting judicial independence.', 'indep sop')
+r('121', 'likely', 'Parliament cannot discuss a judge\'s conduct except on a motion for removal, a rule tied to judicial independence.', 'indep sop')
 r('125 221', 'likely', 'Judges\' salaries cannot be cut to their disadvantage while in office, a guard on judicial independence.', 'indep')
 r('129 215', 'likely', 'Courts of record with power to punish contempt, part of the courts\' ability to make their orders effective.', 'jr indep')
 r('131', 'likely', 'The Supreme Court settles disputes between the Union and the States, a federal safeguard.', 'federal jr')
@@ -123,7 +123,7 @@ r('122 212', 'open', 'Courts cannot question the validity of legislative proceed
 r('141 142', 'open', 'Binding precedent and the power to do complete justice. Important to the Court\'s role, but not tested as basic.', 'jr')
 r('148 149', 'open', 'An independent auditor of public accounts supports the rule of law and accountability; untested.', 'rol sop')
 r('228 216', 'open', 'Organisational rules for the High Courts. Some core is needed for judicial review, but the details can change.', 'jr indep')
-r('356', 'open', 'President\'s Rule. Its use is reviewable (Bommai), and abuse can damage federalism and democracy, but the article itself is not protected.', 'federal democracy jr')
+r('356', 'open', 'President\'s Rule. Its use is reviewable (Bommai), and abuse can damage federalism and democracy, but the article itself is not part of the basic structure.', 'federal democracy jr')
 r('359', 'open', 'Suspension of rights during emergency. Since 1978, Articles 20 and 21 cannot be suspended; widening this power again could touch the essence of rights.', 'equality rol')
 # UNLIKELY (no recognised feature depends on the provision itself)
 r('2 3 4', 'unlikely', 'Parliament already changes State boundaries by ordinary law; the federal structure survives individual changes.', 'federal')
@@ -152,11 +152,11 @@ r('266 267 268 269 269A 270 271 273 274 275 276 277 279 279A 280 281', 'vunlikel
 r('282 283 284 285 286 287 288 289 290 290A 292 293 294 295 296 297 298 299 300', 'vunlikely', 'Borrowing, property, contracts and suits.', '')
 r('301 302 303 304 305 307', 'unlikely', 'Freedom of trade within India and its exceptions.', 'sovereign')
 r('308 309 310 311 312 312A 313 315 316 317 318 319 320 321 322 323', 'vunlikely', 'Civil services and Public Service Commissions.', 'rol')
-r('323A 323B', 'unlikely', 'Tribunals may exist; what is protected is the High Courts\' and Supreme Court\'s review over them, not these articles.', 'jr')
+r('323A 323B', 'unlikely', 'Tribunals may exist; what is part of the basic structure is the High Courts\' and Supreme Court\'s review over them, not these articles.', 'jr')
 r('327 328 329', 'unlikely', 'Election law-making and the bar on courts during elections.', 'elections')
 r('330 330A 331 332 332A 333 334 334A 335 336 337 338 338A 338B 339 340 341 342 342A', 'unlikely', 'Reservations in legislatures and services, commissions and lists. Many have sunset clauses or have been amended; upheld when changed.', 'equality')
 r('350A 350B 351', 'unlikely', 'Linguistic minority protections and the Hindi directive.', '')
-r('352 353 354 355 357 358 360', 'unlikely', 'Emergency powers. Their safeguards matter, but the articles themselves are not protected.', 'federal')
+r('352 353 354 355 357 358 360', 'unlikely', 'Emergency powers. The articles themselves are not part of the basic structure.', 'federal')
 r('361 361A 361B 363 363A 364 365', 'unlikely', 'Immunities and miscellaneous provisions.', 'rol')
 r('372 372A 373 374 375 376 377 378 378A 392', 'vunlikely', 'Transitional provisions continuing earlier laws, courts and officers.', '')
 r('300A', 'vunlikely', 'The right to property. Kesavananda Bharati (Khanna J) held it is not part of the basic structure.', '')

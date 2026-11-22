@@ -1002,7 +1002,7 @@ function vNext() {
 
 /* ---- basic structure ---- */
 const BAND = [
-  { k: "held", t: "Protected by the Court", r: "Ruled on by the Supreme Court" },
+  { k: "held", t: "Decided by the Court", r: "The Supreme Court has ruled on it" },
   { k: "vlikely", t: "Very likely", r: "over 90%" },
   { k: "likely", t: "Likely", r: "60–90%" },
   { k: "open", t: "Open question", r: "40–60%" },
@@ -1025,7 +1025,7 @@ function bsBox(kind, id) {
   const B = v.b == null ? null : BAND[v.b];
   return `<section class="block" aria-labelledby="bsbox-h"><h2 id="bsbox-h">Basic structure</h2><div class="card bsbox" id="bsbox">
     ${B ? `<div class="bsb-h"><span class="sw b${v.b}" aria-hidden="true"></span><div><b>${B.t}</b><small>${v.b ? "Our estimate: " + B.r : B.r}</small></div></div>
-    <p class="q">Could Parliament repeal or gut this ${kind === "sch" ? "Schedule" : "provision"} by amendment without breaching the basic structure?</p>
+    <p class="q">Could Parliament repeal or substantially change this ${kind === "sch" ? "Schedule" : "provision"} by amendment without breaching the basic structure?</p>
     <p>${lx(v.why)}</p>${featChips(v.f, v.b)}` : ""}
     ${v.note ? `<p class="bsn">${I.info}<span>${lx(v.note)}</span></p>` : ""}
     <p class="fine">${B && v.b ? "This is an estimate made with a published method, not a ruling. Courts decide each challenge on its own facts." : "From the Supreme Court's judgments, as listed on the basic structure page."} <a href="#basic-structure-method">How this works</a></p>
@@ -1065,9 +1065,9 @@ function vBS(r) {
     <div class="ph"><div class="eyebrow">Explainer</div><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
     <div class="card bs-sum">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><b>${counts[i]}</b><span>${b.t}</span><small>${b.r}</small></button>`).join("")}</div>
 
-    <section class="sec" aria-labelledby="bs-share"><div class="sh"><div><h2 id="bs-share">How much of the Constitution is likely to be protected</h2><p>The articles in force, plus the Preamble, grouped from Protected by the Court to Very unlikely.</p></div></div>${bsShare()}</section>
+    <section class="sec" aria-labelledby="bs-share"><div class="sh"><div><h2 id="bs-share">How much of the Constitution is likely to be part of the basic structure</h2><p>The articles in force, plus the Preamble, grouped from Decided by the Court to Very unlikely.</p></div></div>${bsShare()}</section>
 
-    <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2><p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is protected. Select a level above, such as Likely, to pick it out; the list below shows its provisions and why.</p></div></div>
+    <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2><p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is part of the basic structure. Select a level above, such as Likely, to pick it out; the list below shows its provisions and why.</p></div></div>
       <div class="card bsmap">${bsMap()}</div>
       <div class="bslist" id="bslist"><h3>${BAND[bsSel].t} <small>${BAND[bsSel].r}</small></h3>${bsList()}</div>
     </section>
@@ -1084,11 +1084,11 @@ function vBS(r) {
 
     <section class="sec" aria-labelledby="bs-method" id="bs-method-s"><div class="sh"><div><h2 id="bs-method">How the estimates work</h2></div></div>
       <div class="card bsmeth">
-        <p>For every provision we ask one question: <b>could Parliament repeal or gut it by a constitutional amendment without breaching a basic feature the Supreme Court has recognised?</b> The basic structure protects features, not article numbers, so an article can be amended in its details while its core stays protected.</p>
-        <p><b>Protected by the Court</b> means the Court has itself protected the provision's core, or struck down an amendment to it, on basic structure grounds. Every other level is our estimate, using these factors:</p>
-        <ul><li>Has a court protected this provision, or something it depends on?</li><li>Is it the main home of a recognised feature, or a supporting detail?</li><li>Does Article 368(2) already require half the States to ratify changes to it, a sign of the federal core?</li><li>Is it procedural, transitional, a number or a list, and has it been changed before without objection?</li></ul>
+        <p>For every provision we ask one question: <b>could Parliament repeal or substantially change it by a constitutional amendment without breaching a basic feature the Supreme Court has recognised?</b> The basic structure is made up of features, not article numbers, so an article's details can be amended even when its core cannot.</p>
+        <p><b>Decided by the Court</b> means the Court has itself ruled the provision's core part of the basic structure, or struck down an amendment to it on basic structure grounds. Every other level is our estimate, using these factors:</p>
+        <ul><li>Has a court ruled this provision, or something it depends on, part of the basic structure?</li><li>Is it the main home of a recognised feature, or a supporting detail?</li><li>Does Article 368(2) already require half the States to ratify changes to it, a sign of the federal core?</li><li>Is it procedural, transitional, a number or a list, and has it been changed before without objection?</li></ul>
         <p>The ranges are rough guides to confidence, not calculated probabilities. A feature named in only one judge's opinion, or listed only by the Lok Sabha Secretariat, counts for less than one recognised by a majority or a later bench. Omitted articles are not shown.</p>
-        <p class="fine">The Court's rulings, and the provisions marked Protected by the Court, come from the Supreme Court's judgments, its own publications, the footnotes of the official text and the Lok Sabha Secretariat. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
+        <p class="fine">The Court's rulings, and the provisions marked Decided by the Court, come from the Supreme Court's judgments, its own publications, the footnotes of the official text and the Lok Sabha Secretariat. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
         <details><summary>Sources</summary><ul class="srcs">${Object.keys(src).map(k => `<li>${srcLink(k)}</li>`).join("")}</ul></details>
       </div>
     </section>
@@ -1405,7 +1405,7 @@ function vAbout() {
       <h2>Amendments</h2>
       <p>Parliament has passed ${AMD.length} Constitution Amendment Acts. Dates and changes come from the official footnotes. ${NC} Acts are no longer cited in any footnote, because what they changed was later replaced or ran out. For those we used the Legislative Department's own Act texts and the National Portal of India, linked on the <a href="#amendments">Amendments</a> page. The one-line descriptions are ours.</p>
       <h2>The basic structure</h2>
-      <p>The Supreme Court's rulings, and the provisions marked Protected by the Court, come only from official sources: the Court's judgments and publications, the official text's footnotes, the Lok Sabha Secretariat and the National Judicial Academy. Each item names its source. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
+      <p>The Supreme Court's rulings, and the provisions marked Decided by the Court, come only from official sources: the Court's judgments and publications, the official text's footnotes, the Lok Sabha Secretariat and the National Judicial Academy. Each item names its source. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
       <h2>What this is not</h2>
       <p>This is an independent reader, not a Government website, and not legal advice. If something here seems to differ from the official publication, the official publication is right.</p>
       <h2>Design</h2>
