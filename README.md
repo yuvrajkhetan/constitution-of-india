@@ -6,7 +6,7 @@ An interactive reader for the Constitution of India: every article in the offici
 
 ## Source
 
-The article text, headings, Schedules, Appendices and footnotes come from *The Constitution of India [As on 10th September, 2026]*, published by the Legislative Department, Ministry of Law and Justice, Government of India. Only the layout has changed. For any legal purpose, rely on the official publication.
+The article text, headings, Schedules and footnotes come from *The Constitution of India [As on 10th September, 2026]*, published by the Legislative Department, Ministry of Law and Justice, Government of India. Only the layout has changed. For any legal purpose, rely on the official publication.
 
 Everything else (summaries, themes, connections, the history timelines, the glossary grouping, facts and the basic structure estimates) was added to help readers and is not part of the legal text. The site's *How this was made* page explains each part and its sources. Settled basic structure law is drawn only from official sources: Supreme Court judgments and publications, the official footnotes, the Lok Sabha Secretariat and the National Judicial Academy.
 

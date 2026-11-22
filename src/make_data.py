@@ -125,7 +125,8 @@ facts+=[
  {"v":f"{len(gl)} terms","l":"are defined by the Constitution itself","x":f"Article 366 alone defines {sum(1 for g in gl if any(a=='366' for a,_ in g[1]))} of them, from \"agricultural income\" onwards.","h":"#glossary"},
  {"v":"Sixth Schedule","l":"carries the most amendment notes of any Schedule","x":"It governs tribal areas in Assam, Meghalaya, Tripura and Mizoram.","h":"#sch-SIXTH"},
 ]
-core=dict(parts=parts,arts=c['arts'],pre=c['pre'],sch=sch,apx=c['apx'],amd=amd,themes=themes,facts=facts,meta=c['meta'])
+# the Appendices printed with the official edition are not part of the Constitution, so they are left out
+core=dict(parts=parts,arts=c['arts'],pre=c['pre'],sch=sch,amd=amd,themes=themes,facts=facts,meta=c['meta'])
 # forecast of the next amendment (data/next.json); check every article, Schedule and Act it points to exists
 NX=json.load(open('data/next.json')); NX.pop('_note',None)
 _arts={x[0] for x in c['arts']}; _sch={x['k'] for x in c['sch']}; _amd={a['n'] for a in amd}
@@ -147,7 +148,7 @@ for (n,i),x in zip(_seq,_res): _fh.setdefault(n,[]).append([x['a'],x['v'],x['o']
 for n in ORDER:
     if n in _fh: TA[n]['fh']=_fh[n]
 if 'P' in _fh: core['pre']=dict(c['pre'],fh=_fh['P'])
-text=dict(a=TA,s=TS,x=t['x'],g=gl,bs=BS,next=NX)
+text=dict(a=TA,s=TS,g=gl,bs=BS,next=NX)
 os.makedirs('site',exist_ok=True)
 json.dump(core,open('site/core.json','w'),ensure_ascii=False,separators=(',',':'))
 json.dump(text,open('site/text.json','w'),ensure_ascii=False,separators=(',',':'))

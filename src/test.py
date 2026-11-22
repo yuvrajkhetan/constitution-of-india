@@ -18,7 +18,7 @@ async def main():
       for(const s of C.sch){await go('#sch-'+s.k);if(!document.querySelector('.blocks'))bad.push(s.k)}
       for(const p of C.parts){await go('#part-'+p.n);if(!document.querySelector('.lt'))bad.push('part'+p.n)}
       for(const t of C.themes){await go('#theme-'+t.id);if(!document.querySelector('.lt'))bad.push('th'+t.id)}
-      for(const h of ['#apx-I','#apx-II','#apx-III','#glossary','#amendments','#amend-42','#saved','#contents','#preamble','#next-amendment','#']){await go(h);if(!document.querySelector('#view .view'))bad.push(h)}
+      for(const h of ['#glossary','#amendments','#amend-42','#saved','#contents','#preamble','#next-amendment','#']){await go(h);if(!document.querySelector('#view .view'))bad.push(h)}
       return [C.arts.length,bad]}""")
     print("routes", n, "errors", errs)
     # theme flow

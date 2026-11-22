@@ -10,7 +10,6 @@ function valid(h) {
   if (['', 'contents', 'schedules', 'themes', 'amendments', 'glossary', 'saved', 'about', 'preamble', 'basic-structure', 'next-amendment'].includes(x)) return true;
   if ((m = x.match(/^art-([^.]+)(?:\.(.+))?$/))) return ARTS.has(norm(m[1]));
   if ((m = x.match(/^sch-([A-Z]+)(?:-b(\d+))?$/))) { const s = text.s[m[1]]; return !!s && (!m[2] || +m[2] < s.b.length); }
-  if ((m = x.match(/^apx-(I{1,3})(?:-b(\d+))?$/))) { const s = text.x[m[1]]; return !!s && (!m[2] || +m[2] < s.b.length); }
   if ((m = x.match(/^part-(.+)$/))) return core.parts.some(p => p.n === m[1]);
   if ((m = x.match(/^theme-(.+)$/))) return core.themes.some(t => t.id === m[1]);
   if ((m = x.match(/^amend-(\d+)$/))) return +m[1] >= 1 && +m[1] <= 106;
@@ -23,7 +22,6 @@ function valid(h) {
   core.arts.forEach(a => routes.push('#art-' + a[0]));
   core.parts.forEach(p => routes.push('#part-' + p.n));
   core.sch.forEach(s => routes.push('#sch-' + s.k));
-  ['I', 'II', 'III'].forEach(k => routes.push('#apx-' + k));
   core.themes.forEach(t => routes.push('#theme-' + t.id));
   [1, 7, 42, 44, 99, 106].forEach(n => routes.push('#amend-' + n));
   const b = await chromium.launch();

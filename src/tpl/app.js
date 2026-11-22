@@ -10,7 +10,7 @@ const store = {
 
 /* ================= data ================= */
 const CORE = JSON.parse($("#core").textContent);
-const PARTS = CORE.parts, SCH = CORE.sch, APX = CORE.apx, AMD = CORE.amd, THEMES = CORE.themes;
+const PARTS = CORE.parts, SCH = CORE.sch, AMD = CORE.amd, THEMES = CORE.themes;
 const ORDER = [], ART = new Map();
 CORE.arts.forEach(([n, t, p, o, c], i) => { ART.set(n, { n, t, p, o: !!o, c, i }); ORDER.push(n); });
 const ARTKEY = new Map(ORDER.map(n => [n.toUpperCase().replace(/[-\s]/g, ""), n]));
@@ -287,7 +287,7 @@ function linkArts(h) {
   })).join(""));
 }
 function linkify(h, ctx) {
-  if (ctx !== "apx1") h = linkArts(h);
+  h = linkArts(h);
   h = h.replace(RX_SCH, (m, w) => `<a class="xr" href="#sch-${w.toUpperCase()}">${m}</a>`);
   if (ctx === "art") h = h.replace(RX_PART, (m, r) => PART_BY.has(r) ? `<a class="xr" href="#part-${r}">${m}</a>` : m);
   return h;
@@ -332,7 +332,6 @@ function buildDocs() {
       d.push({ k: "s0", id: s.k, title: schName(s.k) + " · " + s.t, tl: norm(schName(s.k) + " " + s.t), sum: T.s || s.s, sl: norm(T.s || ""), kw: norm((T.k || []).join(" | ")), body: "", bl: "", nl: "" });
       T.b.forEach((b, i) => { const txt = plain(b.p || b.h || b.ref || (b.r ? b.r.join(" · ") : "")); if (txt.length > 2) d.push({ k: "s", id: s.k, b: i, title: schName(s.k), tl: "", sum: "", sl: "", kw: "", body: txt, bl: norm(txt), nl: "" }); });
     });
-    APX.forEach(s => TEXT.x[s.k].b.forEach((b, i) => { const txt = plain(b.p || b.h || b.ref || (b.r ? b.r.join(" · ") : "")); if (txt.length > 2) d.push({ k: "x", id: s.k, b: i, title: "Appendix " + s.k, tl: "", sum: "", sl: "", kw: "", body: txt, bl: norm(txt), nl: "" }); }));
   }
   AMD.forEach(a => d.push({ k: "m", id: a.n, title: `${nth(a.n)} Amendment (${a.y})`, tl: norm(`${nth(a.n)} amendment ${ordw(a.n)} amendment ${a.y}`), sum: a.h, sl: norm(a.h + " " + a.tags.join(" ")), kw: "", body: "", bl: "", nl: "" }));
   return d;
@@ -377,7 +376,7 @@ function search(qraw) {
     const tt = d.tl.replace(/[.\s]+$/, "");
     if (tt === full) score += 80; else if (tt.startsWith(full)) score += 30;
     if (d.o) score *= .35;
-    if (d.k === "s" || d.k === "x") score *= .7;
+    if (d.k === "s") score *= .7;
     if (d.k === "m") score *= .8;
     res.push([score, d]);
   }
@@ -410,19 +409,19 @@ function parseHash() {
   if ((m = h.match(/^part-([IVXL]+[A-C]?)$/))) return PART_BY.has(m[1]) ? { name: "part", id: m[1] } : { name: "contents" };
   if ((m = h.match(/^art-([^.]+)(?:\.([0-9A-Za-z.]+))?$/))) { const k = findArt(m[1]); return k ? { name: "art", id: k, c: m[2] || null } : { name: "contents" }; }
   if ((m = h.match(/^sch-([A-Z]+)(?:-b(\d+))?$/))) return SCH_BY.has(m[1]) ? { name: "sch", id: m[1], b: m[2] ? +m[2] : null } : { name: "contents" };
-  if ((m = h.match(/^apx-(I{1,3})(?:-b(\d+))?$/))) return { name: "apx", id: m[1], b: m[2] ? +m[2] : null };
+  if (/^apx-/.test(h)) return { name: "contents", tab: "sch" }; /* the Appendices were removed; old links land on the Schedules */
   if ((m = h.match(/^g-(.+)$/))) return { name: "glossary", term: m[1] };
   return { name: "home" };
 }
-const needsText = () => ["art", "sch", "apx", "part", "theme", "glossary", "pre", "bs", "next"].includes(route.name);
-const NAVKEY = { home: "home", contents: "contents", part: "contents", art: "contents", pre: "contents", sch: "contents", apx: "contents", themes: "themes", theme: "themes", amend: "amend", next: "amend", bs: "bs", glossary: "glossary", saved: "saved", about: "about" };
+const needsText = () => ["art", "sch", "part", "theme", "glossary", "pre", "bs", "next"].includes(route.name);
+const NAVKEY = { home: "home", contents: "contents", part: "contents", art: "contents", pre: "contents", sch: "contents", themes: "themes", theme: "themes", amend: "amend", next: "amend", bs: "bs", glossary: "glossary", saved: "saved", about: "about" };
 const TITLES = { home: "Constitution of India", contents: "Contents", themes: "Themes", amend: "Amendments", next: "The next amendment", bs: "The basic structure", glossary: "Glossary", saved: "Saved", pre: "Preamble", about: "How this was made" };
 
 /* each history entry gets a number; going back or forward to one restores where you were on it */
 let POS = {}, NAVI = 0, pendingFrom = null, wantY = null, savePosT = 0;
 try { POS = JSON.parse(sessionStorage.getItem("pos") || "{}"); NAVI = +sessionStorage.getItem("navi") || 0; } catch (e) {}
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-const routeLabel = r => r.name === "art" ? "Article " + r.id : r.name === "sch" ? schName(r.id) : r.name === "pre" ? "the Preamble" : r.name === "apx" ? "Appendix " + r.id : "";
+const routeLabel = r => r.name === "art" ? "Article " + r.id : r.name === "sch" ? schName(r.id) : r.name === "pre" ? "the Preamble" : "";
 function render(keepScroll) {
   if (!keepScroll) {
     const st = history.state;
@@ -434,12 +433,12 @@ function render(keepScroll) {
   closePop(); closeSide(); closeMenu(); closeMore(false); stopSpeak(); selClause = null; $("#cbar").hidden = true; const kb = $("#kbd"); if (kb) kb.remove();
   const r = route, key = location.hash;
   if (r.name === "home") themeCtx = null;
-  const V = { home: vHome, contents: vContents, part: vPart, art: vArt, pre: vPre, sch: vSch, apx: vApx, themes: vThemes, theme: vTheme, amend: vAmend, next: vNext, bs: vBS, glossary: vGlossary, saved: vSaved, about: vAbout }[r.name] || vHome;
+  const V = { home: vHome, contents: vContents, part: vPart, art: vArt, pre: vPre, sch: vSch, themes: vThemes, theme: vTheme, amend: vAmend, next: vNext, bs: vBS, glossary: vGlossary, saved: vSaved, about: vAbout }[r.name] || vHome;
   const y = window.scrollY;
   view.innerHTML = `<div class="view">${V(r)}</div>`;
   $$("[data-nav]").forEach(a => a.setAttribute("aria-current", a.dataset.nav === NAVKEY[r.name] ? "page" : "false"));
   $("#morebtn").setAttribute("aria-current", MORE.some(m => m[0] === NAVKEY[r.name]) ? "true" : "false");
-  document.title = (r.name === "art" ? `Article ${r.id}: ${ART.get(r.id).t.replace(/\.$/, "")}` : r.name === "part" ? `Part ${r.id}: ${PARTS[PART_BY.get(r.id)].t}` : r.name === "sch" ? schName(r.id) : r.name === "theme" ? THEME_BY.get(r.id).t : r.name === "apx" ? "Appendix " + r.id : TITLES[r.name] || "Constitution of India") + (r.name === "home" ? "" : " · Constitution of India");
+  document.title = (r.name === "art" ? `Article ${r.id}: ${ART.get(r.id).t.replace(/\.$/, "")}` : r.name === "part" ? `Part ${r.id}: ${PARTS[PART_BY.get(r.id)].t}` : r.name === "sch" ? schName(r.id) : r.name === "theme" ? THEME_BY.get(r.id).t : TITLES[r.name] || "Constitution of India") + (r.name === "home" ? "" : " · Constitution of India");
   after(r, keepScroll ? y : null, key !== lastKey);
   lastKey = key;
   const fr = history.state && history.state.from, bc = $("#backchip");
@@ -485,7 +484,7 @@ function vHome() {
     ${cols2(PARTS.map(p => partRow(p)))}
   </section>
   <section class="wrap sec">
-    <div class="sh"><div><h2>Schedules</h2><p>Lists, tables and forms at the end of the Constitution.</p></div><a class="more" href="#schedules">Schedules and appendices ${I.chev}</a></div>
+    <div class="sh"><div><h2>Schedules</h2><p>Lists, tables and forms at the end of the Constitution.</p></div><a class="more" href="#schedules">All Schedules ${I.chev}</a></div>
     ${cols2(SCH.map((s, i) => schRow(s, i)))}
   </section>
   <section class="wrap sec">
@@ -586,8 +585,7 @@ function partTree(openAll) {
 }
 function schTree() {
   return `<div class="group">${SCH.map((s, i) => `<a class="row" href="#sch-${s.k}" data-f="${esc((schName(s.k) + " " + s.t).toLowerCase())}"><span class="num">${i + 1}</span><span><span class="tt">${esc(schName(s.k))}</span><span class="ss">${esc(s.t)}</span></span><span class="aux">${I.chev}</span></a>`).join("")}</div>
-  <div class="sh" style="margin-top:28px"><div><h2 style="font-size:20px">Appendices</h2><p>Printed with the Constitution for reference.</p></div></div>
-  <div class="group">${APX.map(s => `<a class="row" href="#apx-${s.k}" data-f="${esc(("appendix " + s.k + " " + s.t).toLowerCase())}"><span class="num">${s.k}</span><span class="tt">${esc(s.t)}</span><span class="aux">${I.chev}</span></a>`).join("")}</div>`;
+`;
 }
 function filterContents(q) {
   q = q.trim().toLowerCase();
@@ -649,7 +647,7 @@ function sidebar(curId, kind) {
     const rg = partRange(P).range;
     h += `<details${open ? " open" : ""} data-p="${pi}"><summary><b>${P.n}</b><span>${esc(P.t)}<small>${P.o ? "Omitted" : rg}</small></span>${I.chev}</summary>${open ? sideItems(pi, curId) : ""}</details>`;
   });
-  h += `<details${kind === "sch" || kind === "apx" ? " open" : ""}><summary><b>§</b><span>Schedules and appendices<small>First to Twelfth · Appendices I–III</small></span>${I.chev}</summary>${SCH.map((s, i) => `<a class="sl" href="#sch-${s.k}" data-f="${esc(schName(s.k).toLowerCase())}"${kind === "sch" && curId === s.k ? ' aria-current="page"' : ""}><b>${i + 1}</b><span>${esc(schName(s.k))}</span></a>`).join("")}${APX.map(s => `<a class="sl" href="#apx-${s.k}"${kind === "apx" && curId === s.k ? ' aria-current="page"' : ""}><b>App.</b><span>Appendix ${s.k}</span></a>`).join("")}</details>`;
+  h += `<details${kind === "sch" ? " open" : ""}><summary><b>§</b><span>Schedules<small>First to Twelfth</small></span>${I.chev}</summary>${SCH.map((s, i) => `<a class="sl" href="#sch-${s.k}" data-f="${esc(schName(s.k).toLowerCase())}"${kind === "sch" && curId === s.k ? ' aria-current="page"' : ""}><b>${i + 1}</b><span>${esc(schName(s.k))}</span></a>`).join("")}</details>`;
   return `<aside class="side" id="side" aria-label="Contents">${h}</aside>`;
 }
 function sideItems(pi, curId) {
@@ -850,18 +848,7 @@ function vSch(r) {
       ${s.sec.length ? `<div class="pills scrollrow" style="margin-top:6px">${s.sec.map(([b, l]) => `<a class="pill" href="#sch-${k}-b${b}">${esc(l)}</a>`).join("")}</div>` : ""}</header>
     ${(T && T.s) || s.s ? `<div class="plain"><div class="lb"><span>In plain words</span><small>Summary, not the legal text</small></div><p>${lx((T && T.s) || s.s)}</p></div>` : ""}${T ? bsChip("sch", k) : ""}
     ${T ? `<section class="block" style="margin-top:20px"><h2>Official text</h2>${content}</section>` : content}
-    <nav class="pager">${prev ? `<a href="#sch-${prev.k}"><small>← ${schName(prev.k)}</small><span>${esc(prev.t)}</span></a>` : `<a href="#art-395"><small>← Article 395</small><span>Repeals.</span></a>`}${next ? `<a class="nx" href="#sch-${next.k}"><small>${schName(next.k)} →</small><span>${esc(next.t)}</span></a>` : `<a class="nx" href="#apx-I"><small>Appendix I →</small><span>${esc(APX[0].t)}</span></a>`}</nav>
-  </article></div>`;
-}
-function vApx(r) {
-  const k = r.id, i = APX.findIndex(a => a.k === k); if (i < 0) return vContents({});
-  const s = APX[i], prev = APX[i - 1], next = APX[i + 1], T = TEXT && TEXT.x[k];
-  const content = !T ? (textErr ? errBox() : loadBox()) : blocksHTML(T.b, k === "I" ? "apx1" : "apx", r.b) + histHTML(T.f, blockScopes(T.b, T.f));
-  return `<div class="wrap reader">${sidebar(k, "apx")}<article class="art">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="#schedules">Schedules and appendices</a>${I.chev}<span>Appendix ${k}</span></nav>
-    <header class="ahead"><div class="an">Appendix ${k} <span class="tag">For reference</span></div><h1>${esc(s.t)}</h1><div class="acts"><button class="btn sidebtn" type="button" data-side>${I.list} Contents</button><button class="btn" type="button" data-fs aria-label="Change text size">${I.text}<span class="bl">Text size</span></button></div></header>
-    ${content}
-    <nav class="pager">${prev ? `<a href="#apx-${prev.k}"><small>← Appendix ${prev.k}</small><span>${esc(prev.t)}</span></a>` : `<a href="#sch-TWELFTH"><small>← Twelfth Schedule</small><span>${esc(SCH[11].t)}</span></a>`}${next ? `<a class="nx" href="#apx-${next.k}"><small>Appendix ${next.k} →</small><span>${esc(next.t)}</span></a>` : '<span class="ph0"></span>'}</nav>
+    <nav class="pager">${prev ? `<a href="#sch-${prev.k}"><small>← ${schName(prev.k)}</small><span>${esc(prev.t)}</span></a>` : `<a href="#art-395"><small>← Article 395</small><span>Repeals.</span></a>`}${next ? `<a class="nx" href="#sch-${next.k}"><small>${schName(next.k)} →</small><span>${esc(next.t)}</span></a>` : `<span class="ph0"></span>`}</nav>
   </article></div>`;
 }
 
@@ -1390,7 +1377,7 @@ function vAbout() {
     <div class="ph"><h1 class="lt">How this was made</h1><p class="sub">What on this site is the official text, what we added to help you read it, and where everything comes from.</p></div>
     <div class="card prose">
       <h2>The official text</h2>
-      <p>Every article, heading, Schedule, Appendix and footnote comes from <b>The Constitution of India [As on ${esc(CORE.meta.asOn)}]</b>, published by the Legislative Department, Ministry of Law and Justice, Government of India. It includes every amendment up to the ${esc(CORE.meta.upTo)}. We changed only the layout, so it reads well on a screen. Where the official text marks a later change in square brackets with a footnote, we keep both. For any legal purpose, rely on the official publication.</p>
+      <p>Every article, heading, Schedule and footnote comes from <b>The Constitution of India [As on ${esc(CORE.meta.asOn)}]</b>, published by the Legislative Department, Ministry of Law and Justice, Government of India. It includes every amendment up to the ${esc(CORE.meta.upTo)}. We changed only the layout, so it reads well on a screen. Where the official text marks a later change in square brackets with a footnote, we keep both. For any legal purpose, rely on the official publication.</p>
       <h2>What we added</h2>
       <p>These are not part of the Constitution. They are there to help you read it, and are labelled where they appear.</p>
       <ul>
@@ -1546,7 +1533,7 @@ function after(r, keepY, changed) {
   if (keepY != null && !changed) { window.scrollTo(0, keepY); return; }
   const mk = HL && $("#view mark");
   if (mk) mk.scrollIntoView({ block: "center" });
-  else if ((r.name === "sch" || r.name === "apx") && r.b != null && $("#b-" + r.b)) $("#b-" + r.b).scrollIntoView({ block: "start" });
+  else if (r.name === "sch" && r.b != null && $("#b-" + r.b)) $("#b-" + r.b).scrollIntoView({ block: "start" });
   else if (r.name === "amend" && r.id && $("#amd-" + r.id)) $("#amd-" + r.id).scrollIntoView({ block: "center" });
   else if (r.name === "bs" && r.f) { const e = document.getElementById(r.f === "method" ? "bs-method-s" : "f-" + r.f); if (e) e.scrollIntoView({ block: "start" }); }
   else if (r.name === "glossary" && r.term) { const e = document.getElementById("g-" + r.term); if (e) e.scrollIntoView({ block: "center" }); }
@@ -1628,7 +1615,6 @@ function notesFor() {
   if (route.name === "art" && artText(route.id)) return artText(route.id).f;
   if (route.name === "pre") return CORE.pre.f;
   if (route.name === "sch" && TEXT) return TEXT.s[route.id].f;
-  if (route.name === "apx" && TEXT) return TEXT.x[route.id].f;
   return null;
 }
 function gotoNote(k) {
@@ -1752,7 +1738,7 @@ function runSearch() {
       });
     }
     const seen = new Set(items.map(i => i.href));
-    const groups = { a: [], t: [], p: [], g: [], s0: [], s: [], x: [], m: [] };
+    const groups = { a: [], t: [], p: [], g: [], s0: [], s: [], m: [] };
     r.hits.forEach(d => groups[d.k] && groups[d.k].push(d));
     const T = r.terms;
     const hl = s => highlight(esc(s), T);
@@ -1763,7 +1749,6 @@ function runSearch() {
     if (groups.g.length) { h += `<div class="sgrp">Glossary</div>`; groups.g.slice(0, 4).forEach(d => h += add("#g-" + d.id.toLowerCase().replace(/[^a-z0-9]+/g, "-"), "Term", hl(d.title), snippet(d, T))); }
     const mm = groups.m.filter(d => !seen.has("#amend-" + d.id));
     if (mm.length) { h += `<div class="sgrp">Amendments</div>`; mm.slice(0, 4).forEach(d => h += add("#amend-" + d.id, nth(d.id), hl(d.title), hl(d.sum))); }
-    if (groups.x.length) { h += `<div class="sgrp">Appendices</div>`; groups.x.slice(0, 4).forEach(d => h += add(`#apx-${d.id}-b${d.b}`, "App. " + d.id, esc(d.title), snippet(d, T), T)); }
     if (!items.length) h = `<div class="sempty">No results for “${esc(q)}”. Try fewer or different words, or one of these.<div class="pills">${["Fundamental Rights", "President", "Election Commission", "Governor", "Seventh Schedule"].map(s => `<button class="pill" type="button" data-try="${esc(s)}">${esc(s)}</button>`).join("")}</div></div>`;
   }
   sres.innerHTML = h; sel = 0; markSel();
@@ -1805,7 +1790,7 @@ function copy(text, msg) {
 document.addEventListener("click", e => {
   const t = e.target;
   const al = t.closest && t.closest('a[href^="#"]');
-  if (al && ["art", "sch", "pre", "apx"].includes(route.name) && (al.closest("#view") || al.closest(".pop") || al.closest(".peek")) && !al.closest(".pager, .crumbs, .side, .acts") && al.getAttribute("href") !== location.hash) pendingFrom = { h: location.hash, l: routeLabel(route) }; else if (al) pendingFrom = null;
+  if (al && ["art", "sch", "pre"].includes(route.name) && (al.closest("#view") || al.closest(".pop") || al.closest(".peek")) && !al.closest(".pager, .crumbs, .side, .acts") && al.getAttribute("href") !== location.hash) pendingFrom = { h: location.hash, l: routeLabel(route) }; else if (al) pendingFrom = null;
   if (menu && !t.closest(".menu") && !t.closest("[data-share]") && !t.closest("#theme")) closeMenu();
   const tmo = t.closest("[data-tmode]"); if (tmo) { setThemeMode(tmo.dataset.tmode); closeMenu(true); return; }
   const sa = t.closest("[data-sact]"); if (sa) { shareAct(sa.dataset.sact); return; }
