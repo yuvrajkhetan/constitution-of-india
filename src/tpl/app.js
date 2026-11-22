@@ -1409,6 +1409,8 @@ function vAbout() {
       <p>Parliament has passed ${AMD.length} Constitution Amendment Acts. Dates and changes come from the official footnotes. ${NC} Acts are no longer cited in any footnote, because what they changed was later replaced or ran out. For those we used the Legislative Department's own Act texts and the National Portal of India, linked on the <a href="#amendments">Amendments</a> page. The one-line descriptions are ours.</p>
       <h2>The basic structure</h2>
       <p>The Supreme Court's rulings, and the provisions marked Decided by the Court, come only from official sources: the Court's judgments and publications, the official text's footnotes, the Lok Sabha Secretariat and the National Judicial Academy. Each item names its source. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
+      <h2>What stays on your device</h2>
+      <p>There is no account or sign-in. The articles you save, what you read recently, and your text size, reading speed and appearance are kept in this browser on this device only. Clearing your browser's data removes them.</p>
       <h2>What this is not</h2>
       <p>This is an independent reader, not a Government website, and not legal advice. If something here seems to differ from the official publication, the official publication is right.</p>
       <h2>Design</h2>
@@ -1565,6 +1567,12 @@ let fsIdx = store.get("fs", 1);
 const FS = ["18px", "20px", "22px", "24px"];
 function applyFs() { document.documentElement.style.setProperty("--fs", FS[fsIdx] || "20px"); }
 function pushRecent(n) { const r = store.get("recent", []).filter(x => x !== n); r.unshift(n); store.set("recent", r.slice(0, 8)); }
+/* store the saved list and bring every Save button, the count and the Saved page up to date */
+function setSaved(n, list) {
+  store.set("saved", list); const on = list.includes(n);
+  $$(`[data-save="${n}"]`).forEach(b => { b.setAttribute("aria-pressed", on); b.setAttribute("aria-label", on ? "Saved" : "Save"); b.innerHTML = `${on ? I.bookmarkF : I.bookmark}<span class="bl">${on ? "Saved" : "Save"}</span>`; });
+  updateSavedDot(); if (route.name === "saved") render(true);
+}
 function updateSavedDot() { const n = savedList().length; $$("[data-saved-dot]").forEach(e => { e.textContent = n || ""; e.hidden = !n; }); }
 
 
@@ -1785,7 +1793,13 @@ const tip = $("#tip");
 function openSide() { const s = $("#side"); if (!s) return; s.classList.add("open"); document.body.insertAdjacentHTML("beforeend", '<div class="scrim" data-scrim></div>'); }
 function closeSide() { const s = $("#side"); if (s) s.classList.remove("open"); $$(".scrim").forEach(x => x.remove()); }
 let tt = 0;
-function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 1700); }
+let toastUndo = null;
+function toast(m, undo) {
+  const t = $("#toast"); toastUndo = undo || null;
+  t.innerHTML = esc(m) + (undo ? ' <button type="button" class="tbtn" data-undo>Undo</button>' : "");
+  t.classList.toggle("act", !!undo); t.classList.add("on");
+  clearTimeout(tt); tt = setTimeout(() => { t.classList.remove("on", "act"); toastUndo = null; }, undo ? 5000 : 1700);
+}
 function copy(text, msg) {
   const done = () => toast(msg);
   const fb = () => { const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} ta.remove(); ok ? done() : toast("Couldn't copy. Select the text instead."); };
@@ -1826,7 +1840,13 @@ document.addEventListener("click", e => {
   if (t.closest("[data-scrim]")) { closeSide(); return; }
   const tl = t.closest("[data-theme-link]"); if (tl) themeCtx = tl.dataset.themeLink;
   const sv = t.closest("[data-save]");
-  if (sv) { const n = sv.dataset.save; let s = savedList(); const on = !s.includes(n); s = on ? [n, ...s] : s.filter(x => x !== n); store.set("saved", s); sv.setAttribute("aria-pressed", on); sv.setAttribute("aria-label", on ? "Saved" : "Save"); sv.innerHTML = `${on ? I.bookmarkF : I.bookmark}<span class="bl">${on ? "Saved" : "Save"}</span>`; updateSavedDot(); toast(on ? `Saved Article ${n}` : `Removed Article ${n}`); return; }
+  if (sv) {
+    const n = sv.dataset.save, before = savedList(), on = !before.includes(n);
+    setSaved(n, on ? [n, ...before] : before.filter(x => x !== n));
+    toast(on ? `Saved Article ${n}` : `Removed Article ${n}`, on ? null : () => { setSaved(n, before); toast(`Saved Article ${n}`); });
+    return;
+  }
+  if (t.closest("[data-undo]")) { const u = toastUndo; toastUndo = null; clearTimeout(tt); $("#toast").classList.remove("on", "act"); if (u) u(); return; }
   const cp = t.closest("[data-copy]");
   if (cp) { const n = cp.dataset.copy, a = ART.get(n), x = artText(n); if (x) copy(`Article ${n}. ${a.t}\n\n${x.p.map(p => plain(p[1])).join("\n")}\n\nThe Constitution of India (as on ${CORE.meta.asOn})`, `Copied Article ${n}`); return; }
   const ci = t.closest("[data-cite]");

@@ -418,6 +418,9 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .pop b{display:block;font-size:12px;color:var(--saffron);margin-bottom:3px}
 .toast{position:fixed;left:50%;bottom:calc(var(--tab) + 24px);transform:translate(-50%,16px);background:var(--label);color:var(--surface);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;transition:.25s;z-index:95;pointer-events:none}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+.toast.act{pointer-events:auto;padding:6px 6px 6px 18px;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.toast .tbtn{border:0;border-radius:999px;padding:6px 12px;background:var(--surface);color:var(--navy);font:600 14px var(--sys);cursor:pointer}
+.toast .tbtn:focus-visible{outline:2px solid var(--saffron-fill);outline-offset:2px}
 .foot{margin-top:0;padding-block:28px 40px;border-top:.5px solid var(--sep);font-size:13px;color:var(--label-3)}
 .foot p{margin-bottom:6px}
 .foot nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px}
