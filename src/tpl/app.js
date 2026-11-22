@@ -474,12 +474,10 @@ function vHome() {
     </div>
   </section>
   <section class="wrap sec">
-    <div class="sh"><div><h2>Did you know?</h2><p>Facts worked out from the text itself. Hover or touch to pause.</p></div></div>
+    <div class="sh"><div><h2>Did you know?</h2><p>Facts worked out from the text itself.</p></div><div class="fnav" role="group" aria-label="Scroll the facts"><button type="button" data-fscroll="-1" aria-label="Previous facts" disabled>${I.chev}</button><button type="button" data-fscroll="1" aria-label="More facts">${I.chev}</button></div></div>
     <div class="factwrap">
       <button class="fact shuffle" type="button" data-random>${I.shuffle.replace("<svg", '<svg width="28" height="28"')}<b>Surprise me</b><small>Open a random article in force.</small></button>
-      <div class="marquee" role="region" aria-label="Facts about the Constitution" style="--n:${CORE.facts.length}">
-        <div class="mq-track">${[0, 1].map(k => CORE.facts.map(f => `<a class="fact" href="${f.h}"${k ? ' aria-hidden="true" tabindex="-1"' : ""}><b>${esc(f.v)}</b><span>${esc(f.l)}</span><small>${esc(f.x)}</small></a>`).join("")).join("")}</div>
-      </div>
+      <div class="facts" role="region" aria-label="Facts about the Constitution" tabindex="0">${CORE.facts.map(f => `<a class="fact" href="${f.h}"><b>${esc(f.v)}</b><span>${esc(f.l)}</span><small>${esc(f.x)}</small></a>`).join("")}</div>
     </div>
   </section>
   <section class="wrap sec">
@@ -493,14 +491,13 @@ function vHome() {
   <section class="wrap sec">
     <div class="sh"><div><h2>How the text has changed</h2><p>Each bar is a Constitution Amendment Act cited in this edition's footnotes. Taller bars changed more provisions.</p></div><a class="more" href="#amendments">All amendments ${I.chev}</a></div>
     <div class="card chart" id="homechart" style="min-height:260px"></div>
+    <h3 class="subhd">Most amended articles</h3>
+    ${(() => { const top = ORDER.filter(n => !ART.get(n).o).sort((x, y) => ART.get(y).c - ART.get(x).c || ART.get(x).i - ART.get(y).i).slice(0, 10); return cols2(top.map(n => { const a = ART.get(n); return `<a class="row" href="#art-${n}"><span class="num">${n}</span><span><span class="tt">${esc(a.t.replace(/\.$/, ""))}</span><span class="ss" style="-webkit-line-clamp:1">Part ${PARTS[a.p].n} · ${esc(PARTS[a.p].t)}</span></span><span class="aux">${a.c} notes ${I.chev}</span></a>`; })); })()}
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>The basic structure</h2><p>What Parliament cannot change even by amending the Constitution, as the Supreme Court has held since 1973, with our estimate for every provision.</p></div><a class="more" href="#basic-structure">Explore ${I.chev}</a></div>
     <a class="card bshome" href="#basic-structure"><div class="bsbar" aria-hidden="true">${CORE.bsc.map((n, i) => `<span class="b${i}" style="flex:${n}"></span>`).join("")}</div><div class="bslg">${BAND.map((b, i) => `<span><i class="sw b${i}"></i>${CORE.bsc[i]} ${b.t.toLowerCase()}</span>`).join("")}</div></a>
   </section>
-  <section class="wrap sec">
-    <div class="sh"><div><h2>Most amended articles</h2><p>The articles with the most amendment notes in the official text, which is where the Constitution has changed most.</p></div><a class="more" href="#amendments">All amendments ${I.chev}</a></div>
-    ${(() => { const top = ORDER.filter(n => !ART.get(n).o).sort((x, y) => ART.get(y).c - ART.get(x).c || ART.get(x).i - ART.get(y).i).slice(0, 10); return cols2(top.map(n => { const a = ART.get(n); return `<a class="row" href="#art-${n}"><span class="num">${n}</span><span><span class="tt">${esc(a.t.replace(/\.$/, ""))}</span><span class="ss" style="-webkit-line-clamp:1">Part ${PARTS[a.p].n} · ${esc(PARTS[a.p].t)}</span></span><span class="aux">${a.c} notes ${I.chev}</span></a>`; })); })()}
   </section>`;
 }
 function themeCard(t) {
@@ -816,7 +813,7 @@ function itemLabel(id) { const [k, v] = id.split(/-(.+)/); return k === "art" ? 
 
 function vPre() {
   return `<div class="wrap reader">${sidebar(null, "pre")}<article class="art">
-    <nav class="crumbs"><a href="#contents">Contents</a>${I.chev}<span>Preamble</span></nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#contents">Contents</a>${I.chev}<span>Preamble</span></nav>
     <header class="ahead"><div class="an">Preamble</div><h1>We, the People of India</h1><div class="acts"><button class="btn sidebtn" type="button" data-side>${I.list} Contents</button>${listenBtn()}${shareBtn()}<button class="btn" type="button" data-fs aria-label="Change text size">${I.text}<span class="bl">Text size</span></button></div></header>
     <div class="plain"><div class="lb"><span>In plain words</span><small>Summary, not the legal text</small></div><p>The people of India give themselves this Constitution, adopted on 26 November 1949. They resolve to make India a sovereign, socialist, secular, democratic republic and to secure justice, liberty, equality and fraternity for all citizens.</p></div>${TEXT ? bsChip("art", "Preamble") : ""}
     <section class="block" style="margin-top:20px"><h2>Official text</h2><div class="text pre-t" style="text-align:center">${preHTML(true)}</div></section>
@@ -847,7 +844,7 @@ function vSch(r) {
   const k = r.id, i = SCH_BY.get(k), s = SCH[i], prev = SCH[i - 1], next = SCH[i + 1], T = TEXT && TEXT.s[k];
   const content = !T ? (textErr ? errBox() : loadBox()) : blocksHTML(T.b, "sch", r.b, s.t) + bsBox("sch", k) + histHTML(T.f, blockScopes(T.b, T.f, k === "NINTH" ? "entry" : "paragraph"));
   return `<div class="wrap reader">${sidebar(k, "sch")}<article class="art">
-    <nav class="crumbs"><a href="#schedules">Schedules</a>${I.chev}<span>${schName(k)}</span></nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#schedules">Schedules</a>${I.chev}<span>${schName(k)}</span></nav>
     <header class="ahead"><div class="an">${schName(k)}</div><h1>${esc(s.t)}</h1><p class="sub" style="font-size:15px">${linkArts(esc(s.ref))}</p>
       <div class="acts"><button class="btn sidebtn" type="button" data-side>${I.list} Contents</button><button class="btn" type="button" data-fs aria-label="Change text size">${I.text}<span class="bl">Text size</span></button></div>
       ${s.sec.length ? `<div class="pills scrollrow" style="margin-top:6px">${s.sec.map(([b, l]) => `<a class="pill" href="#sch-${k}-b${b}">${esc(l)}</a>`).join("")}</div>` : ""}</header>
@@ -861,7 +858,7 @@ function vApx(r) {
   const s = APX[i], prev = APX[i - 1], next = APX[i + 1], T = TEXT && TEXT.x[k];
   const content = !T ? (textErr ? errBox() : loadBox()) : blocksHTML(T.b, k === "I" ? "apx1" : "apx", r.b) + histHTML(T.f, blockScopes(T.b, T.f));
   return `<div class="wrap reader">${sidebar(k, "apx")}<article class="art">
-    <nav class="crumbs"><a href="#schedules">Schedules and appendices</a>${I.chev}<span>Appendix ${k}</span></nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#schedules">Schedules and appendices</a>${I.chev}<span>Appendix ${k}</span></nav>
     <header class="ahead"><div class="an">Appendix ${k} <span class="tag">For reference</span></div><h1>${esc(s.t)}</h1><div class="acts"><button class="btn sidebtn" type="button" data-side>${I.list} Contents</button><button class="btn" type="button" data-fs aria-label="Change text size">${I.text}<span class="bl">Text size</span></button></div></header>
     ${content}
     <nav class="pager">${prev ? `<a href="#apx-${prev.k}"><small>← Appendix ${prev.k}</small><span>${esc(prev.t)}</span></a>` : `<a href="#sch-TWELFTH"><small>← Twelfth Schedule</small><span>${esc(SCH[11].t)}</span></a>`}${next ? `<a class="nx" href="#apx-${next.k}"><small>Appendix ${next.k} →</small><span>${esc(next.t)}</span></a>` : '<span class="ph0"></span>'}</nav>
@@ -886,7 +883,7 @@ function vTheme(r) {
   }).join("");
   const others = THEMES.filter(x => x.id !== t.id).slice(0, 4);
   return `<section class="wrap col">
-    <div class="ph"><nav class="crumbs"><a href="#themes">Themes</a>${I.chev}<span>${esc(t.t)}</span></nav>
+    <div class="ph"><nav class="crumbs" aria-label="Breadcrumb"><a href="#themes">Themes</a>${I.chev}<span>${esc(t.t)}</span></nav>
       <span class="ico c-${t.c}" style="width:52px;height:52px;border-radius:14px">${I[t.ic]}</span>
       <h1 class="lt">${esc(t.q)}</h1><p class="sub">${lx(t.d)}</p>
       <div class="acts"><a class="btn primary" href="${itemHref(t.i[0])}">Read in order ${I.arrow}</a>${shareBtn()}</div></div>
@@ -970,12 +967,12 @@ function vNext() {
 
     <section class="sec" aria-labelledby="nx-when"><div class="sh"><div><h2 id="nx-when">When</h2><p>How likely it is that at least one Amendment Act is passed by the end of each stretch.</p></div></div>
       ${nextTimeline(N)}
-      <h3 class="nxsub">Why</h3>
+      <h3 class="subhd">Why</h3>
       <div class="nxwhen">${N.when.map(w => `<div class="card"><span class="k">${sw(w.band)}${BAND[w.band].t} <small>${BAND[w.band].r}</small></span><h3>${esc(w.by)}</h3><p>${esc(w.why)}</p></div>`).join("")}</div></section>
 
     <section class="sec" aria-labelledby="nx-what"><div class="sh"><div><h2 id="nx-what">On what</h2><p>Each Government Bill to amend the Constitution now in Parliament, the deadlines that will need one, and how likely each is to become law. Select one for the details.</p></div></div>
       ${nextTiles(N)}
-      <h3 class="nxsub">In detail</h3>
+      <h3 class="subhd">In detail</h3>
       ${N.cands.slice().sort((a, b) => a.band - b.band).map(c => `<article class="card nxc" id="nx-${c.id}"><div class="bsb-h">${sw(c.band)}<div><b>${esc(c.t)}</b><small>${BAND[c.band].t}${c.bill ? " · " + esc(c.bill) : ""}</small></div></div>
         <p><b>Where it stands.</b> ${esc(c.stage)}</p><p><b>What it would do.</b> ${esc(c.what)}</p><p><b>Why we think so.</b> ${esc(c.why)}</p>${chips(c)}${srcs(c.src)}</article>`).join("")}</section>
 
@@ -1065,7 +1062,7 @@ function vBS(r) {
   const carriers = id => { const out = []; if (B.art.Preamble && B.art.Preamble[0] <= 2 && B.why[B.art.Preamble[1]][1].includes(id)) out.push(["#preamble", "Preamble"]); ORDER.forEach(n => { const v = B.art[n]; if (v && v[0] <= 2 && B.why[v[1]][1].includes(id)) out.push(["#art-" + n, "Art. " + n]); }); SCH.forEach(s => { const v = B.sch[s.k]; if (v && v[0] <= 2 && B.why[v[1]][1].includes(id)) out.push(["#sch-" + s.k, schName(s.k)]); }); return out; };
   const srcLink = k => { const s = src[k] || k, u = (s.match(/https?:\/\/\S+/) || [])[0]; const label = s.replace(/,?\s*https?:\/\/\S+/, ""); return u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(label)}</a>` : esc(label); };
   return `<section class="wrap bs col" style="--col:920px">
-    <div class="ph"><div class="eyebrow">Explainer</div><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
+    <div class="ph"><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
     <div class="card bs-sum">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><b>${counts[i]}</b><span>${b.t}</span><small>${b.r}</small></button>`).join("")}</div>
 
     <section class="sec" aria-labelledby="bs-share"><div class="sh"><div><h2 id="bs-share">How much of the Constitution is likely to be part of the basic structure</h2><p>The articles in force, plus the Preamble, grouped from Decided by the Court to Very unlikely.</p></div></div>${bsShare()}</section>
@@ -1390,7 +1387,7 @@ function bsShare() {
 function vAbout() {
   const NC = AMD.filter(a => a.nc).length;
   return `<section class="wrap about col" style="--col:700px">
-    <div class="ph"><div class="eyebrow">About this reader</div><h1 class="lt">How this was made</h1><p class="sub">What on this site is the official text, what we added to help you read it, and where everything comes from.</p></div>
+    <div class="ph"><h1 class="lt">How this was made</h1><p class="sub">What on this site is the official text, what we added to help you read it, and where everything comes from.</p></div>
     <div class="card prose">
       <h2>The official text</h2>
       <p>Every article, heading, Schedule, Appendix and footnote comes from <b>The Constitution of India [As on ${esc(CORE.meta.asOn)}]</b>, published by the Legislative Department, Ministry of Law and Justice, Government of India. It includes every amendment up to the ${esc(CORE.meta.upTo)}. We changed only the layout, so it reads well on a screen. Where the official text marks a later change in square brackets with a footnote, we keep both. For any legal purpose, rely on the official publication.</p>
@@ -1827,6 +1824,7 @@ document.addEventListener("click", e => {
   const go = t.closest("[data-goto-fn]"); if (go) { gotoNote(go.dataset.gotoFn); return; }
   const fn = t.closest(".fn"); if (fn) { e.preventDefault(); popBtn === fn ? closePop() : openPop(fn); return; }
   if (pop && !t.closest(".pop")) closePop();
+  const fsb = t.closest("[data-fscroll]"); if (fsb) { const row = $(".factwrap .facts"); row.scrollBy({ left: +fsb.dataset.fscroll * (row.clientWidth - 40), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); return; }
   if (t.closest("[data-random]")) { const live = ORDER.filter(n => !ART.get(n).o); location.hash = "#art-" + live[Math.floor(Math.random() * live.length)]; return; }
   const bar = t.closest(".chart .b, .chart .nc"); if (bar) { amdFilter = "all"; location.hash = "#amend-" + bar.dataset.n; return; }
   const af = t.closest("[data-af]"); if (af) { amdFilter = af.dataset.af === amdFilter && amdFilter !== "all" ? "all" : af.dataset.af; render(true); return; }
@@ -1900,6 +1898,12 @@ function showTip(e) {
 document.addEventListener("pointerover", showTip);
 document.addEventListener("focusin", showTip);
 addEventListener("scroll", () => tip.classList.remove("on"), { passive: true });
+/* the facts row: dim the previous/next buttons at either end */
+document.addEventListener("scroll", e => {
+  const row = e.target; if (!row.classList || !row.classList.contains("facts")) return;
+  const [prev, next] = $$("[data-fscroll]"); if (!prev) return;
+  prev.disabled = row.scrollLeft < 4; next.disabled = row.scrollLeft > row.scrollWidth - row.clientWidth - 4;
+}, { capture: true, passive: true });
 
 /* theme */
 const curTheme = () => document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");

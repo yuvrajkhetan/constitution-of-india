@@ -603,29 +603,28 @@ a,button,summary{touch-action:manipulation}
 @media (max-width:700px){.hero-in{padding-block:40px 28px}.hero .mark{width:64px}.sh h2::before{width:12px;height:12px}}
 .row.o .tile{color:var(--label-2)}
 
-/* ---------- facts: fixed "Surprise me" + scrolling strip ---------- */
+/* ---------- facts: "Surprise me" + a row of facts to swipe or scroll ---------- */
 .factwrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:14px;align-items:stretch}
 .factwrap .fact.shuffle{min-height:0}
-.marquee{overflow:hidden;min-width:0;padding:4px 0 14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 92%,transparent)}
-.mq-track{display:flex;gap:14px;width:max-content;animation:mq calc(var(--n) * 9s) linear infinite}
-.mq-track .fact{width:260px;flex:none;min-height:170px}
-.marquee:hover .mq-track,.marquee:focus-within .mq-track,.marquee:active .mq-track{animation-play-state:paused}
-@keyframes mq{to{transform:translateX(calc(-50% - 7px))}}
+.factwrap .facts{grid-auto-columns:260px;min-width:0;padding:4px 2px 14px;overscroll-behavior-x:contain}
+.factwrap .facts:focus-visible{outline:3px solid var(--navy);outline-offset:2px;border-radius:var(--r-lg)}
 .fact.shuffle svg{transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
 .fact.shuffle:hover svg{transform:rotate(180deg)}
+.fnav{display:flex;gap:8px;align-self:end}
+.fnav button{display:grid;place-items:center;width:36px;height:36px;border:0;border-radius:50%;background:var(--fill-2);color:var(--label-2);cursor:pointer}
+.fnav button:hover:not(:disabled){background:var(--fill)}
+.fnav button:disabled{opacity:.35;cursor:default}
+.fnav svg{width:16px;height:16px}
+.fnav [data-fscroll="-1"] svg{transform:rotate(180deg)}
+@media (hover:none){.fnav{display:none}}
 @media (max-width:700px){
   .factwrap{grid-template-columns:118px minmax(0,1fr);gap:10px;margin-right:-16px}
   .factwrap .fact.shuffle{padding:14px 12px;gap:4px}
   .factwrap .fact.shuffle b{font-size:19px}
   .factwrap .fact.shuffle small{font-size:12.5px}
-  .mq-track .fact{width:230px;min-height:160px;padding:16px}
-  .mq-track .fact b{font-size:22px}
-  .marquee{-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 100%);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 100%)}
-}
-@media (prefers-reduced-motion:reduce){
-  .mq-track{animation:none}
-  .marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none;scrollbar-width:none}
-  .mq-track .fact[aria-hidden="true"]{display:none}
+  .factwrap .facts{grid-auto-columns:230px;margin:0;padding-inline:0 16px;scroll-padding-inline:0}
+  .factwrap .facts .fact{min-height:160px;padding:16px}
+  .factwrap .facts .fact b{font-size:22px}
 }
 
 /* ---------- basic structure ---------- */
@@ -973,7 +972,7 @@ kbd{display:inline-block;min-width:22px;padding:2px 6px;border-radius:6px;backgr
   .tlh .tick::before{top:66px;height:48px;background:var(--label-3)}
   .tlh .tick .lb b{font-weight:600;color:var(--label-2);font-size:12.5px}
 }
-.nxsub{font-size:15px;font-weight:600;color:var(--label-3);margin:22px 0 10px;letter-spacing:.01em}
+.subhd{font-size:15px;font-weight:600;color:var(--label-3);margin:22px 0 10px;letter-spacing:.01em}
 .nxtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
 .nxtile{display:grid;grid-template-rows:1fr auto auto;gap:8px;padding:16px;color:var(--label)}
 .nxtile:hover{text-decoration:none;box-shadow:0 0 0 1.5px var(--navy),var(--shadow)}
