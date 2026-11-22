@@ -35,6 +35,12 @@ bash lh.sh "http://localhost:8766/preview.html#art-21"   # Lighthouse
 
 Before pushing: tests pass, no console errors, no horizontal scroll at 320px, Lighthouse accessibility 100.
 
+## Shipping changes
+
+- Put every finished change live as soon as it passes the checks above. Commit on the working branch and push it, then push the same commit to `main`, which GitHub Pages serves. The owner has asked for this, so it needs no further approval.
+- After each change, update the claude.ai artifact "Constitution of India" (https://claude.ai/artifact/EaLJZMpbA6nN1fSAYEZJw9) from `src/site/index.html`. When `text.json` changed too, publish it alongside as `text.json`.
+- For big changes (a new page or feature, a redesign, or a change to navigation or layout), show the owner screenshots on a phone and on desktop and wait for a yes before putting it live. Small fixes go live straight away, with screenshots afterwards where they help.
+
 ## Gotchas
 
 - `pageURL()` in `app.js` points copied links at the claude.ai artifact URL only when the page runs inside a frame. On GitHub Pages it uses the page's own address.
