@@ -38,8 +38,8 @@ for (let n = 1; n <= 120; n++) AMD_BY_NAME.set(ordw(n).toLowerCase().replace(/[^
 const schName = k => k.charAt(0) + k.slice(1).toLowerCase() + " Schedule";
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const fmtDate = d => d ? `${+d.slice(8, 10)} ${MONTHS[+d.slice(5, 7) - 1]} ${d.slice(0, 4)}` : "";
-const PC = ["var(--saffron-fill)", "var(--navy)", "var(--green-fill)"], PCT = ["var(--saffron)", "var(--navy)", "var(--green)"];
-const partColor = i => PC[i % 3], partText = i => PCT[i % 3];
+const PCT = ["var(--saffron)", "var(--navy)", "var(--green)"];
+const partText = i => PCT[i % 3];
 function partRange(P) {
   const nums = P.ch.flatMap(c => c.s.flatMap(s => s.a));
   return { nums, live: nums.filter(n => !ART.get(n).o), range: nums.length ? (nums.length === 1 ? "Article " + nums[0] : "Articles " + nums[0] + "–" + nums[nums.length - 1]) : "" };
@@ -69,7 +69,6 @@ const I = {
   alertc: P('<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>'),
   arrow: P('<path d="M5 12h14M13 6l6 6-6 6"/>'),
   // theme icons
-  gem: P('<path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/>'),
   venus: P('<circle cx="12" cy="9" r="5"/><path d="M12 14v7M9 18h6"/>'),
   child: P('<circle cx="9" cy="7" r="2.5"/><path d="M5 21v-5a4 4 0 0 1 8 0v5"/><circle cx="17.5" cy="6.5" r="2.5"/><path d="M17.5 9v4"/>'),
   lamp: P('<path d="M12 3c2 2.5 2 5 0 7-2-2-2-4.5 0-7z"/><path d="M4 13c3 0 6 1 8 4 2-3 5-4 8-4-1 4-4 7-8 7s-7-3-8-7z"/>'),
@@ -106,7 +105,6 @@ const I = {
   link: P('<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/>'),
   speaker: P('<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>'),
   stop: P('<rect x="6" y="6" width="12" height="12" rx="2"/>'),
-  keys: P('<rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6.5 10h.01M10 10h.01M13.5 10h.01M17 10h.01M7.5 14h9"/>'),
   pin: P('<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>')
 };
 const CHAKRA = (() => {
@@ -259,6 +257,11 @@ function quiltBlock(seed) {
 
 /* ================= full text (loaded after first paint) ================= */
 let TEXT = null, textErr = false;
+/* On a first visit straight to an article, its Part's small file (t/PART.json) can arrive before the full text.
+   Until then the article page reads from it; every other page waits for the full text. */
+let EARLY = null, earlyFor = null;
+const artText = n => TEXT ? TEXT.a[n] : EARLY && EARLY.a[n];
+const bsData = () => TEXT ? TEXT.bs : EARLY && EARLY.bs;
 function loadText() {
   textErr = false;
   /* the build stamps the address with a fingerprint of the file, so a new page never gets an old cached copy;
@@ -266,7 +269,8 @@ function loadText() {
   const getJSON = u => fetch(u).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
   getJSON("text.json?v=__TEXTV__").catch(() => getJSON("text.json")).then(j => {
     TEXT = j; DOCS = null;
-    if (needsText()) render(true);
+    const drawn = route.name === "art" && earlyFor === route.id; EARLY = earlyFor = null;
+    if (needsText() && !drawn) render(true);
     if (dlgOpen()) runSearch();
   }).catch(() => { textErr = true; if (needsText()) render(true); if (dlgOpen()) runSearch(); });
 }
@@ -447,7 +451,6 @@ function vHome() {
   const recent = store.get("recent", []).filter(n => ART.has(n)).slice(0, 6);
   const saved = savedList();
   const popular = [["art-14", "Equality before law"], ["art-19", "Freedom of speech"], ["art-21", "Life and liberty"], ["art-326", "Voting age"], ["theme-lawmaking", "How laws are made"], ["art-356", "President's rule"], ["art-51A", "Fundamental duties"], ["art-279A", "GST Council"]];
-  const amdPeak = Math.max(...AMD.map(a => a.refs.length));
   return `
   <section class="hero"><canvas id="heroquilt" aria-hidden="true"></canvas><div class="wrap hero-in">
     <div class="mark">${quiltBlock(7)}</div>
@@ -746,7 +749,7 @@ function vArt(r) {
   const n = r.id, a = ART.get(n), loc = LOC.get(n), Pt = PARTS[loc.pi], C = Pt.ch[loc.ci], S = C.s[loc.si];
   const prev = ORDER[a.i - 1], next = ORDER[a.i + 1];
   pushRecent(n);
-  const t = TEXT && TEXT.a[n];
+  const t = artText(n);
   const saved = savedList().includes(n);
   let main;
   if (!t) main = textErr ? errBox() : loadBox();
@@ -1011,8 +1014,8 @@ const BAND = [
 ];
 const FST = { rec: "Recognised by the Court", op: "Named in one opinion", ls: "Listed by the Lok Sabha Secretariat" };
 let bsSel = 0, bsPick = false;
-const bsOf = (kind, id) => { const B = TEXT && TEXT.bs; if (!B) return null; const v = kind === "sch" ? B.sch[id] : B.art[id]; const note = kind === "sch" ? B.schnote[id] : B.note[id]; return v || note ? { b: v ? v[0] : null, why: v ? B.why[v[1]][0] : "", f: v ? B.why[v[1]][1] : [], note } : null; };
-const featChips = (f, b) => f.length ? `<p class="fl">${b != null && b >= 4 ? "Related feature" + (f.length > 1 ? "s" : "") : "Basic feature" + (f.length > 1 ? "s" : "") + " involved"}</p><div class="pills">${f.map(x => `<a class="pill" href="#basic-structure-${x}">${esc(TEXT.bs.feat[x].t)}</a>`).join("")}</div>` : "";
+const bsOf = (kind, id) => { const B = bsData(); if (!B) return null; const v = kind === "sch" ? B.sch[id] : B.art[id]; const note = kind === "sch" ? B.schnote[id] : B.note[id]; return v || note ? { b: v ? v[0] : null, why: v ? B.why[v[1]][0] : "", f: v ? B.why[v[1]][1] : [], note } : null; };
+const featChips = (f, b) => f.length ? `<p class="fl">${b != null && b >= 4 ? "Related feature" + (f.length > 1 ? "s" : "") : "Basic feature" + (f.length > 1 ? "s" : "") + " involved"}</p><div class="pills">${f.map(x => `<a class="pill" href="#basic-structure-${x}">${esc(bsData().feat[x].t)}</a>`).join("")}</div>` : "";
 /* six-step scale, filled from "very unlikely" (1 step) up to "held" (all 6) */
 const bsScale = b => `<span class="bscale l${6 - b}${b === 0 ? " held" : ""}" role="img" aria-label="${BAND[b].t}: step ${6 - b} of 6">${[5, 4, 3, 2, 1, 0].map(i => `<i class="${i >= b ? "on" : ""}"></i>`).join("")}</span>`;
 function bsChip(kind, id) {
@@ -1217,7 +1220,7 @@ function shareAct(k) {
   else if (k === "cite") copy(s.cite, "Citation copied");
   else if (k === "text") {
     if (r.name === "pre") copy(`Preamble\n\n${CORE.pre.p.map(p => plain(p[1])).join("\n")}\n\nThe Constitution of India (as on ${CORE.meta.asOn})`, "Copied the Preamble");
-    else { const n = r.id, a = ART.get(n), x = TEXT && TEXT.a[n]; if (!x) return; let ps = x.p, lab = "Article " + n; if (selClause) { const dom = $$("#text p.csel").map(p => +p.dataset.i); ps = dom.map(i => x.p[i]); lab = clauseCite(n, selClause); } copy(`${lab}. ${a.t}\n\n${ps.map(p => plain(p[1])).join("\n")}\n\nThe Constitution of India (as on ${CORE.meta.asOn})`, `Copied ${lab}`); }
+    else { const n = r.id, a = ART.get(n), x = artText(n); if (!x) return; let ps = x.p, lab = "Article " + n; if (selClause) { const dom = $$("#text p.csel").map(p => +p.dataset.i); ps = dom.map(i => x.p[i]); lab = clauseCite(n, selClause); } copy(`${lab}. ${a.t}\n\n${ps.map(p => plain(p[1])).join("\n")}\n\nThe Constitution of India (as on ${CORE.meta.asOn})`, `Copied ${lab}`); }
   }
   closeMenu();
 }
@@ -1294,7 +1297,7 @@ function speak(items) {
 function listen() {
   if (speaking) { stopSpeak(); return; }
   const r = route;
-  if (r.name === "art" && TEXT) { const n = r.id, t = TEXT.a[n], ps = $$("#text p"); speak([[$(".ahead h1"), `Article ${n}. ${ART.get(n).t}`]].concat(t.p.map((p, i) => [ps[i] || null, sayable(p[1])]))); }
+  if (r.name === "art" && artText(r.id)) { const n = r.id, t = artText(n), ps = $$("#text p"); speak([[$(".ahead h1"), `Article ${n}. ${ART.get(n).t}`]].concat(t.p.map((p, i) => [ps[i] || null, sayable(p[1])]))); }
   else if (r.name === "pre") { const ps = $$(".pre-t p"); speak([[null, "The Preamble."]].concat(CORE.pre.p.map((p, i) => [ps[i] || null, sayable(p[1])]))); }
 }
 if (canSpeak) {
@@ -1538,9 +1541,9 @@ function after(r, keepY, changed) {
   fitSide();
   const side = $("#side .sl[aria-current='page']");
   if (side) { const sd = $("#side"); sd.scrollTop = side.offsetTop - sd.clientHeight / 2; }
-  if (wantY != null && (TEXT || textErr || !needsText())) { window.scrollTo(0, wantY); wantY = null; return; }
+  if (wantY != null && (TEXT || textErr || !needsText() || (r.name === "art" && artText(r.id)))) { window.scrollTo(0, wantY); wantY = null; return; }
   if (wantY != null) { window.scrollTo(0, 0); return; }
-  if (r.name === "art" && r.c && TEXT && $(`#text p[data-c="${r.c}"]`)) { selectClause(r.c, true); return; }
+  if (r.name === "art" && r.c && artText(r.id) && $(`#text p[data-c="${r.c}"]`)) { selectClause(r.c, true); return; }
   if (keepY != null && !changed) { window.scrollTo(0, keepY); return; }
   const mk = HL && $("#view mark");
   if (mk) mk.scrollIntoView({ block: "center" });
@@ -1551,29 +1554,12 @@ function after(r, keepY, changed) {
   else window.scrollTo(0, 0);
   if (TEXT) HL = null;
 }
-let cellObs = null;
 function lazyChart() {
   const c = $("#homechart"); if (!c) return;
   const build = () => { if (!c.childElementCount) { c.innerHTML = amdChart(); c.style.aspectRatio = ""; } };
   if (!("IntersectionObserver" in window)) return build();
   const o = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { build(); o.disconnect(); } }, { rootMargin: "300px" });
   o.observe(c);
-}
-function lazyCells() {
-  const cells = $("#cells"); if (!cells) return;
-  const build = () => { if (cells.childElementCount) return; cells.innerHTML = CORE.arts.map(([n, , , o]) => `<i class="cell${o ? " o" : ""}" data-a="${esc(n)}"></i>`).join(""); paintCells("part"); };
-  if (!("IntersectionObserver" in window)) return build();
-  if (cellObs) cellObs.disconnect();
-  cellObs = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { build(); cellObs.disconnect(); } }, { rootMargin: "400px" });
-  cellObs.observe(cells);
-}
-function paintCells(mode) {
-  const cells = $("#cells"); if (!cells) return;
-  $$(".seg [data-mode]").forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === mode));
-  const ramp = c => c === 0 ? "var(--fill)" : `color-mix(in srgb, var(--saffron-fill) ${[0, 30, 30, 55, 55, 78, 78, 78][Math.min(c, 7)] || 100}%, var(--fill))`;
-  $$(".cell", cells).forEach(el => { const a = ART.get(el.dataset.a); if (a.o) el.style.removeProperty("--c"); else el.style.setProperty("--c", mode === "part" ? partColor(a.p) : ramp(a.c)); });
-  $("#legend").innerHTML = mode === "part" ? `<span><i style="background:var(--saffron-fill)"></i><i style="background:var(--navy)"></i><i style="background:var(--green-fill)"></i>Colours alternate by Part</span><span><i style="box-shadow:inset 0 0 0 1px var(--sep-strong)"></i>Omitted</span>`
-    : `<span>Fewer notes</span>${[0, 1, 3, 5, 8].map(c => `<i style="background:${ramp(c)};margin:0"></i>`).join("")}<span>8 or more</span>`;
 }
 let fsIdx = store.get("fs", 1);
 const FS = ["18px", "20px", "22px", "24px"];
@@ -1587,7 +1573,7 @@ const peek = document.createElement("div"); peek.className = "peek"; peek.hidden
 let peekT = 0, peekA = null, lpT = 0, lpFired = false, lpXY = null;
 const peekLink = t => { const a = t && t.closest && t.closest('a[href^="#art-"]'); return a && !a.closest(".row, .bcell, .peek, .res") ? a : null; };
 function peekHTML(k, touch) {
-  const a = ART.get(k), T = TEXT && TEXT.a[k], P = PARTS[a.p];
+  const a = ART.get(k), T = artText(k), P = PARTS[a.p];
   const sum = a.o ? "This article has been omitted." : T && T.s ? T.s : TEXT ? "" : "Loading summary…";
   return `<div class="pk-k">Article ${esc(k)} · Part ${P.n}</div><div class="pk-t">${esc(a.t.replace(/\.$/, ""))}</div>${sum ? `<p class="pk-s">${esc(sum)}</p>` : ""}${touch ? `<div class="pk-acts"><a class="btn primary" href="#art-${k}">Open Article ${esc(k)}</a><button class="btn" type="button" data-peek-close>Close</button></div>` : ""}`;
 }
@@ -1634,7 +1620,7 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") hidePeek(); 
 let pop = null, popBtn = null;
 function closePop() { if (pop) { pop.remove(); pop = null; } if (popBtn) { popBtn.setAttribute("aria-expanded", "false"); popBtn = null; } }
 function notesFor() {
-  if (route.name === "art" && TEXT) return TEXT.a[route.id].f;
+  if (route.name === "art" && artText(route.id)) return artText(route.id).f;
   if (route.name === "pre") return CORE.pre.f;
   if (route.name === "sch" && TEXT) return TEXT.s[route.id].f;
   if (route.name === "apx" && TEXT) return TEXT.x[route.id].f;
@@ -1828,8 +1814,6 @@ document.addEventListener("click", e => {
   const fn = t.closest(".fn"); if (fn) { e.preventDefault(); popBtn === fn ? closePop() : openPop(fn); return; }
   if (pop && !t.closest(".pop")) closePop();
   if (t.closest("[data-random]")) { const live = ORDER.filter(n => !ART.get(n).o); location.hash = "#art-" + live[Math.floor(Math.random() * live.length)]; return; }
-  const cell = t.closest(".cell"); if (cell) { location.hash = "#art-" + cell.dataset.a; return; }
-  const md = t.closest("[data-mode]"); if (md) { paintCells(md.dataset.mode); return; }
   const bar = t.closest(".chart .b, .chart .nc"); if (bar) { amdFilter = "all"; location.hash = "#amend-" + bar.dataset.n; return; }
   const af = t.closest("[data-af]"); if (af) { amdFilter = af.dataset.af === amdFilter && amdFilter !== "all" ? "all" : af.dataset.af; render(true); return; }
   const ct = t.closest("[data-ctab]"); if (ct) { const tab = ct.dataset.ctab; $("#ctree").innerHTML = tab === "sch" ? schTree() : partTree(); $$("[data-ctab]").forEach(b => b.setAttribute("aria-pressed", b === ct)); filterContents($("#cfilter").value); return; }
@@ -1844,7 +1828,7 @@ document.addEventListener("click", e => {
   const sv = t.closest("[data-save]");
   if (sv) { const n = sv.dataset.save; let s = savedList(); const on = !s.includes(n); s = on ? [n, ...s] : s.filter(x => x !== n); store.set("saved", s); sv.setAttribute("aria-pressed", on); sv.setAttribute("aria-label", on ? "Saved" : "Save"); sv.innerHTML = `${on ? I.bookmarkF : I.bookmark}<span class="bl">${on ? "Saved" : "Save"}</span>`; updateSavedDot(); toast(on ? `Saved Article ${n}` : `Removed Article ${n}`); return; }
   const cp = t.closest("[data-copy]");
-  if (cp) { const n = cp.dataset.copy, a = ART.get(n), x = TEXT && TEXT.a[n]; if (x) copy(`Article ${n}. ${a.t}\n\n${x.p.map(p => plain(p[1])).join("\n")}\n\nThe Constitution of India (as on ${CORE.meta.asOn})`, `Copied Article ${n}`); return; }
+  if (cp) { const n = cp.dataset.copy, a = ART.get(n), x = artText(n); if (x) copy(`Article ${n}. ${a.t}\n\n${x.p.map(p => plain(p[1])).join("\n")}\n\nThe Constitution of India (as on ${CORE.meta.asOn})`, `Copied Article ${n}`); return; }
   const ci = t.closest("[data-cite]");
   if (ci) { const n = ci.dataset.cite, a = ART.get(n), Pp = PARTS[a.p]; copy(`Constitution of India, Article ${n} (${a.t.replace(/\.$/, "")}), Part ${Pp.n}. Text as on ${CORE.meta.asOn}, Legislative Department, Ministry of Law and Justice, Government of India.`, "Citation copied"); return; }
   const thb = t.closest("#theme"); if (thb) { menuBtn === thb ? closeMenu() : openThemeMenu(thb); return; }
@@ -1933,6 +1917,10 @@ if (!framed && location.protocol === "https:" && !/claudeusercontent|claude\.(si
   s.async = true; s.src = "https://gc.zgo.at/count.js"; s.dataset.goatcounter = "https://constitutionofindia.goatcounter.com/count";
   s.onload = gcCount; document.head.appendChild(s);
   addEventListener("hashchange", gcCount);
+}
+if (route.name === "art") {
+  const P = PARTS[ART.get(route.id).p];
+  fetch(`t/${P.n}.json?v=__TEXTV__`).then(r => r.ok ? r.json() : null).then(j => { if (j && !TEXT && route.name === "art" && j.a[route.id]) { EARLY = j; earlyFor = route.id; render(true); } }).catch(() => {});
 }
 if (needsText()) loadText(); else (window.requestIdleCallback || (f => setTimeout(f, 1)))(loadText, { timeout: 600 });
 })();

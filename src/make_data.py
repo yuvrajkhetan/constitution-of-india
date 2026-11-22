@@ -151,5 +151,16 @@ text=dict(a=TA,s=TS,x=t['x'],g=gl,bs=BS,next=NX)
 os.makedirs('site',exist_ok=True)
 json.dump(core,open('site/core.json','w'),ensure_ascii=False,separators=(',',':'))
 json.dump(text,open('site/text.json','w'),ensure_ascii=False,separators=(',',':'))
+# one small file per Part (its articles, plus the basic structure data an article page shows), so a first visit
+# straight to an article can draw it before the full text.json arrives
+import glob
+os.makedirs('site/t', exist_ok=True)
+for f in glob.glob('site/t/*.json'): os.remove(f)
+BS_ART = {k: BS[k] for k in ('why', 'feat')}
+for P in c['parts']:
+    ids = [n for C in P['ch'] for S in C['s'] for n in S['a'] if n in TA]
+    if not ids: continue
+    bs = dict(BS_ART, art={n: BS['art'][n] for n in ids if n in BS['art']}, note={n: BS['note'][n] for n in ids if n in BS['note']}, sch={}, schnote={})
+    json.dump(dict(a={n: TA[n] for n in ids}, bs=bs), open(f"site/t/{P['n']}.json", 'w'), ensure_ascii=False, separators=(',', ':'))
 print('core',os.path.getsize('site/core.json'),'text',os.path.getsize('site/text.json'))
 for f in facts: print(f)

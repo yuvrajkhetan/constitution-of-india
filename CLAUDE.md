@@ -38,13 +38,13 @@ Before pushing: tests pass, no console errors, no horizontal scroll at 320px, Li
 ## Shipping changes
 
 - Put every finished change live as soon as it passes the checks above. Commit on the working branch and push it, then push the same commit to `main`, which GitHub Pages serves. The owner has asked for this, so it needs no further approval.
-- After each change, update the claude.ai artifact "Constitution of India" (https://claude.ai/artifact/EaLJZMpbA6nN1fSAYEZJw9) from `src/site/index.html`. When `text.json` changed too, publish it alongside as `text.json`.
+- After each change, update the claude.ai artifact "Constitution of India" (https://claude.ai/artifact/EaLJZMpbA6nN1fSAYEZJw9) from `src/site/index.html`. When `text.json` changed too, publish it alongside as `text.json`, with the per-Part files in `src/site/t/` as `t/<Part>.json`.
 - For big changes (a new page or feature, a redesign, or a change to navigation or layout), show the owner screenshots on a phone and on desktop and wait for a yes before putting it live. Small fixes go live straight away, with screenshots afterwards where they help.
 
 ## Gotchas
 
 - `pageURL()` in `app.js` points copied links at the claude.ai artifact URL only when the page runs inside a frame. On GitHub Pages it uses the page's own address.
-- `text.json` loads after first paint. Code that needs it must handle the loading state.
+- `text.json` loads after first paint. Code that needs it must handle the loading state. On a first visit straight to an article, the page also fetches that Part's small file (`t/<Part>.json`, written by `make_data.py`) and draws the article from it; read article text through `artText()` and basic structure data through `bsData()`, which use whichever has arrived.
 - Commit both the `src/` change and the rebuilt root files.
 - `make_icons.js` makes `favicon.svg`/`.ico`, `apple-touch-icon.png` and the 1200x630 `og.png` share image from the built page. The share tags use absolute GitHub Pages URLs (`SITE` in `build_site.py`); the artifact ignores them.
 - `test.py` needs Python Playwright at the same version as the Node one: `pip install playwright==$(node -p "require('playwright/package.json').version")`.
