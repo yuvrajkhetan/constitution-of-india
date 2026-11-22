@@ -1411,7 +1411,7 @@ function vAbout() {
       <h2>Design</h2>
       <p>The type is Palatino, chosen for its likeness to the hand-lettering of the original 1950 manuscript. Devices without it get TeX Gyre Pagella, a free version of the same design. The quilt patches draw on Indian textiles: bandhani, leheriya, ikat, ajrakh, block print, paisley, kantha and mirror work.</p>
       <h2>With thanks</h2>
-      <p>This reader was inspired by the work of <a href="https://www.constitutionofindia.net/" target="_blank" rel="noopener">Constitution of India</a> (constitutionofindia.net), which has done much to make the Constitution open and easy to explore. This site is independent and not affiliated with it.</p>
+      <p>This reader was inspired by the work of <a href="https://www.constitutionofindia.net/" target="_blank" rel="noopener">Constitution of India</a>, which has done much to make the Constitution open and easy to explore. This site is independent and not affiliated with it.</p>
     </div>
   </section>`;
 }
