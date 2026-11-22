@@ -7,7 +7,7 @@ const GL = new Set(text.g.map(([t]) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-
 const FEAT = new Set(Object.keys(text.bs.feat).concat(['method']));
 function valid(h) {
   const x = decodeURIComponent(h.slice(1)); let m;
-  if (['', 'contents', 'schedules', 'themes', 'amendments', 'glossary', 'saved', 'about', 'preamble', 'basic-structure'].includes(x)) return true;
+  if (['', 'contents', 'schedules', 'themes', 'amendments', 'glossary', 'saved', 'about', 'preamble', 'basic-structure', 'next-amendment'].includes(x)) return true;
   if ((m = x.match(/^art-([^.]+)(?:\.(.+))?$/))) return ARTS.has(norm(m[1]));
   if ((m = x.match(/^sch-([A-Z]+)(?:-b(\d+))?$/))) { const s = text.s[m[1]]; return !!s && (!m[2] || +m[2] < s.b.length); }
   if ((m = x.match(/^apx-(I{1,3})(?:-b(\d+))?$/))) { const s = text.x[m[1]]; return !!s && (!m[2] || +m[2] < s.b.length); }
@@ -19,7 +19,7 @@ function valid(h) {
   return false;
 }
 (async () => {
-  const routes = ['', '#contents', '#schedules', '#themes', '#amendments', '#glossary', '#saved', '#about', '#preamble', '#basic-structure', '#basic-structure-method'];
+  const routes = ['', '#contents', '#schedules', '#themes', '#amendments', '#glossary', '#saved', '#about', '#preamble', '#basic-structure', '#basic-structure-method', '#next-amendment'];
   core.arts.forEach(a => routes.push('#art-' + a[0]));
   core.parts.forEach(p => routes.push('#part-' + p.n));
   core.sch.forEach(s => routes.push('#sch-' + s.k));

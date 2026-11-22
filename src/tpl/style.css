@@ -894,3 +894,52 @@ kbd{display:inline-block;min-width:22px;padding:2px 6px;border-radius:6px;backgr
 .bschip{min-width:0}.bsc-t{min-width:0}
 @media (max-width:400px){.bsc-t b{white-space:normal}}
 @media (max-width:400px){.bschip{flex-wrap:wrap;row-gap:6px}.bschip .bsc-t{flex:1 1 auto}}
+
+/* ---------- the next amendment ---------- */
+.nxt{display:block;padding:16px 18px;margin:0 0 18px;color:var(--label)}
+.nxt:hover{text-decoration:none;box-shadow:0 0 0 1.5px var(--navy),var(--shadow)}
+.nxt p{margin-top:4px;font-size:15.5px;line-height:1.5}
+.nxw{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:13.5px;color:var(--label-2)}
+.nxw>span{display:inline-flex;align-items:center;gap:6px}
+.nxw .sw{width:12px;height:12px}
+.nxt .more{margin-top:10px;color:var(--navy)}
+.nxlead{padding:18px 20px}
+.nxlead p{font-size:17px;line-height:1.55}
+.nxlead .fine{font-size:13.5px;color:var(--label-3);margin-top:10px;line-height:1.5}
+.nx .src{font-size:12.5px;color:var(--label-3);margin-top:8px;line-height:1.5}
+.nx .src a,.nxlead a,.nxtimes small a{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.nxwhen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.nxwhen .card{padding:16px 18px}
+.nxwhen .k{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13.5px;font-weight:600;color:var(--label)}
+.nxwhen .k small{font-weight:400;color:var(--label-3)}
+.nxwhen h3{font-size:17px;letter-spacing:-.015em;margin-top:8px}
+.nxwhen p{font-size:14.5px;color:var(--label-2);margin-top:6px;line-height:1.5}
+.nxc{padding:18px 20px;scroll-margin-top:90px}
+.nxc+.nxc{margin-top:12px}
+.nxc .bsb-h .sw{width:22px;height:22px;border-radius:6px}
+.nxc .bsb-h b{display:block;font-size:17px;letter-spacing:-.01em}
+.nxc .bsb-h small{display:block;font-size:13.5px;color:var(--label-3)}
+.nxc p{font-size:15.5px;line-height:1.55;color:var(--label-2);margin-top:8px}
+.nxc p b{color:var(--label)}
+.nxc .pills,.nxclk .pills{margin-top:10px;gap:6px}
+.nxc .pill,.nxclk .pill{height:30px;font-size:13.5px}
+.nxclk{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.nxclk li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;padding:16px 18px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow)}
+.nxclk .d{font-weight:700;color:var(--navy);font-size:15px;line-height:1.35}
+.nxclk h3{font-size:16px;letter-spacing:-.01em}
+.nxclk p{font-size:15px;color:var(--label-2);margin-top:4px;line-height:1.5}
+.nxrec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.nxrec .card{padding:16px 18px}
+.nxrec h3{font-size:16px;letter-spacing:-.01em;margin-bottom:6px}
+.nxrec p{font-size:15px;color:var(--label-2);line-height:1.5}
+.nxpace{display:grid;gap:5px;margin-top:10px}
+.nxpace div{display:grid;grid-template-columns:104px minmax(0,1fr) 24px;gap:8px;align-items:center;font-size:13.5px;color:var(--label-2)}
+.nxpace i{display:block;height:10px;border-radius:5px;background:var(--navy);min-width:4px}
+.nxpace b{font-variant-numeric:tabular-nums;text-align:right;color:var(--label)}
+.nxtimes{margin-top:12px;padding:12px 18px}
+.nxtimes summary{cursor:pointer;color:var(--navy);font-size:14.5px;font-weight:500;padding:4px 0}
+.nxtimes .tscroll{overflow-x:auto}
+.nxtimes th[scope="row"] small{display:block;font-size:12px;color:var(--label-3)}
+.nxtimes td{white-space:nowrap}
+@media (max-width:820px){.nxwhen,.nxrec{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.nxclk li{grid-template-columns:minmax(0,1fr);gap:4px}.nxc,.nxlead{padding:16px}}

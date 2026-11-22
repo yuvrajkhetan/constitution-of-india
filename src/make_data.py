@@ -38,6 +38,10 @@ sch=[dict(x, s=S.get('sch-'+x['k'],{}).get('s','')) for x in c['sch']]
 for a in raw:
     if a['n']==7 and 'a:342' not in a['refs']:
         a['refs'].insert(a['refs'].index('a:341')+1,'a:342')
+# The 23rd Act (1969) changed "twenty years" to "thirty years" in Article 334. Later Acts rewrote those words, so no footnote cites it;
+# the 45th Act's footnote records the next step, from "thirty" to "forty".
+for a in raw:
+    if a['n']==23 and 'a:334' not in a['refs']: a['refs'].append('a:334')
 if not any(a['n']==72 for a in raw):
     raw.append({"n":72,"y":1992,"wef":"1992-12-05","refs":["a:332"]})
 H.setdefault('72',{"h":"Added clause (3B) to Article 332, fixing how many seats in the Tripura Legislative Assembly are reserved for Scheduled Tribes until the next readjustment.","tags":["reservation","elections"]})
@@ -122,6 +126,15 @@ facts+=[
  {"v":"Sixth Schedule","l":"carries the most amendment notes of any Schedule","x":"It governs tribal areas in Assam, Meghalaya, Tripura and Mizoram.","h":"#sch-SIXTH"},
 ]
 core=dict(parts=parts,arts=c['arts'],pre=c['pre'],sch=sch,apx=c['apx'],amd=amd,themes=themes,facts=facts,meta=c['meta'])
+# forecast of the next amendment (data/next.json); check every article, Schedule and Act it points to exists
+NX=json.load(open('data/next.json')); NX.pop('_note',None)
+_arts={x[0] for x in c['arts']}; _sch={x['k'] for x in c['sch']}; _amd={a['n'] for a in amd}
+for x in NX['cands']+NX['clocks']:
+    for r in x.get('arts',[]): assert r in _arts, ('next.json: no article',r)
+    for r in x.get('sch',[]): assert r in _sch, ('next.json: no schedule',r)
+    for r in x.get('amds',[]): assert r in _amd, ('next.json: no amendment',r)
+for _t in NX['times']: assert _t['n'] in _amd and _t['intro']<=_t['passed']<=_t['assent'], _t
+core['next']={k:NX[k] for k in ('asOn','headline','when')}  # the Amendments page teaser; the full forecast loads with text.json
 BS=json.load(open('data/bs.json'))
 import collections as _co
 _bc=_co.Counter(v[0] for v in BS['art'].values() if v[0]>=0)
@@ -134,7 +147,7 @@ for (n,i),x in zip(_seq,_res): _fh.setdefault(n,[]).append([x['a'],x['v'],x['o']
 for n in ORDER:
     if n in _fh: TA[n]['fh']=_fh[n]
 if 'P' in _fh: core['pre']=dict(c['pre'],fh=_fh['P'])
-text=dict(a=TA,s=TS,x=t['x'],g=gl,bs=BS)
+text=dict(a=TA,s=TS,x=t['x'],g=gl,bs=BS,next=NX)
 os.makedirs('site',exist_ok=True)
 json.dump(core,open('site/core.json','w'),ensure_ascii=False,separators=(',',':'))
 json.dump(text,open('site/text.json','w'),ensure_ascii=False,separators=(',',':'))

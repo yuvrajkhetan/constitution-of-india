@@ -95,6 +95,7 @@ const I = {
   more: P('<circle cx="12" cy="12" r="9"/><circle cx="8" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.15" fill="currentColor" stroke="none"/>'),
   auto: P('<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/>'),
   check: P('<path d="m5 12.5 4.5 4.5L19 7.5"/>'),
+  cal: P('<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'),
   home: P('<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10M10 20v-6h4v6"/>'),
   people: P('<circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M18 13.5a7 7 0 0 1 4 6.5"/>'),
   pen: P('<path d="M4 20l4-1L19 8a2.1 2.1 0 0 0-3-3L5 16z"/><path d="M14 7l3 3"/>'),
@@ -345,6 +346,7 @@ function search(qraw) {
   else if ((m = q.match(/([a-z\- ]+?)\s+amendment/))) { const n = AMD_BY_NAME.get(m[1].replace(/^the\s+/, "").replace(/[^a-z]/g, "")); if (n && AMD_BY.has(n)) out.direct.push({ type: "amd", id: n }); }
   if (/^preamble/.test(q)) out.direct.push({ type: "pre" });
   if (/basic (structure|feature)|kesavananda|amend(ing)? power|can parliament amend/.test(q)) out.direct.push({ type: "bs" });
+  if (/next amendment|pending (bill|amendment)|amendment bill|forecast|one nation,? one election|simultaneous election|delimitation|seat freeze/.test(q)) out.direct.push({ type: "next" });
   synHits(q).forEach(d => { if (!out.direct.some(y => y.type === d.type && y.id === d.id)) out.direct.push(d); });
   const phrase = (q.match(/"([^"]+)"/) || [])[1];
   const terms = phrase ? [phrase] : q.replace(/[^a-z0-9'\- ]/g, " ").split(/\s+/).filter(t => t.length > 1 && !STOP.has(t));
@@ -393,7 +395,7 @@ function parseHash() {
   const h = decodeURIComponent(location.hash.replace(/^#/, ""));
   let m;
   if (!h) return { name: "home" };
-  const simple = { preamble: "pre", contents: "contents", schedules: "contents", themes: "themes", amendments: "amend", glossary: "glossary", saved: "saved", about: "about" };
+  const simple = { preamble: "pre", contents: "contents", schedules: "contents", themes: "themes", amendments: "amend", "next-amendment": "next", glossary: "glossary", saved: "saved", about: "about" };
   if (simple[h]) return { name: simple[h], tab: h === "schedules" ? "sch" : null };
   if ((m = h.match(/^amend-(\d+)$/))) return { name: "amend", id: +m[1] };
   if ((m = h.match(/^basic-structure(?:-([a-z]+))?$/))) return { name: "bs", f: m[1] || null };
@@ -405,9 +407,9 @@ function parseHash() {
   if ((m = h.match(/^g-(.+)$/))) return { name: "glossary", term: m[1] };
   return { name: "home" };
 }
-const needsText = () => ["art", "sch", "apx", "part", "theme", "glossary", "pre", "bs"].includes(route.name);
-const NAVKEY = { home: "home", contents: "contents", part: "contents", art: "contents", pre: "contents", sch: "contents", apx: "contents", themes: "themes", theme: "themes", amend: "amend", bs: "bs", glossary: "glossary", saved: "saved", about: "about" };
-const TITLES = { home: "Constitution of India", contents: "Contents", themes: "Themes", amend: "Amendments", bs: "The basic structure", glossary: "Glossary", saved: "Saved", pre: "Preamble", about: "How this was made" };
+const needsText = () => ["art", "sch", "apx", "part", "theme", "glossary", "pre", "bs", "next"].includes(route.name);
+const NAVKEY = { home: "home", contents: "contents", part: "contents", art: "contents", pre: "contents", sch: "contents", apx: "contents", themes: "themes", theme: "themes", amend: "amend", next: "amend", bs: "bs", glossary: "glossary", saved: "saved", about: "about" };
+const TITLES = { home: "Constitution of India", contents: "Contents", themes: "Themes", amend: "Amendments", next: "The next amendment", bs: "The basic structure", glossary: "Glossary", saved: "Saved", pre: "Preamble", about: "How this was made" };
 
 /* each history entry gets a number; going back or forward to one restores where you were on it */
 let POS = {}, NAVI = 0, pendingFrom = null, wantY = null, savePosT = 0;
@@ -425,7 +427,7 @@ function render(keepScroll) {
   closePop(); closeSide(); closeMenu(); closeMore(false); stopSpeak(); selClause = null; $("#cbar").hidden = true; const kb = $("#kbd"); if (kb) kb.remove();
   const r = route, key = location.hash;
   if (r.name === "home") themeCtx = null;
-  const V = { home: vHome, contents: vContents, part: vPart, art: vArt, pre: vPre, sch: vSch, apx: vApx, themes: vThemes, theme: vTheme, amend: vAmend, bs: vBS, glossary: vGlossary, saved: vSaved, about: vAbout }[r.name] || vHome;
+  const V = { home: vHome, contents: vContents, part: vPart, art: vArt, pre: vPre, sch: vSch, apx: vApx, themes: vThemes, theme: vTheme, amend: vAmend, next: vNext, bs: vBS, glossary: vGlossary, saved: vSaved, about: vAbout }[r.name] || vHome;
   const y = window.scrollY;
   view.innerHTML = `<div class="view">${V(r)}</div>`;
   $$("[data-nav]").forEach(a => a.setAttribute("aria-current", a.dataset.nav === NAVKEY[r.name] ? "page" : "false"));
@@ -900,6 +902,7 @@ function vAmend(r) {
   const NC = AMD.filter(a => a.nc).length;
   return `<section class="wrap col" style="--col:920px">
     <div class="ph"><h1 class="lt">Amendments</h1><p class="sub">The Constitution records its changes in footnotes under each provision. Parliament has passed ${AMD.length} Constitution Amendment Acts. This edition's footnotes cite ${AMD.length - NC}. The other ${NC} made changes that were later replaced or ran out, so no footnote mentions them; they are marked below with what happened and the official source used.</p></div>
+    ${nextTeaser()}
     <div class="seg2" role="group" aria-label="Chart view"><button type="button" data-amv="year" aria-pressed="${amdView === "year"}">By year</button><button type="button" data-amv="size" aria-pressed="${amdView === "size"}">By size</button></div>
     <div class="card chart" style="margin-bottom:18px">${amdChartNow(r.id)}</div>
     <div class="pills scrollrow" role="group" aria-label="Filter amendments" style="margin-bottom:8px"><button class="pill" type="button" data-af="all" aria-pressed="${amdFilter === "all"}">All</button>${tags.map(t => `<button class="pill" type="button" data-af="${esc(t)}" aria-pressed="${amdFilter === t}">${esc(t.charAt(0).toUpperCase() + t.slice(1))}</button>`).join("")}</div>
@@ -919,6 +922,60 @@ function amdRefs(a) {
   return `<div class="pills">${a.refs.map(x => { const [l, h] = label(x); return `<a class="pill" href="${h}">${esc(l)}</a>`; }).join("")}</div>`;
 }
 document.addEventListener("toggle", e => { const d = e.target; if (d.matches && d.matches("details[data-amd]") && d.open && !d.querySelector(".pills")) d.insertAdjacentHTML("beforeend", amdRefs(AMD_BY.get(+d.dataset.amd))); }, true);
+/* ---- the next amendment: a forecast (data/next.json) ---- */
+function nextTeaser() {
+  const N = CORE.next; if (!N) return "";
+  return `<a class="card nxt" href="#next-amendment"><span class="eyebrow">What might come next</span><p>${esc(N.headline)}</p>
+    <span class="nxw">${N.when.map(w => `<span><i class="sw b${w.band}" aria-hidden="true"></i>${esc(w.by.replace(/,.*$/, ""))}: <b>${BAND[w.band].t}</b></span>`).join("")}</span>
+    <span class="more">See the forecast ${I.chev}</span></a>`;
+}
+function vNext() {
+  const head = `<div class="ph"><div class="eyebrow">Forecast</div><h1 class="lt">The next amendment</h1><p class="sub">When the Constitution may next be amended, and on what. Our estimate as on ${esc(CORE.next.asOn)}, built from the Bills now in Parliament, the deadlines the Constitution sets itself and the record of past amendments.</p></div>`;
+  if (!TEXT) return `<section class="wrap col nx" style="--col:920px">${head}${textErr ? errBox() : loadBox()}</section>`;
+  const N = TEXT.next, sw = b => `<span class="sw b${b}" aria-hidden="true"></span>`;
+  const srcs = list => list && list.length ? `<p class="src">Source: ${list.map(([l, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`).join("; ")}</p>` : "";
+  const chips = x => { const p = (x.arts || []).map(n => `<a class="pill" href="#art-${n}">Art. ${n}</a>`).concat((x.sch || []).map(k => `<a class="pill" href="#sch-${k}">${schName(k)}</a>`), (x.amds || []).map(n => `<a class="pill" href="#amend-${n}">${nth(n)} Amendment</a>`)); return p.length ? `<div class="pills">${p.join("")}</div>` : ""; };
+  const days = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
+  const fd = d => new Date(d + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  const med = xs => { const v = xs.slice().sort((a, b) => a - b), m = v.length >> 1; return v.length % 2 ? v[m] : Math.round((v[m - 1] + v[m]) / 2); };
+  const T = N.times.map(t => ({ ...t, d: days(t.intro, t.assent), w: days(t.intro, t.passed) }));
+  const withC = T.filter(t => t.cttee).map(t => t.d), noC = T.filter(t => !t.cttee).map(t => t.d), quick = T.filter(t => t.w <= 7).length;
+  const dec = {}; AMD.forEach(a => { const k = Math.floor(a.y / 10) * 10; dec[k] = (dec[k] || 0) + 1; });
+  const peak = Math.max(...Object.values(dec)), lastDec = Math.max(...Object.keys(dec).map(Number)), O = N.outcomes;
+  return `<section class="wrap col nx" style="--col:920px">${head}
+    <div class="card nxlead"><p>${esc(N.headline)}</p><p class="fine">This is analysis for readers, not a ruling or a prediction of any party's plans, and it takes no side on any proposal. <a href="#next-amendment" data-jump="nx-method">How this works</a></p></div>
+
+    <section class="sec" aria-labelledby="nx-when"><div class="sh"><div><h2 id="nx-when">When</h2><p>How likely it is that at least one Amendment Act is passed by each date.</p></div></div>
+      <div class="nxwhen">${N.when.map(w => `<div class="card"><span class="k">${sw(w.band)}${BAND[w.band].t} <small>${BAND[w.band].r}</small></span><h3>${esc(w.by)}</h3><p>${esc(w.why)}</p></div>`).join("")}</div></section>
+
+    <section class="sec" aria-labelledby="nx-what"><div class="sh"><div><h2 id="nx-what">On what</h2><p>Each Government Bill to amend the Constitution now in Parliament, the deadlines that will need one, and how likely each is to become law.</p></div></div>
+      ${N.cands.map(c => `<article class="card nxc" id="nx-${c.id}"><div class="bsb-h">${sw(c.band)}<div><b>${esc(c.t)}</b><small>${BAND[c.band].t}${c.bill ? " · " + esc(c.bill) : ""}</small></div></div>
+        <p><b>Where it stands.</b> ${esc(c.stage)}</p><p><b>What it would do.</b> ${esc(c.what)}</p><p><b>Why this band.</b> ${esc(c.why)}</p>${chips(c)}${srcs(c.src)}</article>`).join("")}</section>
+
+    <section class="sec" aria-labelledby="nx-clocks"><div class="sh"><div><h2 id="nx-clocks">The clocks that are running</h2><p>Dates set by the Constitution or already fixed, that shape when the next amendments may come.</p></div></div>
+      <ol class="nxclk">${N.clocks.map(k => `<li><span class="d">${esc(k.d)}</span><div><h3>${esc(k.t)}</h3><p>${esc(k.s)}</p>${chips(k)}${srcs(k.src)}</div></li>`).join("")}</ol></section>
+
+    <section class="sec" aria-labelledby="nx-record"><div class="sh"><div><h2 id="nx-record">The track record</h2><p>What past amendments tell us about pace, timing and which deadlines Parliament keeps.</p></div></div>
+      <div class="nxrec">
+        <div class="card"><h3>Amendment Acts by decade</h3><p>The pace has slowed: ${dec[2010] || 0} in the 2010s and ${dec[lastDec] || 0} so far in the ${lastDec}s.</p>
+          <div class="nxpace" role="img" aria-label="${Object.entries(dec).map(([k, v]) => `${k}s: ${v}`).join(", ")}">${Object.entries(dec).map(([k, v]) => `<div><span>${k}s${+k === lastDec ? " so far" : ""}</span><i style="width:${(100 * v / peak).toFixed(1)}%"></i><b>${v}</b></div>`).join("")}</div></div>
+        <div class="card"><h3>How long Bills take</h3><p>For the last ${T.length} Acts, the median time from a Bill's introduction to the President's assent was ${med(T.map(t => t.d))} days. The ${withC.length} sent to a committee took a median of ${med(withC)} days; the other ${noC.length}, ${med(noC)} days. ${quick} of ${T.length} passed both Houses within a week of being introduced.</p></div>
+        <div class="card"><h3>Deadlines Parliament keeps</h3><p>Reserved seats for Scheduled Castes and Scheduled Tribes (Article 334) have been extended before every deadline, seven times out of seven. The freeze on seat shares was set or changed each time it came up: in 1976, 2001 and 2003.</p></div>
+        <div class="card"><h3>Not every Bill passes</h3><p>Of ${O.total} Government Bills to amend the Constitution introduced since ${O.since}, ${O.law} became law, ${O.lapsed} lapsed, ${O.defeated} were defeated and ${O.pending} are still pending. The two defeated were in 2011 and 2026.</p>${srcs([O.src])}</div>
+      </div>
+      <details class="card nxtimes"><summary>The last ${T.length} Acts, Bill by Bill</summary><div class="tscroll"><table class="stbl"><thead><tr><th scope="col">Act</th><th scope="col">Introduced</th><th scope="col">Passed both Houses</th><th scope="col">Assent</th><th scope="col">Days</th></tr></thead><tbody>${T.slice().reverse().map(t => `<tr><th scope="row"><a href="#amend-${t.n}">${nth(t.n)}</a><small>${esc(t.bill)} · <a href="${esc(t.src)}" target="_blank" rel="noopener">source</a>${t.cttee ? " · committee" : ""}</small></th><td>${fd(t.intro)}</td><td>${fd(t.passed)}</td><td>${fd(t.assent)}</td><td>${t.d}</td></tr>`).join("")}</tbody></table></div></details>
+    </section>
+
+    <section class="sec" aria-labelledby="nx-method" id="nx-method"><div class="sh"><div><h2 id="nx-method">How this works</h2></div></div>
+      <div class="card bsmeth">
+        <p>We ask two questions: when will the Constitution next be amended, and on what? We start from the Government's Bills to amend the Constitution now in Parliament, taken from Parliament's own bill records, and add the deadlines the Constitution sets itself. Then we use the record of past amendments: how often they pass, how long Bills take, which deadlines Parliament has always met, and which subjects come up most.</p>
+        <p>An amendment needs a majority of each House's total membership and two-thirds of the members present and voting (Article 368). Changes to some provisions, such as how States are represented in Parliament, also need the approval of half the State Legislatures.</p>
+        <p>The bands are the same rough guides used on the <a href="#basic-structure">basic structure</a> page. They show our confidence, not calculated probabilities. Private Members' Bills are left out, as they rarely come to a vote. Changes made by ordinary law, such as renaming a State under Article 4, are not amendments under Article 368 and are not counted.</p>
+        <p class="fine">Reviewed ${esc(N.asOn)}. We review this after each session of Parliament, and whenever a Bill moves to its next stage. Facts come from Parliament's bill records, Press Information Bureau releases, the Gazette of India and the official text. The estimates are an analysis for readers, not legal advice.</p>
+      </div></section>
+  </section>`;
+}
+
 /* ---- basic structure ---- */
 const BAND = [
   { k: "held", t: "Protected by the Court", r: "Ruled on by the Supreme Court" },
@@ -984,7 +1041,7 @@ function vBS(r) {
     <div class="ph"><div class="eyebrow">Explainer</div><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
     <div class="card bs-sum">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><b>${counts[i]}</b><span>${b.t}</span><small>${b.r}</small></button>`).join("")}</div>
 
-    <section class="sec" aria-labelledby="bs-share"><div class="sh"><div><h2 id="bs-share">How much of the Constitution falls in each band</h2><p>The same estimate, measured two ways: by counting articles and by counting their words.</p></div></div>${bsShare()}</section>
+    <section class="sec" aria-labelledby="bs-share"><div class="sh"><div><h2 id="bs-share">How much of the Constitution falls in each band</h2><p>The articles in force, plus the Preamble, counted by band.</p></div></div>${bsShare()}</section>
 
     <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2><p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is protected. Select a band above to pick it out; the list below shows its provisions and why.</p></div></div>
       <div class="card bsmap">${bsMap()}</div>
@@ -1294,14 +1351,12 @@ function amdYearChart(sel) {
 }
 const amdChartNow = sel => (amdView === "year" ? amdYearChart(sel) : amdChart(sel));
 function bsShare() {
-  const B = TEXT.bs, wc = s => (plain(s).match(/[A-Za-z']+/g) || []).length;
-  const A = BAND.map(() => 0), W = BAND.map(() => 0);
-  Object.entries(B.art).forEach(([n, v]) => { const p = n === "Preamble" ? CORE.pre.p : TEXT.a[n] && !TEXT.a[n].st && TEXT.a[n].p; if (!p) return; A[v[0]]++; W[v[0]] += p.reduce((s, x) => s + wc(x[1]), 0); });
-  const tA = A.reduce((a, b) => a + b, 0), tW = W.reduce((a, b) => a + b, 0), pc = (v, t) => (100 * v / t).toFixed(1) + "%";
-  const bar = (vals, tot, unit) => `<div class="shbar" role="img" aria-label="${BAND.map((b, i) => `${b.t} ${pc(vals[i], tot)}`).join(", ")}">${vals.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v.toLocaleString("en-IN")} ${unit} (${pc(v, tot)})"></span>` : "").join("")}</div>`;
-  return `<div class="card bsshare"><div class="shr"><span>By number of articles</span>${bar(A, tA, "articles")}</div><div class="shr"><span>By number of words</span>${bar(W, tW, "words")}</div>
-    <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Band</th><th scope="col">Articles</th><th scope="col">Share</th><th scope="col">Words</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${pc(A[i], tA)}</td><td>${W[i].toLocaleString("en-IN")}</td><td>${pc(W[i], tW)}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td><td>${tW.toLocaleString("en-IN")}</td><td>100%</td></tr></tbody></table></details>
-    <p class="chart-note">Articles in force plus the Preamble; the Schedules are left out because their length is mostly lists. Hover over or tap a band for its numbers.</p></div>`;
+  const B = TEXT.bs, A = BAND.map(() => 0);
+  Object.entries(B.art).forEach(([n, v]) => { const live = n === "Preamble" || (TEXT.a[n] && !TEXT.a[n].st); if (live) A[v[0]]++; });
+  const tA = A.reduce((a, b) => a + b, 0), pc = v => (100 * v / tA).toFixed(1) + "%";
+  return `<div class="card bsshare"><div class="shr"><span>Articles</span><div class="shbar" role="img" aria-label="${BAND.map((b, i) => `${b.t} ${pc(A[i])}`).join(", ")}">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} articles (${pc(v)})"></span>` : "").join("")}</div></div>
+    <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Band</th><th scope="col">Articles</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${pc(A[i])}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td></tr></tbody></table></details>
+    <p class="chart-note">The Schedules are left out because they are mostly lists. Hover over or tap a band for its numbers.</p></div>`;
 }
 
 /* ================= how this was made ================= */
@@ -1321,6 +1376,7 @@ function vAbout() {
         <li><b>History</b> on each article, built from its official footnotes: which Act changed what, when, and the earlier wording where the footnote gives it. The full footnotes are always one tap away. We don't yet show the whole 1950 text side by side, because we haven't found an official copy of it that can be read reliably by machine. We will add it if one becomes available.</li>
         <li><b>The glossary</b> quotes the Constitution's own definitions. Only the grouping and links are ours.</li>
         <li><b>Facts and charts</b>, counted directly from the official text.</li>
+        <li><b>The next amendment</b>, our estimate of when the Constitution may next be amended and on what, from the Bills in Parliament, the Constitution's own deadlines and the record of past amendments. <a href="#next-amendment">See the forecast and its method</a>.</li>
       </ul>
       <h2>Amendments</h2>
       <p>Parliament has passed ${AMD.length} Constitution Amendment Acts. Dates and changes come from the official footnotes. ${NC} Acts are no longer cited in any footnote, because what they changed was later replaced or ran out. For those we used the Legislative Department's own Act texts and the National Portal of India, linked on the <a href="#amendments">Amendments</a> page. The one-line descriptions are ours.</p>
@@ -1584,16 +1640,17 @@ function openPop(btn) {
 const MORE = [
   ["bs", "#basic-structure", "shield", "navy", "Basic structure", "What no amendment can destroy"],
   ["amend", "#amendments", "clock", "saffron", "Amendments", `All ${AMD.length} and what they changed`],
-  ["glossary", "#glossary", "abc", "green", "Glossary", "Legal words in plain English"],
+  ["next", "#next-amendment", "cal", "green", "What might come next", "Our forecast of the next amendment"],
+  ["glossary", "#glossary", "abc", "navy", "Glossary", "Legal words in plain English"],
   ["pre", "#preamble", "quote", "saffron", "Preamble", "We, the People of India"],
-  ["about", "#about", "info", "navy", "How this was made", "Sources, methods and limits"]
+  ["about", "#about", "info", "green", "How this was made", "Sources, methods and limits"]
 ];
 const moreEl = $("#more"), morePanel = $("#more .mpanel"), moreBtn = $("#morebtn");
 let moreFocus = null, moreT = 0;
 const moreOpen = () => !moreEl.hidden;
 const themeMode = () => document.documentElement.getAttribute("data-theme") || "auto";
 function fillMore() {
-  const cur = route.name === "pre" ? "pre" : NAVKEY[route.name];
+  const cur = route.name === "pre" || route.name === "next" ? route.name : NAVKEY[route.name];
   morePanel.innerHTML = `<div class="grab" aria-hidden="true"></div>
     <div class="mhead"><h2 id="more-h">More</h2><button class="ib" type="button" data-more-close aria-label="Close">${I.close}</button></div>
     <nav class="group mlist" aria-label="More sections">${MORE.map(([k, h, ic, c, t, d]) => `<a class="mrow" href="${h}"${k === cur ? ' aria-current="page"' : ""}><span class="ico c-${c}">${I[ic]}</span><span><b>${t}</b><small>${esc(d)}</small></span>${I.chev}</a>`).join("")}</nav>`;
@@ -1673,6 +1730,7 @@ function runSearch() {
         else if (d.type === "amd") { const a = AMD_BY.get(d.id); h += add("#amend-" + d.id, nth(d.id), `The Constitution (${ordw(d.id)} Amendment) Act, ${a.y}`, esc(a.h)); }
         else if (d.type === "theme") { const t = THEME_BY.get(d.id); h += add("#theme-" + d.id, "Theme", esc(t.t), esc(t.q)); }
         else if (d.type === "bs") h += add("#basic-structure", "Explainer", "The basic structure", "What Parliament cannot change by amendment, and an estimate for every provision");
+        else if (d.type === "next") h += add("#next-amendment", "Forecast", "The next amendment", "When the Constitution may next be amended, and on what, with the Bills now in Parliament");
         else h += add("#preamble", "Preamble", "We, the People of India", "");
       });
     }

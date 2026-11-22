@@ -17,6 +17,7 @@ Public, unbranded reader of the Constitution of India for citizens and students.
 - `data/themes.json`, `data/glossary.json`: glossary refs to Schedules look like `s:SIXTH:50`, which is a block index. If you add or remove Schedule blocks, update these refs.
 - `data/bs_settled.json` (settled law with sources) and `bs_scores.py` (generates `data/bs.json`, the basic structure bands).
 - `hist.py`: parses footnotes into the History timeline.
+- `data/next.json`: the forecast of the next amendment (`#next-amendment`): pending Bills, the Constitution's own deadlines, recent Bill timings and outcomes, with official sources. Re-check it against Parliament's bill records (sansad.in) after each session of Parliament and update `asOn`. Leave out facts that rest only on news or broadcast reports.
 - `tpl/app.js`, `tpl/style.css`, `tpl/shell.html`: the app (hash routes such as `#art-19.1.a`, `#sch-SIXTH-b12`, `#basic-structure`, `#about`).
 - `audit/`: the November 2026 clause-by-clause summary audit.
 
