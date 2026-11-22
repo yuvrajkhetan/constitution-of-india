@@ -974,7 +974,7 @@ function vNext() {
       ${nextTiles(N)}
       <h3 class="nxsub">In detail</h3>
       ${N.cands.slice().sort((a, b) => a.band - b.band).map(c => `<article class="card nxc" id="nx-${c.id}"><div class="bsb-h">${sw(c.band)}<div><b>${esc(c.t)}</b><small>${BAND[c.band].t}${c.bill ? " · " + esc(c.bill) : ""}</small></div></div>
-        <p><b>Where it stands.</b> ${esc(c.stage)}</p><p><b>What it would do.</b> ${esc(c.what)}</p><p><b>Why this band.</b> ${esc(c.why)}</p>${chips(c)}${srcs(c.src)}</article>`).join("")}</section>
+        <p><b>Where it stands.</b> ${esc(c.stage)}</p><p><b>What it would do.</b> ${esc(c.what)}</p><p><b>Why we think so.</b> ${esc(c.why)}</p>${chips(c)}${srcs(c.src)}</article>`).join("")}</section>
 
     <section class="sec" aria-labelledby="nx-clocks"><div class="sh"><div><h2 id="nx-clocks">The dates in detail</h2><p>Dates set by the Constitution or already fixed, that shape when the next amendments may come.</p></div></div>
       <ol class="nxclk">${N.clocks.map(k => `<li><span class="d">${esc(k.d)}</span><div><h3>${esc(k.t)}</h3><p>${esc(k.s)}</p>${chips(k)}${srcs(k.src)}</div></li>`).join("")}</ol></section>
@@ -994,7 +994,7 @@ function vNext() {
       <div class="card bsmeth">
         <p>We ask two questions: when will the Constitution next be amended, and on what? We start from the Government's Bills to amend the Constitution now in Parliament, taken from Parliament's own bill records, and add the deadlines the Constitution sets itself. Then we use the record of past amendments: how often they pass, how long Bills take, which deadlines Parliament has always met, and which subjects come up most.</p>
         <p>An amendment needs a majority of each House's total membership and two-thirds of the members present and voting (Article 368). Changes to some provisions, such as how States are represented in Parliament, also need the approval of half the State Legislatures.</p>
-        <p>The bands are the same rough guides used on the <a href="#basic-structure">basic structure</a> page. They show our confidence, not calculated probabilities. Private Members' Bills are left out, as they rarely come to a vote. Changes made by ordinary law, such as renaming a State under Article 4, are not amendments under Article 368 and are not counted.</p>
+        <p>The labels, from Very likely to Very unlikely, are the same rough guides used on the <a href="#basic-structure">basic structure</a> page. They show how confident we are, not calculated odds. Private Members' Bills are left out, as they rarely come to a vote. Changes made by ordinary law, such as renaming a State under Article 4, are not amendments under Article 368 and are not counted.</p>
         <p class="fine">Reviewed ${esc(N.asOn)}. We review this after each session of Parliament, and whenever a Bill moves to its next stage. Facts come from Parliament's bill records, Press Information Bureau releases, the Gazette of India and the official text. The estimates are an analysis for readers, not legal advice.</p>
       </div></section>
   </section>`;
@@ -1050,7 +1050,7 @@ function bsList() {
   if (B.art.Preamble && B.art.Preamble[0] === bsSel) add(B.art.Preamble[1], `<a class="pill" href="#preamble">Preamble</a>`);
   ORDER.forEach(n => { const v = B.art[n]; if (v && v[0] === bsSel) add(v[1], `<a class="pill" href="#art-${n}" title="${esc(ART.get(n).t)}">Article ${n}</a>`); });
   SCH.forEach(s => { const v = B.sch[s.k]; if (v && v[0] === bsSel) add(v[1], `<a class="pill" href="#sch-${s.k}">${schName(s.k)}</a>`); });
-  return [...g].map(([wi, items]) => `<div class="bgrp"><p>${lx(B.why[wi][0])}</p><div class="pills">${items.join("")}</div></div>`).join("") || `<p class="sub">Nothing in this band.</p>`;
+  return [...g].map(([wi, items]) => `<div class="bgrp"><p>${lx(B.why[wi][0])}</p><div class="pills">${items.join("")}</div></div>`).join("") || `<p class="sub">Nothing at this level.</p>`;
 }
 function vBS(r) {
   if (!TEXT) return `<section class="wrap"><div class="ph"><h1 class="lt">The basic structure</h1></div>${textErr ? errBox() : loadBox()}</section>`;
@@ -1065,9 +1065,9 @@ function vBS(r) {
     <div class="ph"><div class="eyebrow">Explainer</div><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
     <div class="card bs-sum">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><b>${counts[i]}</b><span>${b.t}</span><small>${b.r}</small></button>`).join("")}</div>
 
-    <section class="sec" aria-labelledby="bs-share"><div class="sh"><div><h2 id="bs-share">How much of the Constitution falls in each band</h2><p>The articles in force, plus the Preamble, counted by band.</p></div></div>${bsShare()}</section>
+    <section class="sec" aria-labelledby="bs-share"><div class="sh"><div><h2 id="bs-share">How much of the Constitution is likely to be protected</h2><p>The articles in force, plus the Preamble, grouped from Protected by the Court to Very unlikely.</p></div></div>${bsShare()}</section>
 
-    <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2><p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is protected. Select a band above to pick it out; the list below shows its provisions and why.</p></div></div>
+    <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2><p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is protected. Select a level above, such as Likely, to pick it out; the list below shows its provisions and why.</p></div></div>
       <div class="card bsmap">${bsMap()}</div>
       <div class="bslist" id="bslist"><h3>${BAND[bsSel].t} <small>${BAND[bsSel].r}</small></h3>${bsList()}</div>
     </section>
@@ -1085,7 +1085,7 @@ function vBS(r) {
     <section class="sec" aria-labelledby="bs-method" id="bs-method-s"><div class="sh"><div><h2 id="bs-method">How the estimates work</h2></div></div>
       <div class="card bsmeth">
         <p>For every provision we ask one question: <b>could Parliament repeal or gut it by a constitutional amendment without breaching a basic feature the Supreme Court has recognised?</b> The basic structure protects features, not article numbers, so an article can be amended in its details while its core stays protected.</p>
-        <p><b>Protected by the Court</b> means the Court has itself protected the provision's core, or struck down an amendment to it, on basic structure grounds. Every other band is our estimate, using these factors:</p>
+        <p><b>Protected by the Court</b> means the Court has itself protected the provision's core, or struck down an amendment to it, on basic structure grounds. Every other level is our estimate, using these factors:</p>
         <ul><li>Has a court protected this provision, or something it depends on?</li><li>Is it the main home of a recognised feature, or a supporting detail?</li><li>Does Article 368(2) already require half the States to ratify changes to it, a sign of the federal core?</li><li>Is it procedural, transitional, a number or a list, and has it been changed before without objection?</li></ul>
         <p>The ranges are rough guides to confidence, not calculated probabilities. A feature named in only one judge's opinion, or listed only by the Lok Sabha Secretariat, counts for less than one recognised by a majority or a later bench. Omitted articles are not shown.</p>
         <p class="fine">The Court's rulings, and the provisions marked Protected by the Court, come from the Supreme Court's judgments, its own publications, the footnotes of the official text and the Lok Sabha Secretariat. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
@@ -1379,8 +1379,8 @@ function bsShare() {
   Object.entries(B.art).forEach(([n, v]) => { const live = n === "Preamble" || (TEXT.a[n] && !TEXT.a[n].st); if (live) A[v[0]]++; });
   const tA = A.reduce((a, b) => a + b, 0), pc = v => (100 * v / tA).toFixed(1) + "%";
   return `<div class="card bsshare"><div class="shr"><span>Articles</span><div class="shbar" role="img" aria-label="${BAND.map((b, i) => `${b.t} ${pc(A[i])}`).join(", ")}">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} articles (${pc(v)})"></span>` : "").join("")}</div></div>
-    <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Band</th><th scope="col">Articles</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${pc(A[i])}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td></tr></tbody></table></details>
-    <p class="chart-note">The Schedules are left out because they are mostly lists. Hover over or tap a band for its numbers.</p></div>`;
+    <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Likelihood</th><th scope="col">Articles</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${pc(A[i])}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td></tr></tbody></table></details>
+    <p class="chart-note">The Schedules are left out because they are mostly lists. Hover over or tap a part of the bar for its numbers.</p></div>`;
 }
 
 /* ================= how this was made ================= */
@@ -1405,7 +1405,7 @@ function vAbout() {
       <h2>Amendments</h2>
       <p>Parliament has passed ${AMD.length} Constitution Amendment Acts. Dates and changes come from the official footnotes. ${NC} Acts are no longer cited in any footnote, because what they changed was later replaced or ran out. For those we used the Legislative Department's own Act texts and the National Portal of India, linked on the <a href="#amendments">Amendments</a> page. The one-line descriptions are ours.</p>
       <h2>The basic structure</h2>
-      <p>The Supreme Court's rulings, and the provisions marked Protected by the Court, come only from official sources: the Court's judgments and publications, the official text's footnotes, the Lok Sabha Secretariat and the National Judicial Academy. Each item names its source. The band given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
+      <p>The Supreme Court's rulings, and the provisions marked Protected by the Court, come only from official sources: the Court's judgments and publications, the official text's footnotes, the Lok Sabha Secretariat and the National Judicial Academy. Each item names its source. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
       <h2>What this is not</h2>
       <p>This is an independent reader, not a Government website, and not legal advice. If something here seems to differ from the official publication, the official publication is right.</p>
       <h2>Design</h2>
