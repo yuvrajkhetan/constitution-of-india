@@ -1902,5 +1902,14 @@ $("#backchip").addEventListener("click", () => history.back());
 let wasCompact = document.documentElement.clientWidth < 640;
 addEventListener("resize", () => { const c = document.documentElement.clientWidth < 640; if (c !== wasCompact) { wasCompact = c; $$(".chart").forEach(el => { if (el.childElementCount) el.innerHTML = amdChartNow(route.name === "amend" ? route.id : undefined); }); } }, { passive: true });
 render();
+/* visit counts (GoatCounter), public site only: not in the claude.ai frame or on local test servers. Each hash route counts as its own page. */
+if (!framed && location.protocol === "https:" && !/claudeusercontent|claude\.(site|ai)$/.test(location.hostname)) {
+  const gcCount = () => { const g = window.goatcounter; if (g && g.count) g.count({ path: location.pathname + (location.hash || "#home"), title: document.title }); };
+  window.goatcounter = { no_onload: true };
+  const s = document.createElement("script");
+  s.async = true; s.src = "https://gc.zgo.at/count.js"; s.dataset.goatcounter = "https://constitutionofindia.goatcounter.com/count";
+  s.onload = gcCount; document.head.appendChild(s);
+  addEventListener("hashchange", gcCount);
+}
 if (needsText()) loadText(); else (window.requestIdleCallback || (f => setTimeout(f, 1)))(loadText, { timeout: 600 });
 })();
