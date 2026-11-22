@@ -932,6 +932,23 @@ function nextTeaser() {
     <span class="nxw">${N.when.map(w => `<span><i class="sw b${w.band}" aria-hidden="true"></i>${esc(w.by.replace(/,.*$/, ""))}: <b>${BAND[w.band].t}</b></span>`).join("")}</span>
     <span class="more">See the forecast ${I.chev}</span></a>`;
 }
+/* "when", as a timeline: to scale on wide screens, a list on narrow ones (the list is also what screen readers get) */
+function nextTimeline(N) {
+  const t0 = Date.parse(N.asOnIso), t1 = Date.parse(N.when[N.when.length - 1].until), x = d => 100 * (Date.parse(d) - t0) / (t1 - t0);
+  const evs = [{ iso: N.asOnIso, d: "Today", short: N.asOn, note: "" }].concat(N.clocks.filter(k => k.iso).map(k => ({ iso: k.iso, d: k.d, short: k.short, note: k.note || "" })));
+  const evIso = new Set(evs.map(e => e.iso));
+  let prev = 0;
+  const segs = N.when.map(w => { const a = prev, b = x(w.until); prev = b; return `<span class="seg b${w.band}" style="flex:${(b - a).toFixed(2)}">${BAND[w.band].t}</span>`; }).join("");
+  const ticks = N.when.filter(w => !evIso.has(w.until)).map(w => `<div class="ev dn c tick" style="--x:${x(w.until).toFixed(2)}"><span class="lb"><b>${esc(w.short.replace(/^By /, "").replace(/^./, c => c.toUpperCase()))}</b></span></div>`).join("");
+  const marks = evs.map((e, i) => { const p = x(e.iso), al = p < 15 ? "l" : p > 70 ? "r" : "c"; return `<div class="ev ${i % 2 ? "dn" : "up"} ${al}" style="--x:${p.toFixed(2)}"><i></i><span class="lb"><b>${esc(e.d)}</b><span>${esc(e.short)}</span>${e.note ? `<small>${esc(e.note)}</small>` : ""}</span></div>`; }).join("");
+  const list = evs.map(e => ({ ...e, k: "e" })).concat(N.when.map(w => ({ iso: w.until, k: "h", w }))).sort((a, b) => a.iso < b.iso ? -1 : a.iso > b.iso ? 1 : a.k === "e" ? -1 : 1);
+  return `<div class="tlh" aria-hidden="true"><div class="bar">${segs}</div>${marks}${ticks}</div>
+    <ol class="tlv">${list.map(it => it.k === "e" ? `<li class="e"><i aria-hidden="true"></i><b>${esc(it.d)}</b> <span>${esc(it.short)}</span>${it.note ? `<small>${esc(it.note)}</small>` : ""}</li>` : `<li class="h"><span class="sw b${it.w.band}" aria-hidden="true"></span>${esc(it.w.short)}: <b>${BAND[it.w.band].t}</b> <small>${BAND[it.w.band].r}</small></li>`).join("")}</ol>`;
+}
+/* "on what", as tiles from most to least likely; each jumps to its details below */
+function nextTiles(N) {
+  return `<div class="nxtiles">${N.cands.slice().sort((a, b) => a.band - b.band).map(c => `<a class="card nxtile" href="#next-amendment" data-jump="nx-${c.id}"><span class="t">${esc(c.s)}</span><span class="m">${bsScale(c.band)}<span>${BAND[c.band].t}</span></span><span class="stg">${esc(c.tag)}</span></a>`).join("")}</div>`;
+}
 function vNext() {
   const head = `<div class="ph"><nav class="crumbs" aria-label="Breadcrumb"><a href="#amendments">Amendments</a>${I.chev}<span>The next amendment</span></nav><h1 class="lt">The next amendment</h1><p class="sub">When the Constitution may next be amended, and on what. Our estimate as on ${esc(CORE.next.asOn)}, built from the Bills now in Parliament, the deadlines the Constitution sets itself and the record of past amendments.</p></div>`;
   if (!TEXT || !TEXT.next) return `<section class="wrap col nx" style="--col:920px">${head}${textErr || TEXT ? errBox() : loadBox()}</section>`;
@@ -948,14 +965,18 @@ function vNext() {
   return `<section class="wrap col nx" style="--col:920px">${head}
     <div class="card nxlead"><p>${esc(N.headline)}</p><p class="fine">This is analysis for readers, not a ruling or a prediction of any party's plans, and it takes no side on any proposal. <a href="#next-amendment" data-jump="nx-method">How this works</a></p></div>
 
-    <section class="sec" aria-labelledby="nx-when"><div class="sh"><div><h2 id="nx-when">When</h2><p>How likely it is that at least one Amendment Act is passed by each date.</p></div></div>
+    <section class="sec" aria-labelledby="nx-when"><div class="sh"><div><h2 id="nx-when">When</h2><p>How likely it is that at least one Amendment Act is passed by the end of each stretch.</p></div></div>
+      ${nextTimeline(N)}
+      <h3 class="nxsub">Why</h3>
       <div class="nxwhen">${N.when.map(w => `<div class="card"><span class="k">${sw(w.band)}${BAND[w.band].t} <small>${BAND[w.band].r}</small></span><h3>${esc(w.by)}</h3><p>${esc(w.why)}</p></div>`).join("")}</div></section>
 
-    <section class="sec" aria-labelledby="nx-what"><div class="sh"><div><h2 id="nx-what">On what</h2><p>Each Government Bill to amend the Constitution now in Parliament, the deadlines that will need one, and how likely each is to become law.</p></div></div>
-      ${N.cands.map(c => `<article class="card nxc" id="nx-${c.id}"><div class="bsb-h">${sw(c.band)}<div><b>${esc(c.t)}</b><small>${BAND[c.band].t}${c.bill ? " · " + esc(c.bill) : ""}</small></div></div>
+    <section class="sec" aria-labelledby="nx-what"><div class="sh"><div><h2 id="nx-what">On what</h2><p>Each Government Bill to amend the Constitution now in Parliament, the deadlines that will need one, and how likely each is to become law. Select one for the details.</p></div></div>
+      ${nextTiles(N)}
+      <h3 class="nxsub">In detail</h3>
+      ${N.cands.slice().sort((a, b) => a.band - b.band).map(c => `<article class="card nxc" id="nx-${c.id}"><div class="bsb-h">${sw(c.band)}<div><b>${esc(c.t)}</b><small>${BAND[c.band].t}${c.bill ? " · " + esc(c.bill) : ""}</small></div></div>
         <p><b>Where it stands.</b> ${esc(c.stage)}</p><p><b>What it would do.</b> ${esc(c.what)}</p><p><b>Why this band.</b> ${esc(c.why)}</p>${chips(c)}${srcs(c.src)}</article>`).join("")}</section>
 
-    <section class="sec" aria-labelledby="nx-clocks"><div class="sh"><div><h2 id="nx-clocks">The clocks that are running</h2><p>Dates set by the Constitution or already fixed, that shape when the next amendments may come.</p></div></div>
+    <section class="sec" aria-labelledby="nx-clocks"><div class="sh"><div><h2 id="nx-clocks">The dates in detail</h2><p>Dates set by the Constitution or already fixed, that shape when the next amendments may come.</p></div></div>
       <ol class="nxclk">${N.clocks.map(k => `<li><span class="d">${esc(k.d)}</span><div><h3>${esc(k.t)}</h3><p>${esc(k.s)}</p>${chips(k)}${srcs(k.src)}</div></li>`).join("")}</ol></section>
 
     <section class="sec" aria-labelledby="nx-record"><div class="sh"><div><h2 id="nx-record">The track record</h2><p>What past amendments tell us about pace, timing and which deadlines Parliament keeps.</p></div></div>

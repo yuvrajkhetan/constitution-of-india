@@ -3,88 +3,383 @@
   "asOn": "22 November 2026",
   "headline": "No amendment Bill is close to a final vote. The next amendment is most likely to be about how Lok Sabha seats are shared among the States and when seats reserved for women start. The surest date is 25 January 2030: reserved seats for Scheduled Castes and Scheduled Tribes end then unless Parliament extends them, and it has extended them every time before.",
   "when": [
-    {"by": "By the end of 2027", "band": 4,
-     "why": "At the pace of the last ten years, six Acts in ten years, there would be about a 45% chance of at least one Act in any year. The chance is lower now. No Bill is near a final vote, the Government's last attempt failed in April 2026, and the main open question waits for Census 2027, whose counting runs into March 2027."},
-    {"by": "By June 2029, when this Lok Sabha's term ends", "band": 3,
-     "why": "Seats reserved for women can start only after constituencies are redrawn on the new census, and the freeze on seat shares ends with the same census. Both make seats a likely subject before the next general election. The April 2026 vote showed there is no agreement yet on how."},
-    {"by": "By 25 January 2030", "band": 1,
-     "why": "Article 334 ends reserved seats for Scheduled Castes and Scheduled Tribes on that date. Parliament has extended the deadline before each of the seven times it fell due."}
+    {
+      "by": "By the end of 2027",
+      "band": 4,
+      "why": "At the pace of the last ten years, six Acts in ten years, there would be about a 45% chance of at least one Act in any year. The chance is lower now. No Bill is near a final vote, the Government's last attempt failed in April 2026, and the main open question waits for Census 2027, whose counting runs into March 2027.",
+      "until": "2027-12-31",
+      "short": "By end of 2027"
+    },
+    {
+      "by": "By June 2029, when this Lok Sabha's term ends",
+      "band": 3,
+      "why": "Seats reserved for women can start only after constituencies are redrawn on the new census, and the freeze on seat shares ends with the same census. Both make seats a likely subject before the next general election. The April 2026 vote showed there is no agreement yet on how.",
+      "until": "2029-06-23",
+      "short": "By June 2029"
+    },
+    {
+      "by": "By 25 January 2030",
+      "band": 1,
+      "why": "Article 334 ends reserved seats for Scheduled Castes and Scheduled Tribes on that date. Parliament has extended the deadline before each of the seven times it fell due.",
+      "until": "2030-01-25",
+      "short": "By 25 Jan 2030"
+    }
   ],
   "cands": [
-    {"id": "sc-st", "band": 1, "t": "Extending reserved seats for Scheduled Castes and Scheduled Tribes",
-     "stage": "No Bill yet. Due before 25 January 2030.",
-     "what": "Article 334 ends the reservation of seats for Scheduled Castes and Scheduled Tribes in the Lok Sabha and State Assemblies 80 years after the Constitution began, on 25 January 2030.",
-     "why": "Parliament has extended the deadline every time, each shortly before it ran out: the 8th (1959), 23rd (1969), 45th (1980), 62nd (1989), 79th (1999), 95th (2009) and 104th (2019) Amendments. The last two passed both Houses within a week of being introduced.",
-     "arts": ["334"], "amds": [8, 23, 45, 62, 79, 95, 104], "src": []},
-    {"id": "seats", "band": 2, "t": "How Lok Sabha seats are shared, and when seats reserved for women start",
-     "stage": "No Bill now. The Constitution (131st Amendment) Bill, 2026 on this subject was introduced on 16 April 2026 and did not get the two-thirds majority it needed in the Lok Sabha.",
-     "what": "Lok Sabha seats are shared among the States on the 1971 census, and constituencies follow the 2001 census, until figures from the first census taken after 2026 are published (Articles 81, 82 and 170). Census 2027 is expected to be that census. Seats reserved for women, a third of the total, start only after constituencies are redrawn on it (Article 334A).",
-     "why": "Parliament has changed this rule each time it came up: the 42nd Amendment (1976) set the freeze, the 84th (2001) extended it to 2026, and the 87th (2003) moved constituencies to the 2001 census. The Government's April 2026 Bill shows a change is being sought. Its defeat shows any change needs support across parties.",
-     "arts": ["81", "82", "170", "330", "332", "334A"], "amds": [42, 84, 87, 106],
-     "src": [["Press release on the 131st Amendment Bill, PIB, 18 April 2026", "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2253254"],
-             ["Lok Sabha synopsis recording the motion as negatived", "https://sansad.in/getFile/dms/fetch/e9f9e9a1-8a7e-4961-a0cf-ae873b816bb8?source=dsp2"],
-             ["Census 2027 enumeration dates, Gazette S.O. 5913(E), 30 October 2026", "https://censusindia.gov.in/nada/index.php/catalog/47179/download/51426/GAZ_NOTIFICATION_20.pdf"]]},
-    {"id": "elections", "band": 4, "t": "Holding Lok Sabha and State Assembly elections together", "bill": "Constitution (129th Amendment) Bill, 2024",
-     "stage": "Introduced in the Lok Sabha on 17 December 2024 and sent to a Joint Committee of both Houses. No report yet.",
-     "what": "Would add a new Article 82A and change Articles 83, 172 and 327 so that elections to the Lok Sabha and all State Assemblies are held at the same time.",
-     "why": "Recent Bills sent to a committee took about a year and a half to become law. Like the April 2026 Bill, it needs two-thirds of members present and voting in each House, so it needs support across parties. It lapses if the Lok Sabha is dissolved before it passes.",
-     "arts": ["83", "172", "327"], "amds": [],
-     "src": [["Lok Sabha synopsis, 17 December 2024 (introduction)", "https://sansad.in/getFile/dms/fetch/108a9f12-7bb2-47e5-9ef3-edddda877819?source=dsp2"],
-             ["Lok Sabha synopsis, 20 December 2024 (sent to a Joint Committee)", "https://sansad.in/getFile/dms/fetch/01184c77-a676-43dc-9d39-d70cf94f3e46?source=dsp2"]]},
-    {"id": "ministers", "band": 4, "t": "Removing ministers held in custody", "bill": "Constitution (130th Amendment) Bill, 2025",
-     "stage": "Introduced in the Lok Sabha on 20 August 2025 and sent to a Joint Committee of both Houses. No report yet.",
-     "what": "Would require the removal of the Prime Minister, a Chief Minister or another Minister held in custody for 30 days in a row on a charge that can carry five years or more in prison. It changes Articles 75, 164 and 239AA.",
-     "why": "The same as above: a committee stage that has usually taken a long time, a two-thirds majority in each House, and lapse if the Lok Sabha is dissolved first.",
-     "arts": ["75", "164", "239AA"], "amds": [],
-     "src": [["Lok Sabha synopsis, 20 August 2025", "https://sansad.in/getFile/dms/fetch/a65bc81a-c4c4-477f-b53b-111bc541abf8?source=dsp2"],
-             ["Joint Committee note", "https://sansad.in/getFile/app/LSSCOMMITTEE/JCCA%20and%20UTB/Introduction/Introduction_15.12.2025.pdf?source=app"]]},
-    {"id": "councils", "band": 5, "t": "More powers for autonomous councils in the North East", "bill": "Constitution (125th Amendment) Bill, 2019",
-     "stage": "Introduced in the Rajya Sabha on 6 February 2019. Not taken up since a parliamentary committee reported on it.",
-     "what": "Would give the autonomous councils in Assam, Meghalaya, Tripura and Mizoram more powers, and bring their funding into the Finance Commission's work (Article 280 and the Sixth Schedule).",
-     "why": "It has not moved for years. Bills introduced in the Rajya Sabha do not lapse when the Lok Sabha is dissolved, so it stays pending until it is passed, withdrawn or defeated.",
-     "arts": ["280"], "sch": ["SIXTH"], "amds": [],
-     "src": [["Bill as introduced, Rajya Sabha", "https://sansad.in/getFile/BillsTexts/RSBillTexts/Asintroduced/125-RS%20intro-E-%206%202%2019.pdf?source=legislation"]]},
-    {"id": "family", "band": 5, "t": "A small family rule for MPs and MLAs", "bill": "Constitution (79th Amendment) Bill, 1992",
-     "stage": "Introduced in the Rajya Sabha on 22 December 1992. Not taken up for over thirty years.",
-     "what": "Would make promoting a small family a duty of the State and of citizens, and disqualify MPs and MLAs who have more than two children.",
-     "why": "It has stayed pending in the Rajya Sabha since 1992 without being taken up.",
-     "arts": ["51A", "102", "191"], "amds": [],
-     "src": [["Bill as introduced, Rajya Sabha", "https://sansad.in/getFile/BillsTexts/RSBillTexts/Asintroduced/cons%2079-E.pdf?source=legislation"]]},
-    {"id": "new", "band": 3, "t": "Something not yet introduced",
-     "stage": "No Bill yet.",
-     "what": "An amendment that has not been introduced at the time of writing.",
-     "why": "Half of the last 12 Amendment Acts passed both Houses within a week of being introduced, so the next one may not be on this list yet. Since 2006 the most common subject has been reservation, in 6 of 13 Acts.",
-     "arts": [], "amds": [], "src": []}
+    {
+      "id": "sc-st",
+      "band": 1,
+      "t": "Extending reserved seats for Scheduled Castes and Scheduled Tribes",
+      "stage": "No Bill yet. Due before 25 January 2030.",
+      "what": "Article 334 ends the reservation of seats for Scheduled Castes and Scheduled Tribes in the Lok Sabha and State Assemblies 80 years after the Constitution began, on 25 January 2030.",
+      "why": "Parliament has extended the deadline every time, each shortly before it ran out: the 8th (1959), 23rd (1969), 45th (1980), 62nd (1989), 79th (1999), 95th (2009) and 104th (2019) Amendments. The last two passed both Houses within a week of being introduced.",
+      "arts": [
+        "334"
+      ],
+      "amds": [
+        8,
+        23,
+        45,
+        62,
+        79,
+        95,
+        104
+      ],
+      "src": [],
+      "s": "Extending reserved seats for Scheduled Castes and Tribes",
+      "tag": "Due before 25 January 2030"
+    },
+    {
+      "id": "seats",
+      "band": 2,
+      "t": "How Lok Sabha seats are shared, and when seats reserved for women start",
+      "stage": "No Bill now. The Constitution (131st Amendment) Bill, 2026 on this subject was introduced on 16 April 2026 and did not get the two-thirds majority it needed in the Lok Sabha.",
+      "what": "Lok Sabha seats are shared among the States on the 1971 census, and constituencies follow the 2001 census, until figures from the first census taken after 2026 are published (Articles 81, 82 and 170). Census 2027 is expected to be that census. Seats reserved for women, a third of the total, start only after constituencies are redrawn on it (Article 334A).",
+      "why": "Parliament has changed this rule each time it came up: the 42nd Amendment (1976) set the freeze, the 84th (2001) extended it to 2026, and the 87th (2003) moved constituencies to the 2001 census. The Government's April 2026 Bill shows a change is being sought. Its defeat shows any change needs support across parties.",
+      "arts": [
+        "81",
+        "82",
+        "170",
+        "330",
+        "332",
+        "334A"
+      ],
+      "amds": [
+        42,
+        84,
+        87,
+        106
+      ],
+      "src": [
+        [
+          "Press release on the 131st Amendment Bill, PIB, 18 April 2026",
+          "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2253254"
+        ],
+        [
+          "Lok Sabha synopsis recording the motion as negatived",
+          "https://sansad.in/getFile/dms/fetch/e9f9e9a1-8a7e-4961-a0cf-ae873b816bb8?source=dsp2"
+        ],
+        [
+          "Census 2027 enumeration dates, Gazette S.O. 5913(E), 30 October 2026",
+          "https://censusindia.gov.in/nada/index.php/catalog/47179/download/51426/GAZ_NOTIFICATION_20.pdf"
+        ]
+      ],
+      "s": "Seat shares and women's reservation",
+      "tag": "No Bill now; April 2026 Bill defeated"
+    },
+    {
+      "id": "elections",
+      "band": 4,
+      "t": "Holding Lok Sabha and State Assembly elections together",
+      "bill": "Constitution (129th Amendment) Bill, 2024",
+      "stage": "Introduced in the Lok Sabha on 17 December 2024 and sent to a Joint Committee of both Houses. No report yet.",
+      "what": "Would add a new Article 82A and change Articles 83, 172 and 327 so that elections to the Lok Sabha and all State Assemblies are held at the same time.",
+      "why": "Recent Bills sent to a committee took about a year and a half to become law. Like the April 2026 Bill, it needs two-thirds of members present and voting in each House, so it needs support across parties. It lapses if the Lok Sabha is dissolved before it passes.",
+      "arts": [
+        "83",
+        "172",
+        "327"
+      ],
+      "amds": [],
+      "src": [
+        [
+          "Lok Sabha synopsis, 17 December 2024 (introduction)",
+          "https://sansad.in/getFile/dms/fetch/108a9f12-7bb2-47e5-9ef3-edddda877819?source=dsp2"
+        ],
+        [
+          "Lok Sabha synopsis, 20 December 2024 (sent to a Joint Committee)",
+          "https://sansad.in/getFile/dms/fetch/01184c77-a676-43dc-9d39-d70cf94f3e46?source=dsp2"
+        ]
+      ],
+      "s": "Simultaneous elections",
+      "tag": "With a Joint Committee"
+    },
+    {
+      "id": "ministers",
+      "band": 4,
+      "t": "Removing ministers held in custody",
+      "bill": "Constitution (130th Amendment) Bill, 2025",
+      "stage": "Introduced in the Lok Sabha on 20 August 2025 and sent to a Joint Committee of both Houses. No report yet.",
+      "what": "Would require the removal of the Prime Minister, a Chief Minister or another Minister held in custody for 30 days in a row on a charge that can carry five years or more in prison. It changes Articles 75, 164 and 239AA.",
+      "why": "The same as above: a committee stage that has usually taken a long time, a two-thirds majority in each House, and lapse if the Lok Sabha is dissolved first.",
+      "arts": [
+        "75",
+        "164",
+        "239AA"
+      ],
+      "amds": [],
+      "src": [
+        [
+          "Lok Sabha synopsis, 20 August 2025",
+          "https://sansad.in/getFile/dms/fetch/a65bc81a-c4c4-477f-b53b-111bc541abf8?source=dsp2"
+        ],
+        [
+          "Joint Committee note",
+          "https://sansad.in/getFile/app/LSSCOMMITTEE/JCCA%20and%20UTB/Introduction/Introduction_15.12.2025.pdf?source=app"
+        ]
+      ],
+      "s": "Removing ministers held in custody",
+      "tag": "With a Joint Committee"
+    },
+    {
+      "id": "councils",
+      "band": 5,
+      "t": "More powers for autonomous councils in the North East",
+      "bill": "Constitution (125th Amendment) Bill, 2019",
+      "stage": "Introduced in the Rajya Sabha on 6 February 2019. Not taken up since a parliamentary committee reported on it.",
+      "what": "Would give the autonomous councils in Assam, Meghalaya, Tripura and Mizoram more powers, and bring their funding into the Finance Commission's work (Article 280 and the Sixth Schedule).",
+      "why": "It has not moved for years. Bills introduced in the Rajya Sabha do not lapse when the Lok Sabha is dissolved, so it stays pending until it is passed, withdrawn or defeated.",
+      "arts": [
+        "280"
+      ],
+      "sch": [
+        "SIXTH"
+      ],
+      "amds": [],
+      "src": [
+        [
+          "Bill as introduced, Rajya Sabha",
+          "https://sansad.in/getFile/BillsTexts/RSBillTexts/Asintroduced/125-RS%20intro-E-%206%202%2019.pdf?source=legislation"
+        ]
+      ],
+      "s": "Autonomous councils in the North East",
+      "tag": "Not taken up for years"
+    },
+    {
+      "id": "family",
+      "band": 5,
+      "t": "A small family rule for MPs and MLAs",
+      "bill": "Constitution (79th Amendment) Bill, 1992",
+      "stage": "Introduced in the Rajya Sabha on 22 December 1992. Not taken up for over thirty years.",
+      "what": "Would make promoting a small family a duty of the State and of citizens, and disqualify MPs and MLAs who have more than two children.",
+      "why": "It has stayed pending in the Rajya Sabha since 1992 without being taken up.",
+      "arts": [
+        "51A",
+        "102",
+        "191"
+      ],
+      "amds": [],
+      "src": [
+        [
+          "Bill as introduced, Rajya Sabha",
+          "https://sansad.in/getFile/BillsTexts/RSBillTexts/Asintroduced/cons%2079-E.pdf?source=legislation"
+        ]
+      ],
+      "s": "A small family rule for MPs and MLAs",
+      "tag": "Pending since 1992"
+    },
+    {
+      "id": "new",
+      "band": 3,
+      "t": "Something not yet introduced",
+      "stage": "No Bill yet.",
+      "what": "An amendment that has not been introduced at the time of writing.",
+      "why": "Half of the last 12 Amendment Acts passed both Houses within a week of being introduced, so the next one may not be on this list yet. Since 2006 the most common subject has been reservation, in 6 of 13 Acts.",
+      "arts": [],
+      "amds": [],
+      "src": [],
+      "s": "Something not yet introduced",
+      "tag": "No Bill yet"
+    }
   ],
   "clocks": [
-    {"d": "1 March 2027", "t": "Census 2027 reference date",
-     "s": "Counting in most of India runs from 25 January to 5 March 2027. No date has been announced for publishing the figures.",
-     "src": [["Gazette S.O. 5913(E), 30 October 2026", "https://censusindia.gov.in/nada/index.php/catalog/47179/download/51426/GAZ_NOTIFICATION_20.pdf"]]},
-    {"d": "After the figures", "t": "The freeze on seat shares ends",
-     "s": "Seats and constituencies are to be readjusted on the new census (Articles 81, 82 and 170). Seats reserved for women start after that redrawing (Article 334A).",
-     "arts": ["82", "334A"], "src": []},
-    {"d": "June 2029", "t": "This Lok Sabha's five-year term ends",
-     "s": "It first sat on 24 June 2024 (Article 83). Bills still pending in the Lok Sabha lapse when it is dissolved (Article 107).",
-     "arts": ["83", "107"], "src": [["Lok Sabha sessions, sansad.in", "https://sansad.in/ls"]]},
-    {"d": "25 January 2030", "t": "Reserved seats for Scheduled Castes and Scheduled Tribes end, unless extended",
-     "s": "Set by Article 334, as last extended by the 104th Amendment (2019).",
-     "arts": ["334"], "src": []}
+    {
+      "d": "1 March 2027",
+      "t": "Census 2027 reference date",
+      "s": "Counting in most of India runs from 25 January to 5 March 2027. No date has been announced for publishing the figures.",
+      "src": [
+        [
+          "Gazette S.O. 5913(E), 30 October 2026",
+          "https://censusindia.gov.in/nada/index.php/catalog/47179/download/51426/GAZ_NOTIFICATION_20.pdf"
+        ]
+      ],
+      "iso": "2027-03-01",
+      "short": "Census 2027 reference date",
+      "note": "Figures follow; date not announced"
+    },
+    {
+      "d": "After the figures",
+      "t": "The freeze on seat shares ends",
+      "s": "Seats and constituencies are to be readjusted on the new census (Articles 81, 82 and 170). Seats reserved for women start after that redrawing (Article 334A).",
+      "arts": [
+        "82",
+        "334A"
+      ],
+      "src": []
+    },
+    {
+      "d": "June 2029",
+      "t": "This Lok Sabha's five-year term ends",
+      "s": "It first sat on 24 June 2024 (Article 83). Bills still pending in the Lok Sabha lapse when it is dissolved (Article 107).",
+      "arts": [
+        "83",
+        "107"
+      ],
+      "src": [
+        [
+          "Lok Sabha sessions, sansad.in",
+          "https://sansad.in/ls"
+        ]
+      ],
+      "iso": "2029-06-23",
+      "short": "This Lok Sabha's term ends",
+      "note": "Its pending Bills lapse"
+    },
+    {
+      "d": "25 January 2030",
+      "t": "Reserved seats for Scheduled Castes and Scheduled Tribes end, unless extended",
+      "s": "Set by Article 334, as last extended by the 104th Amendment (2019).",
+      "arts": [
+        "334"
+      ],
+      "src": [],
+      "iso": "2030-01-25",
+      "short": "Reserved seats deadline",
+      "note": "Article 334"
+    }
   ],
-  "outcomes": {"since": 2009, "total": 23, "law": 12, "lapsed": 6, "defeated": 2, "pending": 3,
-     "note": "Government Constitution Amendment Bills introduced since 2009, from Parliament's bill records. The two defeated were in 2011 and 2026.",
-     "src": ["Bills, Parliament of India", "https://sansad.in/ls/legislation/bills"]},
+  "outcomes": {
+    "since": 2009,
+    "total": 23,
+    "law": 12,
+    "lapsed": 6,
+    "defeated": 2,
+    "pending": 3,
+    "note": "Government Constitution Amendment Bills introduced since 2009, from Parliament's bill records. The two defeated were in 2011 and 2026.",
+    "src": [
+      "Bills, Parliament of India",
+      "https://sansad.in/ls/legislation/bills"
+    ]
+  },
   "times": [
-    {"n": 95, "bill": "109th Amendment Bill, 2009", "intro": "2009-07-30", "passed": "2009-08-04", "assent": "2010-01-18", "cttee": false, "src": "https://sansad.in/getFile/BillsTexts/RSBillTexts/PassedBothHouses/XX-F%20OF%202009%20Const%2095th.pdf?source=legislation"},
-    {"n": 96, "bill": "113th Amendment Bill, 2010", "intro": "2010-03-15", "passed": "2011-09-06", "assent": "2011-09-23", "cttee": false, "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/28_f_2010_ls.pdf?source=legislation"},
-    {"n": 97, "bill": "111th Amendment Bill, 2009", "intro": "2009-11-30", "passed": "2011-12-28", "assent": "2012-01-12", "cttee": true, "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/97.pdf?source=legislation"},
-    {"n": 98, "bill": "118th Amendment Bill, 2012", "intro": "2012-09-07", "passed": "2012-12-19", "assent": "2013-01-01", "cttee": true, "src": "https://sansad.in/getFile/BillsPDFFiles/Notification/2012-106-gaz.pdf?source=loksabhadocs"},
-    {"n": 99, "bill": "121st Amendment Bill, 2014", "intro": "2014-08-11", "passed": "2014-08-14", "assent": "2014-12-31", "cttee": false, "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/99%20Act%20House.pdf?source=legislation"},
-    {"n": 100, "bill": "119th Amendment Bill, 2013", "intro": "2013-12-18", "passed": "2015-05-07", "assent": "2015-05-28", "cttee": true, "src": "https://sansad.in/getFile/BillsTexts/RSBillTexts/PassedRajyaSabha/119-RS%20pass-E.pdf?source=legislation"},
-    {"n": 101, "bill": "122nd Amendment Bill, 2014", "intro": "2014-12-19", "passed": "2016-08-08", "assent": "2016-09-08", "cttee": true, "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/192_f_ls_2014.pdf?source=legislation"},
-    {"n": 102, "bill": "123rd Amendment Bill, 2017", "intro": "2017-04-05", "passed": "2018-08-06", "assent": "2018-08-11", "cttee": true, "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/Const-102%20Amd%20Act.pdf?source=legislation"},
-    {"n": 103, "bill": "124th Amendment Bill, 2019", "intro": "2019-01-08", "passed": "2019-01-09", "assent": "2019-01-12", "cttee": false, "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/103%20Act.pdf?source=legislation"},
-    {"n": 104, "bill": "126th Amendment Bill, 2019", "intro": "2019-12-09", "passed": "2019-12-12", "assent": "2020-01-21", "cttee": false, "src": "https://sansad.in/getFile/BillsPDFFiles/Notification/2019-371-gaz.pdf?source=loksabhadocs"},
-    {"n": 105, "bill": "127th Amendment Bill, 2021", "intro": "2021-08-09", "passed": "2021-08-11", "assent": "2021-08-18", "cttee": false, "src": "https://sansad.in/getFile/BillsPDFFiles/Notification/2021-124-gaz.pdf?source=loksabhadocs"},
-    {"n": 106, "bill": "128th Amendment Bill, 2023", "intro": "2023-09-19", "passed": "2023-09-21", "assent": "2023-09-28", "cttee": false, "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/const%20128th%20amend104202340415PM.pdf?source=legislation"}
-  ]
+    {
+      "n": 95,
+      "bill": "109th Amendment Bill, 2009",
+      "intro": "2009-07-30",
+      "passed": "2009-08-04",
+      "assent": "2010-01-18",
+      "cttee": false,
+      "src": "https://sansad.in/getFile/BillsTexts/RSBillTexts/PassedBothHouses/XX-F%20OF%202009%20Const%2095th.pdf?source=legislation"
+    },
+    {
+      "n": 96,
+      "bill": "113th Amendment Bill, 2010",
+      "intro": "2010-03-15",
+      "passed": "2011-09-06",
+      "assent": "2011-09-23",
+      "cttee": false,
+      "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/28_f_2010_ls.pdf?source=legislation"
+    },
+    {
+      "n": 97,
+      "bill": "111th Amendment Bill, 2009",
+      "intro": "2009-11-30",
+      "passed": "2011-12-28",
+      "assent": "2012-01-12",
+      "cttee": true,
+      "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/97.pdf?source=legislation"
+    },
+    {
+      "n": 98,
+      "bill": "118th Amendment Bill, 2012",
+      "intro": "2012-09-07",
+      "passed": "2012-12-19",
+      "assent": "2013-01-01",
+      "cttee": true,
+      "src": "https://sansad.in/getFile/BillsPDFFiles/Notification/2012-106-gaz.pdf?source=loksabhadocs"
+    },
+    {
+      "n": 99,
+      "bill": "121st Amendment Bill, 2014",
+      "intro": "2014-08-11",
+      "passed": "2014-08-14",
+      "assent": "2014-12-31",
+      "cttee": false,
+      "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/99%20Act%20House.pdf?source=legislation"
+    },
+    {
+      "n": 100,
+      "bill": "119th Amendment Bill, 2013",
+      "intro": "2013-12-18",
+      "passed": "2015-05-07",
+      "assent": "2015-05-28",
+      "cttee": true,
+      "src": "https://sansad.in/getFile/BillsTexts/RSBillTexts/PassedRajyaSabha/119-RS%20pass-E.pdf?source=legislation"
+    },
+    {
+      "n": 101,
+      "bill": "122nd Amendment Bill, 2014",
+      "intro": "2014-12-19",
+      "passed": "2016-08-08",
+      "assent": "2016-09-08",
+      "cttee": true,
+      "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/192_f_ls_2014.pdf?source=legislation"
+    },
+    {
+      "n": 102,
+      "bill": "123rd Amendment Bill, 2017",
+      "intro": "2017-04-05",
+      "passed": "2018-08-06",
+      "assent": "2018-08-11",
+      "cttee": true,
+      "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/Const-102%20Amd%20Act.pdf?source=legislation"
+    },
+    {
+      "n": 103,
+      "bill": "124th Amendment Bill, 2019",
+      "intro": "2019-01-08",
+      "passed": "2019-01-09",
+      "assent": "2019-01-12",
+      "cttee": false,
+      "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/103%20Act.pdf?source=legislation"
+    },
+    {
+      "n": 104,
+      "bill": "126th Amendment Bill, 2019",
+      "intro": "2019-12-09",
+      "passed": "2019-12-12",
+      "assent": "2020-01-21",
+      "cttee": false,
+      "src": "https://sansad.in/getFile/BillsPDFFiles/Notification/2019-371-gaz.pdf?source=loksabhadocs"
+    },
+    {
+      "n": 105,
+      "bill": "127th Amendment Bill, 2021",
+      "intro": "2021-08-09",
+      "passed": "2021-08-11",
+      "assent": "2021-08-18",
+      "cttee": false,
+      "src": "https://sansad.in/getFile/BillsPDFFiles/Notification/2021-124-gaz.pdf?source=loksabhadocs"
+    },
+    {
+      "n": 106,
+      "bill": "128th Amendment Bill, 2023",
+      "intro": "2023-09-19",
+      "passed": "2023-09-21",
+      "assent": "2023-09-28",
+      "cttee": false,
+      "src": "https://sansad.in/getFile/BillsTexts/LSBillTexts/PassedBothHouses/const%20128th%20amend104202340415PM.pdf?source=legislation"
+    }
+  ],
+  "asOnIso": "2026-11-22"
 }
