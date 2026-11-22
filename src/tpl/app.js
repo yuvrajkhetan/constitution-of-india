@@ -261,7 +261,10 @@ function quiltBlock(seed) {
 let TEXT = null, textErr = false;
 function loadText() {
   textErr = false;
-  fetch("text.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(j => {
+  /* the build stamps the address with a fingerprint of the file, so a new page never gets an old cached copy;
+     if that address fails (some hosts ignore or refuse it), fall back to the plain file */
+  const getJSON = u => fetch(u).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+  getJSON("text.json?v=__TEXTV__").catch(() => getJSON("text.json")).then(j => {
     TEXT = j; DOCS = null;
     if (needsText()) render(true);
     if (dlgOpen()) runSearch();
@@ -931,7 +934,7 @@ function nextTeaser() {
 }
 function vNext() {
   const head = `<div class="ph"><div class="eyebrow">Forecast</div><h1 class="lt">The next amendment</h1><p class="sub">When the Constitution may next be amended, and on what. Our estimate as on ${esc(CORE.next.asOn)}, built from the Bills now in Parliament, the deadlines the Constitution sets itself and the record of past amendments.</p></div>`;
-  if (!TEXT) return `<section class="wrap col nx" style="--col:920px">${head}${textErr ? errBox() : loadBox()}</section>`;
+  if (!TEXT || !TEXT.next) return `<section class="wrap col nx" style="--col:920px">${head}${textErr || TEXT ? errBox() : loadBox()}</section>`;
   const N = TEXT.next, sw = b => `<span class="sw b${b}" aria-hidden="true"></span>`;
   const srcs = list => list && list.length ? `<p class="src">Source: ${list.map(([l, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`).join("; ")}</p>` : "";
   const chips = x => { const p = (x.arts || []).map(n => `<a class="pill" href="#art-${n}">Art. ${n}</a>`).concat((x.sch || []).map(k => `<a class="pill" href="#sch-${k}">${schName(k)}</a>`), (x.amds || []).map(n => `<a class="pill" href="#amend-${n}">${nth(n)} Amendment</a>`)); return p.length ? `<div class="pills">${p.join("")}</div>` : ""; };

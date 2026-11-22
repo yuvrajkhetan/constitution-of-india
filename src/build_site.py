@@ -2,6 +2,10 @@ import subprocess, os
 shell = open("tpl/shell.html").read()
 css = subprocess.run(["csso", "tpl/style.css"], capture_output=True, text=True, check=True).stdout
 js = subprocess.run(["terser", "tpl/app.js", "-c", "-m", "--ecma", "2020"], capture_output=True, text=True, check=True).stdout
+# stamp the data address with a fingerprint of text.json, so browsers never pair a new page with an old cached copy
+import hashlib
+assert js.count("__TEXTV__") == 1
+js = js.replace("__TEXTV__", hashlib.sha1(open("site/text.json", "rb").read()).hexdigest()[:10])
 core = open("site/core.json").read().replace("</", "<\\/")
 page = shell.replace("/*CSS*/", css).replace("/*CORE*/", core).replace("/*JS*/", js)
 open("site/index.html", "w").write(page)
