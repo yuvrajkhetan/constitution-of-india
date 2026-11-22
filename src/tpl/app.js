@@ -935,7 +935,7 @@ function nextTeaser() {
 /* "when", as a timeline: to scale on wide screens, a list on narrow ones (the list is also what screen readers get) */
 function nextTimeline(N) {
   const t0 = Date.parse(N.asOnIso), t1 = Date.parse(N.when[N.when.length - 1].until), x = d => 100 * (Date.parse(d) - t0) / (t1 - t0);
-  const evs = [{ iso: N.asOnIso, d: "Today", short: N.asOn, note: "" }].concat(N.clocks.filter(k => k.iso).map(k => ({ iso: k.iso, d: k.d, short: k.short, note: k.note || "" })));
+  const evs = [{ iso: N.asOnIso, d: N.asOnIso.slice(0, 4), short: "Last reviewed", note: "" }].concat(N.clocks.filter(k => k.iso).map(k => ({ iso: k.iso, d: k.d, short: k.short, note: k.note || "" })));
   const evIso = new Set(evs.map(e => e.iso));
   let prev = 0;
   const segs = N.when.map(w => { const a = prev, b = x(w.until); prev = b; return `<span class="seg b${w.band}" style="flex:${(b - a).toFixed(2)}">${BAND[w.band].t}</span>`; }).join("");
@@ -950,7 +950,7 @@ function nextTiles(N) {
   return `<div class="nxtiles">${N.cands.slice().sort((a, b) => a.band - b.band).map(c => `<a class="card nxtile" href="#next-amendment" data-jump="nx-${c.id}"><span class="t">${esc(c.s)}</span><span class="m">${bsScale(c.band)}<span>${BAND[c.band].t}</span></span><span class="stg">${esc(c.tag)}</span></a>`).join("")}</div>`;
 }
 function vNext() {
-  const head = `<div class="ph"><nav class="crumbs" aria-label="Breadcrumb"><a href="#amendments">Amendments</a>${I.chev}<span>The next amendment</span></nav><h1 class="lt">The next amendment</h1><p class="sub">When the Constitution may next be amended, and on what. Our estimate as on ${esc(CORE.next.asOn)}, built from the Bills now in Parliament, the deadlines the Constitution sets itself and the record of past amendments.</p></div>`;
+  const head = `<div class="ph"><nav class="crumbs" aria-label="Breadcrumb"><a href="#amendments">Amendments</a>${I.chev}<span>The next amendment</span></nav><h1 class="lt">The next amendment</h1><p class="sub">When the Constitution may next be amended, and on what. Our estimate as on ${new Date(CORE.next.asOnIso + "T00:00:00Z").toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" })}, built from the Bills now in Parliament, the deadlines the Constitution sets itself and the record of past amendments.</p></div>`;
   if (!TEXT || !TEXT.next) return `<section class="wrap col nx" style="--col:920px">${head}${textErr || TEXT ? errBox() : loadBox()}</section>`;
   const N = TEXT.next, sw = b => `<span class="sw b${b}" aria-hidden="true"></span>`;
   const srcs = list => list && list.length ? `<p class="src">Source: ${list.map(([l, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`).join("; ")}</p>` : "";

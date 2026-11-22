@@ -134,7 +134,7 @@ for x in NX['cands']+NX['clocks']:
     for r in x.get('sch',[]): assert r in _sch, ('next.json: no schedule',r)
     for r in x.get('amds',[]): assert r in _amd, ('next.json: no amendment',r)
 for _t in NX['times']: assert _t['n'] in _amd and _t['intro']<=_t['passed']<=_t['assent'], _t
-core['next']={k:NX[k] for k in ('asOn','headline','when')}  # the Amendments page teaser; the full forecast loads with text.json
+core['next']={k:NX[k] for k in ('asOn','asOnIso','headline','when')}  # the Amendments page teaser; the full forecast loads with text.json
 BS=json.load(open('data/bs.json'))
 import collections as _co
 _bc=_co.Counter(v[0] for v in BS['art'].values() if v[0]>=0)
