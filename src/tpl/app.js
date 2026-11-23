@@ -292,7 +292,26 @@ function linkify(h, ctx) {
   if (ctx === "art") h = h.replace(RX_PART, (m, r) => PART_BY.has(r) ? `<a class="xr" href="#part-${r}">${m}</a>` : m);
   return h;
 }
-const lx = s => linkAmd(linkify(esc(s || ""), "art"));
+/* Plain explanations of terms readers may not know (data/terms.json). In our own text (never the official text),
+   the first use of each term on a page becomes a button that opens its explanation. */
+let termSeen = new Set();
+const TERMS = CORE.terms || [], TERM_BY = new Map(TERMS.map(x => [x.id, x]));
+const TERM_RX = TERMS.length ? new RegExp("\\b(?:" + TERMS.map(x => "(" + x.m + ")").join("|") + ")\\b", "gi") : null;
+function markTerms(h) {
+  if (!TERM_RX) return h;
+  let inside = 0;
+  return h.split(/(<[^>]+>)/).map(seg => {
+    if (seg[0] === "<") { if (/^<(a|button)\b/i.test(seg)) inside++; else if (/^<\/(a|button)>/i.test(seg)) inside--; return seg; }
+    if (inside) return seg;
+    return seg.replace(TERM_RX, (m, ...g) => {
+      const x = TERMS[g.findIndex((v, j) => j < TERMS.length && v !== undefined)];
+      if (!x || termSeen.has(x.id)) return m;
+      termSeen.add(x.id);
+      return `<button type="button" class="term" data-term="${x.id}" aria-haspopup="dialog" aria-expanded="false">${m}</button>`;
+    });
+  }).join("");
+}
+const lx = s => markTerms(linkAmd(linkify(esc(s || ""), "art")));
 function linkAmd(h) {
   return h.replace(RX_AMD, (m, a, name, b) => {
     const n = AMD_BY_NAME.get(name.toLowerCase().replace(/[^a-z]/g, ""));
@@ -435,6 +454,7 @@ function render(keepScroll) {
   if (r.name === "home") themeCtx = null;
   const V = { home: vHome, contents: vContents, part: vPart, art: vArt, pre: vPre, sch: vSch, themes: vThemes, theme: vTheme, amend: vAmend, next: vNext, bs: vBS, glossary: vGlossary, saved: vSaved, about: vAbout }[r.name] || vHome;
   const y = window.scrollY;
+  termSeen = new Set();
   view.innerHTML = `<div class="view">${V(r)}</div>`;
   $$("[data-nav]").forEach(a => a.setAttribute("aria-current", a.dataset.nav === NAVKEY[r.name] ? "page" : "false"));
   $("#morebtn").setAttribute("aria-current", MORE.some(m => m[0] === NAVKEY[r.name]) ? "true" : "false");
@@ -955,16 +975,16 @@ function vNext() {
     <section class="sec" aria-labelledby="nx-when"><div class="sh"><div><h2 id="nx-when">When</h2><p>How likely it is that at least one Amendment Act is passed by the end of each stretch.</p></div></div>
       ${nextTimeline(N)}
       <h3 class="subhd">Why</h3>
-      <div class="nxwhen">${N.when.map(w => `<div class="card"><span class="k">${sw(w.band)}${BAND[w.band].t} <small>${BAND[w.band].r}</small></span><h3>${esc(w.by)}</h3><p>${esc(w.why)}</p></div>`).join("")}</div></section>
+      <div class="nxwhen">${N.when.map(w => `<div class="card"><span class="k">${sw(w.band)}${BAND[w.band].t} <small>${BAND[w.band].r}</small></span><h3>${esc(w.by)}</h3><p>${markTerms(esc(w.why))}</p></div>`).join("")}</div></section>
 
     <section class="sec" aria-labelledby="nx-what"><div class="sh"><div><h2 id="nx-what">On what</h2><p>Each Government Bill to amend the Constitution now in Parliament, the deadlines that will need one, and how likely each is to become law. Select one for the details.</p></div></div>
       ${nextTiles(N)}
       <h3 class="subhd">In detail</h3>
       ${N.cands.slice().sort((a, b) => a.band - b.band).map(c => `<article class="card nxc" id="nx-${c.id}"><div class="bsb-h">${sw(c.band)}<div><b>${esc(c.t)}</b><small>${BAND[c.band].t}${c.bill ? " · " + esc(c.bill) : ""}</small></div></div>
-        <p><b>Where it stands.</b> ${esc(c.stage)}</p><p><b>What it would do.</b> ${esc(c.what)}</p><p><b>Why we think so.</b> ${esc(c.why)}</p>${chips(c)}${srcs(c.src)}</article>`).join("")}</section>
+        <p><b>Where it stands.</b> ${markTerms(esc(c.stage))}</p><p><b>What it would do.</b> ${markTerms(esc(c.what))}</p><p><b>Why we think so.</b> ${markTerms(esc(c.why))}</p>${chips(c)}${srcs(c.src)}</article>`).join("")}</section>
 
     <section class="sec" aria-labelledby="nx-clocks"><div class="sh"><div><h2 id="nx-clocks">The dates in detail</h2><p>Dates set by the Constitution or already fixed, that shape when the next amendments may come.</p></div></div>
-      <ol class="nxclk">${N.clocks.map(k => `<li><span class="d">${esc(k.d)}</span><div><h3>${esc(k.t)}</h3><p>${esc(k.s)}</p>${chips(k)}${srcs(k.src)}</div></li>`).join("")}</ol></section>
+      <ol class="nxclk">${N.clocks.map(k => `<li><span class="d">${esc(k.d)}</span><div><h3>${esc(k.t)}</h3><p>${markTerms(esc(k.s))}</p>${chips(k)}${srcs(k.src)}</div></li>`).join("")}</ol></section>
 
     <section class="sec" aria-labelledby="nx-record"><div class="sh"><div><h2 id="nx-record">The track record</h2><p>What past amendments tell us about pace, timing and which deadlines Parliament keeps.</p></div></div>
       <div class="nxrec">
@@ -1091,8 +1111,8 @@ function vGlossary(r) {
   return `<section class="wrap col">
     <div class="ph"><h1 class="lt">Glossary</h1><p class="sub">${G.length} terms the Constitution defines for itself, in its Articles and Schedules, with the definition in its own words and where it appears.</p></div>
     <div class="toolbar"><label class="filter" style="flex:1">${I.search}<span class="sr">Filter terms</span><input id="gfilter" type="search" placeholder="Filter terms" autocomplete="off"></label></div>
-    <nav class="az" aria-label="Jump to letter">${letters.map(L => `<a href="#glossary" data-jump="gl-${L}">${L}</a>`).join("")}</nav>
-    <div id="gl">${letters.map(L => `<h2 class="gl-letter" id="gl-${L}">${L}</h2><div class="group">${byL[L].map(([t, defs]) => { const grp = new Map(); defs.forEach(([a, d]) => { const k = d.toLowerCase().replace(/[^a-z]/g, ""); if (!grp.has(k)) grp.set(k, [d, []]); grp.get(k)[1].push(a); }); return `<div class="gterm" data-f="${esc(t.toLowerCase())}" id="g-${esc(t.toLowerCase().replace(/[^a-z0-9]+/g, "-"))}"><h3>${esc(t)}</h3>${[...grp.values()].map(([d, refs]) => `<div class="gdef"><div class="grefs">${refs.map(gref).join("")}</div><p>${linkArts(esc(d))}</p></div>`).join("")}</div>`; }).join("")}</div>`).join("")}</div>
+    <nav class="az" aria-label="Jump to letter">${TERMS.length ? `<a href="#glossary" data-jump="gl-terms" class="azw">Plain words</a>` : ""}${letters.map(L => `<a href="#glossary" data-jump="gl-${L}">${L}</a>`).join("")}</nav>
+    <div id="gl">${TERMS.length ? `<h2 class="gl-letter" id="gl-terms">Explained in plain words</h2><div class="group">${TERMS.map(x => `<div class="gterm" id="term-${x.id}" data-f="${esc(x.t.toLowerCase())}"><h3>${esc(x.t)}</h3><p class="gplain">${esc(x.d)}</p>${x.list ? `<dl class="tl">${x.list.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join("")}</dl>` : ""}<p class="tsrc">${termSrc(x)}. Our wording, not the Constitution's.</p></div>`).join("")}</div>` : ""}${letters.map(L => `<h2 class="gl-letter" id="gl-${L}">${L}</h2><div class="group">${byL[L].map(([t, defs]) => { const grp = new Map(); defs.forEach(([a, d]) => { const k = d.toLowerCase().replace(/[^a-z]/g, ""); if (!grp.has(k)) grp.set(k, [d, []]); grp.get(k)[1].push(a); }); return `<div class="gterm" data-f="${esc(t.toLowerCase())}" id="g-${esc(t.toLowerCase().replace(/[^a-z0-9]+/g, "-"))}"><h3>${esc(t)}</h3>${[...grp.values()].map(([d, refs]) => `<div class="gdef"><div class="grefs">${refs.map(gref).join("")}</div><p>${linkArts(esc(d))}</p></div>`).join("")}</div>`; }).join("")}</div>`).join("")}</div>
   </section>`;
 }
 
@@ -1631,9 +1651,17 @@ function gotoNote(k) {
 function openPop(btn) {
   const k = +btn.dataset.fn, notes = notesFor();
   if (!notes || !notes[k - 1]) return;
+  showPop(btn, "Official note " + k, `<b>Official note ${k}</b>${linkAmd(linkArts(esc(notes[k - 1])))}`);
+}
+function openTerm(btn) {
+  const x = TERM_BY.get(btn.dataset.term); if (!x) return;
+  showPop(btn, x.t, `<b>${esc(x.t)}</b><span class="td">${esc(x.d)}</span>${x.list ? `<dl class="tl">${x.list.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join("")}</dl>` : ""}<span class="tsrc">${termSrc(x)}</span>`);
+}
+const termSrc = x => "Based on " + x.src.map(([l, h]) => /^#/.test(h) ? `<a href="${h}">${esc(l)}</a>` : `<a href="${esc(h)}" target="_blank" rel="noopener">${esc(l)}</a>`).join(", ");
+function showPop(btn, label, html) {
   closePop(); popBtn = btn; btn.setAttribute("aria-expanded", "true");
-  pop = document.createElement("div"); pop.className = "pop"; pop.setAttribute("role", "dialog"); pop.setAttribute("aria-label", "Official note " + k);
-  pop.innerHTML = `<b>Official note ${k}</b>${linkAmd(linkArts(esc(notes[k - 1])))}`;
+  pop = document.createElement("div"); pop.className = "pop"; pop.setAttribute("role", "dialog"); pop.setAttribute("aria-label", label);
+  pop.innerHTML = html;
   document.body.appendChild(pop);
   const r = btn.getBoundingClientRect(), pw = pop.offsetWidth;
   pop.style.left = Math.max(16 + scrollX, Math.min(r.left + scrollX + r.width / 2 - pw / 2, scrollX + document.documentElement.clientWidth - pw - 16)) + "px";
@@ -1810,6 +1838,7 @@ document.addEventListener("click", e => {
   const sqq = t.closest("[data-search-q]"); if (sqq) { openSearch(sqq.dataset.searchQ); return; }
   const go = t.closest("[data-goto-fn]"); if (go) { gotoNote(go.dataset.gotoFn); return; }
   const fn = t.closest(".fn"); if (fn) { e.preventDefault(); popBtn === fn ? closePop() : openPop(fn); return; }
+  const tm = t.closest(".term"); if (tm) { e.preventDefault(); popBtn === tm ? closePop() : openTerm(tm); return; }
   if (pop && !t.closest(".pop")) closePop();
   const fsb = t.closest("[data-fscroll]"); if (fsb) { const row = $(".factwrap .facts"); row.scrollBy({ left: +fsb.dataset.fscroll * (row.clientWidth - 40), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); return; }
   if (t.closest("[data-random]")) { const live = ORDER.filter(n => !ART.get(n).o); location.hash = "#art-" + live[Math.floor(Math.random() * live.length)]; return; }

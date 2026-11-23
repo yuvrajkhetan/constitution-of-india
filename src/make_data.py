@@ -153,6 +153,15 @@ for x in NX['cands']+NX['clocks']:
     for r in x.get('sch',[]): assert r in _sch, ('next.json: no schedule',r)
     for r in x.get('amds',[]): assert r in _amd, ('next.json: no amendment',r)
 for _t in NX['times']: assert _t['n'] in _amd and _t['intro']<=_t['passed']<=_t['assent'], _t
+# plain explanations of terms used in our own text (data/terms.json); check every source link resolves
+TERMS = json.load(open('data/terms.json'))['terms']
+for x in TERMS:
+    assert '(' not in x['m'].replace('(?:', ''), ('terms.json: use (?:...) groups only', x['id'])
+    for l, h in x['src']:
+        if h.startswith('#art-'): assert h[5:] in _arts, ('terms.json: no article', h)
+        if h.startswith('#sch-'): assert h[5:] in _sch, ('terms.json: no schedule', h)
+    if x.get('pending'): print('terms.json: still waiting for an official source:', x['id'])
+core['terms'] = [{k: v for k, v in x.items() if k != 'pending'} for x in TERMS]
 core['next']={k:NX[k] for k in ('asOn','asOnIso','headline','when')}  # the Amendments page teaser; the full forecast loads with text.json
 BS=json.load(open('data/bs.json'))
 import collections as _co
