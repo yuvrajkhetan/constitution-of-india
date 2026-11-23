@@ -88,8 +88,8 @@ amd+=[
   "what":"Arunachal Pradesh became a full State under the State of Arunachal Pradesh Act, 1986 (in force 20 February 1987), so neither article applies to it any more. Article 239A now names only Puducherry, and the official note to Article 240 records Arunachal Pradesh's entry being removed by that Act.",
   "src":[["Act text, "+LD,"https://www.legislative.gov.in/static/uploads/2025/07/e758d6fb56d08150e4359287a75266c1.pdf"]]},
  {"wl":"Assent","n":48,"y":1984,"wef":"1984-08-26","nc":1,"tags":["president's rule","punjab"],"refs":["a:356"],
-  "h":"Let President's Rule in Punjab, proclaimed on 6 October 1983, continue for up to two years instead of one by adding a proviso to Article 356(5).",
-  "what":"It applied to one Proclamation only and stopped mattering once that Proclamation ended. The proviso to Article 356(5) has since been removed and rewritten by later Acts; it now refers to the Punjab Proclamation of 11 May 1987.",
+  "h":"Let President's Rule in Punjab, proclaimed on 6 October 1983, continue for up to two years instead of one by adding a condition to Article 356(5).",
+  "what":"It applied to one Proclamation only and stopped mattering once that Proclamation ended. That condition in Article 356(5) has since been removed and rewritten by later Acts; it now refers to the Punjab Proclamation of 11 May 1987.",
   "src":[["Act text, "+LD,"https://www.legislative.gov.in/static/uploads/2025/07/1b65d89d6107c526d5dc2102f3dcf479.pdf"],["National Portal of India","https://www.india.gov.in/my-government/constitution-india/amendments/constitution-india-forty-eighth-amendment-act-1984"]]},
 ]
 amd.sort(key=lambda a:a['n'])

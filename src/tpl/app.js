@@ -687,7 +687,7 @@ function scopeNotes(texts, loc, notes, whole) {
       else where = (!w ? "an omission" : /^[\d,]+$/.test(raw) ? `the number “${w}”` : `the words “${w}”`) + (l ? " in " + l : "");
     } else {
       let ls = [...new Set(idx.map(loc))].filter(Boolean);
-      ls = ls.filter(l => !ls.some(o => o !== l && l.startsWith(o + "(")) && !(l.startsWith("proviso to ") && ls.includes(l.slice(11))));
+      ls = ls.filter(l => !ls.some(o => o !== l && l.startsWith(o + "(")) && !(l.startsWith(PROV) && ls.includes(l.slice(PROV.length))));
       const G = new Map(), rest = [];
       const rows = ls.filter(l => l.startsWith("the row for ")).map(l => l.slice(12));
       if (rows.length) ls = ls.filter(l => !l.startsWith("the row for ") && l !== "the table");
@@ -711,9 +711,9 @@ function noteScopes(t) {
     if (num(i)) return "clause (" + num(i) + ")";
     let clause = "", prov = false;
     for (let j = i - 1; j >= 0; j--) { if (/^Provided/.test(head(j))) prov = true; if (num(j)) { clause = num(j); break; } }
-    if (/^Provided/.test(x)) return clause ? "proviso to clause (" + clause + ")" : "the proviso";
+    if (/^Provided/.test(x)) return clause ? PROV + "clause (" + clause + ")" : "the \u201cProvided that\u201d part";
     if (/^Explanation/.test(x)) return "the Explanation";
-    if (sub(i)) return prov ? (clause ? "proviso to clause (" + clause + ")" : "the proviso") : clause ? `clause (${clause})(${sub(i)})` : "clause (" + sub(i) + ")";
+    if (sub(i)) return prov ? (clause ? PROV + "clause (" + clause + ")" : "the \u201cProvided that\u201d part") : clause ? `clause (${clause})(${sub(i)})` : "clause (" + sub(i) + ")";
     return clause ? "clause (" + clause + ")" : "";
   };
   const out = scopeNotes(t.p.map(p => p[1]), loc, t.f, "the article");
@@ -1074,7 +1074,7 @@ function vBS(r) {
         <p>For every provision we ask one question: <b>could Parliament repeal or substantially change it by a constitutional amendment without breaching a basic feature the Supreme Court has recognised?</b> The basic structure is made up of features, not article numbers, so an article's details can be amended even when its core cannot.</p>
         <p><b>Decided by the Court</b> means the Court has itself ruled the provision's core part of the basic structure, or struck down an amendment to it on basic structure grounds. Every other level is our estimate, using these factors:</p>
         <ul><li>Has a court ruled this provision, or something it depends on, part of the basic structure?</li><li>Is it the main home of a recognised feature, or a supporting detail?</li><li>Does Article 368(2) already require half the States to ratify changes to it, a sign of the federal core?</li><li>Is it procedural, transitional, a number or a list, and has it been changed before without objection?</li></ul>
-        <p>The ranges are rough guides to confidence, not calculated probabilities. A feature named in only one judge's opinion, or listed only by the Lok Sabha Secretariat, counts for less than one recognised by a majority or a later bench. Omitted articles are not shown.</p>
+        <p>The ranges are rough guides to confidence, not calculated probabilities. A feature named in only one judge's opinion, or listed only by the Lok Sabha Secretariat, counts for less than one recognised by a majority, or by a later and larger group of judges. Omitted articles are not shown.</p>
         <p class="fine">The Court's rulings, and the provisions marked Decided by the Court, come from the Supreme Court's judgments, its own publications, the official notes and the Lok Sabha Secretariat. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
         <details><summary>Sources</summary><ul class="srcs">${Object.keys(src).map(k => `<li>${srcLink(k)}</li>`).join("")}</ul></details>
       </div>
@@ -1303,7 +1303,9 @@ function toggleKeys(force) {
 
 /* ================= history from the official footnotes ================= */
 const VERB = { ins: "Added", add: "Added", subs: "Replaced", omit: "Removed", renum: "Renumbered", pend: "Not yet in force", inv: "Declared invalid", other: "Changed" };
-const actLabel = a => typeof a === "number" ? `<a href="#amend-${a}">${nth(a)} Amendment Act</a>` : a ? esc(String(a).replace(/^C\.O\. (\d+)$/, "Presidential Order C.O. $1")) : "Not stated in the note";
+/* the part of a clause that begins "Provided that" (lawyers call it a proviso) */
+const PROV = "the \u201cProvided that\u201d part of ";
+const actLabel = a => typeof a === "number" ? `<a href="#amend-${a}">${nth(a)} Amendment Act</a>` : a ? esc(String(a).replace(/^C\.O\. (\d+)$/, "Constitution Order $1")) : "Not stated in the note";
 function timelineHTML(f, sc, fh, hn, kind) {
   if (!f || !f.length || !fh) return histHTML(f, sc);
   const ev = new Map(), other = [];

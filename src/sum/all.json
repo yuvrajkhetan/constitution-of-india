@@ -516,7 +516,7 @@
   ]
  },
  "art-56": {
-  "s": "The President holds office for five years from taking office and stays on until a successor takes over. The President can resign by writing to the Vice-President, who informs the Speaker of the House of the People, or can be removed by impeachment for violating the Constitution.",
+  "s": "The President holds office for five years from taking office and stays on until a successor takes over. The President can resign by writing to the Vice-President, who informs the Speaker of the Lok Sabha, or can be removed by impeachment for violating the Constitution.",
   "k": [
    "president term of office",
    "president resignation",
@@ -531,7 +531,7 @@
   ]
  },
  "art-58": {
-  "s": "To be elected President, a person must be an Indian citizen, at least 35 years old, and qualified to be a member of the House of the People. They cannot hold an office of profit under any government or authority it controls, though being President, Vice-President, Governor or a Minister does not count.",
+  "s": "To be elected President, a person must be an Indian citizen, at least 35 years old, and qualified to be a member of the Lok Sabha. They cannot hold an office of profit under any government or authority it controls, though being President, Vice-President, Governor or a Minister does not count.",
   "k": [
    "minimum age for president",
    "qualifications for president",
@@ -581,7 +581,7 @@
   ]
  },
  "art-64": {
-  "s": "The Vice-President is automatically the Chairman of the Council of States and cannot hold any other office of profit. While acting as President, the Vice-President does not perform the Chairman's duties and does not get the Chairman's salary or allowances.",
+  "s": "The Vice-President is automatically the Chairman of the Rajya Sabha and cannot hold any other office of profit. While acting as President, the Vice-President does not perform the Chairman's duties and does not get the Chairman's salary or allowances.",
   "k": [
    "vice-president chairman of council of states",
    "vice-president office of profit",
@@ -598,7 +598,7 @@
   ]
  },
  "art-66": {
-  "s": "Members of both Houses of Parliament elect the Vice-President by secret ballot, using proportional representation by single transferable vote. A candidate must be an Indian citizen, at least 35 years old, qualified for the Council of States and not holding an office of profit under any government, and cannot remain a member of Parliament or a State Legislature.",
+  "s": "Members of both Houses of Parliament elect the Vice-President by secret ballot, using proportional representation by single transferable vote. A candidate must be an Indian citizen, at least 35 years old, qualified for the Rajya Sabha and not holding an office of profit under any government, and cannot remain a member of Parliament or a State Legislature.",
   "k": [
    "election of vice-president",
    "minimum age for vice-president",
@@ -607,7 +607,7 @@
   ]
  },
  "art-67": {
-  "s": "The Vice-President serves five years and stays in office until a successor takes over. The Vice-President can resign in writing to the President, or be removed by a resolution passed by a majority of all members of the Council of States and agreed to by the House of the People, after at least 14 days' notice.",
+  "s": "The Vice-President serves five years and stays in office until a successor takes over. The Vice-President can resign in writing to the President, or be removed by a resolution passed by a majority of all members of the Rajya Sabha and agreed to by the Lok Sabha, after at least 14 days' notice.",
   "k": [
    "vice-president term of office",
    "removal of vice-president",
@@ -674,7 +674,7 @@
   ]
  },
  "art-75": {
-  "s": "The President appoints the Prime Minister, and other Ministers on the Prime Minister's advice. Ministers, capped at 15 per cent of the House of the People's total members, are collectively responsible to that House; a Minister not in either House for six consecutive months stops being one, and members disqualified under the Tenth Schedule cannot become Ministers for a period.",
+  "s": "The President appoints the Prime Minister, and other Ministers on the Prime Minister's advice. Ministers, capped at 15 per cent of the Lok Sabha's total members, are collectively responsible to that House; a Minister not in either House for six consecutive months stops being one, and members disqualified under the Tenth Schedule cannot become Ministers for a period.",
   "k": [
    "appointment of prime minister",
    "maximum number of ministers",
@@ -708,7 +708,7 @@
   ]
  },
  "art-79": {
-  "s": "Parliament is made up of the President and two Houses: the Council of States and the House of the People.",
+  "s": "Parliament is made up of the President and two Houses: the Rajya Sabha (Council of States) and the Lok Sabha (House of the People).",
   "k": [
    "what makes up parliament",
    "two houses of parliament",
@@ -716,7 +716,7 @@
   ]
  },
  "art-80": {
-  "s": "The Council of States has 12 members nominated by the President for special knowledge or experience in literature, science, art and social service, and up to 238 representatives of the States and Union territories. Elected members of each State's Legislative Assembly elect its representatives by single transferable vote, and Parliament decides how Union territory representatives are chosen.",
+  "s": "The Rajya Sabha has 12 members nominated by the President for special knowledge or experience in literature, science, art and social service, and up to 238 representatives of the States and Union territories. Elected members of each State's Legislative Assembly elect its representatives by single transferable vote, and Parliament decides how Union territory representatives are chosen.",
   "k": [
    "council of states composition",
    "nominated members council of states",
@@ -725,7 +725,7 @@
   ]
  },
  "art-81": {
-  "s": "The House of the People has up to 530 members directly elected from State constituencies and up to 20 from Union territories. Seats are shared among States in proportion to population, with constituencies of similar population; until figures from the first census after 2026 are published, the 1971 census applies for State seats and the 2001 census for constituencies.",
+  "s": "The Lok Sabha has up to 530 members directly elected from State constituencies and up to 20 from Union territories. Seats are shared among States in proportion to population, with constituencies of similar population; until figures from the first census after 2026 are published, the 1971 census applies for State seats and the 2001 census for constituencies.",
   "k": [
    "house of the people composition",
    "how many members in house of the people",
@@ -734,7 +734,7 @@
   ]
  },
  "art-82": {
-  "s": "After each census, State seats in the House of the People and constituencies are readjusted as Parliament decides, from a date the President orders and not affecting the sitting House before its dissolution. Until figures from the first census after 2026 are published, seats based on the 1971 census and constituencies based on the 2001 census need not change.",
+  "s": "After each census, State seats in the Lok Sabha and constituencies are readjusted as Parliament decides, from a date the President orders and not affecting the sitting House before its dissolution. Until figures from the first census after 2026 are published, seats based on the 1971 census and constituencies based on the 2001 census need not change.",
   "k": [
    "delimitation after census",
    "readjustment of seats",
@@ -743,7 +743,7 @@
   ]
  },
  "art-83": {
-  "s": "The Council of States is never dissolved, and about one-third of its members retire every second year. The House of the People lasts five years from its first meeting unless dissolved sooner; during an Emergency Parliament can extend this by law by up to one year at a time, but not beyond six months after the Emergency ends.",
+  "s": "The Rajya Sabha is never dissolved, and about one-third of its members retire every second year. The Lok Sabha lasts five years from its first meeting unless dissolved sooner; during an Emergency Parliament can extend this by law by up to one year at a time, but not beyond six months after the Emergency ends.",
   "k": [
    "term of house of the people",
    "council of states never dissolved",
@@ -752,7 +752,7 @@
   ]
  },
  "art-84": {
-  "s": "To be chosen for Parliament, a person must be an Indian citizen, take an oath or affirmation before someone the Election Commission authorises, and meet qualifications Parliament sets. The minimum age is 30 for the Council of States, 25 for the House of the People.",
+  "s": "To be chosen for Parliament, a person must be an Indian citizen, take an oath or affirmation before someone the Election Commission authorises, and meet qualifications Parliament sets. The minimum age is 30 for the Rajya Sabha, 25 for the Lok Sabha.",
   "k": [
    "minimum age for mp",
    "qualification for member of parliament",
@@ -761,7 +761,7 @@
   ]
  },
  "art-85": {
-  "s": "The President summons each House of Parliament when and where the President thinks fit, with less than six months between one session's last sitting and the next one's first. The President can also prorogue either or both Houses and dissolve the House of the People.",
+  "s": "The President summons each House of Parliament when and where the President thinks fit, with less than six months between one session's last sitting and the next one's first. The President can also prorogue either or both Houses and dissolve the Lok Sabha.",
   "k": [
    "sessions of parliament",
    "gap between parliament sessions",
@@ -793,7 +793,7 @@
   ]
  },
  "art-89": {
-  "s": "The Vice-President of India is automatically the Chairman of the Council of States. The Council chooses one of its members as Deputy Chairman, and chooses another whenever that office falls vacant.",
+  "s": "The Vice-President of India is automatically the Chairman of the Rajya Sabha. The Council chooses one of its members as Deputy Chairman, and chooses another whenever that office falls vacant.",
   "k": [
    "chairman of council of states",
    "deputy chairman council of states",
@@ -801,7 +801,7 @@
   ]
  },
  "art-90": {
-  "s": "The Deputy Chairman of the Council of States leaves office on ceasing to be a Council member, can resign in writing to the Chairman, and can be removed by a resolution of a majority of all Council members, after at least 14 days' notice.",
+  "s": "The Deputy Chairman of the Rajya Sabha leaves office on ceasing to be a Council member, can resign in writing to the Chairman, and can be removed by a resolution of a majority of all Council members, after at least 14 days' notice.",
   "k": [
    "removal of deputy chairman",
    "deputy chairman resignation",
@@ -825,7 +825,7 @@
   ]
  },
  "art-93": {
-  "s": "The House of the People chooses two of its members as Speaker and Deputy Speaker, and chooses a replacement whenever either office falls vacant.",
+  "s": "The Lok Sabha chooses two of its members as Speaker and Deputy Speaker, and chooses a replacement whenever either office falls vacant.",
   "k": [
    "election of speaker",
    "deputy speaker house of the people",
@@ -833,7 +833,7 @@
   ]
  },
  "art-94": {
-  "s": "The Speaker or Deputy Speaker leaves office on ceasing to be a member of the House of the People, can resign in writing to the other, and can be removed by a resolution of a majority of all the House's then members after 14 days' notice. On dissolution, the Speaker stays until just before the new House first meets.",
+  "s": "The Speaker or Deputy Speaker leaves office on ceasing to be a member of the Lok Sabha, can resign in writing to the other, and can be removed by a resolution of a majority of all the House's then members after 14 days' notice. On dissolution, the Speaker stays until just before the new House first meets.",
   "k": [
    "removal of speaker",
    "speaker resignation",
@@ -858,7 +858,7 @@
   ]
  },
  "art-97": {
-  "s": "The Chairman and Deputy Chairman of the Council of States and the Speaker and Deputy Speaker of the House of the People get salaries and allowances fixed by Parliament by law, or those in the Second Schedule until then.",
+  "s": "The Chairman and Deputy Chairman of the Rajya Sabha and the Speaker and Deputy Speaker of the Lok Sabha get salaries and allowances fixed by Parliament by law, or those in the Second Schedule until then.",
   "k": [
    "salary of speaker",
    "salary of chairman council of states",
@@ -942,7 +942,7 @@
   ]
  },
  "art-107": {
-  "s": "Except for Money and other financial Bills, a Bill can start in either House and, apart from the joint sitting and Money Bill rules, passes only when both Houses agree to it and any amendments. Bills survive prorogation; on the House of the People's dissolution, Bills pending in it, or passed by it and awaiting the Council of States, lapse, but others in the Council of States do not.",
+  "s": "Except for Money and other financial Bills, a Bill can start in either House and, apart from the joint sitting and Money Bill rules, passes only when both Houses agree to it and any amendments. Bills survive prorogation; on the Lok Sabha's dissolution, Bills pending in it, or passed by it and awaiting the Rajya Sabha, lapse, but others in the Rajya Sabha do not.",
   "k": [
    "how a bill is passed",
    "bill lapse on dissolution",
@@ -960,7 +960,7 @@
   ]
  },
  "art-109": {
-  "s": "A Money Bill cannot be introduced in the Council of States. Once the House of the People passes it, the Council of States has 14 days to return it with recommendations, which the House can accept or reject; if not returned within 14 days, it counts as passed by both Houses as the House of the People passed it.",
+  "s": "A Money Bill cannot be introduced in the Rajya Sabha. Once the Lok Sabha passes it, the Rajya Sabha has 14 days to return it with recommendations, which the House can accept or reject; if not returned within 14 days, it counts as passed by both Houses as the Lok Sabha passed it.",
   "k": [
    "money bill procedure",
    "money bill council of states 14 days",
@@ -994,7 +994,7 @@
   ]
  },
  "art-113": {
-  "s": "Spending charged on the Consolidated Fund of India can be discussed but not voted on in Parliament. Other spending goes to the House of the People as demands for grants, which it can approve, refuse or reduce, and every demand needs the President's recommendation.",
+  "s": "Spending charged on the Consolidated Fund of India can be discussed but not voted on in Parliament. Other spending goes to the Lok Sabha as demands for grants, which it can approve, refuse or reduce, and every demand needs the President's recommendation.",
   "k": [
    "demands for grants",
    "voting on budget estimates",
@@ -1003,7 +1003,7 @@
   ]
  },
  "art-114": {
-  "s": "After the House of the People votes the grants, a Bill is introduced to take from the Consolidated Fund of India the money for those grants and for charged expenditure. Neither House can amend it to change these amounts or purposes, and no money leaves the Fund without such a law.",
+  "s": "After the Lok Sabha votes the grants, a Bill is introduced to take from the Consolidated Fund of India the money for those grants and for charged expenditure. Neither House can amend it to change these amounts or purposes, and no money leaves the Fund without such a law.",
   "k": [
    "appropriation bill",
    "withdrawing money from consolidated fund",
@@ -1012,7 +1012,7 @@
   ]
  },
  "art-115": {
-  "s": "If money approved for a service in a financial year proves too little, a new unplanned need arises, or more is spent than granted, the President places a fresh statement before both Houses or an excess demand before the House of the People. The usual budget procedure then applies.",
+  "s": "If money approved for a service in a financial year proves too little, a new unplanned need arises, or more is spent than granted, the President places a fresh statement before both Houses or an excess demand before the Lok Sabha. The usual budget procedure then applies.",
   "k": [
    "supplementary grants",
    "excess grants",
@@ -1021,7 +1021,7 @@
   ]
  },
  "art-116": {
-  "s": "The House of the People can grant money in advance for part of a year before the full budget is passed, grant money for an unexpected demand that cannot be detailed, and make an exceptional grant. Parliament can then authorise by law the withdrawal from the Consolidated Fund of India.",
+  "s": "The Lok Sabha can grant money in advance for part of a year before the full budget is passed, grant money for an unexpected demand that cannot be detailed, and make an exceptional grant. Parliament can then authorise by law the withdrawal from the Consolidated Fund of India.",
   "k": [
    "vote on account",
    "vote of credit",
@@ -1030,7 +1030,7 @@
   ]
  },
  "art-117": {
-  "s": "A Bill or amendment on money-bill matters needs the President's recommendation and cannot start in the Council of States, though amendments cutting or abolishing a tax need none, and fines, fees or local taxes alone do not make a Bill one. Bills involving spending from the Consolidated Fund of India also need the President's recommendation before either House passes them.",
+  "s": "A Bill or amendment on money-bill matters needs the President's recommendation and cannot start in the Rajya Sabha, though amendments cutting or abolishing a tax need none, and fines, fees or local taxes alone do not make a Bill one. Bills involving spending from the Consolidated Fund of India also need the President's recommendation before either House passes them.",
   "k": [
    "financial bill",
    "president recommendation for money bill",
@@ -1140,7 +1140,7 @@
   ]
  },
  "art-127": {
-  "s": "If the Supreme Court lacks a quorum of Judges, the Chief Justice of India, with the President's prior consent and after consulting the High Court's Chief Justice, can ask a High Court Judge qualified for the Supreme Court to sit as an ad hoc Judge. That Judge must give this priority and has full Supreme Court powers while attending. The text names the National Judicial Appointments Commission instead, but the Supreme Court struck down that 2014 change in 2015, so the earlier wording naming the Chief Justice applies.",
+  "s": "If the Supreme Court lacks a quorum of Judges, the Chief Justice of India, with the President's prior consent and after consulting the High Court's Chief Justice, can ask a High Court Judge qualified for the Supreme Court to sit as a temporary (ad hoc) Judge. That Judge must give this priority and has full Supreme Court powers while attending. The text names the National Judicial Appointments Commission instead, but the Supreme Court struck down that 2014 change in 2015, so the earlier wording naming the Chief Justice applies.",
   "k": [
    "ad hoc judge supreme court",
    "quorum of judges",
@@ -1289,7 +1289,7 @@
   ]
  },
  "art-143": {
-  "s": "If a question of law or fact of public importance arises or is likely to, the President can refer it to the Supreme Court, which can report its opinion after a hearing. The President can also refer disputes excluded under the proviso to article 131.",
+  "s": "If a question of law or fact of public importance arises or is likely to, the President can refer it to the Supreme Court, which can report its opinion after a hearing. The President can also refer disputes that article 131 leaves out.",
   "k": [
    "presidential reference",
    "advisory opinion supreme court",
@@ -2283,7 +2283,7 @@
   ]
  },
  "art-243R": {
-  "s": "Municipality seats are filled by direct election from wards. The State Legislature can also, by law, add experts in municipal administration (who cannot vote), House of the People and Assembly members whose constituencies cover the area, Council of States and Legislative Council members registered there, and chairpersons of the other committees set up under Article 243S(5), and decide how the Chairperson is elected.",
+  "s": "Municipality seats are filled by direct election from wards. The State Legislature can also, by law, add experts in municipal administration (who cannot vote), Lok Sabha and Assembly members whose constituencies cover the area, Rajya Sabha and Legislative Council members registered there, and chairpersons of the other committees set up under Article 243S(5), and decide how the Chairperson is elected.",
   "k": [
    "municipal ward elections",
    "who sits on a municipality",
@@ -2564,7 +2564,7 @@
   ]
  },
  "art-249": {
-  "s": "If the Council of States passes a resolution, backed by two-thirds of members present and voting, that it is in the national interest, Parliament can make laws on a State List subject or GST. The resolution lasts up to one year and can be renewed a year at a time, and such laws lapse six months after it ends.",
+  "s": "If the Rajya Sabha passes a resolution, backed by two-thirds of members present and voting, that it is in the national interest, Parliament can make laws on a State List subject or GST. The resolution lasts up to one year and can be renewed a year at a time, and such laws lapse six months after it ends.",
   "k": [
    "parliament law on state subject",
    "rajya sabha resolution national interest",
@@ -3068,7 +3068,7 @@
   ]
  },
  "art-312": {
-  "s": "If the Council of States resolves, by at least two-thirds of members present and voting, that it is in the national interest, Parliament can by law create all-India services common to the Union and States, including an all-India judicial service for posts of district judge and above. The Indian Administrative Service and Indian Police Service count as created this way.",
+  "s": "If the Rajya Sabha resolves, by at least two-thirds of members present and voting, that it is in the national interest, Parliament can by law create all-India services common to the Union and States, including an all-India judicial service for posts of district judge and above. The Indian Administrative Service and Indian Police Service count as created this way.",
   "k": [
    "all india services",
    "indian administrative service",
@@ -3201,7 +3201,7 @@
   ]
  },
  "art-326": {
-  "s": "Elections to the House of the People and State Legislative Assemblies are by adult suffrage: every Indian citizen aged 18 or over on the fixed date can register to vote, unless disqualified by law for non-residence, unsoundness of mind, crime, or corrupt or illegal practice.",
+  "s": "Elections to the Lok Sabha and State Legislative Assemblies are by adult suffrage: every Indian citizen aged 18 or over on the fixed date can register to vote, unless disqualified by law for non-residence, unsoundness of mind, crime, or corrupt or illegal practice.",
   "k": [
    "voting age",
    "right to vote",
@@ -3234,7 +3234,7 @@
   ]
  },
  "art-330": {
-  "s": "Seats in the House of the People are reserved for Scheduled Castes and Scheduled Tribes, in each State or Union territory roughly in proportion to their share of its population; for Scheduled Tribes in Assam's autonomous districts, at least in proportion. Population means the 2001 census until figures from the first census after 2026 are published.",
+  "s": "Seats in the Lok Sabha are reserved for Scheduled Castes and Scheduled Tribes, in each State or Union territory roughly in proportion to their share of its population; for Scheduled Tribes in Assam's autonomous districts, at least in proportion. Population means the 2001 census until figures from the first census after 2026 are published.",
   "k": [
    "lok sabha reserved seats",
    "sc st reservation in parliament",
@@ -3242,7 +3242,7 @@
   ]
  },
  "art-330A": {
-  "s": "Seats are to be reserved for women in the House of the People: about one-third of all directly elected seats, including about one-third of the seats reserved for Scheduled Castes and Scheduled Tribes. This takes effect only after a fresh delimitation based on the first census after the 2023 amendment came into force (article 334A).",
+  "s": "Seats are to be reserved for women in the Lok Sabha: about one-third of all directly elected seats, including about one-third of the seats reserved for Scheduled Castes and Scheduled Tribes. This takes effect only after a fresh delimitation based on the first census after the 2023 amendment came into force (article 334A).",
   "k": [
    "women reservation lok sabha",
    "one-third seats for women",
@@ -3250,7 +3250,7 @@
   ]
  },
  "art-331": {
-  "s": "If the President thought the Anglo-Indian community was not adequately represented in the House of the People, the President could nominate up to two of its members. Under article 334, this power lapsed in January 2020.",
+  "s": "If the President thought the Anglo-Indian community was not adequately represented in the Lok Sabha, the President could nominate up to two of its members. Under article 334, this power lapsed in January 2020.",
   "k": [
    "anglo-indian nomination lok sabha",
    "nominated members house of the people"
@@ -3280,7 +3280,7 @@
   ]
  },
  "art-334": {
-  "s": "Reservation of seats for Scheduled Castes and Scheduled Tribes in the House of the People and State Assemblies ends 80 years after the Constitution began (January 2030). Nomination of Anglo-Indian members ended after 70 years (January 2020). Existing members continue until that House or Assembly is dissolved.",
+  "s": "Reservation of seats for Scheduled Castes and Scheduled Tribes in the Lok Sabha and State Assemblies ends 80 years after the Constitution began (January 2030). Nomination of Anglo-Indian members ended after 70 years (January 2020). Existing members continue until that House or Assembly is dissolved.",
   "k": [
    "when does sc st reservation end",
    "end of anglo-indian nomination",
@@ -3288,7 +3288,7 @@
   ]
  },
  "art-334A": {
-  "s": "Reservation of seats for women in the House of the People, State Assemblies and the Delhi Assembly starts after a delimitation based on the first census taken after the 2023 amendment came into force, and ends after 15 years, though seats continue till a date Parliament fixes by law. Seats rotate after each later delimitation as Parliament decides.",
+  "s": "Reservation of seats for women in the Lok Sabha, State Assemblies and the Delhi Assembly starts after a delimitation based on the first census taken after the 2023 amendment came into force, and ends after 15 years, though seats continue till a date Parliament fixes by law. Seats rotate after each later delimitation as Parliament decides.",
   "k": [
    "when women reservation starts",
    "women reservation delimitation",
@@ -3398,7 +3398,7 @@
   ]
  },
  "art-344": {
-  "s": "The President had to set up a Commission five and ten years after the Constitution began to recommend wider use of Hindi, limits on English and related matters, respecting non-Hindi speakers' interests in public services. A committee of 20 House of the People and 10 Council of States members reviews its advice, and the President can then issue directions.",
+  "s": "The President had to set up a Commission five and ten years after the Constitution began to recommend wider use of Hindi, limits on English and related matters, respecting non-Hindi speakers' interests in public services. A committee of 20 Lok Sabha and 10 Rajya Sabha members reviews its advice, and the President can then issue directions.",
   "k": [
    "official language commission",
    "parliament committee on official language",
@@ -3479,7 +3479,7 @@
   ]
  },
  "art-352": {
-  "s": "On the Union Cabinet's written decision, the President can proclaim an Emergency in all or part of India over actual or imminent war, external aggression or armed rebellion. Both Houses must approve it within one month and every six months, by a majority of total membership and two-thirds present and voting, and the House of the People can end it.",
+  "s": "On the Union Cabinet's written decision, the President can proclaim an Emergency in all or part of India over actual or imminent war, external aggression or armed rebellion. Both Houses must approve it within one month and every six months, by a majority of total membership and two-thirds present and voting, and the Lok Sabha can end it.",
   "k": [
    "national emergency",
    "who can declare emergency",
@@ -3522,7 +3522,7 @@
   ]
  },
  "art-357": {
-  "s": "When Parliament holds a State Legislature's powers under article 356, it can give the President power to make the State's laws and delegate it, and the President can authorise State spending when the House of the People is not sitting. Such laws stay in force after the Proclamation ends until a competent legislature changes them.",
+  "s": "When Parliament holds a State Legislature's powers under article 356, it can give the President power to make the State's laws and delegate it, and the President can authorise State spending when the Lok Sabha is not sitting. Such laws stay in force after the Proclamation ends until a competent legislature changes them.",
   "k": [
    "laws during president's rule",
    "state laws made by parliament",
@@ -3712,7 +3712,7 @@
   ]
  },
  "art-371F": {
-  "s": "Special rules for Sikkim from the Thirty-sixth Amendment of 1975: its Assembly has at least 30 members, the Assembly elected in April 1974 becomes the State Assembly with a four-year term, and Sikkim gets one seat in the House of the People. The Governor has special responsibility for peace and fair advancement of all sections of the population.",
+  "s": "Special rules for Sikkim from the Thirty-sixth Amendment of 1975: its Assembly has at least 30 members, the Assembly elected in April 1974 becomes the State Assembly with a four-year term, and Sikkim gets one seat in the Lok Sabha. The Governor has special responsibility for peace and fair advancement of all sections of the population.",
   "k": [
    "sikkim special provision",
    "sikkim assembly seats",
@@ -4032,7 +4032,7 @@
   ]
  },
  "part-XV": {
-  "s": "Places control of elections in an Election Commission and lets Parliament and State Legislatures make election laws. No one can be left off the electoral roll only because of religion, race, caste or sex, and elections to the House of the People and State Assemblies use adult suffrage. Courts cannot question delimitation laws, and an election can be challenged only by an election petition.",
+  "s": "Places control of elections in an Election Commission and lets Parliament and State Legislatures make election laws. No one can be left off the electoral roll only because of religion, race, caste or sex, and elections to the Lok Sabha and State Assemblies use adult suffrage. Courts cannot question delimitation laws, and an election can be challenged only by an election petition.",
   "k": [
    "election commission",
    "electoral roll",
@@ -4041,7 +4041,7 @@
   ]
  },
  "part-XVI": {
-  "s": "Reserves seats for Scheduled Castes and Scheduled Tribes, and once delimitation is done for women, in the House of the People and State Assemblies, and sets when reservation ends; Anglo-Indian nomination has lapsed. It sets up National Commissions for Scheduled Castes, Scheduled Tribes and Backward Classes, covers claims to government posts, and lets the President notify who counts as Scheduled Castes, Scheduled Tribes and backward classes.",
+  "s": "Reserves seats for Scheduled Castes and Scheduled Tribes, and once delimitation is done for women, in the Lok Sabha and State Assemblies, and sets when reservation ends; Anglo-Indian nomination has lapsed. It sets up National Commissions for Scheduled Castes, Scheduled Tribes and Backward Classes, covers claims to government posts, and lets the President notify who counts as Scheduled Castes, Scheduled Tribes and backward classes.",
   "k": [
    "sc st reservation",
    "women reservation in legislature",
@@ -4132,7 +4132,7 @@
   ]
  },
  "sch-FOURTH": {
-  "s": "Allots the Council of States (Rajya Sabha) seats filled by representatives of each State and Union territory, 233 in total, ranging from 31 for Uttar Pradesh to 1 for several smaller States and Puducherry. Members nominated by the President come on top of these. It serves Articles 4(1) and 80(2).",
+  "s": "Allots the Rajya Sabha (Rajya Sabha) seats filled by representatives of each State and Union territory, 233 in total, ranging from 31 for Uttar Pradesh to 1 for several smaller States and Puducherry. Members nominated by the President come on top of these. It serves Articles 4(1) and 80(2).",
   "k": [
    "council of states seats",
    "seats per state in council of states",

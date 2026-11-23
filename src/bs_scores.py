@@ -20,7 +20,7 @@ FEAT = {
  'jr':       dict(t='Judicial review', st='rec', c='L. Chandra Kumar (1997); I.R. Coelho (2007)', s='The High Courts and the Supreme Court must be able to test laws and government action against the Constitution.'),
  'indep':    dict(t='Independence of the judiciary', st='rec', c='SC Advocates-on-Record (NJAC, 2015)', s='Judges must be appointed and kept in office free of control by the executive.'),
  'rol':      dict(t='Rule of law', st='rec', c='P. Sambamurthy (1986); I.R. Coelho (2007); Raj Narain (1975)', s='Government acts under law, and its decisions can be tested by independent courts.'),
- 'equality': dict(t='Equality and the essence of fundamental rights', st='rec', c='Minerva Mills (1980); I.R. Coelho (2007)', s='The core of Articles 14, 19 and 21, and the essence of each fundamental right, cannot be abrogated.'),
+ 'equality': dict(t='Equality and the core of fundamental rights', st='rec', c='Minerva Mills (1980); I.R. Coelho (2007)', s='The core of Articles 14, 19 and 21, and of each fundamental right, cannot be taken away.'),
  'balance':  dict(t='Balance between Fundamental Rights and Directive Principles', st='rec', c='Minerva Mills (1980)', s='Parts III and IV must be kept in harmony; neither may be made to swallow the other.'),
  'democracy':dict(t='Democracy and republican government', st='rec', c='Kesavananda Bharati (1973, Sikri CJ); S.R. Bommai (1994)', s='Government by elected representatives, with an elected head of state.'),
  'elections':dict(t='Free and fair elections', st='rec', c='Indira Gandhi v Raj Narain (1975)', s='Elections must be free and fair, and their results open to lawful challenge.'),
@@ -37,7 +37,7 @@ FEAT = {
 NOTE = {
  '31C': 'Two amendments to this article have been struck down: the declaration clause added in 1971 (Kesavananda Bharati, 1973) and the 1976 widening to all Directive Principles (Minerva Mills, 1980).',
  '368': 'Clauses (4) and (5), added in 1976 to bar courts from reviewing amendments, were struck down in Minerva Mills (1980).',
- '371D': 'Clause (5) and its proviso were struck down in P. Sambamurthy (1986) for breaching the rule of law.',
+ '371D': 'Clause (5) and the condition attached to it were struck down in P. Sambamurthy (1986) for breaching the rule of law.',
  '323A': 'Clause (2)(d) was struck down in L. Chandra Kumar (1997) as far as it shut out the High Courts and the Supreme Court.',
  '323B': 'Clause (3)(d) was struck down in L. Chandra Kumar (1997) as far as it shut out the High Courts and the Supreme Court.',
  '124': 'The 2014 changes made by the Ninety-ninth Amendment (NJAC) were struck down in 2015.',
@@ -54,7 +54,7 @@ NOTE = {
  '329A': 'Clauses (4) and (5) were struck down in Indira Gandhi v Raj Narain (1975); the whole article was later omitted in 1979.',
  '300A': 'Kesavananda Bharati (Khanna J) held that the right to property is not part of the basic structure.',
  '356': 'S.R. Bommai (1994) held that a Proclamation under this article is open to judicial review.',
- '370': 'In re Article 370 (2023) upheld its abrogation and called it a temporary provision.',
+ '370': 'In re Article 370 (2023) upheld the 2019 decision that it no longer applies, and called it a temporary provision.',
  '31B': 'I.R. Coelho (2007): laws added to the Ninth Schedule on or after 24 April 1973 get no blanket protection and are tested against the basic structure.',
  '21A': 'Pramati (2014) held that inserting this article did not alter the basic structure.',
  '15': 'Coelho (2007) named Article 15 as one of the fundamental rights that form part of the basic structure. Clauses (5) and (6) were upheld in Pramati (2014) and Janhit Abhiyan (2022).',
@@ -74,7 +74,7 @@ def r(arts, band, why, feats, cases=''):
     R.append(dict(a=arts.split(), b=band, w=why, f=feats.split(), cs=cases))
 
 # HELD: the Court has itself ruled the core of these provisions part of the basic structure
-r('14 19 21', 'held', 'Minerva Mills (1980) held that abrogating Articles 14 and 19 for a class of laws destroys the basic structure; Coelho (2007) treats the essence of Articles 14, 19 and 21 as the test for Ninth Schedule laws.', 'equality balance rol')
+r('14 19 21', 'held', 'Minerva Mills (1980) held that setting aside Articles 14 and 19 for a whole class of laws destroys the basic structure; Coelho (2007) treats the core of Articles 14, 19 and 21 as the test for Ninth Schedule laws.', 'equality balance rol')
 r('32', 'held', 'Coelho (2007) called Article 32 "an important and integral part of the basic structure", and L. Chandra Kumar (1997) held that judicial review under it cannot be ousted.', 'jr access')
 r('226 227', 'held', 'L. Chandra Kumar (1997) held that the High Courts\' power of judicial review under Article 226, and their superintendence under Article 227, are part of the inviolable basic structure.', 'jr access')
 r('368', 'held', 'Minerva Mills (1980) held that a limited amending power is itself a basic feature, so Parliament cannot amend this article to make its power unlimited.', 'amend supremacy')
@@ -124,7 +124,7 @@ r('141 142', 'open', 'Binding precedent and the power to do complete justice. Im
 r('148 149', 'open', 'An independent auditor of public accounts supports the rule of law and accountability; untested.', 'rol sop')
 r('228 216', 'open', 'Organisational rules for the High Courts. Some core is needed for judicial review, but the details can change.', 'jr indep')
 r('356', 'open', 'President\'s Rule. Its use is reviewable (Bommai), and abuse can damage federalism and democracy, but the article itself is not part of the basic structure.', 'federal democracy jr')
-r('359', 'open', 'Suspension of rights during emergency. Since 1978, Articles 20 and 21 cannot be suspended; widening this power again could touch the essence of rights.', 'equality rol')
+r('359', 'open', 'Suspension of rights during emergency. Since 1978, Articles 20 and 21 cannot be suspended; widening this power again could touch the core of rights.', 'equality rol')
 # UNLIKELY (no recognised feature depends on the provision itself)
 r('2 3 4', 'unlikely', 'Parliament already changes State boundaries by ordinary law; the federal structure survives individual changes.', 'federal')
 r('5 6 7 8 9 10 11', 'vunlikely', 'Citizenship rules. Parliament already controls citizenship by law under Article 11.', '')
@@ -160,7 +160,7 @@ r('352 353 354 355 357 358 360', 'unlikely', 'Emergency powers. The articles the
 r('361 361A 361B 363 363A 364 365', 'unlikely', 'Immunities and miscellaneous provisions.', 'rol')
 r('372 372A 373 374 375 376 377 378 378A 392', 'vunlikely', 'Transitional provisions continuing earlier laws, courts and officers.', '')
 r('300A', 'vunlikely', 'The right to property. Kesavananda Bharati (Khanna J) held it is not part of the basic structure.', '')
-r('369 370 371 371A 371B 371C 371D 371E 371F 371G 371H 371-I 371J', 'vunlikely', 'Temporary and special provisions for particular States. Several have been changed or abrogated and upheld.', 'federal')
+r('369 370 371 371A 371B 371C 371D 371E 371F 371G 371H 371-I 371J', 'vunlikely', 'Temporary and special provisions for particular States. Several have been changed or ended, and the changes upheld.', 'federal')
 r('343 344 345 346 347 348 349 350', 'vunlikely', 'Official language rules.', '')
 r('18', 'unlikely', 'Abolition of titles. An equality measure, but minor; no case suggests it is essential.', 'equality')
 r('39A', 'open', 'Equal justice and free legal aid, the directive most closely tied to effective access to justice.', 'access equality balance')
