@@ -18,6 +18,7 @@ Public, unbranded reader of the Constitution of India for citizens and students.
 - `data/bs_settled.json` (settled law with sources) and `bs_scores.py` (generates `data/bs.json`, the basic structure bands).
 - `hist.py`: parses footnotes into the History timeline.
 - `data/next.json`: the forecast of the next amendment (`#next-amendment`): pending Bills, the Constitution's own deadlines, recent Bill timings and outcomes, with official sources. Re-check it against Parliament's bill records (sansad.in) after each session of Parliament and update `asOn`. Leave out facts that rest only on news or broadcast reports.
+- `data/terms.json`: plain explanations of terms used in our own text, shown on tap (first use per page) and in the Glossary. Each cites the article that creates or defines it; terms the Constitution does not define cite a Supreme Court judgment on the Court's own server. `make_data.py` checks every cited article and Schedule exists.
 - `tpl/app.js`, `tpl/style.css`, `tpl/shell.html`: the app (hash routes such as `#art-19.1.a`, `#sch-SIXTH-b12`, `#basic-structure`, `#about`).
 - `audit/`: the November 2026 clause-by-clause summary audit.
 
