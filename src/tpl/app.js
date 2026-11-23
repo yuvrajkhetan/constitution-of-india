@@ -587,7 +587,7 @@ function vContents(r) {
   </section>`;
 }
 function partTree(openAll) {
-  let h = `<div class="group" style="margin-bottom:10px"><a class="row" href="#preamble"><span class="num" style="min-width:56px"></span><span class="tt" style="font-weight:600">Preamble</span><span class="aux">${I.chev}</span></a></div>`;
+  let h = `<div class="group" style="margin-bottom:10px"><a class="row pre-row" href="#preamble"><span class="num tile" style="--pc:var(--saffron)" aria-hidden="true">${I.quote}</span><span><span class="tt">Preamble</span><span class="ss">We, the People of India</span></span><span class="aux">${I.chev}</span></a></div>`;
   PARTS.forEach((P, i) => {
     const r = partRange(P);
     let inner = "";

@@ -600,6 +600,10 @@ a,button,summary{touch-action:manipulation}
 .tile,details.pt-g>summary .pn{display:grid;place-items:center;min-width:0;width:42px;height:42px;border-radius:10px;font-size:14px;font-weight:700;color:var(--pc,var(--navy));
   background:color-mix(in srgb,var(--pc,var(--navy)) 12%,var(--surface));outline:1px dashed color-mix(in srgb,var(--pc,var(--navy)) 26%,transparent);outline-offset:-4px;letter-spacing:-.02em}
 .row .num.tile{min-width:0}
+.tile svg{width:20px;height:20px}
+/* the Preamble row lines up with the Part rows below it */
+.pre-row{grid-template-columns:56px minmax(0,1fr) auto;gap:12px;padding:14px 16px}.pre-row .tt{font-weight:600;font-size:17px;letter-spacing:-.02em}.pre-row .num.tile{color:var(--pc)}
+@media (max-width:700px){.pre-row{grid-template-columns:44px minmax(0,1fr) auto;padding:14px}}
 .row:hover .tile,details.pt-g>summary:hover .pn{animation:wiggle .6s ease}
 
 /* joyful but small: save pop, quilt loader */
