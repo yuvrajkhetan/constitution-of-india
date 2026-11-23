@@ -1,67 +1,347 @@
 {
-  "_note": "Plain explanations of terms used in our own text (summaries, forecast, basic structure, amendment notes), never in the official text. Each rests on the article that creates or defines it, cited in src; terms the Constitution does not define cite an official source. m is a case-insensitive pattern with no capturing groups. Only the first use in each block of text is marked.",
+  "_note": "Plain explanations of terms used in our own text (summaries, forecast, basic structure, amendment notes), never in the official text. Each rests on the article that creates or defines it, cited in src; terms the Constitution does not define cite an official source. m is a case-insensitive pattern with no capturing groups. Only the first use in each block of text is marked. The writs, judicial review and federalism are not defined in the Constitution; they cite Supreme Court judgments on the Court's own server (api.sci.gov.in), checked November 2026.",
   "terms": [
-    {"id": "consolidated-fund", "t": "Consolidated Fund", "m": "Consolidated Funds?",
-     "d": "The government's main account. Taxes, money it borrows and loans repaid to it go in, and money can come out only under a law passed by Parliament or, for a State, its Legislature.",
-     "src": [["Article 266", "#art-266"], ["Article 114", "#art-114"], ["Article 204", "#art-204"]]},
-    {"id": "contingency-fund", "t": "Contingency Fund", "m": "Contingency Funds?",
-     "d": "A reserve the President, or a State's Governor, can draw on for urgent, unforeseen spending before Parliament or the State Legislature approves it.",
-     "src": [["Article 267", "#art-267"]]},
-    {"id": "money-bill", "t": "Money Bill", "m": "Money Bills?",
-     "d": "A Bill only about taxes, government borrowing or spending from the Consolidated Fund. It can be introduced only in the Lok Sabha. The Rajya Sabha can suggest changes within 14 days, which the Lok Sabha may accept or reject.",
-     "src": [["Article 109", "#art-109"], ["Article 110", "#art-110"]]},
-    {"id": "cess", "t": "Cess and surcharge", "m": "cess(?:es)?|surcharges?",
-     "d": "Extra taxes the Union adds, either for a stated purpose (a cess) or on top of an existing tax (a surcharge). Unlike most Union taxes, they are not shared with the States.",
-     "src": [["Article 270", "#art-270"], ["Article 271", "#art-271"]]},
-    {"id": "ordinance", "t": "Ordinance", "m": "ordinances?",
-     "d": "A temporary law the President, or a State's Governor, can make while the legislature is not sitting. It ends six weeks after the legislature meets again, or sooner if the legislature rejects it. To last, it must be replaced by a law the legislature passes.",
-     "src": [["Article 123", "#art-123"], ["Article 213", "#art-213"]]},
-    {"id": "assent", "t": "Assent", "m": "assent(?:s|ed)?",
-     "d": "The formal approval of a Bill by the President or a State's Governor after the legislature passes it. A Bill becomes law only with it.",
-     "src": [["Article 111", "#art-111"], ["Article 200", "#art-200"]]},
-    {"id": "joint-sitting", "t": "Joint sitting", "m": "joint sittings?",
-     "d": "A meeting of both Houses of Parliament together, called by the President to settle a deadlock over an ordinary Bill. The Bill passes if a majority of the members present and voting agree.",
-     "src": [["Article 108", "#art-108"]]},
-    {"id": "quorum", "t": "Quorum", "m": "quorum",
-     "d": "The smallest number of members who must be present for a House to do business. In each House of Parliament it is one-tenth of all members. In a State House it is ten members or one-tenth, whichever is more.",
-     "src": [["Article 100", "#art-100"], ["Article 189", "#art-189"]]},
-    {"id": "prorogue", "t": "Prorogue", "m": "prorogu(?:e|es|ed|ing|ation)",
-     "d": "To formally end a session of a House without dissolving it. The President, or a State's Governor, does this.",
-     "src": [["Article 85", "#art-85"], ["Article 174", "#art-174"]]},
-    {"id": "lapse", "t": "Lapse", "m": "laps(?:e|es|ed)",
-     "d": "To end automatically. A Bill lapses if it dies without becoming law, for example when it is still pending in the Lok Sabha as the Lok Sabha is dissolved.",
-     "src": [["Article 107", "#art-107"], ["Article 196", "#art-196"]]},
-    {"id": "lists", "t": "Union, State and Concurrent Lists", "m": "Union List|State List|Concurrent List",
-     "d": "The three lists of subjects in the Seventh Schedule. Parliament makes laws on Union List subjects, State Legislatures on State List subjects, and both on Concurrent List subjects. If a Union law and a State law on a Concurrent subject clash, the Union law generally prevails.",
-     "src": [["Article 246", "#art-246"], ["Article 254", "#art-254"], ["Seventh Schedule", "#sch-SEVENTH"]]},
-    {"id": "residuary", "t": "Residuary powers", "m": "residuary powers?",
-     "d": "Parliament's power to make laws on any subject that is not in any of the three lists, including taxes not listed there.",
-     "src": [["Article 248", "#art-248"]]},
-    {"id": "adult-suffrage", "t": "Adult suffrage", "m": "adult suffrage",
-     "d": "The right of every citizen aged 18 or over to vote, unless disqualified under the Constitution or a law, for example for a crime or a corrupt practice.",
-     "src": [["Article 326", "#art-326"]]},
-    {"id": "delimitation", "t": "Delimitation", "m": "delimitation",
-     "d": "Redrawing the boundaries of election constituencies, and fixing how many seats each State has, on the basis of a census.",
-     "src": [["Article 82", "#art-82"], ["Article 170", "#art-170"]]},
-    {"id": "scheduled-areas", "t": "Scheduled Areas", "m": "Scheduled Areas?",
-     "d": "Areas the President declares under the Fifth Schedule. There the Governor can direct that a law does not apply or applies with changes, and can make regulations, for example on land transfer and money-lending to members of Scheduled Tribes.",
-     "src": [["Article 244", "#art-244"], ["Fifth Schedule", "#sch-FIFTH"]]},
-    {"id": "office-of-profit", "t": "Office of profit", "m": "offices? of profit",
-     "d": "A paid post under the Government of India or a State government. Holding one disqualifies a person from being an MP or MLA, unless a law exempts that post.",
-     "src": [["Article 102", "#art-102"], ["Article 191", "#art-191"]]},
-    {"id": "writ", "t": "Writ", "m": "writs?|habeas corpus|mandamus|quo warranto|certiorari",
-     "d": "A formal order the Supreme Court or a High Court can issue to enforce rights. The Constitution names five kinds.",
-     "list": [["Habeas corpus", "brings a detained person before the court, so it can check whether the detention is lawful."],
-              ["Mandamus", "makes a public official or body do a duty the law requires of them."],
-              ["Prohibition", "stops a lower court or tribunal from acting beyond its powers."],
-              ["Quo warranto", "makes someone show by what right they hold a public office."],
-              ["Certiorari", "cancels a decision of a lower court or tribunal that went beyond its powers or broke the law."]],
-     "src": [["Article 32", "#art-32"], ["Article 226", "#art-226"]], "pending": true},
-    {"id": "judicial-review", "t": "Judicial review", "m": "judicial review",
-     "d": "The power of the courts to check whether laws and government actions follow the Constitution, and to strike down those that do not.",
-     "src": [["Article 13", "#art-13"], ["Article 32", "#art-32"], ["Article 226", "#art-226"]], "pending": true},
-    {"id": "federalism", "t": "Federalism", "m": "federalism",
-     "d": "The sharing of power between the Union and the States, each with its own subjects, as the Constitution sets out.",
-     "src": [["Articles 245 to 254", "#art-245"]], "pending": true}
+    {
+      "id": "consolidated-fund",
+      "t": "Consolidated Fund",
+      "m": "Consolidated Funds?",
+      "d": "The government's main account. Taxes, money it borrows and loans repaid to it go in, and money can come out only under a law passed by Parliament or, for a State, its Legislature.",
+      "src": [
+        [
+          "Article 266",
+          "#art-266"
+        ],
+        [
+          "Article 114",
+          "#art-114"
+        ],
+        [
+          "Article 204",
+          "#art-204"
+        ]
+      ]
+    },
+    {
+      "id": "contingency-fund",
+      "t": "Contingency Fund",
+      "m": "Contingency Funds?",
+      "d": "A reserve the President, or a State's Governor, can draw on for urgent, unforeseen spending before Parliament or the State Legislature approves it.",
+      "src": [
+        [
+          "Article 267",
+          "#art-267"
+        ]
+      ]
+    },
+    {
+      "id": "money-bill",
+      "t": "Money Bill",
+      "m": "Money Bills?",
+      "d": "A Bill only about taxes, government borrowing or spending from the Consolidated Fund. It can be introduced only in the Lok Sabha. The Rajya Sabha can suggest changes within 14 days, which the Lok Sabha may accept or reject.",
+      "src": [
+        [
+          "Article 109",
+          "#art-109"
+        ],
+        [
+          "Article 110",
+          "#art-110"
+        ]
+      ]
+    },
+    {
+      "id": "cess",
+      "t": "Cess and surcharge",
+      "m": "cess(?:es)?|surcharges?",
+      "d": "Extra taxes the Union adds, either for a stated purpose (a cess) or on top of an existing tax (a surcharge). Unlike most Union taxes, they are not shared with the States.",
+      "src": [
+        [
+          "Article 270",
+          "#art-270"
+        ],
+        [
+          "Article 271",
+          "#art-271"
+        ]
+      ]
+    },
+    {
+      "id": "ordinance",
+      "t": "Ordinance",
+      "m": "ordinances?",
+      "d": "A temporary law the President, or a State's Governor, can make while the legislature is not sitting. It ends six weeks after the legislature meets again, or sooner if the legislature rejects it. To last, it must be replaced by a law the legislature passes.",
+      "src": [
+        [
+          "Article 123",
+          "#art-123"
+        ],
+        [
+          "Article 213",
+          "#art-213"
+        ]
+      ]
+    },
+    {
+      "id": "assent",
+      "t": "Assent",
+      "m": "assent(?:s|ed)?",
+      "d": "The formal approval of a Bill by the President or a State's Governor after the legislature passes it. A Bill becomes law only with it.",
+      "src": [
+        [
+          "Article 111",
+          "#art-111"
+        ],
+        [
+          "Article 200",
+          "#art-200"
+        ]
+      ]
+    },
+    {
+      "id": "joint-sitting",
+      "t": "Joint sitting",
+      "m": "joint sittings?",
+      "d": "A meeting of both Houses of Parliament together, called by the President to settle a deadlock over an ordinary Bill. The Bill passes if a majority of the members present and voting agree.",
+      "src": [
+        [
+          "Article 108",
+          "#art-108"
+        ]
+      ]
+    },
+    {
+      "id": "quorum",
+      "t": "Quorum",
+      "m": "quorum",
+      "d": "The smallest number of members who must be present for a House to do business. In each House of Parliament it is one-tenth of all members. In a State House it is ten members or one-tenth, whichever is more.",
+      "src": [
+        [
+          "Article 100",
+          "#art-100"
+        ],
+        [
+          "Article 189",
+          "#art-189"
+        ]
+      ]
+    },
+    {
+      "id": "prorogue",
+      "t": "Prorogue",
+      "m": "prorogu(?:e|es|ed|ing|ation)",
+      "d": "To formally end a session of a House without dissolving it. The President, or a State's Governor, does this.",
+      "src": [
+        [
+          "Article 85",
+          "#art-85"
+        ],
+        [
+          "Article 174",
+          "#art-174"
+        ]
+      ]
+    },
+    {
+      "id": "lapse",
+      "t": "Lapse",
+      "m": "laps(?:e|es|ed)",
+      "d": "To end automatically. A Bill lapses if it dies without becoming law, for example when it is still pending in the Lok Sabha as the Lok Sabha is dissolved.",
+      "src": [
+        [
+          "Article 107",
+          "#art-107"
+        ],
+        [
+          "Article 196",
+          "#art-196"
+        ]
+      ]
+    },
+    {
+      "id": "lists",
+      "t": "Union, State and Concurrent Lists",
+      "m": "Union List|State List|Concurrent List",
+      "d": "The three lists of subjects in the Seventh Schedule. Parliament makes laws on Union List subjects, State Legislatures on State List subjects, and both on Concurrent List subjects. If a Union law and a State law on a Concurrent subject clash, the Union law generally prevails.",
+      "src": [
+        [
+          "Article 246",
+          "#art-246"
+        ],
+        [
+          "Article 254",
+          "#art-254"
+        ],
+        [
+          "Seventh Schedule",
+          "#sch-SEVENTH"
+        ]
+      ]
+    },
+    {
+      "id": "residuary",
+      "t": "Residuary powers",
+      "m": "residuary powers?",
+      "d": "Parliament's power to make laws on any subject that is not in any of the three lists, including taxes not listed there.",
+      "src": [
+        [
+          "Article 248",
+          "#art-248"
+        ]
+      ]
+    },
+    {
+      "id": "adult-suffrage",
+      "t": "Adult suffrage",
+      "m": "adult suffrage",
+      "d": "The right of every citizen aged 18 or over to vote, unless disqualified under the Constitution or a law, for example for a crime or a corrupt practice.",
+      "src": [
+        [
+          "Article 326",
+          "#art-326"
+        ]
+      ]
+    },
+    {
+      "id": "delimitation",
+      "t": "Delimitation",
+      "m": "delimitation",
+      "d": "Redrawing the boundaries of election constituencies, and fixing how many seats each State has, on the basis of a census.",
+      "src": [
+        [
+          "Article 82",
+          "#art-82"
+        ],
+        [
+          "Article 170",
+          "#art-170"
+        ]
+      ]
+    },
+    {
+      "id": "scheduled-areas",
+      "t": "Scheduled Areas",
+      "m": "Scheduled Areas?",
+      "d": "Areas the President declares under the Fifth Schedule. There the Governor can direct that a law does not apply or applies with changes, and can make regulations, for example on land transfer and money-lending to members of Scheduled Tribes.",
+      "src": [
+        [
+          "Article 244",
+          "#art-244"
+        ],
+        [
+          "Fifth Schedule",
+          "#sch-FIFTH"
+        ]
+      ]
+    },
+    {
+      "id": "office-of-profit",
+      "t": "Office of profit",
+      "m": "offices? of profit",
+      "d": "A paid post under the Government of India or a State government. Holding one disqualifies a person from being an MP or MLA, unless a law exempts that post.",
+      "src": [
+        [
+          "Article 102",
+          "#art-102"
+        ],
+        [
+          "Article 191",
+          "#art-191"
+        ]
+      ]
+    },
+    {
+      "id": "writ",
+      "t": "Writ",
+      "m": "writs?|habeas corpus|mandamus|quo warranto|certiorari",
+      "d": "A formal order the Supreme Court or a High Court can issue to enforce rights. The Constitution names five kinds.",
+      "list": [
+        [
+          "Habeas corpus",
+          "brings a detained person before the court, so it can check whether the detention is lawful."
+        ],
+        [
+          "Mandamus",
+          "makes a public official or body do a duty the law requires of them."
+        ],
+        [
+          "Prohibition",
+          "stops a lower court or tribunal from acting beyond its powers."
+        ],
+        [
+          "Quo warranto",
+          "makes someone show by what right they hold a public office."
+        ],
+        [
+          "Certiorari",
+          "cancels a decision of a lower court or tribunal that acted without, or beyond, its powers."
+        ]
+      ],
+      "src": [
+        [
+          "Article 32",
+          "#art-32"
+        ],
+        [
+          "Article 226",
+          "#art-226"
+        ],
+        [
+          "Kanu Sanyal (1973) on habeas corpus",
+          "https://api.sci.gov.in/jonew/judis/6463.pdf"
+        ],
+        [
+          "Army Welfare Education Society (2024) on mandamus",
+          "https://api.sci.gov.in/supremecourt/2020/26155/26155_2020_1_1502_53546_Judgement_09-Jul-2024.pdf"
+        ],
+        [
+          "Hari Vishnu Kamath (1954) on prohibition and certiorari",
+          "https://api.sci.gov.in/jonew/judis/857.pdf"
+        ],
+        [
+          "Renu (2014) on quo warranto",
+          "https://api.sci.gov.in/jonew/judis/41221.pdf"
+        ]
+      ]
+    },
+    {
+      "id": "judicial-review",
+      "t": "Judicial review",
+      "m": "judicial review",
+      "d": "The power of the courts to decide whether laws are valid under the Constitution and whether government actions are lawful, and to strike down those that are not.",
+      "src": [
+        [
+          "Article 13",
+          "#art-13"
+        ],
+        [
+          "Article 32",
+          "#art-32"
+        ],
+        [
+          "Article 226",
+          "#art-226"
+        ],
+        [
+          "Minerva Mills (1980)",
+          "https://api.sci.gov.in/pdf/aorexam/leading_cases/3.pdf"
+        ]
+      ]
+    },
+    {
+      "id": "federalism",
+      "t": "Federalism",
+      "m": "federalism",
+      "d": "The sharing of power between the Union and the States, each with its own subjects, as the Constitution sets out.",
+      "src": [
+        [
+          "Articles 245 to 254",
+          "#art-245"
+        ],
+        [
+          "S.R. Bommai (1994)",
+          "https://api.sci.gov.in/pdf/aorexam/leading_cases/8.pdf"
+        ]
+      ]
+    }
   ]
 }

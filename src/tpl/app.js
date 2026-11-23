@@ -1657,7 +1657,7 @@ function openTerm(btn) {
   const x = TERM_BY.get(btn.dataset.term); if (!x) return;
   showPop(btn, x.t, `<b>${esc(x.t)}</b><span class="td">${esc(x.d)}</span>${x.list ? `<dl class="tl">${x.list.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join("")}</dl>` : ""}<span class="tsrc">${termSrc(x)}</span>`);
 }
-const termSrc = x => "Based on " + x.src.map(([l, h]) => /^#/.test(h) ? `<a href="${h}">${esc(l)}</a>` : `<a href="${esc(h)}" target="_blank" rel="noopener">${esc(l)}</a>`).join(", ");
+const termSrc = x => "Based on " + x.src.map(([l, h]) => /^#/.test(h) ? `<a href="${h}">${esc(l)}</a>` : `<a href="${esc(h)}" target="_blank" rel="noopener">${esc(l)}</a>`).join(" · ");
 function showPop(btn, label, html) {
   closePop(); popBtn = btn; btn.setAttribute("aria-expanded", "true");
   pop = document.createElement("div"); pop.className = "pop"; pop.setAttribute("role", "dialog"); pop.setAttribute("aria-label", label);
