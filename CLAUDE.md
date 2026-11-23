@@ -5,7 +5,7 @@ Public, unbranded reader of the Constitution of India for citizens and students.
 ## Rules
 
 - No em dashes in anything we write (summaries, UI text, notes). The official text keeps its own.
-- The official text comes only from *The Constitution of India [As on 10th September, 2026]*, Legislative Department. Never edit its wording, except to fix extraction errors against `src/source/`.
+- The official text comes only from *The Constitution of India [As on 10th September, 2026]*, Legislative Department. Never edit its wording, except to fix extraction errors against `src/source/`. One owner-approved exception: the edition's three Appendices are not part of the Constitution and are left out, and `make_data.py` removes the five footnote phrases that point to them (the source data stays as published).
 - Anything added (summaries, themes, notes, basic structure calls) must rest on official, sound sources: Supreme Court judgments and publications, Legislative Department Act texts, Lok Sabha/Rajya Sabha documents, the National Portal of India. Cite them.
 - Plain English, short sentences, no legal jargon. Summaries must not start with "This article".
 - Apple-style design, a subtle patchwork quilt drawn from Indian textiles, and the Palatino font stack (TeX Gyre Pagella as fallback). It must work on phones down to 320px wide.
