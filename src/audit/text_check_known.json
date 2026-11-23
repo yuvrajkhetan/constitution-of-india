@@ -1,0 +1,43 @@
+{
+ "_note": "Known, explained differences between our data and the edition's text, each checked by hand against src/source. check_text.py ignores these and fails on anything else. Add an entry only with its reason.",
+ "coverage": {
+  "\"I, A.B., do swear in the name of God that I will faithfully execute the office": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "“I, A. B., do swear in the name of God that I will faithfully execute the": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "4268A. [Service tax levied by Union and collected and appropriated by": "Article 268A's heading in the body says 'and appropriated'; our title follows the Contents list, which leaves it out (an inconsistency in the edition itself).",
+  "Sanskrit and secondarily on other languages. IndiaCode": "Page furniture ('IndiaCode') run onto the last line of Article 351; the words are in our text.",
+  "[371J. Special provisions with respect to State of Karnataka.—": "Article 371J's heading in the body says 'State of Karnataka'; our title follows the Contents list, which says 'the State of Karnataka'.",
+  "“I, A. B., do swear in the name of God that I will bear true faith": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "“I, A.B., do swear in the name of God that I will not directly or": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "India) do swear in the name of God that I will bear true faith and": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "“I, A.B., do swear in the name of God that I will bear true faith": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "do swear in the name of God that I will bear true faith and": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "Assembly (or Legislative Council), do swear in the name of God that": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "Court at (or of) ……….….. do swear in the name of God that I will bear": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026)."
+ },
+ "notes": {},
+ "articles": {
+  "22:clause that state and": "Words from the long official note quoting the substitute clause (4), which sits beside the text in the source.",
+  "31A:sub heading right to property omitted by s ibid w e f retrospective effect": "Text of the official note on the omitted sub-heading 'Right to Property'.",
+  "31D:kerala air sc right to constitutional remedies": "Fragments of an official note and the next Chapter heading 'Right to Constitutional Remedies'.",
+  "60:solemnly affirm": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "69:solemnly affirm": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "101:india extraordinary p w e f": "Fragment of an official note (Gazette reference) wrapped onto the next page.",
+  "159:solemnly affirm": "The source prints the stacked choice 'swear in the name of God / solemnly affirm' over two lines; ours keeps it as 'swear in the name of God / solemnly affirm' (checked November 2026).",
+  "164:w e f w e f vide notification number s o e dated": "Fragment of an official note (notification number) wrapped onto the next page.",
+  "194:follows w e f": "Fragment of an official note quoting earlier text.",
+  "217:the bracket and figure omitted by the constitution seventh amendment act w e f w e f": "Fragment of an official note on the omitted bracket and figure.",
+  "221:effect st november w e f": "Fragment of an official note ('with effect from 1st November').",
+  "232:interpretation": "Article 232 is a heading-only entry; 'Interpretation' is the next article's heading as printed.",
+  "239A:w e f w e f date yet to be notified": "The old '(date yet to be notified)' still under a new date in the PDF's notes; the visible note gives the date.",
+  "240:the entry f relating to mizoram omitted by the state of mizoram act the entry g relating to arunachal pradesh omitted by": "Text of the official notes on entries (f) and (g), which are in our notes.",
+  "243ZD:filled": "The word 'filled' is displaced by the PDF layout; it is in our text in its right place in clause (b).",
+  "243Z-I:zi": "The letters of the article number '243ZI' itself.",
+  "244A:part xi relations between the union and the states chapter i legislative relations distributionof legislativepowers": "The Part XI and Chapter I headings that follow the article.",
+  "268A:and appropriated": "Article 268A's heading in the body says 'and appropriated'; our title follows the Contents list.",
+  "334:w e f date yet to be notified": "The old '(date yet to be notified)' still under a new date in the PDF's notes.",
+  "370:namely otherwise office": "Fragments of the long official notes quoting the 1952 declaration."
+ },
+ "no_heading": {
+  "238": "Part VII is omitted, so Article 238 has no heading in the body; its omission is recorded in the Part's note."
+ }
+}

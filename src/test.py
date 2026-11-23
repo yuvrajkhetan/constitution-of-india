@@ -1,4 +1,7 @@
-import asyncio
+import asyncio, subprocess, sys
+# the official text against the edition's own text first: a failure here means text has been lost or garbled
+_tc = subprocess.run([sys.executable, "check_text.py"], capture_output=True, text=True)
+print(_tc.stdout.strip())
 from playwright.async_api import async_playwright
 URL="http://localhost:8766/preview.html"
 Q=["Article 21","21a","voting age","money bill","who appoints the governor","freedom of religion","election of president","anti-defection","seventh schedule","42nd amendment","part ixa","\"equal protection\"","GST","citizenship","Keralam","privacy"]
@@ -32,3 +35,4 @@ async def main():
     print("errors", errs)
     await b.close()
 asyncio.run(main())
+if _tc.returncode: sys.exit("text check failed (see above)")

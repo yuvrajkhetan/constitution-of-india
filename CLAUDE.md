@@ -21,6 +21,7 @@ Public, unbranded reader of the Constitution of India for citizens and students.
 - `data/terms.json`: plain explanations of terms used in our own text, shown on tap (first use per page) and in the Glossary. Each cites the article that creates or defines it; terms the Constitution does not define cite a Supreme Court judgment on the Court's own server. `make_data.py` checks every cited article and Schedule exists.
 - `tpl/app.js`, `tpl/style.css`, `tpl/shell.html`: the app (hash routes such as `#art-19.1.a`, `#sch-SIXTH-b12`, `#basic-structure`, `#about`).
 - `audit/`: the November 2026 clause-by-clause summary audit.
+- `check_text.py` and `audit/text_check_known.json`: checks every source line, every official note and every article's words against `src/source`. Add to the known list only after checking the source by hand, with the reason.
 
 ## Build and test
 
@@ -30,7 +31,7 @@ cd src
 python3 make_data.py && python3 build_site.py   # also copies index.html, text.json and the icons to the repo root
 node make_icons.js && python3 build_site.py     # only when the mark, favicon (tpl/favicon.svg) or home hero changes
 ./serve.sh                    # serves src/site on 8765 and 8766
-python3 test.py               # Playwright regression; also run qa_crawl.js for every route on 5 devices
+python3 test.py               # runs check_text.py (official text vs src/source), then the Playwright regression; also run qa_crawl.js for every route on 5 devices
 bash lh.sh "http://localhost:8766/preview.html#art-21"   # Lighthouse
 ```
 
