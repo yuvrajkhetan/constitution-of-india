@@ -349,7 +349,7 @@ function buildDocs() {
     SCH.forEach(s => {
       const T = TEXT.s[s.k];
       d.push({ k: "s0", id: s.k, title: schName(s.k) + " · " + s.t, tl: norm(schName(s.k) + " " + s.t), sum: T.s || s.s, sl: norm(T.s || ""), kw: norm((T.k || []).join(" | ")), body: "", bl: "", nl: "" });
-      T.b.forEach((b, i) => { const txt = plain(b.p || b.h || b.ref || (b.r ? b.r.join(" · ") : "")); if (txt.length > 2) d.push({ k: "s", id: s.k, b: i, title: schName(s.k), tl: "", sum: "", sl: "", kw: "", body: txt, bl: norm(txt), nl: "" }); });
+      T.b.forEach((b, i) => { const txt = b.th ? "" : plain(b.p || b.h || b.ref || (b.r ? b.r.join(" · ") : "")); if (txt.length > 2) d.push({ k: "s", id: s.k, b: i, title: schName(s.k), tl: "", sum: "", sl: "", kw: "", body: txt, bl: norm(txt), nl: "" }); });
     });
   }
   AMD.forEach(a => d.push({ k: "m", id: a.n, title: `${nth(a.n)} Amendment (${a.y})`, tl: norm(`${nth(a.n)} amendment ${ordw(a.n)} amendment ${a.y}`), sum: a.h, sl: norm(a.h + " " + a.tags.join(" ")), kw: "", body: "", bl: "", nl: "" }));
@@ -845,13 +845,23 @@ function vPre() {
 function blocksHTML(blocks, ctx, hlBlock, title) {
   let h = "", rows = [];
   const tn = title ? title.toLowerCase().replace(/[^a-z]/g, "") : null;
-  const flush = () => { if (!rows.length) return; h += `<div class="tbl"><table><tbody>${rows.map(([i, r]) => { const num = /^[\d\[\]\{\}\s\*]+$/.test(r[1]) && r[1].length < 16; return `<tr id="b-${i}"><td>${rich(r[0], ctx)}</td><td${num ? ' class="n"' : ""}>${rich(r[1], ctx, hlBlock === i ? HL : null)}</td></tr>`; }).join("")}</tbody></table></div>`; rows = []; };
+  /* a table: the source's column headings (th), entries, and omitted entries ("* * * * *") as one full-width cell */
+  const flush = () => {
+    if (!rows.length) return;
+    const head = rows[0][2] ? rows.shift() : null;
+    h += `<div class="tbl"><table>${head ? `<thead><tr>${head[1].map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead>` : ""}<tbody>${rows.map(([i, r]) => {
+      if (r.length === 1) return `<tr id="b-${i}" class="om"><td colspan="2">${rich(r[0], ctx)}</td></tr>`;
+      const num = /^[\d\[\]\{\}\s\*]+$/.test(r[1]) && r[1].length < 16;
+      return `<tr id="b-${i}"><td>${rich(r[0], ctx)}</td><td${num ? ' class="n"' : ""}>${rich(r[1], ctx, hlBlock === i ? HL : null)}</td></tr>`;
+    }).join("")}</tbody></table></div>`;
+    rows = [];
+  };
   blocks.forEach((b, i) => {
-    if (b.r) { rows.push([i, b.r]); return; }
+    if (b.r) { if (b.th) flush(); rows.push([i, b.r, b.th]); return; }
     flush();
     const hl = hlBlock === i ? HL : null, cls = hlBlock === i ? " blk-hl" : "";
     if (b.h != null && tn && i < 4 && b.h.toLowerCase().replace(/[^a-z]/g, "") === tn) return;
-    if (b.h != null) h += `<h3 class="h${/^(\{\d+\})?\[?(PART|List)\b|^[IVX]+\./.test(b.h) ? " big" : ""}${cls}" id="b-${i}">${rich(b.h, ctx, hl)}</h3>`;
+    if (b.h != null) h += `<h3 class="h${/^(\{\d+\})?\[?(PART|List)\b|^[IVX]+\./.test(b.h) ? " big" : /^(\{\d+\})*\[?([IVX]+|[A-Z])$/.test(b.h) ? " c" : ""}${cls}" id="b-${i}">${rich(b.h, ctx, hl)}</h3>`;
     else if (b.ref != null) h += `<p class="ref${cls}" id="b-${i}">${rich(b.ref, ctx, hl)}</p>`;
     else h += `<p class="l${Math.min(4, b.l || 0)}${cls}" id="b-${i}">${rich(b.p, ctx, hl)}</p>`;
   });

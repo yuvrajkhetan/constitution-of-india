@@ -3,7 +3,7 @@
 "actual service",
 [
 [
-"s:SECOND:41",
+"s:SECOND:43",
 "“actual service” includes— (i) time spent by a Judge on duty as a Judge or in the performance of such other functions as he may at the request of the President undertake to discharge; (ii) vacations, excluding any time during which the Judge is absent on leave; and (iii) joining time on transfer from a High Court to the Supreme Court or from one High Court to another."
 ]
 ]
@@ -93,7 +93,7 @@
 "Chief Justice",
 [
 [
-"s:SECOND:40",
+"s:SECOND:42",
 "“Chief Justice” includes an acting Chief Justice"
 ]
 ]
@@ -338,7 +338,7 @@
 "“Judge” does not include an acting Judge or an additional Judge."
 ],
 [
-"s:SECOND:40",
+"s:SECOND:42",
 "“Judge” includes an ad hoc Judge"
 ]
 ]
@@ -582,7 +582,7 @@
 "prescribed date",
 [
 [
-"s:SIXTH:176",
+"s:SIXTH:170",
 "\"prescribed date\" means the date on which the Legislative Assembly of the Union territory of Mizoram is duly constituted under and in accordance with the provisions of the Government of Union Territories Act, 1963. (20 of 1963)"
 ]
 ]
@@ -636,7 +636,7 @@
 "reserved forest",
 [
 [
-"s:SIXTH:50",
+"s:SIXTH:48",
 "“reserved forest” means any area which is a reserved forest under the Assam Forest Regulation, 1891, or under any other law for the time being in force in the area in question."
 ]
 ]
@@ -676,7 +676,7 @@
 "Scheduled Areas",
 [
 [
-"s:FIFTH:27",
+"s:FIFTH:26",
 "“Scheduled Areas” means such areas as the President may by order declare to be Scheduled Areas."
 ]
 ]

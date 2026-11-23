@@ -4,7 +4,7 @@ S=json.load(open('sum/all.json')); H=json.load(open('sum/out/amend.json'))
 raw=json.load(open('data/amend_raw.json')); themes=json.load(open('data/themes.json')); gl=json.load(open('data/glossary.json'))
 plain=lambda s: re.sub(r'\s+',' ',re.sub(r'\{\d+\}','',s)).strip()
 # The Appendices printed with the official edition are not part of the Constitution, and the owner asked for every
-# reference to them to go. The official footnotes mention them five times; those phrases are removed here, so the
+# reference to them to go. The official footnotes mention them six times; those phrases are removed here, so the
 # source data in data/text.json stays exactly as published.
 def _cut(fs, old, new, n):
     hits = sum(f.count(old) for f in fs); assert hits == n, (old, hits)
@@ -12,7 +12,7 @@ def _cut(fs, old, new, n):
 A367, A370, F1 = t['a']['367'], t['a']['370'], t['s']['FIRST']
 A367['f'] = _cut(A367['f'], ', for the text of this C.O., see Appendix II.', '.', 1)
 A370['f'] = _cut(A370['f'], '\u201d. (See Appendix III) (C.O. 273)', '\u201d. (C.O. 273)', 1)
-F1['f'] = _cut(F1['f'], ' For the text of the Act, see Appendix I.', '', 2)
+F1['f'] = _cut(F1['f'], ' For the text of the Act, see Appendix I.', '', 3)
 # Article 370's third footnote says only "See Appendix II.": drop it and its marker, and renumber the one after it
 assert A370['f'][2] == 'See Appendix II.' and A370['h'] == [1, 2]
 del A370['f'][2]

@@ -348,6 +348,8 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .blocks{font-family:var(--serif);font-size:var(--fs,18px);line-height:1.66;letter-spacing:0}
 .blocks .h{font-family:var(--sys);font-weight:700;font-size:15px;letter-spacing:.01em;margin:1.6em 0 .6em;scroll-margin-top:90px}
 .blocks .h.big{font-size:20px;letter-spacing:-.02em}
+/* form and part numbers that the official text prints centred (I, II, A, B) */
+.blocks .h.c{text-align:center;font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:.04em}
 .blocks .h:first-child{margin-top:0}
 .blocks .ref{font-family:var(--sys);font-size:14px;color:var(--label-3)}
 .tbl{overflow-x:auto;margin:0 0 1em;border-radius:12px;box-shadow:0 0 0 .5px var(--sep)}
@@ -356,6 +358,8 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .tbl tr:last-child td{border-bottom:0}
 .tbl td:first-child{font-family:var(--sys);font-weight:600;width:34%;font-size:14.5px;letter-spacing:-.01em}
 .tbl td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--sys);font-weight:600;width:90px}
+.tbl th{font-family:var(--sys);font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--label-3);text-align:left;padding:9px 14px;border-bottom:.5px solid var(--sep);background:var(--fill-2)}
+.tbl tr.om td{font-family:var(--serif);font-weight:400;font-size:inherit;width:auto;letter-spacing:.08em}
 .blk-hl{background:var(--saffron-tint);border-radius:8px;box-shadow:0 0 0 6px var(--saffron-tint)}
 
 /* amendments */
@@ -506,7 +510,8 @@ a,button,summary{touch-action:manipulation}
   .tbl tr:last-child{border-bottom:0}
   .tbl td{padding:0;border:0}
   .tbl td:first-child{width:auto;margin-bottom:4px}
-  .tbl td.n{width:auto;text-align:left;font-size:15px;color:var(--navy)}
+  .tbl td.n{width:auto;text-align:left;font-size:15px}
+  .tbl thead{display:block}.tbl thead tr{display:flex;gap:6px;padding:0 0 8px;border-bottom:.5px solid var(--sep)}.tbl thead th{padding:0;border:0;background:none}.tbl thead th+th::before{content:"· ";margin-right:2px}
   .tbl tr:has(td.n){display:flex;justify-content:space-between;gap:12px;align-items:baseline}
   .blocks .h.big{font-size:18px}
   /* lists & pages */
