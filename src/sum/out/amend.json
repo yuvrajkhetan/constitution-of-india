@@ -1,6 +1,6 @@
 {
  "1": {
-  "h": "Added Articles 31A and 31B and the Ninth Schedule to protect certain laws, added to Article 15, and replaced Article 19(2).",
+  "h": "Added Articles 31A and 31B and the Ninth Schedule to protect certain laws, added clause (4) to Article 15, replaced Article 19(2), and replaced Articles 85 and 174 on sessions of Parliament and State Legislatures.",
   "tags": [
    "fundamental rights",
    "property",
@@ -40,7 +40,7 @@
   ]
  },
  "9": {
-  "h": "Added to the First Schedule, which lists the States and Union territories and their areas.",
+  "h": "Changed the First Schedule so that certain territories were no longer part of Assam, Punjab, West Bengal and Tripura.",
   "tags": [
    "territory"
   ]
@@ -110,7 +110,7 @@
   ]
  },
  "21": {
-  "h": "Added to the list of languages in the Eighth Schedule.",
+  "h": "Added Sindhi to the list of languages in the Eighth Schedule.",
   "tags": [
    "languages"
   ]
@@ -200,14 +200,14 @@
   ]
  },
  "35": {
-  "h": "Added Article 2A making Sikkim an associate of the Union, and changed Articles 80 and 81 to match.",
+  "h": "Added Article 2A and a Tenth Schedule (since removed) making Sikkim an associate State of the Union, and changed Articles 80 and 81 to match.",
   "tags": [
    "sikkim",
    "territory"
   ]
  },
  "36": {
-  "h": "Added Article 371F with special provisions for Sikkim, and removed Article 2A and related wording in Articles 80 and 81.",
+  "h": "Made Sikkim a State: added it to the First Schedule, added Article 371F with special provisions for it, and removed Article 2A and related wording in Articles 80 and 81.",
   "tags": [
    "sikkim",
    "special provisions for states"
@@ -241,7 +241,7 @@
   ]
  },
  "42": {
-  "h": "Reworded the Preamble, added Articles 39A, 43A, 48A, extended House terms to six years, changed Emergency rules; its Article 31C change was struck down.",
+  "h": "Added \"socialist\", \"secular\" and \"integrity\" to the Preamble, Fundamental Duties (Part IVA), tribunals (Part XIVA) and Articles 39A, 43A and 48A, extended House terms to six years and changed Emergency rules. Its changes to Articles 31C and 368 were struck down.",
   "tags": [
    "directive principles",
    "emergency",
@@ -256,7 +256,7 @@
   ]
  },
  "44": {
-  "h": "Removed the right to property (Article 31 and Article 19(1)(f)), changed Emergency grounds in Article 352, and replaced six-year House terms.",
+  "h": "Removed the right to property from the Fundamental Rights (Articles 19(1)(f) and 31) and added Article 300A, replaced \"internal disturbance\" with \"armed rebellion\" in Article 352, kept Articles 20 and 21 in force during an Emergency, and brought House terms back to five years.",
   "tags": [
    "fundamental rights",
    "property",
@@ -654,7 +654,7 @@
   ]
  },
  "106": {
-  "h": "Added Articles 330A, 332A and 334A reserving seats for women in the Lok Sabha and State Assemblies, and added to Article 239AA.",
+  "h": "Added Articles 330A, 332A and 334A, reserving about one-third of seats for women in the Lok Sabha and State Assemblies, and added the same for the Delhi Assembly to Article 239AA. The reservation starts only after the first census after 2023 and a fresh delimitation, and lasts fifteen years unless Parliament extends it.",
   "tags": [
    "reservation",
    "women",
