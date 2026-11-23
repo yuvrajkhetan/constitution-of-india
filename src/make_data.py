@@ -85,7 +85,7 @@ amd+=[
   "src":[["Act text, "+LD,"https://www.legislative.gov.in/static/uploads/2025/07/90f537a2f96e5304e088b723b665d426.pdf"],["Act and objects, National Portal of India","https://www.india.gov.in/my-government/constitution-india/amendments/constitution-india-twelfth-amendment-act-196"]]},
  {"wl":"Assent","n":37,"y":1975,"wef":"1975-05-03","nc":1,"tags":["union territories","legislature"],"refs":["a:239A","a:240"],
   "h":"Added Arunachal Pradesh to Article 239A, so the Union territory could have a Legislative Assembly and a Council of Ministers, and limited the President's power under Article 240 to make regulations for it once an Assembly existed.",
-  "what":"Arunachal Pradesh became a full State under the State of Arunachal Pradesh Act, 1986 (in force 20 February 1987), so neither article applies to it any more. Article 239A now names only Puducherry, and this edition's footnote to Article 240 records Arunachal Pradesh's entry being removed by that Act.",
+  "what":"Arunachal Pradesh became a full State under the State of Arunachal Pradesh Act, 1986 (in force 20 February 1987), so neither article applies to it any more. Article 239A now names only Puducherry, and the official note to Article 240 records Arunachal Pradesh's entry being removed by that Act.",
   "src":[["Act text, "+LD,"https://www.legislative.gov.in/static/uploads/2025/07/e758d6fb56d08150e4359287a75266c1.pdf"]]},
  {"wl":"Assent","n":48,"y":1984,"wef":"1984-08-26","nc":1,"tags":["president's rule","punjab"],"refs":["a:356"],
   "h":"Let President's Rule in Punjab, proclaimed on 6 October 1983, continue for up to two years instead of one by adding a proviso to Article 356(5).",
@@ -114,11 +114,11 @@ for n in ORDER:
 total_words=sum(words.values())
 T={a[0]:a[1] for a in c['arts']}
 facts=[
- {"v":f"{total_words:,}","l":"words in the articles in force","x":f"Across {len(live)} articles, not counting Schedules or footnotes.","h":"#contents"},
+ {"v":f"{total_words:,}","l":"words in the articles in force","x":f"Across {len(live)} articles, not counting Schedules or official notes.","h":"#contents"},
  {"v":f"Article {longest}","l":"is the longest article","x":f"{T[longest].rstrip('.')}: {words[longest]:,} words.","h":"#art-"+longest},
  {"v":f"Article {shortest}","l":"is the shortest","x":f"{T[shortest].rstrip('.')}: just {words[shortest]} words.","h":"#art-"+shortest},
  {"v":f"Article {most_ref}","l":"is cited by the most other articles","x":f"{T[most_ref].rstrip('.')}: referred to in {len(back[most_ref])} articles.","h":"#art-"+most_ref},
- {"v":f"Article {most_notes}","l":"carries the most amendment notes","x":f"{T[most_notes].rstrip('.')}: {len(TA[most_notes]['f'])} notes.","h":"#art-"+most_notes},
+ {"v":f"Article {most_notes}","l":"carries the most official notes","x":f"{T[most_notes].rstrip('.')}: {len(TA[most_notes]['f'])} notes.","h":"#art-"+most_notes},
  {"v":f"{len(ORDER)-len(live)}","l":"articles have been omitted","x":"Their numbers are kept, so later articles were never renumbered. New ones get letters, like 21A.","h":"#contents"},
  {"v":f"Part {partcount['n']}","l":"has the most articles","x":f"{partcount['t']}.","h":"#part-"+partcount['n']},
  {"v":f"The {['','First','Second','Third','Fourth','Fifth','Sixth','Seventh'][big['n']] if big['n']<8 else big['n']} Amendment","l":"touched the most provisions","x":f"Cited in the notes to {len(big['refs'])} provisions ({big['y']}).","h":f"#amend-{big['n']}"},
@@ -139,9 +139,9 @@ facts+=[
  {"v":"Entry 284","l":"is the last in the Ninth Schedule","x":"The list of laws protected under Article 31B.","h":"#sch-NINTH"},
  {"v":f"{cnt_word('Parliament')} articles","l":"mention Parliament","x":f"The President appears in {cnt_word('President')}, a Governor in {cnt_word('Governor')}.","h":"#theme-lawmaking"},
  {"v":"3 Parts","l":"have just one article each","x":"Part IVA (Fundamental Duties) and Part XX (Amendment) still in force, plus Part VII, which is omitted.","h":"#part-XX"},
- {"v":f"The {dec[0]}s","l":"saw the most amendment Acts cited here","x":f"{dec[1]} of the Acts in this edition's footnotes date from that decade.","h":"#amendments"},
+ {"v":f"The {dec[0]}s","l":"saw the most amendment Acts cited here","x":f"{dec[1]} of the Acts in the official notes date from that decade.","h":"#amendments"},
  {"v":f"{len(gl)} terms","l":"are defined by the Constitution itself","x":f"Article 366 alone defines {sum(1 for g in gl if any(a=='366' for a,_ in g[1]))} of them, from \"agricultural income\" onwards.","h":"#glossary"},
- {"v":"Sixth Schedule","l":"carries the most amendment notes of any Schedule","x":"It governs tribal areas in Assam, Meghalaya, Tripura and Mizoram.","h":"#sch-SIXTH"},
+ {"v":"Sixth Schedule","l":"carries the most official notes of any Schedule","x":"It governs tribal areas in Assam, Meghalaya, Tripura and Mizoram.","h":"#sch-SIXTH"},
 ]
 # the Appendices printed with the official edition are not part of the Constitution, so they are left out
 core=dict(parts=parts,arts=c['arts'],pre=c['pre'],sch=sch,amd=amd,themes=themes,facts=facts,meta=c['meta'])

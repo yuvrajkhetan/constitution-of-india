@@ -306,12 +306,12 @@ function highlight(html, terms) {
 }
 function rich(s, ctx, hl) {
   let h = linkify(esc(s), ctx);
-  h = h.replace(/\{(\d+)\}/g, (m, k) => `<button class="fn" type="button" data-fn="${k}" aria-label="Amendment note ${k}" aria-expanded="false">${k}</button>`);
+  h = h.replace(/\{(\d+)\}/g, (m, k) => `<button class="fn" type="button" data-fn="${k}" aria-label="Official note ${k}" aria-expanded="false">${k}</button>`);
   h = h.replace(/^((?:<button[^>]*>\d+<\/button>)?\[?)(Provided(?: further| also)?(?: that)?|Explanation(?: [IVX]+)?\.?(?=—)|Explanation\.)/, '$1<span class="lbl">$2</span>');
   return hl ? highlight(h, hl) : h;
 }
 const plain = s => s.replace(/\{\d+\}/g, "").replace(/\s+/g, " ").trim();
-const fnBtns = (h) => (h || []).map(k => `<button class="fn" type="button" data-fn="${k}" aria-label="Amendment note ${k}" aria-expanded="false">${k}</button>`).join("");
+const fnBtns = (h) => (h || []).map(k => `<button class="fn" type="button" data-fn="${k}" aria-label="Official note ${k}" aria-expanded="false">${k}</button>`).join("");
 
 /* ================= search ================= */
 let DOCS = null;
@@ -469,7 +469,7 @@ function vHome() {
       ${chakra("bg")}
       <div class="eyebrow">The Preamble</div>
       <div class="pt">${preHTML(false)}</div>
-      <a class="btn" href="#preamble" style="margin-top:14px">Read with notes ${I.chev}</a>
+      <a class="btn" href="#preamble" style="margin-top:14px">Read with official notes ${I.chev}</a>
     </div>
   </section>
   <section class="wrap sec">
@@ -488,10 +488,10 @@ function vHome() {
     ${cols2(SCH.map((s, i) => schRow(s, i)))}
   </section>
   <section class="wrap sec">
-    <div class="sh"><div><h2>How the text has changed</h2><p>Each bar is a Constitution Amendment Act cited in this edition's footnotes. Taller bars changed more provisions.</p></div><a class="more" href="#amendments">All amendments ${I.chev}</a></div>
+    <div class="sh"><div><h2>How the text has changed</h2><p>Each bar is a Constitution Amendment Act mentioned in the official notes. Taller bars changed more provisions.</p></div><a class="more" href="#amendments">All amendments ${I.chev}</a></div>
     <div class="card chart" id="homechart" style="min-height:260px"></div>
     <h3 class="subhd">Most amended articles</h3>
-    ${(() => { const top = ORDER.filter(n => !ART.get(n).o).sort((x, y) => ART.get(y).c - ART.get(x).c || ART.get(x).i - ART.get(y).i).slice(0, 10); return cols2(top.map(n => { const a = ART.get(n); return `<a class="row" href="#art-${n}"><span class="num">${n}</span><span><span class="tt">${esc(a.t.replace(/\.$/, ""))}</span><span class="ss" style="-webkit-line-clamp:1">Part ${PARTS[a.p].n} · ${esc(PARTS[a.p].t)}</span></span><span class="aux">${a.c} notes ${I.chev}</span></a>`; })); })()}
+    ${(() => { const top = ORDER.filter(n => !ART.get(n).o).sort((x, y) => ART.get(y).c - ART.get(x).c || ART.get(x).i - ART.get(y).i).slice(0, 10); return cols2(top.map(n => { const a = ART.get(n); return `<a class="row" href="#art-${n}"><span class="num">${n}</span><span><span class="tt">${esc(a.t.replace(/\.$/, ""))}</span><span class="ss" style="-webkit-line-clamp:1">Part ${PARTS[a.p].n} · ${esc(PARTS[a.p].t)}</span></span><span class="aux">${a.c} official notes ${I.chev}</span></a>`; })); })()}
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>The basic structure</h2><p>What Parliament cannot change even by amending the Constitution, as the Supreme Court has held since 1973, with our estimate for every provision.</p></div><a class="more" href="#basic-structure">Explore ${I.chev}</a></div>
@@ -537,7 +537,7 @@ function amdChart(sel) {
   (compact ? [1, 25, 50, 75, 106] : [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 106]).forEach(n => { const a = AMD_BY.get(n), cx = n === 106 ? x(n) + bw : x(n) + bw / 2, an = n === 106 ? "end" : "middle"; ax += `<text x="${cx}" y="${H - B + 17}" text-anchor="${an}">${nth(n)}</text>`; if (a) ax += `<text x="${cx}" y="${H - B + 33}" text-anchor="${an}" style="font-size:11px">${a.y}</text>`; });
   const outs = AMD.filter(a => a.refs.length > CAP).map(a => a.n);
   const bars = AMD.map(a => {
-    if (a.nc) { const cx = x(a.n) + bw / 2; return `<circle class="nc${sel === a.n ? " on" : ""}" data-n="${a.n}" cx="${cx.toFixed(1)}" cy="${(y(0) - 5).toFixed(1)}" r="${compact ? 1.8 : 3}"><title>${nth(a.n)} Amendment, ${a.y}: not cited in this edition's footnotes</title></circle>`; }
+    if (a.nc) { const cx = x(a.n) + bw / 2; return `<circle class="nc${sel === a.n ? " on" : ""}" data-n="${a.n}" cx="${cx.toFixed(1)}" cy="${(y(0) - 5).toFixed(1)}" r="${compact ? 1.8 : 3}"><title>${nth(a.n)} Amendment, ${a.y}: no longer mentioned in the official notes</title></circle>`; }
     const v = a.refs.length, gap = compact ? .6 : 2, bx = x(a.n) + gap / 2, w = Math.max(1, bw - gap), top = y(v);
     let extra = "";
     if (v > CAP) {
@@ -550,7 +550,7 @@ function amdChart(sel) {
     }
     return `<rect class="b${sel === a.n ? " on" : ""}" data-n="${a.n}" x="${bx.toFixed(1)}" y="${top.toFixed(1)}" width="${w.toFixed(1)}" height="${(y(0) - top).toFixed(1)}" rx="1.5"><title>${nth(a.n)} Amendment, ${a.y}: ${v} provision${v === 1 ? "" : "s"}</title></rect>${extra}`;
   }).join("");
-  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Number of provisions changed by each amendment Act. Scale capped at ${CAP}; three Acts go beyond it."><g class="gl">${g}</g><g class="ax">${ax}</g>${bars}<g class="ax">${lab}</g></svg><p class="chart-note">Scale stops at ${CAP} so smaller amendments stay visible. Broken bars go beyond it and show their real totals. Hollow dots are Acts no longer cited in any footnote.</p>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Number of provisions changed by each amendment Act. Scale capped at ${CAP}; three Acts go beyond it."><g class="gl">${g}</g><g class="ax">${ax}</g>${bars}<g class="ax">${lab}</g></svg><p class="chart-note">Scale stops at ${CAP} so smaller amendments stay visible. Broken bars go beyond it and show their real totals. Hollow dots are Acts no official note mentions any more.</p>`;
 }
 
 /* ---- contents ---- */
@@ -761,9 +761,9 @@ function vArt(r) {
     }
     if (t.s) main += `<div class="plain"><div class="lb"><span>In plain words</span><small>Summary, not the legal text · <a href="#about">How this was made</a></small></div><p>${lx(t.s)}</p></div>`;
     main += bsChip("art", n);
-    if (notices.length) main += notices.map(([k, f]) => { const w = SC[k] && SC[k].where; return `<div class="notice">${I.alertc}<div><b>${w ? `Note on ${esc(w)}` : "Note from the official text"}</b>${linkAmd(esc(f))}${w && !t.st ? `<br><button class="lnk" type="button" data-goto-fn="${k}">Show in the text</button>` : ""}</div></div>`; }).join("");
+    if (notices.length) main += notices.map(([k, f]) => { const w = SC[k] && SC[k].where; return `<div class="notice">${I.alertc}<div><b>${w ? `Note on ${esc(w)}` : "Official note"}</b>${linkAmd(esc(f))}${w && !t.st ? `<br><button class="lnk" type="button" data-goto-fn="${k}">Show in the text</button>` : ""}</div></div>`; }).join("");
     if (t.st) main += `<div class="status">${I.info}<div><b>Omitted.</b> ${linkAmd(esc(t.st.replace(/^Omitted\.?\s*/, "")))}</div></div>`;
-    else { const CID = clauseIds(t.p), anyC = CID.some(Boolean); main += `<section class="block" aria-labelledby="ot" style="margin-top:20px"><h2 id="ot">Official text${anyC ? `<small class="chint">Select a clause to link to it or cite it</small>` : ""}</h2><div class="text" id="text">${t.p.map(([l, s], i) => `<p class="l${Math.min(4, l)}${pin[i] ? " noted" : ""}${CID[i] ? " hc" : ""}" data-i="${i}" data-l="${l}"${CID[i] ? ` data-c="${CID[i]}" id="c-${CID[i]}"` : ""} data-s="${SC ? Object.keys(SC).filter(k => SC[k].idx.includes(i)).join(" ") : ""}">${CID[i] ? `<button class="clk" type="button" data-clause="${CID[i]}" aria-label="Select ${clauseCite(n, CID[i])}">${I.link}</button>` : ""}${rich(s, "art", HL)}</p>`).join("")}</div></section>`; }
+    else { const CID = clauseIds(t.p), anyC = CID.some(Boolean); main += `<section class="block" aria-labelledby="ot" style="margin-top:20px"><h2 id="ot">Official text${anyC ? `<small class="chint">Select a clause to link to it or cite it</small>` : ""}</h2>${t.f && t.f.length ? `<p class="nhint">The numbers in the text open its official notes. Most record when and how it was changed.</p>` : ""}<div class="text" id="text">${t.p.map(([l, s], i) => `<p class="l${Math.min(4, l)}${pin[i] ? " noted" : ""}${CID[i] ? " hc" : ""}" data-i="${i}" data-l="${l}"${CID[i] ? ` data-c="${CID[i]}" id="c-${CID[i]}"` : ""} data-s="${SC ? Object.keys(SC).filter(k => SC[k].idx.includes(i)).join(" ") : ""}">${CID[i] ? `<button class="clk" type="button" data-clause="${CID[i]}" aria-label="Select ${clauseCite(n, CID[i])}">${I.link}</button>` : ""}${rich(s, "art", HL)}</p>`).join("")}</div></section>`; }
     main += bsBox("art", n);
     main += timelineHTML(t.f, SC, t.fh, t.h, "art");
     const themes = THEMES_OF.get("art-" + n) || [];
@@ -797,7 +797,7 @@ function vArt(r) {
 }
 function histHTML(f, sc) {
   if (!f || !f.length) return "";
-  return `<section class="block" aria-labelledby="hh"><h2 id="hh">Amendment history <small>${f.length} note${f.length > 1 ? "s" : ""} from the official text</small></h2><ol class="hist">${f.map((x, i) => {
+  return `<section class="block" aria-labelledby="hh"><h2 id="hh">Amendment history <small>${f.length} official note${f.length > 1 ? "s" : ""}</small></h2><ol class="hist">${f.map((x, i) => {
     const m = x.match(/w\.?\s*e\.?\s*f\.?\s*(\d{1,2})-(\d{1,2})-(\d{4})/);
     const when = m ? `In force from ${+m[1]} ${MONTHS[+m[2] - 1] || ""} ${m[3]}` : /retrospective/i.test(x) ? "With retrospective effect" : "";
     const w = sc && sc[i + 1] && sc[i + 1].where, has = sc && sc[i + 1];
@@ -814,7 +814,7 @@ function vPre() {
     <nav class="crumbs" aria-label="Breadcrumb"><a href="#contents">Contents</a>${I.chev}<span>Preamble</span></nav>
     <header class="ahead"><div class="an">Preamble</div><h1>We, the People of India</h1><div class="acts"><button class="btn sidebtn" type="button" data-side>${I.list} Contents</button>${listenBtn()}${shareBtn()}<button class="btn" type="button" data-fs aria-label="Change text size">${I.text}<span class="bl">Text size</span></button></div></header>
     <div class="plain"><div class="lb"><span>In plain words</span><small>Summary, not the legal text</small></div><p>The people of India give themselves this Constitution, adopted on 26 November 1949. They resolve to make India a sovereign, socialist, secular, democratic republic and to secure justice, liberty, equality and fraternity for all citizens.</p></div>${TEXT ? bsChip("art", "Preamble") : ""}
-    <section class="block" style="margin-top:20px"><h2>Official text</h2><div class="text pre-t" style="text-align:center">${preHTML(true)}</div></section>
+    <section class="block" style="margin-top:20px"><h2>Official text</h2>${CORE.pre.f.length ? `<p class="nhint">The numbers in the text open its official notes. Most record when and how it was changed.</p>` : ""}<div class="text pre-t" style="text-align:center">${preHTML(true)}</div></section>
     ${TEXT ? bsBox("art", "Preamble") : ""}
     ${timelineHTML(CORE.pre.f, scopeNotes(CORE.pre.p.map(p => p[1]), () => "", CORE.pre.f, "the Preamble"), CORE.pre.fh, [], "pre")}
     <nav class="pager"><span class="ph0"></span><a class="nx" href="#art-1"><small>Article 1 →</small><span>${esc(ART.get("1").t)}</span></a></nav>
@@ -840,7 +840,7 @@ function blocksHTML(blocks, ctx, hlBlock, title) {
 }
 function vSch(r) {
   const k = r.id, i = SCH_BY.get(k), s = SCH[i], prev = SCH[i - 1], next = SCH[i + 1], T = TEXT && TEXT.s[k];
-  const content = !T ? (textErr ? errBox() : loadBox()) : blocksHTML(T.b, "sch", r.b, s.t) + bsBox("sch", k) + histHTML(T.f, blockScopes(T.b, T.f, k === "NINTH" ? "entry" : "paragraph"));
+  const content = !T ? (textErr ? errBox() : loadBox()) : (T.f && T.f.length ? `<p class="nhint">The numbers in the text open its official notes. Most record when and how it was changed.</p>` : "") + blocksHTML(T.b, "sch", r.b, s.t) + bsBox("sch", k) + histHTML(T.f, blockScopes(T.b, T.f, k === "NINTH" ? "entry" : "paragraph"));
   return `<div class="wrap reader">${sidebar(k, "sch")}<article class="art">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="#schedules">Schedules</a>${I.chev}<span>${schName(k)}</span></nav>
     <header class="ahead"><div class="an">${schName(k)}</div><h1>${esc(s.t)}</h1><p class="sub" style="font-size:15px">${linkArts(esc(s.ref))}</p>
@@ -891,7 +891,7 @@ function vAmend(r) {
   const list = AMD.filter(a => amdFilter === "all" || a.tags.includes(amdFilter) || String(Math.floor(a.y / 10) * 10) === amdFilter).slice().reverse();
   const NC = AMD.filter(a => a.nc).length;
   return `<section class="wrap col" style="--col:920px">
-    <div class="ph"><h1 class="lt">Amendments</h1><p class="sub">The Constitution records its changes in footnotes under each provision. Parliament has passed ${AMD.length} Constitution Amendment Acts. This edition's footnotes cite ${AMD.length - NC}. The other ${NC} made changes that were later replaced or ran out, so no footnote mentions them; they are marked below with what happened and the official source used.</p></div>
+    <div class="ph"><h1 class="lt">Amendments</h1><p class="sub">The official text records each change in a note under the provision it changed. Parliament has passed ${AMD.length} Constitution Amendment Acts. The official notes mention ${AMD.length - NC} of them. The other ${NC} made changes that were later replaced or ran out, so no official note mentions them; they are marked below with what happened and the official source used.</p></div>
     ${nextTeaser()}
     <div class="seg2" role="group" aria-label="Chart view"><button type="button" data-amv="year" aria-pressed="${amdView === "year"}">By year</button><button type="button" data-amv="size" aria-pressed="${amdView === "size"}">By size</button></div>
     <div class="card chart" style="margin-bottom:18px">${amdChartNow(r.id)}</div>
@@ -901,7 +901,7 @@ function vAmend(r) {
       <div class="no">${nth(a.n)}<small>${a.y}</small></div>
       <div><h2>The Constitution (${ordw(a.n)} Amendment) Act, ${a.y}</h2><p>${lx(a.h)}</p>
         ${a.nc ? `<div class="gone"><b>What happened to it</b><p>${lx(a.what)}</p><p class="src">Source: ${a.src.map(([l, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`).join(" · ")}</p></div>` : ""}
-        <div class="meta">${a.nc ? `<span class="tag nc">Not in this edition's footnotes</span>` : ""}${a.wef ? `<span class="tag g">${a.wl || "In force"} ${fmtDate(a.wef)}</span>` : ""}${a.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}${a.nc ? "" : `<span class="tag n">${a.refs.length} provision${a.refs.length > 1 ? "s" : ""}</span>`}</div>
+        <div class="meta">${a.nc ? `<span class="tag nc">Not in the official notes</span>` : ""}${a.wef ? `<span class="tag g">${a.wl || "In force"} ${fmtDate(a.wef)}</span>` : ""}${a.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}${a.nc ? "" : `<span class="tag n">${a.refs.length} provision${a.refs.length > 1 ? "s" : ""}</span>`}</div>
         <details data-amd="${a.n}"${r.id === a.n ? " open" : ""}><summary>${a.nc ? "Where to look today" : "Provisions changed"}</summary>${r.id === a.n ? amdRefs(a) : ""}</details>
       </div></article>`).join("") || `<div class="empty">No amendments match this filter.</div>`}</div>
   </section>`;
@@ -1075,7 +1075,7 @@ function vBS(r) {
         <p><b>Decided by the Court</b> means the Court has itself ruled the provision's core part of the basic structure, or struck down an amendment to it on basic structure grounds. Every other level is our estimate, using these factors:</p>
         <ul><li>Has a court ruled this provision, or something it depends on, part of the basic structure?</li><li>Is it the main home of a recognised feature, or a supporting detail?</li><li>Does Article 368(2) already require half the States to ratify changes to it, a sign of the federal core?</li><li>Is it procedural, transitional, a number or a list, and has it been changed before without objection?</li></ul>
         <p>The ranges are rough guides to confidence, not calculated probabilities. A feature named in only one judge's opinion, or listed only by the Lok Sabha Secretariat, counts for less than one recognised by a majority or a later bench. Omitted articles are not shown.</p>
-        <p class="fine">The Court's rulings, and the provisions marked Decided by the Court, come from the Supreme Court's judgments, its own publications, the footnotes of the official text and the Lok Sabha Secretariat. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
+        <p class="fine">The Court's rulings, and the provisions marked Decided by the Court, come from the Supreme Court's judgments, its own publications, the official notes and the Lok Sabha Secretariat. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
         <details><summary>Sources</summary><ul class="srcs">${Object.keys(src).map(k => `<li>${srcLink(k)}</li>`).join("")}</ul></details>
       </div>
     </section>
@@ -1335,10 +1335,10 @@ function timelineHTML(f, sc, fh, hn, kind) {
     return `<li><span class="vb v-${it.v}">${lab}</span>${it.v === "art" ? "" : where(it.k)}<button class="fn" type="button" data-fn="${it.k}" aria-label="Official note ${it.k}" aria-expanded="false">${it.k}</button>${old}</li>`;
   };
   const root = added ? "" : `<li class="ev root"><span class="yr">1949</span><div><div class="eh"><b>In the Constitution as adopted</b><span>26 November 1949</span></div></div></li>`;
-  return `<section class="block" aria-labelledby="hh"><h2 id="hh">History <small>Built from the ${f.length} official footnote${f.length > 1 ? "s" : ""}</small></h2>
+  return `<section class="block" aria-labelledby="hh"><h2 id="hh">History <small>Built from the ${f.length} official note${f.length > 1 ? "s" : ""}</small></h2>
     <ol class="tline">${root}${list.map(e => `<li class="ev${e.court ? " court" : ""}"><span class="yr">${e.yr || "·"}</span><div><div class="eh"><b>${e.court ? "Declared invalid by the Supreme Court" : actLabel(e.act)}</b><span>${e.court ? "" : esc(e.when)}</span></div><ul>${e.items.map(item).join("")}</ul></div></li>`).join("")}</ol>
-    ${other.length ? `<p class="tl-other">Other notes in the official text: ${other.map(k => `<button class="fn" type="button" data-fn="${k}" aria-label="Official note ${k}" aria-expanded="false">${k}</button>`).join(" ")}</p>` : ""}
-    <details class="allnotes"><summary>All footnotes, word for word</summary>${histHTML(f, sc).replace(/^<section[^>]*><h2[^>]*>.*?<\/h2>/, "").replace(/<\/section>$/, "")}</details>
+    ${other.length ? `<p class="tl-other">Other official notes: ${other.map(k => `<button class="fn" type="button" data-fn="${k}" aria-label="Official note ${k}" aria-expanded="false">${k}</button>`).join(" ")}</p>` : ""}
+    <details class="allnotes"><summary>All official notes, word for word</summary>${histHTML(f, sc).replace(/^<section[^>]*><h2[^>]*>.*?<\/h2>/, "").replace(/<\/section>$/, "")}</details>
   </section>`;
 }
 
@@ -1358,7 +1358,7 @@ function amdYearChart(sel) {
     const cx = L + (+y - Y0 + .5) * step, cy = H - B - rr - 2 - i * gap;
     dots += `<circle class="yd${a.nc ? " ncd" : ""}${match(a) ? "" : " dim"}${sel === a.n ? " on" : ""}" data-n="${a.n}" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${rr.toFixed(1)}"><title>${nth(a.n)} Amendment, ${a.y}: ${esc(a.h)}</title></circle>`;
   }));
-  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Constitution Amendment Acts by year, 1950 to 2026. Each dot is one Act."><g class="gl">${g}</g><line class="base" x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}"/><g class="ax">${ax}</g>${dots}</svg><p class="chart-note">Each dot is one Amendment Act, stacked in the year it was passed. ${compact ? "Tap" : "Hover over"} a dot to see what it did; select it to open. Hollow dots are Acts no longer cited in any footnote.${amdFilter !== "all" ? " Faded dots don't match the filter." : ""}</p>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Constitution Amendment Acts by year, 1950 to 2026. Each dot is one Act."><g class="gl">${g}</g><line class="base" x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}"/><g class="ax">${ax}</g>${dots}</svg><p class="chart-note">Each dot is one Amendment Act, stacked in the year it was passed. ${compact ? "Tap" : "Hover over"} a dot to see what it did; select it to open. Hollow dots are Acts no official note mentions any more.${amdFilter !== "all" ? " Faded dots don't match the filter." : ""}</p>`;
 }
 const amdChartNow = sel => (amdView === "year" ? amdYearChart(sel) : amdChart(sel));
 function bsShare() {
@@ -1377,22 +1377,22 @@ function vAbout() {
     <div class="ph"><h1 class="lt">How this was made</h1><p class="sub">What on this site is the official text, what we added to help you read it, and where everything comes from.</p></div>
     <div class="card prose">
       <h2>The official text</h2>
-      <p>Every article, heading, Schedule and footnote comes from <b>The Constitution of India [As on ${esc(CORE.meta.asOn)}]</b>, published by the Legislative Department, Ministry of Law and Justice, Government of India. It includes every amendment up to the ${esc(CORE.meta.upTo)}. We changed only the layout, so it reads well on a screen. Where the official text marks a later change in square brackets with a footnote, we keep both. For any legal purpose, rely on the official publication.</p>
+      <p>Every article, heading, Schedule and official note comes from <b>The Constitution of India [As on ${esc(CORE.meta.asOn)}]</b>, published by the Legislative Department, Ministry of Law and Justice, Government of India. It includes every amendment up to the ${esc(CORE.meta.upTo)}. We changed only the layout, so it reads well on a screen. Where the official text marks a later change in square brackets with an official note, we keep both. For any legal purpose, rely on the official publication.</p>
       <h2>What we added</h2>
       <p>These are not part of the Constitution. They are there to help you read it, and are labelled where they appear.</p>
       <ul>
         <li><b>Plain-language summaries</b> of every article, Part and Schedule, written from the official text. In November 2026 each summary was checked clause by clause against that text, and corrected where needed.</li>
         <li><b>Themes</b>, which group related provisions by subject. The grouping is ours.</li>
         <li><b>Connections</b> between articles, found by reading where one article's text names another.</li>
-        <li><b>History</b> on each article, built from its official footnotes: which Act changed what, when, and the earlier wording where the footnote gives it. The full footnotes are always one tap away. We don't yet show the whole 1950 text side by side, because we haven't found an official copy of it that can be read reliably by machine. We will add it if one becomes available.</li>
+        <li><b>History</b> on each article, built from its official notes: which Act changed what, when, and the earlier wording where the note gives it. The full notes are always one tap away. We don't yet show the whole 1950 text side by side, because we haven't found an official copy of it that can be read reliably by machine. We will add it if one becomes available.</li>
         <li><b>The glossary</b> quotes the Constitution's own definitions. Only the grouping and links are ours.</li>
         <li><b>Facts and charts</b>, counted directly from the official text.</li>
         <li><b>The next amendment</b>, our estimate of when the Constitution may next be amended and on what, from the Bills in Parliament, the Constitution's own deadlines and the record of past amendments. <a href="#next-amendment">See the forecast and its method</a>.</li>
       </ul>
       <h2>Amendments</h2>
-      <p>Parliament has passed ${AMD.length} Constitution Amendment Acts. Dates and changes come from the official footnotes. ${NC} Acts are no longer cited in any footnote, because what they changed was later replaced or ran out. For those we used the Legislative Department's own Act texts and the National Portal of India, linked on the <a href="#amendments">Amendments</a> page. The one-line descriptions are ours.</p>
+      <p>Parliament has passed ${AMD.length} Constitution Amendment Acts. Dates and changes come from the official notes. ${NC} Acts are no longer mentioned in any official note, because what they changed was later replaced or ran out. For those we used the Legislative Department's own Act texts and the National Portal of India, linked on the <a href="#amendments">Amendments</a> page. The one-line descriptions are ours.</p>
       <h2>The basic structure</h2>
-      <p>The Supreme Court's rulings, and the provisions marked Decided by the Court, come only from official sources: the Court's judgments and publications, the official text's footnotes, the Lok Sabha Secretariat and the National Judicial Academy. Each item names its source. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
+      <p>The Supreme Court's rulings, and the provisions marked Decided by the Court, come only from official sources: the Court's judgments and publications, the official notes, the Lok Sabha Secretariat and the National Judicial Academy. Each item names its source. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
       <h2>What stays on your device</h2>
       <p>There is no account or sign-in. The articles you save, what you read recently, and your text size, reading speed and appearance are kept in this browser on this device only. Clearing your browser's data removes them.</p>
       <h2>What this is not</h2>
@@ -1630,8 +1630,8 @@ function openPop(btn) {
   const k = +btn.dataset.fn, notes = notesFor();
   if (!notes || !notes[k - 1]) return;
   closePop(); popBtn = btn; btn.setAttribute("aria-expanded", "true");
-  pop = document.createElement("div"); pop.className = "pop"; pop.setAttribute("role", "dialog"); pop.setAttribute("aria-label", "Amendment note " + k);
-  pop.innerHTML = `<b>Amendment note ${k}</b>${linkAmd(linkArts(esc(notes[k - 1])))}`;
+  pop = document.createElement("div"); pop.className = "pop"; pop.setAttribute("role", "dialog"); pop.setAttribute("aria-label", "Official note " + k);
+  pop.innerHTML = `<b>Official note ${k}</b>${linkAmd(linkArts(esc(notes[k - 1])))}`;
   document.body.appendChild(pop);
   const r = btn.getBoundingClientRect(), pw = pop.offsetWidth;
   pop.style.left = Math.max(16 + scrollX, Math.min(r.left + scrollX + r.width / 2 - pw / 2, scrollX + document.documentElement.clientWidth - pw - 16)) + "px";
