@@ -1687,7 +1687,6 @@ const MORE = [
   ["amend", "#amendments", "clock", "saffron", "Amendments", `All ${AMD.length} and what they changed`],
   ["next", "#next-amendment", "cal", "green", "What might come next", "Our forecast of the next amendment"],
   ["glossary", "#glossary", "abc", "navy", "Glossary", "Legal words in plain English"],
-  ["pre", "#preamble", "quote", "saffron", "Preamble", "We, the People of India"],
   ["about", "#about", "info", "green", "How this was made", "Sources, methods and limits"]
 ];
 const moreEl = $("#more"), morePanel = $("#more .mpanel"), moreBtn = $("#morebtn");
