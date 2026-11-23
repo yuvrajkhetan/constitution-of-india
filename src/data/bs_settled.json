@@ -1,19 +1,21 @@
 {
- "_note": "Layer 1 (settled law) for the basic structure feature. Draft for user review, 21 Nov 2026. Every item is sourced to an official Government of India / Supreme Court / Parliament document read in this session.",
+ "_note": "Layer 1 (settled law) for the basic structure feature. Every ruling and feature rests on the judgment itself: checked against the judges' own words (not headnotes or summaries) in November 2026, using the verbatim Supreme Court Reports text. Each item cites the report (S.C.R.) and the page or paragraph; 'at' holds those pinpoints per source.",
  "sources": {
   "COI": "The Constitution of India [As on 10th September, 2026], Legislative Department (official notes)",
-  "KBJ": "Supreme Court of India, Kesavananda Bharati commemorative site, judgments.ecourts.gov.in/KBJ (majority conclusions + SCR headnote)",
-  "MINERVA": "Minerva Mills v Union of India, [1981] 1 SCR 206, SCR headnote, https://main.sci.gov.in/pdf/aorexam/leading_cases/3.pdf",
-  "SAMBAMURTHY": "P. Sambamurthy v State of A.P., 1987 SCR (1) 879, https://api.sci.gov.in/jonew/judis/8854.pdf",
-  "LCK": "L. Chandra Kumar v Union of India, [1997] 2 SCR 1186, Digital SCR",
-  "BOMMAI": "S.R. Bommai v Union of India (1994), SCR headnote, https://api.sci.gov.in/pdf/aorexam/leading_cases/8.pdf",
-  "COELHO": "I.R. Coelho v State of Tamil Nadu (2007), https://api.sci.gov.in/judgment/judis/28469.pdf",
-  "SCI_CAT": "Supreme Court of India, AOR exam 'Broad categorization of leading cases' (2023)",
-  "LS2008": "Lok Sabha Secretariat, Constitution Amendment in India (2008), pp. 11, 16-19",
-  "SCI_SUM": "Supreme Court of India, Landmark Judgment Summaries (Centre for Research and Planning)",
-  "COELHO_CN": "Supreme Court of India, Court News Jan-Mar 2007, pp. 10-11 (Coelho conclusions (i)-(vi)), https://main.sci.nic.in/pdf/CourtNews/2007_issue_1.pdf",
-  "LSQ910": "Lok Sabha Unstarred Question No. 910, answered 03.12.2015, Ministry of Law and Justice, https://eparlib.nic.in/bitstream/123456789/671103/1/24908.pdf",
-  "NJA": "National Judicial Academy, 'An overview and architecture of Indian Constitutional Arrangements' (2019), slide 19"
+  "KB": "Kesavananda Bharati v State of Kerala, [1973] Supp. S.C.R. 1, https://judgments.ecourts.gov.in/KBJ",
+  "RAJNARAIN": "Indira Nehru Gandhi v Raj Narain, [1976] 2 S.C.R. 347",
+  "MINERVA": "Minerva Mills v Union of India, [1981] 1 S.C.R. 206, https://main.sci.gov.in/pdf/aorexam/leading_cases/3.pdf",
+  "SAMBAMURTHY": "P. Sambamurthy v State of Andhra Pradesh, [1987] 1 S.C.R. 879, https://api.sci.gov.in/jonew/judis/8854.pdf",
+  "KIHOTO": "Kihoto Hollohan v Zachillhu, [1992] 1 S.C.R. 686",
+  "BOMMAI": "S.R. Bommai v Union of India, [1994] 2 S.C.R. 644, https://api.sci.gov.in/pdf/aorexam/leading_cases/8.pdf",
+  "LCK": "L. Chandra Kumar v Union of India, [1997] 2 S.C.R. 1186",
+  "COELHO": "I.R. Coelho v State of Tamil Nadu, [2007] 1 S.C.R. 706, https://api.sci.gov.in/judgment/judis/28469.pdf",
+  "PRAMATI": "Pramati Educational and Cultural Trust v Union of India, [2014] 11 S.C.R. 712",
+  "NJAC": "Supreme Court Advocates-on-Record Association v Union of India, [2015] 13 S.C.R. 1",
+  "JANHIT": "Janhit Abhiyan v Union of India, [2022] 14 S.C.R. 1",
+  "ART370": "In re Article 370 of the Constitution, [2023] 16 S.C.R. 1",
+  "ANJUM": "Anjum Kadari v Union of India, [2024] 11 S.C.R. 365",
+  "BALRAM": "Dr Balram Singh v Union of India, [2024] 11 S.C.R. 947"
  },
  "struck_bs": [
   {
@@ -22,36 +24,44 @@
    ],
    "what": "Second part of Art. 31C (declaration clause), inserted by 25th Amendment",
    "case": "Kesavananda Bharati v State of Kerala (1973)",
-   "ground": "Khanna J: contains 'the seed of national disintegration'; other majority judges: it removes basic elements and hands over the amending power",
+   "ground": "Khanna J said the second part “contains the seed of national disintegration”: letting a legislature shut out even limited judicial review strikes at the basic structure. Five other judges would have struck down all of Article 31C, saying it let legislatures wipe out basic rights and handed them the power to amend the Constitution",
    "src": [
     "COI",
-    "KBJ"
-   ]
+    "KB"
+   ],
+   "at": {
+    "KB": "pp. 759-760 (Khanna J) and the majority view, p. 1001"
+   }
   },
   {
    "prov": [
     "a:329A"
    ],
-   "what": "Art. 329A(4) and (5), inserted by 39th Amendment, shielding the Prime Minister's election from challenge",
+   "what": "Art. 329A(4) and (5), inserted by 39th Amendment, which put the past elections of the Prime Minister and the Speaker beyond the election law and any challenge",
    "case": "Indira Nehru Gandhi v Raj Narain (1975)",
-   "ground": "Violative of the basic structure (Coelho, 2007, p. 8); NJA cites the case for democracy including free and fair elections, separation of powers and rule of law",
+   "ground": "The majority judges gave different reasons: it destroyed free and fair elections, which are part of democracy (Khanna J); it settled an election dispute without applying any law, against democracy and the rule of law (Mathew J, Ray CJ); and it denied equality and took over the courts' work (Chandrachud J)",
    "src": [
-    "LS2008",
-    "COELHO",
-    "NJA"
-   ]
+    "COI",
+    "RAJNARAIN"
+   ],
+   "at": {
+    "RAJNARAIN": "pp. 418, 474, 521 and 664-669"
+   }
   },
   {
    "prov": [
     "a:31C"
    ],
-   "what": "42nd Amendment s.4 widening Art. 31C to 'all or any of the principles laid down in Part IV'",
+   "what": "42nd Amendment s.4 widening Art. 31C to ‘all or any of the principles laid down in Part IV’",
    "case": "Minerva Mills v Union of India (1980)",
    "ground": "Destroys the balance between Parts III and IV, an essential feature of the basic structure",
    "src": [
     "COI",
     "MINERVA"
-   ]
+   ],
+   "at": {
+    "MINERVA": "pp. 255-256"
+   }
   },
   {
    "prov": [
@@ -59,13 +69,14 @@
    ],
    "what": "Art. 368(4) and (5), inserted by 42nd Amendment s.55",
    "case": "Minerva Mills v Union of India (1980)",
-   "ground": "A limited amending power is a basic feature; cl.(4) linked to cl.(5)",
+   "ground": "A limited amending power is itself a basic feature. Clause (5) removed every limit on the power, and clause (4) shut out the courts",
    "src": [
     "COI",
-    "MINERVA",
-    "SCI_CAT",
-    "LS2008"
-   ]
+    "MINERVA"
+   ],
+   "at": {
+    "MINERVA": "pp. 240-242"
+   }
   },
   {
    "prov": [
@@ -73,11 +84,14 @@
    ],
    "what": "Art. 371D(5) and the condition attached to it (State Government could modify or annul tribunal orders)",
    "case": "P. Sambamurthy v State of Andhra Pradesh (1986)",
-   "ground": "Violates the rule of law, 'a basic and essential feature'; tribunal less effective than the High Court",
+   "ground": "Violates the rule of law, ‘a basic and essential feature’; tribunal less effective than the High Court",
    "src": [
     "COI",
     "SAMBAMURTHY"
-   ]
+   ],
+   "at": {
+    "SAMBAMURTHY": "pp. 889-890"
+   }
   },
   {
    "prov": [
@@ -89,7 +103,10 @@
    "ground": "Judicial review by High Courts and Supreme Court is part of the inviolable basic structure",
    "src": [
     "LCK"
-   ]
+   ],
+   "at": {
+    "LCK": "pp. 1237 and 1250"
+   }
   },
   {
    "prov": [
@@ -107,12 +124,14 @@
    ],
    "what": "Constitution (Ninety-ninth Amendment) Act, 2014 (NJAC)",
    "case": "Supreme Court Advocates-on-Record Assn v Union of India (2015)",
-   "ground": "Independence of the judiciary is part of the basic structure (SCI_CAT); NJAC Act also struck down and the collegium system declared operative again (LSQ910)",
+   "ground": "It breached the independence of the judiciary and the separation of powers, both part of the basic structure. The NJAC Act also fell, and the earlier system of appointing judges applies again",
    "src": [
     "COI",
-    "SCI_CAT",
-    "LSQ910"
-   ]
+    "NJAC"
+   ],
+   "at": {
+    "NJAC": "para 244 and Order of the Court, paras 3-4"
+   }
   }
  ],
  "struck_other": [
@@ -124,178 +143,245 @@
    "case": "Kihoto Hollohan v Zachillhu (1992)",
    "ground": "Not ratified by half the States, as Art. 368(2) requires for such changes; rest of Tenth Schedule upheld",
    "src": [
-    "LS2008",
-    "SCI_CAT"
-   ]
+    "KIHOTO"
+   ],
+   "at": {
+    "KIHOTO": "pp. 717 and 753-755"
+   }
   }
  ],
- "features": [
-  {
-   "f": "Limited amending power",
-   "case": "Minerva Mills (1980)",
-   "src": [
-    "MINERVA",
-    "LS2008"
-   ]
-  },
-  {
-   "f": "Supremacy of the Constitution",
-   "case": "Kesavananda (Sikri CJ)",
-   "src": [
-    "KBJ",
-    "LS2008"
-   ]
-  },
-  {
-   "f": "Republican and democratic form of government",
-   "case": "Kesavananda (Sikri CJ); Bommai (1994)",
-   "src": [
-    "KBJ",
-    "BOMMAI"
-   ]
-  },
-  {
-   "f": "Secularism",
-   "case": "Kesavananda (Sikri CJ); Bommai (1994); Coelho (2007); Balram Singh (2024)",
-   "src": [
-    "KBJ",
-    "BOMMAI",
-    "COELHO",
-    "SCI_SUM"
-   ]
-  },
-  {
-   "f": "Federalism",
-   "case": "Kesavananda (Sikri CJ); Bommai (1994)",
-   "src": [
-    "KBJ",
-    "BOMMAI"
-   ]
-  },
-  {
-   "f": "Separation of powers",
-   "case": "Kesavananda (Sikri CJ); Coelho (2007); Presidential Reference on assent to Bills (2025)",
-   "src": [
-    "KBJ",
-    "COELHO",
-    "SCI_SUM"
-   ]
-  },
-  {
-   "f": "Balance between Fundamental Rights and Directive Principles",
-   "case": "Minerva Mills (1980)",
+ "features": {
+  "amend": {
    "src": [
     "MINERVA"
-   ]
+   ],
+   "at": {
+    "MINERVA": "p. 240"
+   }
   },
-  {
-   "f": "Judicial review (Arts. 32, 226, 227)",
-   "case": "L. Chandra Kumar (1997); Coelho (2007)",
+  "jr": {
    "src": [
     "LCK",
-    "COELHO",
-    "SCI_CAT"
-   ]
+    "COELHO"
+   ],
+   "at": {
+    "LCK": "p. 1237",
+    "COELHO": "para 130"
+   }
   },
-  {
-   "f": "Rule of law",
-   "case": "Sambamurthy (1986); Coelho (2007); Raj Narain (1975)",
+  "indep": {
+   "src": [
+    "NJAC"
+   ],
+   "at": {
+    "NJAC": "paras 205 and 244"
+   }
+  },
+  "rol": {
    "src": [
     "SAMBAMURTHY",
     "COELHO",
-    "NJA"
-   ]
+    "RAJNARAIN"
+   ],
+   "at": {
+    "SAMBAMURTHY": "p. 889",
+    "COELHO": "para 130",
+    "RAJNARAIN": "pp. 418 and 665"
+   }
   },
-  {
-   "f": "Equality; core of Arts. 14, 19, 21 and other fundamental rights",
-   "case": "Minerva Mills (1980); Coelho (2007)",
+  "equality": {
    "src": [
     "MINERVA",
     "COELHO"
-   ]
+   ],
+   "at": {
+    "MINERVA": "p. 263",
+    "COELHO": "para 114"
+   }
   },
-  {
-   "f": "Independence of the judiciary",
-   "case": "SC AoR Assn / NJAC (2015)",
+  "balance": {
    "src": [
-    "SCI_CAT",
-    "LS2008"
-   ]
+    "MINERVA"
+   ],
+   "at": {
+    "MINERVA": "p. 255"
+   }
   },
-  {
-   "f": "Democracy, including free and fair elections",
-   "case": "Indira Gandhi v Raj Narain (1975); Bommai (1994)",
+  "democracy": {
    "src": [
-    "NJA",
-    "LS2008",
+    "KB",
     "BOMMAI"
-   ]
+   ],
+   "at": {
+    "KB": "p. 165 (Sikri CJ)",
+    "BOMMAI": "para 13 (Sawant J)"
+   }
+  },
+  "elections": {
+   "src": [
+    "RAJNARAIN"
+   ],
+   "at": {
+    "RAJNARAIN": "pp. 471-474 (Khanna J)"
+   }
+  },
+  "secular": {
+   "src": [
+    "KB",
+    "BOMMAI",
+    "COELHO",
+    "BALRAM"
+   ],
+   "at": {
+    "KB": "pp. 165-166 (Sikri CJ)",
+    "BOMMAI": "conclusion (10) (Jeevan Reddy J)",
+    "COELHO": "para 125",
+    "BALRAM": "para 4"
+   }
+  },
+  "federal": {
+   "src": [
+    "KB",
+    "BOMMAI"
+   ],
+   "at": {
+    "KB": "pp. 165-166 (Sikri CJ)",
+    "BOMMAI": "para 15 (Sawant J)"
+   }
+  },
+  "sop": {
+   "src": [
+    "KB",
+    "COELHO"
+   ],
+   "at": {
+    "KB": "pp. 165-166 (Sikri CJ)",
+    "COELHO": "para 130"
+   }
+  },
+  "supremacy": {
+   "src": [
+    "KB"
+   ],
+   "at": {
+    "KB": "p. 165 (Sikri CJ)"
+   }
+  },
+  "sovereign": {
+   "src": [
+    "KB"
+   ],
+   "at": {
+    "KB": "pp. 280-281 (Shelat and Grover JJ) and p. 322 (Hegde and Mukherjea JJ)"
+   }
+  },
+  "parl": {
+   "src": [
+    "KB"
+   ],
+   "at": {
+    "KB": "p. 518 (Jaganmohan Reddy J)"
+   }
+  },
+  "access": {
+   "src": [
+    "COELHO"
+   ],
+   "at": {
+    "COELHO": "para 147"
+   }
   }
- ],
+ },
  "outside_or_upheld": [
   {
    "what": "Right to property is not part of the basic structure",
    "case": "Kesavananda (Khanna J, conclusion viii)",
    "src": [
-    "KBJ"
-   ]
+    "KB"
+   ],
+   "at": {
+    "KB": "p. 759"
+   }
   },
   {
    "what": "24th Amendment, 25th Amendment s.2 (Art. 31(2)) and 29th Amendment upheld; Golak Nath overruled",
    "case": "Kesavananda (1973)",
    "src": [
-    "KBJ"
-   ]
+    "KB"
+   ],
+   "at": {
+    "KB": "majority view, p. 1001"
+   }
   },
   {
    "what": "Ninth Schedule laws added on or after 24 April 1973 get no blanket protection: tested against the basic structure as reflected in Art. 21 read with Arts. 14, 19 and their principles. Laws already upheld by the Court can't be reopened on these principles; actions and transactions already finalised stay protected",
    "case": "Coelho (2007), following Waman Rao (1981)",
    "src": [
-    "COELHO",
-    "COELHO_CN"
-   ]
+    "COELHO"
+   ],
+   "at": {
+    "COELHO": "paras 135 and 152"
+   }
   },
   {
-   "what": "Ordinary laws cannot be struck down for violating the basic structure; only constitutional amendments can",
+   "what": "Ordinary laws cannot be struck down just for violating the basic structure. A law falls only if it breaks a provision of the Constitution, such as a fundamental right, or the legislature had no power to make it",
    "case": "Anjum Kadari (2024)",
    "src": [
-    "SCI_SUM"
-   ]
+    "ANJUM"
+   ],
+   "at": {
+    "ANJUM": "para 55"
+   }
   },
   {
-   "what": "103rd Amendment (EWS, Arts. 15(6), 16(6)) upheld 3:2; 50% ceiling is not inflexible",
+   "what": "103rd Amendment (EWS, Arts. 15(6), 16(6)) upheld 3:2. The lead majority opinion (Maheshwari J, joined by Trivedi J) said the 50% ceiling is not inflexible",
    "case": "Janhit Abhiyan (2022)",
    "src": [
-    "SCI_SUM"
-   ]
+    "JANHIT"
+   ],
+   "at": {
+    "JANHIT": "Order of the Court; Maheshwari J, para 102"
+   }
   },
   {
-   "what": "'Socialist' and 'secular' in the Preamble (42nd Amendment) upheld",
+   "what": "Challenge to ‘socialist’ and ‘secular’ in the Preamble (42nd Amendment) dismissed; the power to amend extends to the Preamble",
    "case": "Balram Singh (2024)",
    "src": [
-    "SCI_SUM"
-   ]
+    "BALRAM"
+   ],
+   "at": {
+    "BALRAM": "para 2"
+   }
   },
   {
    "what": "Arts. 15(5) and 21A (93rd and 86th Amendments) do not alter the basic structure",
    "case": "Pramati Educational Trust (2014)",
    "src": [
-    "SCI_CAT"
-   ]
+    "PRAMATI"
+   ],
+   "at": {
+    "PRAMATI": "para 47"
+   }
   },
   {
    "what": "Ending Art. 370's application upheld; Art. 370 was a temporary provision",
    "case": "In re Article 370 (2023)",
    "src": [
-    "SCI_SUM"
-   ]
+    "ART370"
+   ],
+   "at": {
+    "ART370": "para 514"
+   }
   },
   {
    "what": "Rest of the Tenth Schedule (anti-defection) upheld",
    "case": "Kihoto Hollohan (1992)",
    "src": [
-    "LS2008"
-   ]
+    "KIHOTO"
+   ],
+   "at": {
+    "KIHOTO": "p. 713"
+   }
   }
  ]
 }

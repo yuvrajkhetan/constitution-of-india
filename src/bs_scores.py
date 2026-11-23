@@ -14,29 +14,29 @@ S = json.load(open('data/bs_settled.json'))
 ORDER = [a[0] for a in c['arts']]
 OMIT = {n for n in ORDER if t['a'][n].get('st')}
 
-# ---------- features (layer 2). status: rec = recognised by a majority or later bench; op = named in one opinion; ls = listed by Lok Sabha Secretariat only
+# ---------- features (layer 2). status: rec = recognised by a majority or later bench; op = named by some judges, not a majority; ls = listed by Lok Sabha Secretariat only
 FEAT = {
  'amend':    dict(t='Limited amending power', st='rec', c='Minerva Mills (1980)', s='Parliament can amend any part of the Constitution, but cannot use that power to destroy its identity or make the power unlimited.'),
  'jr':       dict(t='Judicial review', st='rec', c='L. Chandra Kumar (1997); I.R. Coelho (2007)', s='The High Courts and the Supreme Court must be able to test laws and government action against the Constitution.'),
- 'indep':    dict(t='Independence of the judiciary', st='rec', c='SC Advocates-on-Record (NJAC, 2015)', s='Judges must be appointed and kept in office free of control by the executive.'),
+ 'indep':    dict(t='Independence of the judiciary', st='rec', c='SC Advocates-on-Record (NJAC, 2015)', s='Judges must be appointed, and do their work, free of control by the executive.'),
  'rol':      dict(t='Rule of law', st='rec', c='P. Sambamurthy (1986); I.R. Coelho (2007); Raj Narain (1975)', s='Government acts under law, and its decisions can be tested by independent courts.'),
  'equality': dict(t='Equality and the core of fundamental rights', st='rec', c='Minerva Mills (1980); I.R. Coelho (2007)', s='The core of Articles 14, 19 and 21, and of each fundamental right, cannot be taken away.'),
  'balance':  dict(t='Balance between Fundamental Rights and Directive Principles', st='rec', c='Minerva Mills (1980)', s='Parts III and IV must be kept in harmony; neither may be made to swallow the other.'),
  'democracy':dict(t='Democracy and republican government', st='rec', c='Kesavananda Bharati (1973, Sikri CJ); S.R. Bommai (1994)', s='Government by elected representatives, with an elected head of state.'),
- 'elections':dict(t='Free and fair elections', st='rec', c='Indira Gandhi v Raj Narain (1975)', s='Elections must be free and fair, and their results open to lawful challenge.'),
- 'secular':  dict(t='Secularism', st='rec', c='S.R. Bommai (1994); I.R. Coelho (2007); Balram Singh (2024)', s='The State treats all religions equally and has no religion of its own.'),
+ 'elections':dict(t='Free and fair elections', st='op', c='Indira Gandhi v Raj Narain (1975, Khanna J)', s='Elections must be free and fair, and their results open to lawful challenge.'),
+ 'secular':  dict(t='Secularism', st='rec', c='Kesavananda Bharati (1973, Sikri CJ); S.R. Bommai (1994); I.R. Coelho (2007); Balram Singh (2024)', s='The State treats all religions equally and has no religion of its own.'),
  'federal':  dict(t='Federalism', st='rec', c='Kesavananda Bharati (1973, Sikri CJ); S.R. Bommai (1994)', s='Power is divided between the Union and the States, and the States are not mere agents of the Centre.'),
- 'sop':      dict(t='Separation of powers', st='rec', c='Kesavananda Bharati (1973, Sikri CJ); I.R. Coelho (2007); Presidential Reference on assent to Bills (2025)', s='Legislature, executive and judiciary each keep their own sphere.'),
+ 'sop':      dict(t='Separation of powers', st='rec', c='Kesavananda Bharati (1973, Sikri CJ); I.R. Coelho (2007)', s='Legislature, executive and judiciary each keep their own sphere.'),
  'supremacy':dict(t='Supremacy of the Constitution', st='op', c='Kesavananda Bharati (1973, Sikri CJ)', s='Every organ of the State is bound by the Constitution.'),
- 'sovereign':dict(t='Sovereignty, unity and integrity', st='ls', c='Listed by the Lok Sabha Secretariat (2008)', s='India is a sovereign Union; its unity and integrity are part of the framework.'),
- 'parl':     dict(t='Parliamentary system of government', st='ls', c='Listed by the Lok Sabha Secretariat (2008)', s='Ministers are drawn from and answerable to an elected legislature.'),
- 'access':   dict(t='Effective access to justice', st='ls', c='Listed by the Lok Sabha Secretariat (2008)', s='People must be able to reach a court to enforce their rights.'),
+ 'sovereign':dict(t='Sovereignty, unity and integrity', st='op', c='Kesavananda Bharati (1973; Shelat and Grover JJ, Hegde and Mukherjea JJ)', s='India is a sovereign Union; its unity and integrity are part of the framework.'),
+ 'parl':     dict(t='Parliamentary democracy', st='op', c='Kesavananda Bharati (1973, Jaganmohan Reddy J)', s='Ministers are drawn from and answerable to an elected legislature.'),
+ 'access':   dict(t='Effective access to justice', st='rec', c='I.R. Coelho (2007)', s='People must be able to reach a court to enforce their rights. The right to go to the Supreme Court under Article 32 is itself part of the basic structure.'),
 }
 
 # ---------- notes on clauses struck down (from layer 1)
 NOTE = {
  '31C': 'Two amendments to this article have been struck down: the declaration clause added in 1971 (Kesavananda Bharati, 1973) and the 1976 widening to all Directive Principles (Minerva Mills, 1980).',
- '368': 'Clauses (4) and (5), added in 1976 to bar courts from reviewing amendments, were struck down in Minerva Mills (1980).',
+ '368': 'Clauses (4) and (5), added in 1976, were struck down in Minerva Mills (1980). Clause (4) barred courts from reviewing amendments. Clause (5) said there was no limit on the amending power.',
  '371D': 'Clause (5) and the condition attached to it were struck down in P. Sambamurthy (1986) for breaching the rule of law.',
  '323A': 'Clause (2)(d) was struck down in L. Chandra Kumar (1997) as far as it shut out the High Courts and the Supreme Court.',
  '323B': 'Clause (3)(d) was struck down in L. Chandra Kumar (1997) as far as it shut out the High Courts and the Supreme Court.',
@@ -51,7 +51,7 @@ NOTE = {
  '224': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
  '224A': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
  '231': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
- '329A': 'Clauses (4) and (5) were struck down in Indira Gandhi v Raj Narain (1975); the whole article was later omitted in 1979.',
+ '329A': 'Clause (4) was struck down in Indira Gandhi v Raj Narain (1975). Clause (5), which told the Court to decide the pending appeal by clause (4), fell with it. The whole article was later omitted in 1979.',
  '300A': 'Kesavananda Bharati (Khanna J) held that the right to property is not part of the basic structure.',
  '356': 'S.R. Bommai (1994) held that a Proclamation under this article is open to judicial review.',
  '370': 'In re Article 370 (2023) upheld the 2019 decision that it no longer applies, and called it a temporary provision.',
@@ -86,7 +86,7 @@ r('15 17', 'vlikely', 'Core guarantees against discrimination and untouchability
 r('25', 'vlikely', 'Freedom of religion is the main textual home of secularism, which the Court has repeatedly called a basic feature.', 'secular equality')
 r('214', 'vlikely', 'Judicial review by the High Courts, held to be basic, depends on the High Courts existing.', 'jr indep')
 r('326', 'vlikely', 'Adult suffrage is the foundation of democracy and free and fair elections.', 'democracy elections')
-r('Preamble', 'vlikely', 'Kesavananda Bharati (Khanna J) held that the part of the Preamble relating to the basic structure cannot be amended; Balram Singh (2024) upheld adding "socialist" and "secular".', 'democracy secular sovereign equality')
+r('Preamble', 'vlikely', 'Kesavananda Bharati (Khanna J) held that, apart from the part that relates to the basic structure, the Preamble does not limit the power to amend. Balram Singh (2024) rejected a challenge to adding "socialist" and "secular" in 1976.', 'democracy secular sovereign equality')
 # LIKELY
 r('12', 'likely', 'Defines "the State" against which fundamental rights are enforced; gutting it would hollow out the rights.', 'equality jr')
 r('16', 'likely', 'Equality of opportunity in public employment is part of the equality code, though clauses on reservation have been changed and upheld.', 'equality')
@@ -204,6 +204,8 @@ SCH_BAND = {'FIRST': ('unlikely', 'Lists the States and Union territories. Parli
 for k, (b, w, f) in SCH_BAND.items():
     if w not in wi: wi[w] = len(WHY); WHY.append((w, f.split()))
 sch = {k: [BANDS.index(b), wi[w]] for k, (b, w, f) in SCH_BAND.items()}
+for k, v in S['features'].items(): FEAT[k].update(src=v['src'], at=v['at'])
+assert all('src' in f for f in FEAT.values()), [k for k, f in FEAT.items() if 'src' not in f]
 data = dict(feat=FEAT, why=[[w, f] for w, f in WHY], art=art, sch=sch, note=NOTE, schnote=SCH_NOTE, settled=S)
 json.dump(data, open('data/bs.json', 'w'), ensure_ascii=False, separators=(',', ':'))
 import collections

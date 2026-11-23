@@ -1026,7 +1026,7 @@ const BAND = [
   { k: "unlikely", t: "Unlikely", r: "10–40%" },
   { k: "vunlikely", t: "Very unlikely", r: "under 10%" }
 ];
-const FST = { rec: "Recognised by the Court", op: "Named in one opinion", ls: "Listed by the Lok Sabha Secretariat" };
+const FST = { rec: "Recognised by the Court", op: "Named by some judges", ls: "Listed by the Lok Sabha Secretariat" };
 let bsSel = 0, bsPick = false;
 const bsOf = (kind, id) => { const B = bsData(); if (!B) return null; const v = kind === "sch" ? B.sch[id] : B.art[id]; const note = kind === "sch" ? B.schnote[id] : B.note[id]; return v || note ? { b: v ? v[0] : null, why: v ? B.why[v[1]][0] : "", f: v ? B.why[v[1]][1] : [], note } : null; };
 const featChips = (f, b) => f.length ? `<p class="fl">${b != null && b >= 4 ? "Related feature" + (f.length > 1 ? "s" : "") : "Basic feature" + (f.length > 1 ? "s" : "") + " involved"}</p><div class="pills">${f.map(x => `<a class="pill" href="#basic-structure-${x}">${esc(bsData().feat[x].t)}</a>`).join("")}</div>` : "";
@@ -1077,7 +1077,9 @@ function vBS(r) {
   const yr = s => (s.match(/\((\d{4})\)/) || [])[1] || "";
   const provs = p => p.map(x => { const [k, v] = x.split(":"); return k === "a" ? `<a class="pill" href="#art-${v}">Art. ${v}</a>` : `<a class="pill" href="#sch-${v}">${schName(v)}</a>`; }).join("");
   const carriers = id => { const out = []; if (B.art.Preamble && B.art.Preamble[0] <= 2 && B.why[B.art.Preamble[1]][1].includes(id)) out.push(["#preamble", "Preamble"]); ORDER.forEach(n => { const v = B.art[n]; if (v && v[0] <= 2 && B.why[v[1]][1].includes(id)) out.push(["#art-" + n, "Art. " + n]); }); SCH.forEach(s => { const v = B.sch[s.k]; if (v && v[0] <= 2 && B.why[v[1]][1].includes(id)) out.push(["#sch-" + s.k, schName(s.k)]); }); return out; };
-  const srcLink = k => { const s = src[k] || k, u = (s.match(/https?:\/\/\S+/) || [])[0]; const label = s.replace(/,?\s*https?:\/\/\S+/, ""); return u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(label)}</a>` : esc(label); };
+  /* a source, with the page or paragraph relied on (at) when given */
+  const srcLink = (k, at) => { const s = src[k] || k, u = (s.match(/https?:\/\/\S+/) || [])[0]; const label = s.replace(/,?\s*https?:\/\/\S+/, ""); return (u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(label)}</a>` : esc(label)) + (at ? `, ${esc(at)}` : ""); };
+  const srcLine = o => o.src && o.src.length ? `<p class="src">Source: ${o.src.map(k => srcLink(k, o.at && o.at[k])).join("; ")}</p>` : "";
   return `<section class="wrap bs col" style="--col:920px">
     <div class="ph"><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
     <div class="card bs-sum">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><b>${counts[i]}</b><span>${b.t}</span><small>${b.r}</small></button>`).join("")}</div>
@@ -1090,13 +1092,13 @@ function vBS(r) {
     </section>
 
     <section class="sec" aria-labelledby="bs-settled"><div class="sh"><div><h2 id="bs-settled">Amendments the Court has struck down</h2><p>Each time the Supreme Court has struck down an amendment for breaching the basic structure, oldest first. After them come an amendment struck down on other grounds and the ones the Court upheld.</p></div></div>
-      <ol class="bstl">${S.struck_bs.map(s => `<li><span class="y">${yr(s.case)}</span><div><h3>${esc(s.case.replace(/\s*\(\d{4}\)/, ""))}</h3><p><b>Struck down:</b> ${lx(s.what)}.</p><p><b>Why:</b> ${lx(s.ground)}.</p><div class="pills">${provs(s.prov.filter((x, i, a) => a.indexOf(x) === i).slice(0, 6))}${s.prov.length > 6 ? `<span class="pill">+${s.prov.length - 6} more</span>` : ""}</div><p class="src">Source: ${s.src.map(srcLink).join("; ")}</p></div></li>`).join("")}</ol>
-      <div class="card bsother"><h3>Struck down on other grounds</h3>${S.struck_other.map(s => `<p><b>${esc(s.case)}:</b> ${lx(s.what)}. ${lx(s.ground)}.</p>`).join("")}</div>
-      <div class="card bsother"><h3>Upheld, or held to be outside the basic structure</h3><ul>${S.outside_or_upheld.map(o => `<li>${lx(o.what)}. <span class="c">${esc(o.case)}</span></li>`).join("")}</ul></div>
+      <ol class="bstl">${S.struck_bs.map(s => `<li><span class="y">${yr(s.case)}</span><div><h3>${esc(s.case.replace(/\s*\(\d{4}\)/, ""))}</h3><p><b>Struck down:</b> ${lx(s.what)}.</p><p><b>Why:</b> ${lx(s.ground)}.</p><div class="pills">${provs(s.prov.filter((x, i, a) => a.indexOf(x) === i).slice(0, 6))}${s.prov.length > 6 ? `<span class="pill">+${s.prov.length - 6} more</span>` : ""}</div>${srcLine(s)}</div></li>`).join("")}</ol>
+      <div class="card bsother"><h3>Struck down on other grounds</h3>${S.struck_other.map(s => `<p><b>${esc(s.case)}:</b> ${lx(s.what)}. ${lx(s.ground)}.</p>${srcLine(s)}`).join("")}</div>
+      <div class="card bsother"><h3>Upheld, or held to be outside the basic structure</h3><ul>${S.outside_or_upheld.map(o => `<li>${lx(o.what)}. <span class="c">${esc(o.case)}</span>${srcLine(o)}</li>`).join("")}</ul></div>
     </section>
 
     <section class="sec" aria-labelledby="bs-feat"><div class="sh"><div><h2 id="bs-feat">The basic features</h2><p>The Court has never given a closed list. These are the features it has named, and the provisions that carry them most directly.</p></div></div>
-      <div class="bsfeat">${Object.entries(B.feat).map(([id, f]) => { const cs = carriers(id); return `<article class="card bf" id="f-${id}"><span class="tag ${f.st}">${FST[f.st]}</span><h3>${esc(f.t)}</h3><p>${lx(f.s)}</p><p class="c">${esc(f.c)}</p>${cs.length ? `<div class="pills">${cs.slice(0, 8).map(([h, l]) => `<a class="pill" href="${h}">${esc(l)}</a>`).join("")}${cs.length > 8 ? `<span class="pill">+${cs.length - 8} more</span>` : ""}</div>` : ""}</article>`; }).join("")}</div>
+      <div class="bsfeat">${Object.entries(B.feat).map(([id, f]) => { const cs = carriers(id); return `<article class="card bf" id="f-${id}"><span class="tag ${f.st}">${FST[f.st]}</span><h3>${esc(f.t)}</h3><p>${lx(f.s)}</p><p class="c">${esc(f.c)}</p>${srcLine(f)}${cs.length ? `<div class="pills">${cs.slice(0, 8).map(([h, l]) => `<a class="pill" href="${h}">${esc(l)}</a>`).join("")}${cs.length > 8 ? `<span class="pill">+${cs.length - 8} more</span>` : ""}</div>` : ""}</article>`; }).join("")}</div>
     </section>
 
     <section class="sec" aria-labelledby="bs-method" id="bs-method-s"><div class="sh"><div><h2 id="bs-method">How the estimates work</h2></div></div>
@@ -1104,8 +1106,8 @@ function vBS(r) {
         <p>For every provision we ask one question: <b>could Parliament repeal or substantially change it by a constitutional amendment without breaching a basic feature the Supreme Court has recognised?</b> The basic structure is made up of features, not article numbers, so an article's details can be amended even when its core cannot.</p>
         <p><b>Decided by the Court</b> means the Court has itself ruled the provision's core part of the basic structure, or struck down an amendment to it on basic structure grounds. Every other level is our estimate, using these factors:</p>
         <ul><li>Has a court ruled this provision, or something it depends on, part of the basic structure?</li><li>Is it the main home of a recognised feature, or a supporting detail?</li><li>Does Article 368(2) already require half the States to ratify changes to it, a sign of the federal core?</li><li>Is it procedural, transitional, a number or a list, and has it been changed before without objection?</li></ul>
-        <p>The ranges are rough guides to confidence, not calculated probabilities. A feature named in only one judge's opinion, or listed only by the Lok Sabha Secretariat, counts for less than one recognised by a majority, or by a later and larger group of judges. Omitted articles are not shown.</p>
-        <p class="fine">The Court's rulings, and the provisions marked Decided by the Court, come from the Supreme Court's judgments, its own publications, the official notes and the Lok Sabha Secretariat. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
+        <p>The ranges are rough guides to confidence, not calculated probabilities. A feature named only by some judges, not a majority, counts for less than one recognised by a majority, or by a later and larger group of judges. Omitted articles are not shown.</p>
+        <p class="fine">The Court's rulings, and the provisions marked Decided by the Court, come from the Supreme Court's judgments themselves, checked against the judges' own words, and from the official notes. Each cites the report and page. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
         <details><summary>Sources</summary><ul class="srcs">${Object.keys(src).map(k => `<li>${srcLink(k)}</li>`).join("")}</ul></details>
       </div>
     </section>
@@ -1424,7 +1426,7 @@ function vAbout() {
       <h2>Amendments</h2>
       <p>Parliament has passed ${AMD.length} Constitution Amendment Acts. Dates and changes come from the official notes. ${NC} Acts are no longer mentioned in any official note, because what they changed was later replaced or ran out. For those we used the Legislative Department's own Act texts and the National Portal of India, linked on the <a href="#amendments">Amendments</a> page. The one-line descriptions are ours.</p>
       <h2>The basic structure</h2>
-      <p>The Supreme Court's rulings, and the provisions marked Decided by the Court, come only from official sources: the Court's judgments and publications, the official notes, the Lok Sabha Secretariat and the National Judicial Academy. Each item names its source. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
+      <p>The Supreme Court's rulings, and the provisions marked Decided by the Court, come only from the Court's judgments themselves, checked against the judges' own words, and from the official notes. Each ruling and feature cites the judgment's official law report (Supreme Court Reports) and the page or paragraph relied on. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
       <h2>What stays on your device</h2>
       <p>There is no account or sign-in. The articles you save, what you read recently, and your text size, reading speed and appearance are kept in this browser on this device only. Clearing your browser's data removes them.</p>
       <h2>What this is not</h2>

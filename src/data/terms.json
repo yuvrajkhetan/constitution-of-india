@@ -1,5 +1,5 @@
 {
-  "_note": "Plain explanations of terms used in our own text (summaries, forecast, basic structure, amendment notes), never in the official text. Each rests on the article that creates or defines it, cited in src; terms the Constitution does not define cite an official source. m is a case-insensitive pattern with no capturing groups. Only the first use in each block of text is marked. The writs, judicial review and federalism are not defined in the Constitution; they cite Supreme Court judgments on the Court's own server (api.sci.gov.in), checked November 2026.",
+  "_note": "Plain explanations of terms used in our own text (summaries, forecast, basic structure, amendment notes), never in the official text. Each rests on the article that creates or defines it, cited in src; terms the Constitution does not define cite an official source. m is a case-insensitive pattern with no capturing groups. Only the first use in each block of text is marked. The writs, judicial review and federalism are not defined in the Constitution; they cite Supreme Court judgments on the Court's own server (api.sci.gov.in), checked November 2026 against the judges' own words, and cited by their Supreme Court Reports volume and page.",
   "terms": [
     {
       "id": "consolidated-fund",
@@ -253,11 +253,11 @@
       "id": "writ",
       "t": "Writ",
       "m": "writs?|habeas corpus|mandamus|quo warranto|certiorari",
-      "d": "A formal order the Supreme Court or a High Court can issue to enforce rights. The Constitution names five kinds.",
+      "d": "A formal order the Supreme Court or a High Court can issue to enforce rights. High Courts can also issue them for other purposes. The Constitution names five kinds.",
       "list": [
         [
           "Habeas corpus",
-          "brings a detained person before the court, so it can check whether the detention is lawful."
+          "lets a court check quickly whether a person's detention is lawful, and set them free if it is not."
         ],
         [
           "Mandamus",
@@ -273,7 +273,7 @@
         ],
         [
           "Certiorari",
-          "cancels a decision of a lower court or tribunal that acted without, or beyond, its powers."
+          "cancels a decision of a lower court or tribunal that acted without or beyond its powers, did not give a fair hearing, or made an obvious error of law."
         ]
       ],
       "src": [
@@ -286,19 +286,19 @@
           "#art-226"
         ],
         [
-          "Kanu Sanyal (1973) on habeas corpus",
+          "Kanu Sanyal (1973), [1974] 1 S.C.R. 621, on habeas corpus",
           "https://api.sci.gov.in/jonew/judis/6463.pdf"
         ],
         [
-          "Army Welfare Education Society (2024) on mandamus",
+          "Army Welfare Education Society (2024), [2024] 7 S.C.R. 2176, on mandamus",
           "https://api.sci.gov.in/supremecourt/2020/26155/26155_2020_1_1502_53546_Judgement_09-Jul-2024.pdf"
         ],
         [
-          "Hari Vishnu Kamath (1954) on prohibition and certiorari",
+          "Hari Vishnu Kamath (1954), [1955] 1 S.C.R. 1104, on prohibition and certiorari",
           "https://api.sci.gov.in/jonew/judis/857.pdf"
         ],
         [
-          "Renu (2014) on quo warranto",
+          "Renu (2014), [2014] 2 S.C.R. 537, on quo warranto",
           "https://api.sci.gov.in/jonew/judis/41221.pdf"
         ]
       ]
@@ -322,7 +322,7 @@
           "#art-226"
         ],
         [
-          "Minerva Mills (1980)",
+          "Minerva Mills (1980), [1981] 1 S.C.R. 206",
           "https://api.sci.gov.in/pdf/aorexam/leading_cases/3.pdf"
         ]
       ]
@@ -338,7 +338,7 @@
           "#art-245"
         ],
         [
-          "S.R. Bommai (1994)",
+          "S.R. Bommai (1994), [1994] 2 S.C.R. 644",
           "https://api.sci.gov.in/pdf/aorexam/leading_cases/8.pdf"
         ]
       ]
