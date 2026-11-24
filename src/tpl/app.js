@@ -531,7 +531,7 @@ function vHome() {
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>The basic structure</h2><p>What Parliament cannot change even by amending the Constitution, as the Supreme Court has held since 1973, with our estimate for every provision.</p></div><a class="more" href="#basic-structure">Explore ${I.chev}</a></div>
-    <a class="card bshome" href="#basic-structure"><p class="bscap"><b>${CORE.bsc.reduce((a, b) => a + b, 0) - 1} articles in force and the Preamble</b>, grouped by how likely each is to be part of the basic structure</p><div class="bsbar" aria-hidden="true">${CORE.bsc.map((n, i) => `<span class="b${i}" style="flex:${n}"></span>`).join("")}</div>${bsLegend(CORE.bsc)}</a>
+    <a class="card bshome" href="#basic-structure">${bsCap()}<div class="bsbar" aria-hidden="true">${CORE.bsc.map((n, i) => `<span class="b${i}" style="flex:${n}"></span>`).join("")}</div>${bsLegend(CORE.bsc)}</a>
   </section>
   </section>`;
 }
@@ -1038,6 +1038,8 @@ function vNext() {
 }
 
 /* ---- basic structure ---- */
+// What the basic structure counts cover (home page and basic structure page).
+const bsCap = () => `<p class="bscap"><b>${CORE.bsn[0]} articles in force, the Preamble and the ${CORE.bsn[1]} Schedules</b>, grouped by how likely each is to be part of the basic structure</p>`;
 // Legend for a basic structure share bar: swatch, count, level and whole-number share (home page and basic structure page).
 const bsLegend = ns => { const pc = pct100(ns); return `<div class="bslg">${BAND.map((b, i) => `<span><i class="sw b${i}"></i><span><b>${ns[i]}</b> ${b.t[0].toLowerCase() + b.t.slice(1)} <span class="pc">${pc[i]}%</span></span></span>`).join("")}</div>`; };
 // Whole-number shares that add up to 100 (largest remainder), so a legend never totals 99% or 101%.
@@ -1110,9 +1112,7 @@ function vBS(r) {
   const srcLine = o => o.src && o.src.length ? `<p class="src">Source: ${o.src.map(k => srcLink(k, o.at && o.at[k])).join("; ")}</p>` : "";
   return `<section class="wrap bs col" style="--col:920px">
     <div class="ph"><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
-    <div class="card bs-sum">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><b>${counts[i]}</b><span>${b.t}</span><small>${b.r}</small></button>`).join("")}</div>
-
-    <section class="sec" aria-labelledby="bs-share"><div class="sh"><div><h2 id="bs-share">How much of the Constitution is likely to be part of the basic structure</h2><p>The articles in force, plus the Preamble, grouped from Decided by the Court to Very unlikely.</p></div></div>${bsShare()}</section>
+    ${bsSum()}
 
     <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2><p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is part of the basic structure. Select a level above, such as Likely, to pick it out; the list below shows its provisions and why.</p></div></div>
       <div class="card bsmap">${bsMap()}</div>
@@ -1423,13 +1423,13 @@ function amdYearChart(sel) {
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Constitution Amendment Acts by year, 1950 to 2026. Each dot is one Act."><g class="gl">${g}</g><line class="base" x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}"/><g class="ax">${ax}</g>${dots}</svg><p class="chart-note">Each dot is one Amendment Act, stacked in the year it was passed. ${compact ? "Tap" : "Hover over"} a dot to see what it did; select it to open. Hollow dots are Acts no official note mentions any more.${amdFilter !== "all" ? " Faded dots don't match the filter." : ""}</p>`;
 }
 const amdChartNow = sel => (amdView === "year" ? amdYearChart(sel) : amdChart(sel));
-function bsShare() {
-  const B = TEXT.bs, A = BAND.map(() => 0);
-  Object.entries(B.art).forEach(([n, v]) => { const live = n === "Preamble" || (TEXT.a[n] && !TEXT.a[n].st); if (live) A[v[0]]++; });
-  const tA = A.reduce((a, b) => a + b, 0), pc = v => (100 * v / tA).toFixed(1) + "%";
-  return `<div class="card bsshare"><div class="shbar" aria-hidden="true">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} articles (${pc(v)})"></span>` : "").join("")}</div>${bsLegend(A)}
-    <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Likelihood</th><th scope="col">Articles</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${pc(A[i])}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td></tr></tbody></table></details>
-    <p class="chart-note">The Schedules are left out because they are mostly lists.</p></div>`;
+// The levels card at the top of the basic structure page: what is counted, the bar, a button per level (count, share, range;
+// a button picks its provisions out of the map below) and the same numbers as a table. Counts come from CORE.bsc, as on the home page.
+function bsSum() {
+  const A = CORE.bsc, tA = A.reduce((a, b) => a + b, 0), pc = pct100(A), p1 = v => (100 * v / tA).toFixed(1) + "%";
+  return `<div class="card bs-sum">${bsCap()}<div class="shbar" aria-hidden="true">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} (${p1(v)})"></span>` : "").join("")}</div>
+    <div class="bss-g">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><span class="n"><b>${A[i]}</b> <span class="pc">${pc[i]}%</span></span><span class="lv">${b.t}</span><small>${b.r}</small></button>`).join("")}</div>
+    <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Likelihood</th><th scope="col">Provisions</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${p1(A[i])}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td></tr></tbody></table></details></div>`;
 }
 
 /* ================= how this was made ================= */

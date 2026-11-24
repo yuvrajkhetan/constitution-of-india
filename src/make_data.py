@@ -165,8 +165,10 @@ core['terms'] = [{k: v for k, v in x.items() if k != 'pending'} for x in TERMS]
 core['next']={k:NX[k] for k in ('asOn','asOnIso','headline','when')}  # the Amendments page teaser; the full forecast loads with text.json
 BS=json.load(open('data/bs.json'))
 import collections as _co
-_bc=_co.Counter(v[0] for v in BS['art'].values() if v[0]>=0)
-core['bsc']=[_bc.get(i,0) for i in range(6)]
+_bc=_co.Counter(v[0] for v in list(BS['art'].values())+list(BS['sch'].values()) if v[0]>=0)
+core['bsc']=[_bc.get(i,0) for i in range(6)]  # every provision on the basic structure map: articles in force, the Preamble, the Schedules
+core['bsn']=[sum(1 for k,v in BS['art'].items() if k!='Preamble' and v[0]>=0), sum(1 for v in BS['sch'].values() if v[0]>=0)]
+assert sum(core['bsc'])==core['bsn'][0]+core['bsn'][1]+1, ('basic structure counts', core['bsc'], core['bsn'])
 from hist import parse_all
 _seq=[('P',i) for i in range(len(c['pre']['f']))]+[(n,i) for n in ORDER for i in range(len(TA[n]['f']))]
 _res=parse_all([c['pre']['f'][i] if n=='P' else TA[n]['f'][i] for n,i in _seq])
