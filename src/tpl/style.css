@@ -725,6 +725,7 @@ a.bml:hover{color:var(--navy)}
 .bsmeth{padding:18px 20px}.bsmeth p,.bsmeth li{font-size:15.5px;color:var(--label-2);line-height:1.6}.bsmeth p+p{margin-top:10px}.bsmeth ul{margin:8px 0;padding-left:20px}
 .bsmeth details{margin-top:12px}.bsmeth summary{font-weight:600;color:var(--navy);cursor:pointer}.srcs{font-size:13.5px}.srcs li{margin-top:4px}
 .bshome{display:block;padding:18px 20px;text-decoration:none;color:var(--label)}
+.bscap{margin:0 0 12px;font-size:15px;line-height:1.4;color:var(--label-2)}.bscap b{color:var(--label);font-weight:600}.bslg b{color:var(--label);font-weight:600}
 .bsbar{display:flex;gap:2px;height:22px;border-radius:6px;overflow:hidden}
 .bslg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font-size:13.5px;color:var(--label-2)}
 .bslg span{display:inline-flex;align-items:center;gap:6px}.bslg .sw{width:12px;height:12px}
