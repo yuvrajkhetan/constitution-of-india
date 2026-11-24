@@ -16,7 +16,7 @@ Last updated: 24 November 2026.
 | 1 | **Refresh the next amendment forecast** after the Winter Session of Parliament ends (due late December 2026): re-check pending Bills on sansad.in and update `asOn` | Improvement | S | Our own rule; the forecast goes stale otherwise |
 | 2 | **Corrections note** on the About page: what was fixed in the official text and when (for example, November 2026: seven States restored to the First Schedule, Third Schedule oaths, missing official notes) | Feature | S | Being open about fixes builds trust in an unofficial reader |
 | 3 | **"Report an error" link** on every article and Schedule page (pre-filled email or GitHub issue naming the page) | Feature | S | Turns readers into a second line of checking |
-| 4 | **Check Third Schedule Form IV against the printed PDF**: the edition's text copy repeats "faith and" at a line break; we show it once, as in every other form | Improvement | S | The one wording call in the official text not yet checked against print |
+| 4 | **Confirm one word in Third Schedule Form IV against the printed page.** The form itself is fixed. Only this is open: the edition's text copy reads "true faith and faith and allegiance" at a line break, and we show "faith and" once, as in every other form | Improvement | S | Needs the PDF: legislative.gov.in and indiacode.nic.in refuse automated access from here. The owner can check page 270 of the edition, or share the PDF |
 
 ## High value, bigger
 
