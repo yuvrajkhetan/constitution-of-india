@@ -5,7 +5,7 @@ Public, unbranded reader of the Constitution of India for citizens and students.
 ## Rules
 
 - No em dashes in anything we write (summaries, UI text, notes). The official text keeps its own.
-- The official text comes only from *The Constitution of India [As on 10th September, 2026]*, Legislative Department. Never edit its wording, except to fix extraction errors against `src/source/`. One owner-approved exception: the edition's three Appendices are not part of the Constitution and are left out, and `make_data.py` removes the six footnote phrases that point to them (the source data stays as published).
+- The official text comes only from *The Constitution of India [As on 10th September, 2026]*, Legislative Department. Never edit its wording, except to fix extraction errors against `src/source/`. Owner-approved exceptions: (1) the edition's three Appendices are not part of the Constitution and are left out, and `make_data.py` removes the six footnote phrases that point to them (the source data stays as published); (2) one obvious misprint is corrected: Third Schedule Form IV prints "true faith and faith and allegiance" (page 270), and we show "true faith and allegiance", as in every other form. Correct any other misprint only with the owner's approval, and add it here.
 - Anything added (summaries, themes, notes, basic structure calls) must rest on official, sound sources: Supreme Court judgments and publications, Legislative Department Act texts, Lok Sabha/Rajya Sabha documents, the National Portal of India. Cite them.
 - Plain English, short sentences, no legal jargon. Summaries must not start with "This article".
 - Apple-style design, a subtle patchwork quilt drawn from Indian textiles, and the Palatino font stack (TeX Gyre Pagella as fallback). It must work on phones down to 320px wide.
@@ -13,6 +13,7 @@ Public, unbranded reader of the Constitution of India for citizens and students.
 ## Where things live (`src/`)
 
 - `data/text.json`, `data/core.json`: the parsed official text (source of truth for the text).
+- `source/Constitution_of_India_10.9.2026.pdf` is the official edition itself, and `source/...pdf.txt` its text copy. When the text copy looks wrong, check the printed page in the PDF (`pdftoppm -f N -l N -png`; printed page 270 is PDF page 301). Keep the edition's wording; misprints are corrected only with the owner's approval (see Rules). The PDF also holds some hidden leftover text (for example old "date yet to be notified" under newer dates) that the text copy picks up but the printed page does not show.
 - `sum/all.json`: summaries, keyed `art-N`, `part-X` and `sch-KEY`. `sum/out/amend.json`: amendment one-liners.
 - `data/themes.json`, `data/glossary.json`: glossary refs to Schedules look like `s:SIXTH:50`, which is a block index. If you add or remove Schedule blocks, update these refs.
 - `data/bs_settled.json` (settled law with sources) and `bs_scores.py` (generates `data/bs.json`, the basic structure bands). Every ruling and feature cites the judgment itself by its Supreme Court Reports (S.C.R.) citation and page or paragraph (`at`), checked against the judges' own words, not headnotes or summaries. The Courrt connector gives the verbatim text for checking; never link to it, and never rely on its summaries or tags.
