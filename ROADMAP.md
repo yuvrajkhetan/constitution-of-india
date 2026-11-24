@@ -49,6 +49,7 @@ Last updated: 24 November 2026.
 
 ## Done
 
+- **24 November 2026**: basic structure counts made clear. The home page bar says what it counts and shows each level's share; on the basic structure page the level buttons and the bar became one card, and both pages count the same 481 provisions (articles in force, the Preamble and the Schedules). The top level is now "Decided by the Supreme Court".
 - **24 November 2026**: theme page ending. The four large "More themes" cards gave way to previous and next theme buttons and up to three related themes (chosen by shared provisions) as compact rows, with an "All themes" link.
 - **24 November 2026**: the official PDF saved in `src/source/`. Third Schedule Form IV checked against the printed page: the edition misprints "true faith and faith and allegiance"; with the owner's approval we show "true faith and allegiance", and CLAUDE.md records the exception. The 106th Amendment notes confirmed against print.
 - **24 November 2026**: smoother animations (home quilt, search, basic structure map, toasts, touch hovers); facts row alignment and shadows.

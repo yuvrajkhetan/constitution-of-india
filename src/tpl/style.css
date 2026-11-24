@@ -792,7 +792,7 @@ a.bml:hover{color:var(--navy)}
 .bschip .bsc-l{font-size:13px;font-weight:600;color:var(--label-3);white-space:nowrap}
 .bschip .bsc-t{flex:1;min-width:0}.bschip .bsc-t b{font-weight:600}.bschip .rng{color:var(--label-3);font-size:13.5px;margin-left:4px}
 @media (max-width:560px){.bschip .rng{display:none}}
-.bschip .rng,.bschip .bsc-t b{white-space:nowrap}
+.bschip .rng{white-space:nowrap}.bschip .bsc-t b{line-height:1.25}
 .bschip span.bscale{flex:none}
 .bschip .bsc-t{text-align:left}
 .reader>.art{align-self:start}
