@@ -35,23 +35,6 @@ FEAT = {
 
 # ---------- notes on clauses struck down (from layer 1)
 NOTE = {
- '31C': 'Two amendments to this article have been struck down: the declaration clause added in 1971 (Kesavananda Bharati, 1973) and the 1976 widening to all Directive Principles (Minerva Mills, 1980).',
- '368': 'Clauses (4) and (5), added in 1976, were struck down in Minerva Mills (1980). Clause (4) barred courts from reviewing amendments. Clause (5) said there was no limit on the amending power.',
- '371D': 'Clause (5) and the condition attached to it were struck down in P. Sambamurthy (1986) for breaching the rule of law.',
- '323A': 'Clause (2)(d) was struck down in L. Chandra Kumar (1997) as far as it shut out the High Courts and the Supreme Court.',
- '323B': 'Clause (3)(d) was struck down in L. Chandra Kumar (1997) as far as it shut out the High Courts and the Supreme Court.',
- '124': 'The 2014 changes made by the Ninety-ninth Amendment (NJAC) were struck down in 2015.',
- '124A': 'Inserted by the Ninety-ninth Amendment and struck down in 2015 (NJAC case). The text remains printed in the official edition.',
- '124B': 'Inserted by the Ninety-ninth Amendment and struck down in 2015 (NJAC case). The text remains printed in the official edition.',
- '124C': 'Inserted by the Ninety-ninth Amendment and struck down in 2015 (NJAC case). The text remains printed in the official edition.',
- '127': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
- '128': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
- '217': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
- '222': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
- '224': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
- '224A': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
- '231': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
- '329A': 'Clause (4) was struck down in Indira Gandhi v Raj Narain (1975). One judge, Chandrachud J, also held clause (5) void; it told the Court to decide the pending appeal by clause (4). The whole article was later omitted in 1979.',
  '300A': 'Kesavananda Bharati (Khanna J) held that the right to property is not part of the basic structure.',
  '356': 'S.R. Bommai (1994) held that a Proclamation under this article is open to judicial review.',
  '370': 'In re Article 370 (2023) upheld the 2019 decision that it no longer applies, and called it a temporary provision.',
@@ -62,7 +45,6 @@ NOTE = {
 }
 SCH_NOTE = {
  'NINTH': NOTE['31B'],
- 'TENTH': 'Kihoto Hollohan (1992) upheld the Tenth Schedule but struck down paragraph 7 because it was not ratified by half the States, not on basic structure grounds.',
  'SEVENTH': 'The three Lists are entrenched: changing them needs ratification by half the States under Article 368(2).',
  'FOURTH': 'Representation of the States in Parliament is entrenched: changing it needs ratification by half the States under Article 368(2).',
 }

@@ -13,12 +13,12 @@ function valid(h) {
   if ((m = x.match(/^part-(.+)$/))) return core.parts.some(p => p.n === m[1]);
   if ((m = x.match(/^theme-(.+)$/))) return core.themes.some(t => t.id === m[1]);
   if ((m = x.match(/^amend-(\d+)$/))) return +m[1] >= 1 && +m[1] <= 106;
-  if ((m = x.match(/^basic-structure-(.+)$/))) return FEAT.has(m[1]);
+  if ((m = x.match(/^basic-structure-(.+)$/))) return FEAT.has(m[1]) || ['method', 'struck'].includes(m[1]);
   if ((m = x.match(/^g-(.+)$/))) return GL.has(m[1]);
   return false;
 }
 (async () => {
-  const routes = ['', '#contents', '#schedules', '#themes', '#amendments', '#glossary', '#saved', '#about', '#preamble', '#basic-structure', '#basic-structure-method', '#next-amendment'];
+  const routes = ['', '#contents', '#schedules', '#themes', '#amendments', '#glossary', '#saved', '#about', '#preamble', '#basic-structure', '#basic-structure-method', '#basic-structure-struck', '#next-amendment'];
   core.arts.forEach(a => routes.push('#art-' + a[0]));
   core.parts.forEach(p => routes.push('#part-' + p.n));
   core.sch.forEach(s => routes.push('#sch-' + s.k));

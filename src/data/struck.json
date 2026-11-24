@@ -23,7 +23,8 @@
    ],
    "at": {
     "KB": "the majority view, p. 1001"
-   }
+   },
+   "why": "letting a law's own declaration shut out the courts' review struck at the basic structure."
   },
   {
    "p": [
@@ -48,7 +49,8 @@
    "at": {
     "MINERVA": "pp. 255-256",
     "POA": "para 71, p. 93, and para 229(a), pp. 180-181"
-   }
+   },
+   "why": "it destroyed the balance between the Fundamental Rights and the Directive Principles, which is part of the basic structure."
   },
   {
    "p": [
@@ -74,7 +76,8 @@
    ],
    "at": {
     "MINERVA": "pp. 240-242"
-   }
+   },
+   "why": "a limited amending power is itself part of the basic structure."
   },
   {
    "p": [
@@ -100,7 +103,8 @@
    ],
    "at": {
     "SAMBAMURTHY": "pp. 889-890"
-   }
+   },
+   "why": "it breached the rule of law, which is part of the basic structure."
   },
   {
    "p": [
@@ -133,7 +137,8 @@
    ],
    "at": {
     "LCK": "pp. 1237 and 1250"
-   }
+   },
+   "why": "review by the High Courts and the Supreme Court is part of the basic structure."
   },
   {
    "p": [
@@ -154,7 +159,8 @@
    ],
    "at": {
     "NJAC": "para 244 (Khehar J), pp. 492-493, and Order of the Court, paras 2 and 4, pp. 1055-1056"
-   }
+   },
+   "why": "it breached the independence of the judiciary and the separation of powers, both part of the basic structure."
   },
   {
    "p": [
@@ -184,7 +190,8 @@
    ],
    "at": {
     "NJAC": "para 244 (Khehar J), pp. 492-493, and Order of the Court, paras 2 and 4, pp. 1055-1056"
-   }
+   },
+   "why": "it breached the independence of the judiciary and the separation of powers, both part of the basic structure."
   },
   {
    "p": [
@@ -202,7 +209,8 @@
    ],
    "at": {
     "NJAC": "para 244 (Khehar J), pp. 492-493, and Order of the Court, paras 2 and 4, pp. 1055-1056"
-   }
+   },
+   "why": "it breached the independence of the judiciary and the separation of powers, both part of the basic structure."
   },
   {
    "p": [
@@ -216,7 +224,8 @@
    ],
    "at": {
     "RAJNARAIN": "pp. 418, 474, 521 and 664-669"
-   }
+   },
+   "why": "the judges gave different reasons, among them free and fair elections, democracy and the rule of law, which are part of the basic structure."
   },
   {
    "p": [
@@ -233,13 +242,14 @@
      ]
     ]
    },
-   "say": "Paragraph 7, which barred every court from questions of disqualification under this Schedule, was declared invalid in Kihoto Hollohan v Zachillhu (1992), because it was not ratified by half the States as article 368(2) requires. The rest of the Schedule was upheld. Paragraph 7 is still printed in the official text, but it has no effect.",
+   "say": "Paragraph 7, which barred every court from questions of disqualification under this Schedule, was declared invalid in Kihoto Hollohan v Zachillhu (1992). The rest of the Schedule was upheld. Paragraph 7 is still printed in the official text, but it has no effect.",
    "src": [
     "KIHOTO"
    ],
    "at": {
     "KIHOTO": "pp. 717 and 753-755"
-   }
+   },
+   "why": "it was not ratified by half the States, as article 368(2) requires. The Court did not decide this on basic structure grounds."
   },
   {
    "p": [
@@ -259,13 +269,14 @@
    ],
    "year": 2021,
    "part": true,
-   "say": "The Ninety-seventh Amendment (2011), which added this Part, needed ratification by half the State Legislatures under article 368(2) and did not get it. In Union of India v Rajendra N. Shah (2021) the Supreme Court held that the Part therefore applies only to multi-State co-operative societies, in the States and in the Union territories. For other co-operative societies it has no effect.",
+   "say": "In Union of India v Rajendra N. Shah (2021) the Supreme Court held that this Part, added by the Ninety-seventh Amendment (2011), applies only to multi-State co-operative societies, in the States and in the Union territories. For other co-operative societies it has no effect.",
    "src": [
     "RAJSHAH"
    ],
    "at": {
     "RAJSHAH": "paras 69-72, pp. 525-526, and paras 77-80, pp. 532-534"
-   }
+   },
+   "why": "the amendment needed ratification by half the State Legislatures under article 368(2) and did not get it. The Court did not decide this on basic structure grounds."
   }
  ]
 }

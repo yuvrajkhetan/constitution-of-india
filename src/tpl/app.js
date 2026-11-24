@@ -785,7 +785,7 @@ function sdMarks(L) {
   L.forEach(e => e.i.forEach((i, j) => { set.add(i); if (e.tag && (j === 0 || e.i[j - 1] !== i - 1)) (tag[i] = tag[i] || []).includes(e.tag) || (tag[i] = (tag[i] || []).concat(e.tag)); }));
   return { set, tag: Object.fromEntries(Object.entries(tag).map(([i, t]) => [i, `<span class="sdtag">${esc(t.length > 1 && t.every(x => x.replace(/ \d{4}$/, "") === t[0].replace(/ \d{4}$/, "")) ? t[0].replace(/ \d{4}$/, "") + " " + t.map(x => x.slice(-4)).join(" and ") : t.join(" · "))}</span>`])) };
 }
-const sdBox = L => !L.length ? "" : `<div class="notice sd" role="note">${I.gavel}<div><b class="k">${L.every(e => e.part) ? "Struck down in part by the Supreme Court" : "Struck down by the Supreme Court"}</b>${L.map(e => `<p>${lx(e.say)}</p><p class="src">Source: ${esc(e.src.join("; "))}</p>`).join("")}${L.some(e => e.i.length) ? `<button class="lnk" type="button" data-goto-p="${Math.min(...L.flatMap(e => e.i))}">Show in the text</button>` : ""}</div></div>`;
+const sdBox = L => !L.length ? "" : `<div class="notice sd" role="note">${I.gavel}<div><b class="k">${L.every(e => e.part) ? "Struck down in part by the Supreme Court" : "Struck down by the Supreme Court"}</b>${L.map(e => `<p>${lx(e.say)}</p>${e.why ? `<p class="why"><b>Why:</b> ${lx(e.why)}</p>` : ""}<p class="src">Source: ${esc(e.src.join("; "))}</p>`).join("")}<p class="sdl">${L.some(e => e.i.length) ? `<button class="lnk" type="button" data-goto-p="${Math.min(...L.flatMap(e => e.i))}">Show in the text</button>` : ""}<a class="lnk" href="#basic-structure-struck">All amendments the Court has struck down</a></p></div></div>`;
 function gotoPara(i) {
   const el = document.querySelector(`#text [data-i="${i}"], #view .blocks #b-${i}`); if (!el) return;
   const tg = el.previousElementSibling && el.previousElementSibling.classList.contains("sdtag") ? el.previousElementSibling : el;
@@ -1139,7 +1139,7 @@ function vBS(r) {
       <div class="bslist" id="bslist"><h3>${BAND[bsSel].t}${BAND[bsSel].r ? ` <small>${BAND[bsSel].r}</small>` : ""}</h3>${bsList()}</div>
     </section>
 
-    <section class="sec" aria-labelledby="bs-settled"><div class="sh"><div><h2 id="bs-settled">Amendments the Court has struck down</h2><p>Each time the Supreme Court has struck down an amendment for breaching the basic structure, oldest first. After them come an amendment struck down on other grounds and the ones the Court upheld.</p></div></div>
+    <section class="sec" aria-labelledby="bs-settled"><div class="sh"><div><h2 id="bs-settled">Amendments the Court has struck down</h2><p>Each time the Supreme Court has struck down an amendment for breaching the basic structure, oldest first. After them come the amendments struck down on other grounds, and the ones the Court upheld.</p></div></div>
       <ol class="bstl">${S.struck_bs.map(s => `<li><span class="y">${yr(s.case)}</span><div><h3>${esc(s.case.replace(/\s*\(\d{4}\)/, ""))}</h3><p><b>Struck down:</b> ${lx(s.what)}.</p><p><b>Why:</b> ${lx(s.ground)}.</p><div class="pills">${provs(s.prov.filter((x, i, a) => a.indexOf(x) === i).slice(0, 6))}${s.prov.length > 6 ? `<span class="pill">+${s.prov.length - 6} more</span>` : ""}</div>${srcLine(s)}</div></li>`).join("")}</ol>
       <div class="card bsother"><h3>Struck down on other grounds</h3>${S.struck_other.map(s => `<p><b>${esc(s.case)}:</b> ${lx(s.what)}. ${lx(s.ground)}.</p>${srcLine(s)}`).join("")}</div>
       <div class="card bsother"><h3>Upheld, or held to be outside the basic structure</h3><ul>${S.outside_or_upheld.map(o => `<li>${lx(o.what)}. <span class="c">${esc(o.case)}</span>${srcLine(o)}</li>`).join("")}</ul></div>
@@ -1617,7 +1617,7 @@ function after(r, keepY, changed) {
   if (mk) mk.scrollIntoView({ block: "center" });
   else if (r.name === "sch" && r.b != null && $("#b-" + r.b)) $("#b-" + r.b).scrollIntoView({ block: "start" });
   else if (r.name === "amend" && r.id && $("#amd-" + r.id)) $("#amd-" + r.id).scrollIntoView({ block: "center" });
-  else if (r.name === "bs" && r.f) { const e = document.getElementById(r.f === "method" ? "bs-method-s" : "f-" + r.f); if (e) e.scrollIntoView({ block: "start" }); }
+  else if (r.name === "bs" && r.f) { const e = document.getElementById(r.f === "method" ? "bs-method-s" : r.f === "struck" ? "bs-settled" : "f-" + r.f); if (e) e.scrollIntoView({ block: "start" }); }
   else if (r.name === "glossary" && r.term) { const e = document.getElementById("g-" + r.term); if (e) e.scrollIntoView({ block: "center" }); }
   else window.scrollTo(0, 0);
   if (TEXT) HL = null;

@@ -193,7 +193,8 @@ for it in _SK['items']:
         for k in it['src']: assert k in _SS, ('struck.json: unknown source', k)
         say=it['say'][pv] if isinstance(it['say'],dict) else it['say']
         assert '—' not in say, ('struck.json: em dash', pv)
-        core['struck'].setdefault(pv,[]).append({'y':it['year'],'part':bool(it.get('part')),'tag':it.get('tag',''),'i':idx,'say':say,
+        assert '\u2014' not in it['why'], ('struck.json: em dash', pv)
+        core['struck'].setdefault(pv,[]).append({'y':it['year'],'part':bool(it.get('part')),'tag':it.get('tag',''),'i':idx,'say':say,'why':it['why'],
             'src':[_SS[k].split(', http')[0] + (', ' + it['at'][k] if k in it.get('at',{}) else '') for k in it['src']]})
 from hist import parse_all
 _seq=[('P',i) for i in range(len(c['pre']['f']))]+[(n,i) for n in ORDER for i in range(len(TA[n]['f']))]
