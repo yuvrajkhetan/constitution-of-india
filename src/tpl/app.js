@@ -1005,7 +1005,7 @@ function vNext() {
     <section class="sec" aria-labelledby="nx-when"><div class="sh"><div><h2 id="nx-when">When</h2><p>How likely it is that at least one Amendment Act is passed by the end of each stretch.</p></div></div>
       ${nextTimeline(N)}
       <h3 class="subhd">Why</h3>
-      <div class="nxwhen">${N.when.map(w => `<div class="card"><span class="k">${sw(w.band)}${BAND[w.band].t} <small>${BAND[w.band].r}</small></span><h3>${esc(w.by)}</h3><p>${markTerms(esc(w.why))}</p></div>`).join("")}</div></section>
+      <div class="nxwhen">${N.when.map(w => `<div class="card"><span class="k">${sw(w.band)}${BAND[w.band].t}${BAND[w.band].r ? ` <small>${BAND[w.band].r}</small>` : ""}</span><h3>${esc(w.by)}</h3><p>${markTerms(esc(w.why))}</p></div>`).join("")}</div></section>
 
     <section class="sec" aria-labelledby="nx-what"><div class="sh"><div><h2 id="nx-what">On what</h2><p>Each Government Bill to amend the Constitution now in Parliament, the deadlines that will need one, and how likely each is to become law. Select one for the details.</p></div></div>
       ${nextTiles(N)}
@@ -1049,7 +1049,7 @@ function pct100(ns) {
   return out;
 }
 const BAND = [
-  { k: "held", t: "Decided by the Court", r: "The Supreme Court has ruled on it" },
+  { k: "held", t: "Decided by the Supreme Court", r: "" },
   { k: "vlikely", t: "Very likely", r: "over 90%" },
   { k: "likely", t: "Likely", r: "60–90%" },
   { k: "open", t: "Open question", r: "40–60%" },
@@ -1071,7 +1071,7 @@ function bsBox(kind, id) {
   const v = bsOf(kind, id); if (!v) return "";
   const B = v.b == null ? null : BAND[v.b];
   return `<section class="block" aria-labelledby="bsbox-h"><h2 id="bsbox-h">Basic structure</h2><div class="card bsbox" id="bsbox">
-    ${B ? `<div class="bsb-h"><span class="sw b${v.b}" aria-hidden="true"></span><div><b>${B.t}</b><small>${v.b ? "Our estimate: " + B.r : B.r}</small></div></div>
+    ${B ? `<div class="bsb-h"><span class="sw b${v.b}" aria-hidden="true"></span><div><b>${B.t}</b>${v.b ? `<small>Our estimate: ${B.r}</small>` : ""}</div></div>
     <p class="q">Could Parliament repeal or substantially change this ${kind === "sch" ? "Schedule" : "provision"} by amendment without breaching the basic structure?</p>
     <p>${lx(v.why)}</p>${featChips(v.f, v.b)}` : ""}
     ${v.note ? `<p class="bsn">${I.info}<span>${lx(v.note)}</span></p>` : ""}
@@ -1116,7 +1116,7 @@ function vBS(r) {
 
     <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2><p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is part of the basic structure. Select a level above, such as Likely, to pick it out; the list below shows its provisions and why.</p></div></div>
       <div class="card bsmap">${bsMap()}</div>
-      <div class="bslist" id="bslist"><h3>${BAND[bsSel].t} <small>${BAND[bsSel].r}</small></h3>${bsList()}</div>
+      <div class="bslist" id="bslist"><h3>${BAND[bsSel].t}${BAND[bsSel].r ? ` <small>${BAND[bsSel].r}</small>` : ""}</h3>${bsList()}</div>
     </section>
 
     <section class="sec" aria-labelledby="bs-settled"><div class="sh"><div><h2 id="bs-settled">Amendments the Court has struck down</h2><p>Each time the Supreme Court has struck down an amendment for breaching the basic structure, oldest first. After them come an amendment struck down on other grounds and the ones the Court upheld.</p></div></div>
@@ -1132,10 +1132,10 @@ function vBS(r) {
     <section class="sec" aria-labelledby="bs-method" id="bs-method-s"><div class="sh"><div><h2 id="bs-method">How the estimates work</h2></div></div>
       <div class="card bsmeth">
         <p>For every provision we ask one question: <b>could Parliament repeal or substantially change it by a constitutional amendment without breaching a basic feature the Supreme Court has recognised?</b> The basic structure is made up of features, not article numbers, so an article's details can be amended even when its core cannot.</p>
-        <p><b>Decided by the Court</b> means the Court has itself ruled the provision's core part of the basic structure, or struck down an amendment to it on basic structure grounds. Every other level is our estimate, using these factors:</p>
+        <p><b>Decided by the Supreme Court</b> means the Court has itself ruled the provision's core part of the basic structure, or struck down an amendment to it on basic structure grounds. Every other level is our estimate, using these factors:</p>
         <ul><li>Has a court ruled this provision, or something it depends on, part of the basic structure?</li><li>Is it the main home of a recognised feature, or a supporting detail?</li><li>Does Article 368(2) already require half the States to ratify changes to it, a sign of the federal core?</li><li>Is it procedural, transitional, a number or a list, and has it been changed before without objection?</li></ul>
         <p>The ranges are rough guides to confidence, not calculated probabilities. A feature named only by some judges, not a majority, counts for less than one recognised by a majority, or by a later and larger group of judges. Omitted articles are not shown.</p>
-        <p class="fine">The Court's rulings, and the provisions marked Decided by the Court, come from the Supreme Court's judgments themselves, checked against the judges' own words, and from the official notes. Each cites the report and page. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
+        <p class="fine">The Court's rulings, and the provisions marked Decided by the Supreme Court, come from the Supreme Court's judgments themselves, checked against the judges' own words, and from the official notes. Each cites the report and page. The estimates are an analysis for readers, not legal advice; for any legal purpose rely on the judgments themselves.</p>
         <details><summary>Sources</summary><ul class="srcs">${Object.keys(src).map(k => `<li>${srcLink(k)}</li>`).join("")}</ul></details>
       </div>
     </section>
@@ -1428,7 +1428,7 @@ const amdChartNow = sel => (amdView === "year" ? amdYearChart(sel) : amdChart(se
 function bsSum() {
   const A = CORE.bsc, tA = A.reduce((a, b) => a + b, 0), pc = pct100(A), p1 = v => (100 * v / tA).toFixed(1) + "%";
   return `<div class="card bs-sum">${bsCap()}<div class="shbar" aria-hidden="true">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} (${p1(v)})"></span>` : "").join("")}</div>
-    <div class="bss-g">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><span class="n"><b>${A[i]}</b> <span class="pc">${pc[i]}%</span></span><span class="lv">${b.t}</span><small>${b.r}</small></button>`).join("")}</div>
+    <div class="bss-g">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><span class="n"><b>${A[i]}</b> <span class="pc">${pc[i]}%</span></span><span class="lv">${b.t}</span>${b.r ? `<small>${b.r}</small>` : ""}</button>`).join("")}</div>
     <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Likelihood</th><th scope="col">Provisions</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${p1(A[i])}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td></tr></tbody></table></details></div>`;
 }
 
@@ -1454,7 +1454,7 @@ function vAbout() {
       <h2>Amendments</h2>
       <p>Parliament has passed ${AMD.length} Constitution Amendment Acts. Dates and changes come from the official notes. ${NC} Acts are no longer mentioned in any official note, because what they changed was later replaced or ran out. For those we used the Legislative Department's own Act texts and the National Portal of India, linked on the <a href="#amendments">Amendments</a> page. The one-line descriptions are ours.</p>
       <h2>The basic structure</h2>
-      <p>The Supreme Court's rulings, and the provisions marked Decided by the Court, come only from the Court's judgments themselves, checked against the judges' own words, and from the official notes. Each ruling and feature cites the judgment's official law report (Supreme Court Reports) and the page or paragraph relied on. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
+      <p>The Supreme Court's rulings, and the provisions marked Decided by the Supreme Court, come only from the Court's judgments themselves, checked against the judges' own words, and from the official notes. Each ruling and feature cites the judgment's official law report (Supreme Court Reports) and the page or paragraph relied on. The likelihood given to every other provision is our own estimate, not a ruling, and the <a href="#basic-structure-method">method is set out in full</a>. It is analysis for readers, not legal advice.</p>
       <h2>What stays on your device</h2>
       <p>There is no account or sign-in. The articles you save, what you read recently, and your text size, reading speed and appearance are kept in this browser on this device only. Clearing your browser's data removes them.</p>
       <h2>What this is not</h2>
@@ -1886,7 +1886,7 @@ document.addEventListener("click", e => {
   const af = t.closest("[data-af]"); if (af) { amdFilter = af.dataset.af === amdFilter && amdFilter !== "all" ? "all" : af.dataset.af; render(true); return; }
   const ct = t.closest("[data-ctab]"); if (ct) { const tab = ct.dataset.ctab; $("#ctree").innerHTML = tab === "sch" ? schTree() : partTree(); $$("[data-ctab]").forEach(b => b.setAttribute("aria-pressed", b === ct)); filterContents($("#cfilter").value); return; }
   const ex = t.closest("[data-expand]"); if (ex) { const ds = $$("details.pt-g"); const open = !ds.every(d => d.open); ds.forEach(d => d.open = open); ex.textContent = open ? "Collapse all" : "Expand all"; return; }
-  const bsl = t.closest("[data-bsel]"); if (bsl) { const nb = +bsl.dataset.bsel; if (bsPick && nb === bsSel) { bsPick = false; bsSel = 0; } else { bsPick = true; bsSel = nb; } $$("[data-bsel]").forEach(b => b.setAttribute("aria-pressed", String(bsPick && +b.dataset.bsel === bsSel))); $$(".bcell").forEach(c => c.classList.toggle("dim", bsPick && !c.classList.contains("b" + bsSel))); $("#bslist").innerHTML = `<h3>${BAND[bsSel].t} <small>${BAND[bsSel].r}</small></h3>` + bsList(); return; }
+  const bsl = t.closest("[data-bsel]"); if (bsl) { const nb = +bsl.dataset.bsel; if (bsPick && nb === bsSel) { bsPick = false; bsSel = 0; } else { bsPick = true; bsSel = nb; } $$("[data-bsel]").forEach(b => b.setAttribute("aria-pressed", String(bsPick && +b.dataset.bsel === bsSel))); $$(".bcell").forEach(c => c.classList.toggle("dim", bsPick && !c.classList.contains("b" + bsSel))); $("#bslist").innerHTML = `<h3>${BAND[bsSel].t}${BAND[bsSel].r ? ` <small>${BAND[bsSel].r}</small>` : ""}</h3>` + bsList(); return; }
   const jp = t.closest("[data-jump]"); if (jp) { e.preventDefault(); const el = document.getElementById(jp.dataset.jump); if (el) el.scrollIntoView({ block: "start" }); return; }
   if (t.closest("[data-fs]")) { fsIdx = (fsIdx + 1) % FS.length; store.set("fs", fsIdx); applyFs(); toast(`Text size ${fsIdx + 1} of ${FS.length}`); return; }
   if (t.closest("[data-retry]")) { loadText(); render(true); return; }
