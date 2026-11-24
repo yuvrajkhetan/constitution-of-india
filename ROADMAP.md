@@ -16,7 +16,6 @@ Last updated: 24 November 2026.
 | 1 | **Refresh the next amendment forecast** after the Winter Session of Parliament ends (due late December 2026): re-check pending Bills on sansad.in and update `asOn` | Improvement | S | Our own rule; the forecast goes stale otherwise |
 | 2 | **Corrections note** on the About page: what was fixed in the official text and when (for example, November 2026: seven States restored to the First Schedule, Third Schedule oaths, missing official notes), and the one misprint we correct (Form IV) | Feature | S | Being open about fixes builds trust in an unofficial reader |
 | 3 | **"Report an error" link** on every article and Schedule page (pre-filled email or GitHub issue naming the page) | Feature | S | Turns readers into a second line of checking |
-| 4 | **Theme page ending**: replace the four large "More themes" cards (always the same four, unrelated to the theme) with previous/next theme buttons and two or three related themes, chosen by shared articles, as compact rows | Improvement | S, **needs mockups** | Owner found the jump from rows to big cards jarring (24 November 2026) |
 
 ## High value, bigger
 
@@ -50,6 +49,7 @@ Last updated: 24 November 2026.
 
 ## Done
 
+- **24 November 2026**: theme page ending. The four large "More themes" cards gave way to previous and next theme buttons and up to three related themes (chosen by shared provisions) as compact rows, with an "All themes" link.
 - **24 November 2026**: the official PDF saved in `src/source/`. Third Schedule Form IV checked against the printed page: the edition misprints "true faith and faith and allegiance"; with the owner's approval we show "true faith and allegiance", and CLAUDE.md records the exception. The 106th Amendment notes confirmed against print.
 - **24 November 2026**: smoother animations (home quilt, search, basic structure map, toasts, touch hovers); facts row alignment and shadows.
 - **23 to 24 November 2026**: text check added to the tests (`check_text.py`); Schedule and Article 368 summaries re-checked; Preamble removed from the More sheet and given a badge in Contents; About added to the desktop top bar.
