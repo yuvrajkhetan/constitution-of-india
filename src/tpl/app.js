@@ -531,7 +531,7 @@ function vHome() {
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>The basic structure</h2><p>What Parliament cannot change even by amending the Constitution, as the Supreme Court has held since 1973, with our estimate for every provision.</p></div><a class="more" href="#basic-structure">Explore ${I.chev}</a></div>
-    <a class="card bshome" href="#basic-structure"><p class="bscap"><b>${CORE.bsc.reduce((a, b) => a + b, 0) - 1} articles in force and the Preamble</b>, grouped by how likely each is to be part of the basic structure</p><div class="bsbar" aria-hidden="true">${CORE.bsc.map((n, i) => `<span class="b${i}" style="flex:${n}"></span>`).join("")}</div><div class="bslg">${(() => { const pc = pct100(CORE.bsc); return BAND.map((b, i) => `<span><i class="sw b${i}"></i><span><b>${CORE.bsc[i]}</b> ${b.t[0].toLowerCase() + b.t.slice(1)} <span class="pc">${pc[i]}%</span></span></span>`).join(""); })()}</div></a>
+    <a class="card bshome" href="#basic-structure"><p class="bscap"><b>${CORE.bsc.reduce((a, b) => a + b, 0) - 1} articles in force and the Preamble</b>, grouped by how likely each is to be part of the basic structure</p><div class="bsbar" aria-hidden="true">${CORE.bsc.map((n, i) => `<span class="b${i}" style="flex:${n}"></span>`).join("")}</div>${bsLegend(CORE.bsc)}</a>
   </section>
   </section>`;
 }
@@ -1038,6 +1038,8 @@ function vNext() {
 }
 
 /* ---- basic structure ---- */
+// Legend for a basic structure share bar: swatch, count, level and whole-number share (home page and basic structure page).
+const bsLegend = ns => { const pc = pct100(ns); return `<div class="bslg">${BAND.map((b, i) => `<span><i class="sw b${i}"></i><span><b>${ns[i]}</b> ${b.t[0].toLowerCase() + b.t.slice(1)} <span class="pc">${pc[i]}%</span></span></span>`).join("")}</div>`; };
 // Whole-number shares that add up to 100 (largest remainder), so a legend never totals 99% or 101%.
 function pct100(ns) {
   const t = ns.reduce((a, b) => a + b, 0) || 1, raw = ns.map(n => 100 * n / t), out = raw.map(Math.floor);
@@ -1425,9 +1427,9 @@ function bsShare() {
   const B = TEXT.bs, A = BAND.map(() => 0);
   Object.entries(B.art).forEach(([n, v]) => { const live = n === "Preamble" || (TEXT.a[n] && !TEXT.a[n].st); if (live) A[v[0]]++; });
   const tA = A.reduce((a, b) => a + b, 0), pc = v => (100 * v / tA).toFixed(1) + "%";
-  return `<div class="card bsshare"><div class="shr"><span>Articles</span><div class="shbar" role="img" aria-label="${BAND.map((b, i) => `${b.t} ${pc(A[i])}`).join(", ")}">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} articles (${pc(v)})"></span>` : "").join("")}</div></div>
+  return `<div class="card bsshare"><div class="shbar" aria-hidden="true">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} articles (${pc(v)})"></span>` : "").join("")}</div>${bsLegend(A)}
     <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Likelihood</th><th scope="col">Articles</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${pc(A[i])}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td></tr></tbody></table></details>
-    <p class="chart-note">The Schedules are left out because they are mostly lists. Hover over or tap a part of the bar for its numbers.</p></div>`;
+    <p class="chart-note">The Schedules are left out because they are mostly lists.</p></div>`;
 }
 
 /* ================= how this was made ================= */
