@@ -531,7 +531,7 @@ function vHome() {
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>The basic structure</h2><p>What Parliament cannot change even by amending the Constitution, as the Supreme Court has held since 1973, with our estimate for every provision.</p></div><a class="more" href="#basic-structure">Explore ${I.chev}</a></div>
-    <a class="card bshome" href="#basic-structure"><p class="bscap"><b>${CORE.bsc.reduce((a, b) => a + b, 0) - 1} articles in force and the Preamble</b>, grouped by how likely each is to be part of the basic structure</p><div class="bsbar" aria-hidden="true">${CORE.bsc.map((n, i) => `<span class="b${i}" style="flex:${n}"></span>`).join("")}</div><div class="bslg">${BAND.map((b, i) => `<span><i class="sw b${i}"></i><span><b>${CORE.bsc[i]}</b> ${b.t[0].toLowerCase() + b.t.slice(1)}</span></span>`).join("")}</div></a>
+    <a class="card bshome" href="#basic-structure"><p class="bscap"><b>${CORE.bsc.reduce((a, b) => a + b, 0) - 1} articles in force and the Preamble</b>, grouped by how likely each is to be part of the basic structure</p><div class="bsbar" aria-hidden="true">${CORE.bsc.map((n, i) => `<span class="b${i}" style="flex:${n}"></span>`).join("")}</div><div class="bslg">${(() => { const pc = pct100(CORE.bsc); return BAND.map((b, i) => `<span><i class="sw b${i}"></i><span><b>${CORE.bsc[i]}</b> ${b.t[0].toLowerCase() + b.t.slice(1)} <span class="pc">${pc[i]}%</span></span></span>`).join(""); })()}</div></a>
   </section>
   </section>`;
 }
@@ -1038,6 +1038,12 @@ function vNext() {
 }
 
 /* ---- basic structure ---- */
+// Whole-number shares that add up to 100 (largest remainder), so a legend never totals 99% or 101%.
+function pct100(ns) {
+  const t = ns.reduce((a, b) => a + b, 0) || 1, raw = ns.map(n => 100 * n / t), out = raw.map(Math.floor);
+  raw.map((r, i) => [r - out[i], i]).sort((a, b) => b[0] - a[0]).slice(0, 100 - out.reduce((a, b) => a + b, 0)).forEach(([, i]) => out[i]++);
+  return out;
+}
 const BAND = [
   { k: "held", t: "Decided by the Court", r: "The Supreme Court has ruled on it" },
   { k: "vlikely", t: "Very likely", r: "over 90%" },
