@@ -343,6 +343,10 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .pager span{font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pager .nx{text-align:right}
 .pager .ph0{visibility:hidden}
+/* theme questions are long: let them wrap to two lines instead of cutting off */
+.pager.pq span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.3}
+/* related themes as compact rows, matching the provision list above them */
+.trow-th .ico{width:32px;height:32px;border-radius:9px}.trow-th .ico svg{width:18px;height:18px}
 
 /* schedules */
 .blocks{font-family:var(--serif);font-size:var(--fs,18px);line-height:1.66;letter-spacing:0}

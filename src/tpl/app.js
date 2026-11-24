@@ -914,7 +914,10 @@ function vTheme(r) {
     const s = SCH[SCH_BY.get(v)], T = TEXT && TEXT.s[v];
     return `<a class="row" href="#sch-${v}"><span class="num">Sch.</span><span><span class="tt">${esc(schName(v))}: ${esc(s.t)}</span><span class="ss">${esc((T && T.s) || s.s || "")}</span></span><span class="aux">${I.chev}</span></a>`;
   }).join("");
-  const others = THEMES.filter(x => x.id !== t.id).slice(0, 4);
+  /* related themes: the ones sharing the most provisions with this one; the previous and next themes sit in the pager */
+  const ti = THEMES.indexOf(t), prevT = THEMES[ti - 1], nextT = THEMES[ti + 1], mine = new Set(t.i);
+  const related = THEMES.filter(x => x !== t && x !== prevT && x !== nextT).map(x => [x, x.i.filter(i => mine.has(i)).length]).filter(([, n]) => n).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([x]) => x);
+  const themeRow = x => `<a class="row trow-th" href="#theme-${x.id}"><span class="ico c-${x.c}">${I[x.ic] || I.book}</span><span><span class="tt">${esc(x.q)}</span><span class="ss">${esc(x.t)} · ${x.i.length} provisions</span></span><span class="aux">${I.chev}</span></a>`;
   return `<section class="wrap col">
     <div class="ph"><nav class="crumbs" aria-label="Breadcrumb"><a href="#themes">Themes</a>${I.chev}<span>${esc(t.t)}</span></nav>
       <span class="ico c-${t.c}" style="width:52px;height:52px;border-radius:14px">${I[t.ic]}</span>
@@ -922,8 +925,9 @@ function vTheme(r) {
       <div class="acts"><a class="btn primary" href="${itemHref(t.i[0])}">Read in order ${I.arrow}</a>${shareBtn()}</div></div>
     ${!TEXT && !textErr ? `<p class="eyebrow" style="margin:0 0 10px">Loading summaries…</p>` : ""}
     <div class="group">${rows}</div>
-    <div class="sh" style="margin-top:40px"><div><h2 style="font-size:22px">More themes</h2></div><a class="more" href="#themes">All themes ${I.chev}</a></div>
-    <div class="themes two">${others.map(themeCard).join("")}</div>
+    <nav class="pager pq" aria-label="Previous and next theme">${prevT ? `<a href="#theme-${prevT.id}"><small>← Previous theme</small><span>${esc(prevT.q)}</span></a>` : `<span class="ph0"></span>`}${nextT ? `<a class="nx" href="#theme-${nextT.id}"><small>Next theme →</small><span>${esc(nextT.q)}</span></a>` : `<span class="ph0"></span>`}</nav>
+    ${related.length ? `<div class="sh" style="margin-top:32px"><div><h2 style="font-size:20px">Related themes</h2></div><a class="more" href="#themes">All themes ${I.chev}</a></div>
+    <div class="group">${related.map(themeRow).join("")}</div>` : `<p style="margin-top:20px"><a class="more" href="#themes">All themes ${I.chev}</a></p>`}
   </section>`;
 }
 
