@@ -15,7 +15,9 @@
   "JANHIT": "Janhit Abhiyan v Union of India, [2022] 14 S.C.R. 1",
   "ART370": "In re Article 370 of the Constitution, [2023] 16 S.C.R. 1",
   "ANJUM": "Anjum Kadari v Union of India, [2024] 11 S.C.R. 365",
-  "BALRAM": "Dr Balram Singh v Union of India, [2024] 11 S.C.R. 947"
+  "BALRAM": "Dr Balram Singh v Union of India, [2024] 11 S.C.R. 947",
+  "RAJSHAH": "Union of India v Rajendra N. Shah, [2021] 5 S.C.R. 458",
+  "POA": "Property Owners Association v State of Maharashtra, [2024] 11 S.C.R. 1"
  },
  "struck_bs": [
   {
@@ -37,7 +39,7 @@
    "prov": [
     "a:329A"
    ],
-   "what": "Art. 329A(4) and (5), inserted by 39th Amendment, which put the past elections of the Prime Minister and the Speaker beyond the election law and any challenge",
+   "what": "Art. 329A(4), inserted by 39th Amendment, which put the past elections of the Prime Minister and the Speaker beyond the election law and any challenge (Chandrachud J also held clause (5) void)",
    "case": "Indira Nehru Gandhi v Raj Narain (1975)",
    "ground": "The majority judges gave different reasons: it destroyed free and fair elections, which are part of democracy (Khanna J); it settled an election dispute without applying any law, against democracy and the rule of law (Mathew J, Ray CJ); and it denied equality and took over the courts' work (Chandrachud J)",
    "src": [
@@ -130,7 +132,7 @@
     "NJAC"
    ],
    "at": {
-    "NJAC": "para 244 and Order of the Court, paras 3-4"
+    "NJAC": "para 244 (Khehar J), pp. 492-493, and Order of the Court, paras 2 and 4, pp. 1055-1056"
    }
   }
  ],
@@ -147,6 +149,32 @@
    ],
    "at": {
     "KIHOTO": "pp. 717 and 753-755"
+   }
+  },
+  {
+   "prov": [
+    "a:243ZH",
+    "a:243Z-I",
+    "a:243ZJ",
+    "a:243ZK",
+    "a:243ZL",
+    "a:243ZM",
+    "a:243ZN",
+    "a:243ZO",
+    "a:243ZP",
+    "a:243ZQ",
+    "a:243ZR",
+    "a:243ZS",
+    "a:243ZT"
+   ],
+   "what": "Part IXB (co-operative societies), inserted by the 97th Amendment, except as it concerns multi-State co-operative societies",
+   "case": "Union of India v Rajendra N. Shah (2021)",
+   "ground": "Not ratified by half the States, as Art. 368(2) requires for such changes; the Part still applies to multi-State co-operative societies",
+   "src": [
+    "RAJSHAH"
+   ],
+   "at": {
+    "RAJSHAH": "paras 69-72, pp. 525-526, and paras 77-80, pp. 532-534"
    }
   }
  ],

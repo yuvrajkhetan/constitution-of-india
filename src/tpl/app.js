@@ -67,6 +67,7 @@ const I = {
   shuffle: P('<path d="M4 7h3c4 0 6 10 10 10h3M17 4l3 3-3 3M4 17h3c1.6 0 2.8-1.6 3.9-3.6M13.1 9.6C14.2 8 15.4 7 17 7h3M17 14l3 3-3 3"/>'),
   info: P('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'),
   alertc: P('<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>'),
+  gavel: P('<path d="M14 13l-7.5 7.5a2.1 2.1 0 01-3-3L11 10"/><path d="M16 16l6-6"/><path d="M8 8l6-6"/><path d="M9 7l8 8"/><path d="M21 11l-8-8"/>'),
   arrow: P('<path d="M5 12h14M13 6l6 6-6 6"/>'),
   // theme icons
   venus: P('<circle cx="12" cy="9" r="5"/><path d="M12 14v7M9 18h6"/>'),
@@ -775,7 +776,23 @@ function blockScopes(blocks, notes, noun = "paragraph") {
   };
   return scopeNotes(blocks.map(txt), loc, notes, "the text");
 }
-const isNotice = f => /struck down|declared void|cease to be operative|shall cease|held to be|declared invalid/i.test(f);
+const isNotice = f => /struck down|declared void|unconstitutional and void|cease to be operative|shall cease|held to be|declared invalid/i.test(f);
+/* Words the Supreme Court has declared invalid (data/struck.json, checked against each judgment): one box near the top of the page
+   and a label on the paragraphs themselves. The official text is shown unchanged. */
+const sdList = (kind, key) => (CORE.struck && CORE.struck[kind + ":" + key]) || [];
+function sdMarks(L) {
+  const tag = {}, set = new Set();
+  L.forEach(e => e.i.forEach((i, j) => { set.add(i); if (e.tag && (j === 0 || e.i[j - 1] !== i - 1)) (tag[i] = tag[i] || []).includes(e.tag) || (tag[i] = (tag[i] || []).concat(e.tag)); }));
+  return { set, tag: Object.fromEntries(Object.entries(tag).map(([i, t]) => [i, `<span class="sdtag">${esc(t.length > 1 && t.every(x => x.replace(/ \d{4}$/, "") === t[0].replace(/ \d{4}$/, "")) ? t[0].replace(/ \d{4}$/, "") + " " + t.map(x => x.slice(-4)).join(" and ") : t.join(" · "))}</span>`])) };
+}
+const sdBox = L => !L.length ? "" : `<div class="notice sd" role="note">${I.gavel}<div><b class="k">${L.every(e => e.part) ? "Struck down in part by the Supreme Court" : "Struck down by the Supreme Court"}</b>${L.map(e => `<p>${lx(e.say)}</p><p class="src">Source: ${esc(e.src.join("; "))}</p>`).join("")}${L.some(e => e.i.length) ? `<button class="lnk" type="button" data-goto-p="${Math.min(...L.flatMap(e => e.i))}">Show in the text</button>` : ""}</div></div>`;
+function gotoPara(i) {
+  const el = document.querySelector(`#text [data-i="${i}"], #view .blocks #b-${i}`); if (!el) return;
+  const tg = el.previousElementSibling && el.previousElementSibling.classList.contains("sdtag") ? el.previousElementSibling : el;
+  tg.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  let done = false; const fl = () => { if (done) return; done = true; el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); };
+  addEventListener("scrollend", fl, { once: true }); setTimeout(fl, 1500);
+}
 function vArt(r) {
   const n = r.id, a = ART.get(n), loc = LOC.get(n), Pt = PARTS[loc.pi], C = Pt.ch[loc.ci], S = C.s[loc.si];
   const prev = ORDER[a.i - 1], next = ORDER[a.i + 1];
@@ -785,7 +802,8 @@ function vArt(r) {
   let main;
   if (!t) main = textErr ? errBox() : loadBox();
   else {
-    const notices = t.f.map((f, i) => [i + 1, f]).filter(([, f]) => isNotice(f));
+    const SD = sdList("a", n), SDM = sdMarks(SD);
+    const notices = t.f.map((f, i) => [i + 1, f]).filter(([, f]) => isNotice(f) && !(SD.length && /struck down|invalid|void|unconstitutional/i.test(f)));
     const SC = noteScopes(t), pin = {};
     notices.forEach(([k]) => (SC[k] ? SC[k].idx : []).forEach(i => pin[i] = (pin[i] || []).concat(k)));
     const th = themeCtx && THEME_BY.get(themeCtx);
@@ -797,9 +815,10 @@ function vArt(r) {
     }
     if (t.s) main += `<div class="plain"><div class="lb"><span>In plain words</span><small>Summary, not the legal text · <a href="#about">How this was made</a></small></div><p>${lx(t.s)}</p></div>`;
     main += bsChip("art", n);
+    main += sdBox(SD);
     if (notices.length) main += notices.map(([k, f]) => { const w = SC[k] && SC[k].where; return `<div class="notice">${I.alertc}<div><b>${w ? `Note on ${esc(w)}` : "Official note"}</b>${linkAmd(esc(f))}${w && !t.st ? `<br><button class="lnk" type="button" data-goto-fn="${k}">Show in the text</button>` : ""}</div></div>`; }).join("");
     if (t.st) main += `<div class="status">${I.info}<div><b>Omitted.</b> ${linkAmd(esc(t.st.replace(/^Omitted\.?\s*/, "")))}</div></div>`;
-    else { const CID = clauseIds(t.p), anyC = CID.some(Boolean); main += `<section class="block" aria-labelledby="ot" style="margin-top:20px"><h2 id="ot">Official text${anyC ? `<small class="chint">Select a clause to link to it or cite it</small>` : ""}</h2>${t.f && t.f.length ? `<p class="nhint">The numbers in the text open its official notes. Most record when and how it was changed.</p>` : ""}<div class="text" id="text">${t.p.map(([l, s], i) => `<p class="l${Math.min(4, l)}${pin[i] ? " noted" : ""}${CID[i] ? " hc" : ""}" data-i="${i}" data-l="${l}"${CID[i] ? ` data-c="${CID[i]}" id="c-${CID[i]}"` : ""} data-s="${SC ? Object.keys(SC).filter(k => SC[k].idx.includes(i)).join(" ") : ""}">${CID[i] ? `<button class="clk" type="button" data-clause="${CID[i]}" aria-label="Select ${clauseCite(n, CID[i])}">${I.link}</button>` : ""}${rich(s, "art", HL)}</p>`).join("")}</div></section>`; }
+    else { const CID = clauseIds(t.p), anyC = CID.some(Boolean); main += `<section class="block" aria-labelledby="ot" style="margin-top:20px"><h2 id="ot">Official text${anyC ? `<small class="chint">Select a clause to link to it or cite it</small>` : ""}</h2>${t.f && t.f.length ? `<p class="nhint">The numbers in the text open its official notes. Most record when and how it was changed.</p>` : ""}<div class="text" id="text">${t.p.map(([l, s], i) => `${SDM.tag[i] || ""}<p class="l${Math.min(4, l)}${pin[i] || SDM.set.has(i) ? " noted" : ""}${CID[i] ? " hc" : ""}" data-i="${i}" data-l="${l}"${CID[i] ? ` data-c="${CID[i]}" id="c-${CID[i]}"` : ""} data-s="${SC ? Object.keys(SC).filter(k => SC[k].idx.includes(i)).join(" ") : ""}">${CID[i] ? `<button class="clk" type="button" data-clause="${CID[i]}" aria-label="Select ${clauseCite(n, CID[i])}">${I.link}</button>` : ""}${rich(s, "art", HL)}</p>`).join("")}</div></section>`; }
     main += bsBox("art", n);
     main += timelineHTML(t.f, SC, t.fh, t.h, "art");
     const themes = THEMES_OF.get("art-" + n) || [];
@@ -858,7 +877,7 @@ function vPre() {
 }
 
 /* ---- schedules ---- */
-function blocksHTML(blocks, ctx, hlBlock, title) {
+function blocksHTML(blocks, ctx, hlBlock, title, SDM) {
   let h = "", rows = [];
   const tn = title ? title.toLowerCase().replace(/[^a-z]/g, "") : null;
   /* a table: the source's column headings (th), entries, and omitted entries ("* * * * *") as one full-width cell */
@@ -875,7 +894,8 @@ function blocksHTML(blocks, ctx, hlBlock, title) {
   blocks.forEach((b, i) => {
     if (b.r) { if (b.th) flush(); rows.push([i, b.r, b.th]); return; }
     flush();
-    const hl = hlBlock === i ? HL : null, cls = hlBlock === i ? " blk-hl" : "";
+    const hl = hlBlock === i ? HL : null, cls = (hlBlock === i ? " blk-hl" : "") + (SDM && SDM.set.has(i) ? " noted" : "");
+    if (SDM && SDM.tag[i]) h += SDM.tag[i];
     if (b.h != null && tn && i < 4 && b.h.toLowerCase().replace(/[^a-z]/g, "") === tn) return;
     if (b.h != null) h += `<h3 class="h${/^(\{\d+\})?\[?(PART|List)\b|^[IVX]+\./.test(b.h) ? " big" : /^(\{\d+\})*\[?([IVX]+|[A-Z])$/.test(b.h) ? " c" : ""}${cls}" id="b-${i}">${rich(b.h, ctx, hl)}</h3>`;
     else if (b.ref != null) h += `<p class="ref${cls}" id="b-${i}">${rich(b.ref, ctx, hl)}</p>`;
@@ -886,13 +906,13 @@ function blocksHTML(blocks, ctx, hlBlock, title) {
 }
 function vSch(r) {
   const k = r.id, i = SCH_BY.get(k), s = SCH[i], prev = SCH[i - 1], next = SCH[i + 1], T = TEXT && TEXT.s[k];
-  const content = !T ? (textErr ? errBox() : loadBox()) : (T.f && T.f.length ? `<p class="nhint">The numbers in the text open its official notes. Most record when and how it was changed.</p>` : "") + blocksHTML(T.b, "sch", r.b, s.t) + bsBox("sch", k) + histHTML(T.f, blockScopes(T.b, T.f, k === "NINTH" ? "entry" : "paragraph"));
+  const content = !T ? (textErr ? errBox() : loadBox()) : (T.f && T.f.length ? `<p class="nhint">The numbers in the text open its official notes. Most record when and how it was changed.</p>` : "") + blocksHTML(T.b, "sch", r.b, s.t, sdMarks(sdList("s", k))) + bsBox("sch", k) + histHTML(T.f, blockScopes(T.b, T.f, k === "NINTH" ? "entry" : "paragraph"));
   return `<div class="wrap reader">${sidebar(k, "sch")}<article class="art">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="#schedules">Schedules</a>${I.chev}<span>${schName(k)}</span></nav>
     <header class="ahead"><div class="an">${schName(k)}</div><h1>${esc(s.t)}</h1><p class="sub" style="font-size:15px">${linkArts(esc(s.ref))}</p>
       <div class="acts"><button class="btn sidebtn" type="button" data-side>${I.list} Contents</button><button class="btn" type="button" data-fs aria-label="Change text size">${I.text}<span class="bl">Text size</span></button></div>
       ${s.sec.length ? `<div class="pills scrollrow" style="margin-top:6px">${s.sec.map(([b, l]) => `<a class="pill" href="#sch-${k}-b${b}">${esc(l)}</a>`).join("")}</div>` : ""}</header>
-    ${(T && T.s) || s.s ? `<div class="plain"><div class="lb"><span>In plain words</span><small>Summary, not the legal text</small></div><p>${lx((T && T.s) || s.s)}</p></div>` : ""}${T ? bsChip("sch", k) : ""}
+    ${(T && T.s) || s.s ? `<div class="plain"><div class="lb"><span>In plain words</span><small>Summary, not the legal text</small></div><p>${lx((T && T.s) || s.s)}</p></div>` : ""}${T ? bsChip("sch", k) + sdBox(sdList("s", k)) : ""}
     ${T ? `<section class="block" style="margin-top:20px"><h2>Official text</h2>${content}</section>` : content}
     <nav class="pager">${prev ? `<a href="#sch-${prev.k}"><small>← ${schName(prev.k)}</small><span>${esc(prev.t)}</span></a>` : `<a href="#art-395"><small>← Article 395</small><span>Repeals.</span></a>`}${next ? `<a class="nx" href="#sch-${next.k}"><small>${schName(next.k)} →</small><span>${esc(next.t)}</span></a>` : `<span class="ph0"></span>`}</nav>
   </article></div>`;
@@ -1877,6 +1897,7 @@ document.addEventListener("click", e => {
   if (t.closest("[data-more]")) { moreOpen() ? closeMore() : openMore(); return; }
   const sqq = t.closest("[data-search-q]"); if (sqq) { openSearch(sqq.dataset.searchQ); return; }
   const go = t.closest("[data-goto-fn]"); if (go) { gotoNote(go.dataset.gotoFn); return; }
+  const gp = t.closest("[data-goto-p]"); if (gp) { gotoPara(+gp.dataset.gotoP); return; }
   const fn = t.closest(".fn"); if (fn) { e.preventDefault(); popBtn === fn ? closePop() : openPop(fn); return; }
   const tm = t.closest(".term"); if (tm) { e.preventDefault(); popBtn === tm ? closePop() : openTerm(tm); return; }
   if (pop && !t.closest(".pop")) closePop();

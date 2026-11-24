@@ -51,7 +51,7 @@ NOTE = {
  '224': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
  '224A': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
  '231': 'The 2014 change made by the Ninety-ninth Amendment was struck down in 2015 (NJAC case).',
- '329A': 'Clause (4) was struck down in Indira Gandhi v Raj Narain (1975). Clause (5), which told the Court to decide the pending appeal by clause (4), fell with it. The whole article was later omitted in 1979.',
+ '329A': 'Clause (4) was struck down in Indira Gandhi v Raj Narain (1975). One judge, Chandrachud J, also held clause (5) void; it told the Court to decide the pending appeal by clause (4). The whole article was later omitted in 1979.',
  '300A': 'Kesavananda Bharati (Khanna J) held that the right to property is not part of the basic structure.',
  '356': 'S.R. Bommai (1994) held that a Proclamation under this article is open to judicial review.',
  '370': 'In re Article 370 (2023) upheld the 2019 decision that it no longer applies, and called it a temporary provision.',

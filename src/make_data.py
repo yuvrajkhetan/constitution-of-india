@@ -169,6 +169,32 @@ _bc=_co.Counter(v[0] for v in list(BS['art'].values())+list(BS['sch'].values()) 
 core['bsc']=[_bc.get(i,0) for i in range(6)]  # every provision on the basic structure map: articles in force, the Preamble, the Schedules
 core['bsn']=[sum(1 for k,v in BS['art'].items() if k!='Preamble' and v[0]>=0), sum(1 for v in BS['sch'].values() if v[0]>=0)]
 assert sum(core['bsc'])==core['bsn'][0]+core['bsn'][1]+1, ('basic structure counts', core['bsc'], core['bsn'])
+# Words the Supreme Court has declared invalid (data/struck.json): a box and clause labels on each page. Every mark is
+# checked here against the text, so a change to text.json that moves a paragraph fails the build instead of labelling the wrong one.
+_SK=json.load(open('data/struck.json')); _SS=json.load(open('data/bs_settled.json'))['sources']
+core['struck']={}
+for it in _SK['items']:
+    for pv in it['p']:
+        kind,key=pv.split(':')
+        paras=[x[1] for x in TA[key]['p']] if kind=='a' else [b.get('h') or b.get('p') or '' for b in TS[key]['b']]
+        assert paras or kind=='a' and TA[key].get('st'), ('struck.json: nothing to show for', pv)
+        m=it.get('mark',{}).get(pv)
+        if m=='all': idx=list(range(len(paras)))
+        elif isinstance(m,str) and m.startswith('notes:'):
+            ks=[int(k) for k in m[6:].split(',')]
+            idx=[i for i,s in enumerate(paras) if any('{%d}'%k in s for k in ks)]
+            assert len(idx)>=1, ('struck.json: no paragraph carries notes', pv, ks)
+        elif m:
+            idx=[]
+            for i,pre in m:
+                assert paras[i].startswith(pre), ('struck.json: paragraph moved', pv, i, pre, paras[i][:40])
+                idx.append(i)
+        else: idx=[]
+        for k in it['src']: assert k in _SS, ('struck.json: unknown source', k)
+        say=it['say'][pv] if isinstance(it['say'],dict) else it['say']
+        assert '—' not in say, ('struck.json: em dash', pv)
+        core['struck'].setdefault(pv,[]).append({'y':it['year'],'part':bool(it.get('part')),'tag':it.get('tag',''),'i':idx,'say':say,
+            'src':[_SS[k].split(', http')[0] + (', ' + it['at'][k] if k in it.get('at',{}) else '') for k in it['src']]})
 from hist import parse_all
 _seq=[('P',i) for i in range(len(c['pre']['f']))]+[(n,i) for n in ORDER for i in range(len(TA[n]['f']))]
 _res=parse_all([c['pre']['f'][i] if n=='P' else TA[n]['f'][i] for n,i in _seq])
