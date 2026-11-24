@@ -37,6 +37,10 @@ bash lh.sh "http://localhost:8766/preview.html#art-21"   # Lighthouse
 
 Before pushing: tests pass, no console errors, no horizontal scroll at 320px, Lighthouse accessibility 100.
 
+## Roadmap
+
+- `ROADMAP.md` is the running, prioritised list of feature ideas and improvements. Keep it current as we work: add new ideas where they rank (with size and whether they need mockups), move finished items to Done with the date, and keep parked items with the owner's reason. Show the owner the top of the list when they ask what's next.
+
 ## Shipping changes
 
 - Put every finished change live as soon as it passes the checks above. Commit on the working branch and push it, then push the same commit to `main`, which GitHub Pages serves. The owner has asked for this, so it needs no further approval.
