@@ -389,7 +389,13 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .gl-letter{font-size:22px;font-weight:700;margin:26px 0 10px;scroll-margin-top:80px}
 
 /* ---------- search sheet ---------- */
-.sdlg{position:fixed;inset:0;z-index:90;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;align-items:start;padding:calc(env(safe-area-inset-top,0px) + 9vh) 16px 16px;background:rgba(0,0,0,.28);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.sdlg{position:fixed;inset:0;z-index:90;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;align-items:start;padding:calc(env(safe-area-inset-top,0px) + 9vh) 16px 16px;}
+/* the dim behind search fades in; a full-screen blur cost several dropped frames on large screens */
+.sdlg::before{content:"";position:fixed;inset:0;z-index:-1;background:rgba(0,0,0,.34);animation:fadein .2s ease}
+@keyframes fadein{from{opacity:0}}
+:root[data-theme="dark"] .sdlg::before{background:rgba(0,0,0,.6)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sdlg::before{background:rgba(0,0,0,.6)}}
+@media (prefers-reduced-motion:reduce){.sdlg::before{animation:none}}
 .spanel{width:min(700px,100%);max-height:min(76vh,780px);display:grid;grid-template-rows:auto 1fr auto;grid-template-columns:minmax(0,1fr);background:var(--surface);border-radius:18px;box-shadow:var(--shadow-lg),0 0 0 .5px var(--sep);overflow:hidden;animation:pop .2s ease}
 @keyframes pop{from{opacity:0;transform:scale(.98) translateY(-6px)}}
 .sbar{display:flex;align-items:center;gap:10px;padding:0 10px 0 18px;height:60px;border-bottom:.5px solid var(--sep)}
@@ -432,7 +438,7 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .gterm .gplain{font-family:var(--sys);font-size:15.5px}
 .az .azw{padding-inline:10px;min-width:auto}
 @media (max-width:420px){.tl{grid-template-columns:minmax(0,1fr)}.tl dd{margin-bottom:4px}}
-.toast{position:fixed;left:50%;bottom:calc(var(--tab) + 24px);transform:translate(-50%,16px);background:var(--label);color:var(--surface);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;transition:.25s;z-index:95;pointer-events:none}
+.toast{position:fixed;left:50%;bottom:calc(var(--tab) + 24px);transform:translate(-50%,16px);background:var(--label);color:var(--surface);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;transition:opacity .25s ease,transform .25s cubic-bezier(.2,.8,.2,1);z-index:95;pointer-events:none}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .toast.act{pointer-events:auto;padding:6px 6px 6px 18px;display:flex;align-items:center;gap:10px;white-space:nowrap}
 .toast .tbtn{border:0;border-radius:999px;padding:6px 12px;background:var(--surface);color:var(--navy);font:600 14px var(--sys);cursor:pointer}
@@ -593,7 +599,9 @@ a,button,summary{touch-action:manipulation}
 /* theme icons become fabric patches */
 .ico{position:relative;background:var(--tint);background-image:linear-gradient(135deg,transparent 50%,color-mix(in srgb,var(--tc) 6%,transparent) 50%)}
 .ico::after{content:"";position:absolute;inset:3px;border:1px dashed color-mix(in srgb,var(--tc) 24%,transparent);border-radius:8px}
-.theme:hover .ico svg,.theme:focus-visible .ico svg{animation:wiggle .6s ease}
+/* playful hover touches only for a real mouse: on touch screens a tap leaves :hover stuck while the page moves */
+@media (hover:hover) and (pointer:fine){.theme:hover .ico svg{animation:wiggle .6s ease}}
+.theme:focus-visible .ico svg{animation:wiggle .6s ease}
 @keyframes wiggle{30%{transform:rotate(-6deg) scale(1.04)}65%{transform:rotate(3deg)}100%{transform:none}}
 
 /* numbered patch tiles for Parts */
@@ -604,7 +612,7 @@ a,button,summary{touch-action:manipulation}
 /* the Preamble row lines up with the Part rows below it */
 .pre-row{grid-template-columns:56px minmax(0,1fr) auto;gap:12px;padding:14px 16px}.pre-row .tt{font-weight:600;font-size:17px;letter-spacing:-.02em}.pre-row .num.tile{color:var(--pc)}
 @media (max-width:700px){.pre-row{grid-template-columns:44px minmax(0,1fr) auto;padding:14px}}
-.row:hover .tile,details.pt-g>summary:hover .pn{animation:wiggle .6s ease}
+@media (hover:hover) and (pointer:fine){.row:hover .tile,details.pt-g>summary:hover .pn{animation:wiggle .6s ease}}
 
 /* joyful but small: save pop, quilt loader */
 .btn[aria-pressed="true"] svg{animation:pop2 .4s cubic-bezier(.3,1.8,.5,1)}
@@ -684,9 +692,11 @@ a,button,summary{touch-action:manipulation}
 .bml small{display:block;font-weight:400;color:var(--label-3);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 a.bml:hover{color:var(--navy)}
 .bmc{display:flex;flex-wrap:wrap;gap:4px}
-.bcell{width:20px;height:20px;border-radius:5px;transition:opacity .15s,transform .15s}
+/* dimming is instant: fading ~470 squares at once made the browser build hundreds of animated layers in one frame */
+.bcell{width:20px;height:20px;border-radius:5px;transition:transform .15s}
 .bcell.dim{opacity:.22}
-.bcell:hover,.bcell:focus-visible{transform:scale(1.35);opacity:1;outline:2px solid var(--label);outline-offset:1px;z-index:1;position:relative}
+.bcell:focus-visible{transform:scale(1.35);opacity:1;outline:2px solid var(--label);outline-offset:1px;z-index:1;position:relative}
+@media (hover:hover) and (pointer:fine){.bcell:hover{transform:scale(1.35);opacity:1;outline:2px solid var(--label);outline-offset:1px;z-index:1;position:relative}}
 .bslist{margin-top:14px}.bslist h3{font-size:17px;margin-bottom:8px}.bslist h3 small{font-weight:400;color:var(--label-3);font-size:14px;margin-left:4px}
 .bgrp{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:12px 16px;margin-bottom:8px}
 .bgrp p{font-size:14.5px;color:var(--label-2);line-height:1.5}.bgrp .pills{margin-top:8px;gap:6px}.bgrp .pill{height:28px;font-size:13px;padding:0 10px}

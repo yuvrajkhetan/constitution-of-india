@@ -195,7 +195,7 @@ function setQuiltVars() {
   document.documentElement.style.setProperty("--quilt-strip", `url("data:image/svg+xml,${encodeURIComponent(strip)}")`);
 }
 /* the hero quilt: canvas, assembles from the centre, then a patch quietly re-stitches now and then */
-let heroQuilt = null;
+let heroQuilt = null, quiltDone = null;
 function startHeroQuilt() {
   if (heroQuilt) heroQuilt.stop();
   const cv = $("#heroquilt"); if (!cv) return;
@@ -206,8 +206,8 @@ function startHeroQuilt() {
   function layout() {
     const r = cv.getBoundingClientRect(); W = r.width; H = r.height;
     S = W < 640 ? 48 : 60; cols = Math.ceil(W / S) + 1; rows = Math.ceil(H / S) + 1;
-    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const ox = (W - cols * S) / 2, oy = (H - rows * S) / 2, cx = W / 2, cy = H / 2;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+    const ox = Math.round((W - cols * S) / 2), oy = Math.round((H - rows * S) / 2), cx = W / 2, cy = H / 2;
     P = [];
     for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
       const x = ox + i * S, y = oy + j * S, d = Math.hypot(x + S / 2 - cx, (y + S / 2 - cy) * 1.6);
@@ -215,18 +215,27 @@ function startHeroQuilt() {
     }
   }
   const ease = k => 1 - Math.pow(1 - k, 3);
+  /* each patch is drawn once into its own small image; frames then only redraw the patches that are moving */
+  const sprite = q => {
+    if (q.img && q.imgP === q.p) return q.img;
+    const c = document.createElement("canvas"), n = Math.ceil(S * dpr); c.width = c.height = n;
+    const x = c.getContext("2d"); x.scale(n / S, n / S); drawPatch(x, q.p, 0, 0, S, stitch);
+    q.img = c; q.imgP = q.p; return c;
+  };
   function frame(now) {
     if (!alive) return;
-    g.clearRect(0, 0, W, H);
     const el = reduce ? 1e9 : now - t0; let busy = false;
     for (const q of P) {
+      const flipping = flip && flip.q === q;
+      if (q.done && !flipping) continue;
       const k = Math.max(0, Math.min(1, (el - q.d * 1.1) / 700));
       if (k < 1) busy = true;
       if (k <= 0) continue;
       let sx = ease(k), sy = sx;
-      if (flip && flip.q === q) { const f = Math.min(1, (now - flip.t) / 1100); sx *= Math.abs(Math.cos(f * Math.PI)); if (f >= .5 && !flip.done) { q.p = flip.np; flip.done = true; } if (f < 1) busy = true; else flip = null; }
-      g.save(); g.translate(q.x + S / 2, q.y + S / 2); g.scale(sx, sy); g.translate(-q.x - S / 2, -q.y - S / 2);
-      drawPatch(g, q.p, q.x, q.y, S, stitch); g.restore();
+      if (flipping) { const f = Math.min(1, (now - flip.t) / 1100); sx *= Math.abs(Math.cos(f * Math.PI)); if (f >= .5 && !flip.done) { q.p = flip.np; flip.done = true; } if (f < 1) busy = true; else flip = null; }
+      g.clearRect(q.x, q.y, S, S);
+      if (sx > .002) g.drawImage(sprite(q), q.x + S * (1 - sx) / 2, q.y + S * (1 - sy) / 2, S * sx, S * sy);
+      if (k >= 1 && !flipping) q.done = true;
     }
     raf = busy ? requestAnimationFrame(frame) : 0;
   }
@@ -235,7 +244,9 @@ function startHeroQuilt() {
     if (visible && !document.hidden && P.length) { flip = { q: P[Math.floor(Math.random() * P.length)], np: newPatch(R, pal), t: performance.now() }; if (!raf) raf = requestAnimationFrame(frame); }
     timer = setTimeout(tick, 5000 + Math.random() * 4000);
   }
-  layout(); raf = requestAnimationFrame(frame); timer = setTimeout(tick, 5000);
+  layout(); if (!reduce) P.forEach(sprite); raf = requestAnimationFrame(frame); timer = setTimeout(tick, 5000);
+  const introMs = reduce ? 0 : Math.max(0, ...P.map(q => q.d)) * 1.1 + 750;
+  setTimeout(() => { if (quiltDone) { const f = quiltDone; quiltDone = null; f(); } }, introMs);
   const ro = new ResizeObserver(() => { const w = cv.getBoundingClientRect().width; if (Math.abs(w - W) > 8) { layout(); t0 = performance.now() - 1e6; if (!raf) raf = requestAnimationFrame(frame); } });
   ro.observe(cv);
   const io = new IntersectionObserver(es => { visible = es[0].isIntersecting; }); io.observe(cv);
@@ -262,8 +273,12 @@ let TEXT = null, textErr = false;
 let EARLY = null, earlyFor = null;
 const artText = n => TEXT ? TEXT.a[n] : EARLY && EARLY.a[n];
 const bsData = () => TEXT ? TEXT.bs : EARLY && EARLY.bs;
+/* the full text loads once. On the home page it waits until the quilt has assembled, so the two don't compete
+   for the same frames; opening search or leaving the page starts it straight away */
+let textStarted = false;
+const ensureText = () => { if (!textStarted) { textStarted = true; loadText(); } };
 function loadText() {
-  textErr = false;
+  textStarted = true; textErr = false;
   /* the build stamps the address with a fingerprint of the file, so a new page never gets an old cached copy;
      if that address fails (some hosts ignore or refuse it), fall back to the plain file */
   const getJSON = u => fetch(u).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
@@ -442,6 +457,7 @@ try { POS = JSON.parse(sessionStorage.getItem("pos") || "{}"); NAVI = +sessionSt
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 const routeLabel = r => r.name === "art" ? "Article " + r.id : r.name === "sch" ? schName(r.id) : r.name === "pre" ? "the Preamble" : "";
 function render(keepScroll) {
+  if (needsText() && !TEXT) ensureText();
   if (!keepScroll) {
     const st = history.state;
     if (!st || st.i == null) { history.replaceState({ i: ++NAVI, from: pendingFrom }, ""); wantY = null; }
@@ -1748,6 +1764,7 @@ const dlg = $("#sdlg"), sq = $("#sq"), sres = $("#sres"), sfoot = $("#sfoot");
 let sel = 0, items = [], lastFocus = null;
 const dlgOpen = () => !dlg.hidden;
 function openSearch(q) {
+  ensureText();
   lastFocus = document.activeElement;
   dlg.hidden = false; document.documentElement.style.overflow = "hidden";
   if (q != null) sq.value = q;
@@ -1973,5 +1990,7 @@ if (route.name === "art") {
   const P = PARTS[ART.get(route.id).p];
   fetch(`t/${P.n}.json?v=__TEXTV__`).then(r => r.ok ? r.json() : null).then(j => { if (j && !TEXT && route.name === "art" && j.a[route.id]) { EARLY = j; earlyFor = route.id; render(true); } }).catch(() => {});
 }
-if (needsText()) loadText(); else (window.requestIdleCallback || (f => setTimeout(f, 1)))(loadText, { timeout: 600 });
+if (needsText()) ensureText();
+else if (route.name === "home") { quiltDone = ensureText; setTimeout(ensureText, 3500); }
+else (window.requestIdleCallback || (f => setTimeout(f, 1)))(ensureText, { timeout: 600 });
 })();
