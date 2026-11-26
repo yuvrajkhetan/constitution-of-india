@@ -1,6 +1,6 @@
 // Search test: types each query in audit/search_queries.json into the real search box (preview.html on :8766) and scores
 // the rank of the first correct result in the list the reader sees. Run from src/ with the site served (bash serve.sh).
-//   node search_eval.js [out.json] [compare-with.json]
+//   node search_eval.js [out.json] [compare-with.json]      (SET=audit/search_heldout.json for the held-out set)
 // Prints Hit@1, Hit@3, Hit@10, MRR and "no results", overall and per group; with a second file, lists queries that moved.
 const { chromium } = require('playwright');
 const fs = require('fs');
@@ -50,6 +50,8 @@ const tok = h => {
     console.log(`\nBetter: ${better.length}   Worse: ${worse.length}`);
     worse.forEach(r => console.log(`  WORSE  ${r.q.padEnd(48)} ${lab(B[r.q])} -> ${lab(r)}   now top: ${r.top.join(' ')}`));
   }
+  // used by test.py: MIN_TOP3=0.95 fails the run if fewer queries than that find a correct answer in the top 3, or any finds nothing
+  if (process.env.MIN_TOP3) { const ok = all.hit3 / all.n >= +process.env.MIN_TOP3 && !all.none; console.log(ok ? 'search test ok' : 'SEARCH TEST FAILED: below MIN_TOP3=' + process.env.MIN_TOP3 + ' or some query found nothing'); if (!ok) process.exitCode = 1; if (process.env.QUIET) return; }
   const miss = rows.filter(r => !r.rank || r.rank > 3);
   console.log(`\nNot in the top 3 (${miss.length}):`);
   miss.forEach(r => console.log(`  ${r.q.padEnd(48)} ${r.rank ? '#' + r.rank : (r.n ? 'missed' : 'NO RESULTS')}   top: ${r.top.join(' ')}`));

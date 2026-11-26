@@ -23,6 +23,7 @@ Public, unbranded reader of the Constitution of India for citizens and students.
 - `data/terms.json`: plain explanations of terms used in our own text, shown on tap (first use per page) and in the Glossary. Each cites the article that creates or defines it; terms the Constitution does not define cite a Supreme Court judgment on the Court's own server. `make_data.py` checks every cited article and Schedule exists.
 - `tpl/app.js`, `tpl/style.css`, `tpl/shell.html`: the app (hash routes such as `#art-19.1.a`, `#sch-SIXTH-b12`, `#basic-structure`, `#about`).
 - `audit/`: the November 2026 clause-by-clause summary audit.
+- Search (`tpl/app.js`, "search" block): on-device BM25 over stemmed words, with typo and half-word matching, abbreviations (`ABBR`), everyday-word bridges (`SYNW`, `PAIR`) and the hand-made `SYN` jumps (shown first only when they cover the whole query). `search_eval.js` types `audit/search_queries.json` (170 questions) and `audit/search_heldout.json` (42, never tuned against) into the real search box and scores the rank of the first correct answer; `test.py` fails below 95% and 80% in the top 3, or if any query finds nothing. Check both sets after any search change, and never tune against the held-out set.
 - `check_text.py` and `audit/text_check_known.json`: checks every source line, every official note and every article's words against `src/source`. Add to the known list only after checking the source by hand, with the reason.
 
 ## Build and test

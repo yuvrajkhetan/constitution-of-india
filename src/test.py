@@ -35,4 +35,8 @@ async def main():
     print("errors", errs)
     await b.close()
 asyncio.run(main())
+# search quality: the 170 test questions and the 42 held-out ones, typed into the real search box (search_eval.js)
+_se = [subprocess.run(["node", "search_eval.js"], env={**__import__("os").environ, "MIN_TOP3": m, "QUIET": "1", **({"SET": f} if f else {})}, capture_output=True, text=True) for f, m in ((None, "0.95"), ("audit/search_heldout.json", "0.80"))]
+for r in _se: print(r.stdout.strip().splitlines()[0] if r.stdout.strip() else r.stderr[-400:], "|", (r.stdout.strip().splitlines() or [""])[-1])
 if _tc.returncode: sys.exit("text check failed (see above)")
+if any(r.returncode for r in _se): sys.exit("search test failed (see above)")
