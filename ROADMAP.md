@@ -54,6 +54,7 @@ Last updated: 24 November 2026.
 
 ## Done
 
+- **26 November 2026**: basic features open to the judges' own words: one quote per feature from its leading judgment, read from the printed S.C.R. page and cited by page; every provision that carries it with its level; and, for six features, the amendment struck down for breaching it. Even spacing across the site (`gaps.js`).
 - **26 November 2026**: basic structure page reorganised. The basic features open the page as compact rows grouped "Recognised by the Court" and "Named by some judges", in reading order, each opening to its provisions and judgments; the estimates follow as one section under the Analysis label.
 - **26 November 2026**: an "Analysis" label on our estimates and forecast (the basic structure levels, chip and card, the next-amendment page and teaser, the basic structure theme, retitled "The basic structure"), never on rulings; the About page now names the three kinds of content.
 - **26 November 2026**: smarter search. BM25 ranking over stemmed words, typo and half-typed word matching, abbreviations, Lok Sabha / Rajya Sabha bridges, clause-level results, "Best match" and "Showing results for". Measured with 170 test questions written first (top 3: 69% to 98%; no results: 35 to 0) and 42 held-out ones (top 1: 38% to 69%; top 3: 52% to 83%); both now run in `test.py`.
