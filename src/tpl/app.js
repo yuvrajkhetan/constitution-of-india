@@ -697,7 +697,7 @@ function vHome() {
 }
 function themeCard(t) {
   const n = t.i.length;
-  return `<a class="theme" href="#theme-${t.id}"><span class="ico c-${t.c}">${I[t.ic] || I.book}</span><div><h3>${esc(t.q)}</h3><p>${esc(t.t)}</p></div><div class="ft"><span>${n} provisions</span>${I.chev.replace("<svg", '<svg width="14" height="14"')}</div></a>`;
+  return `<a class="theme" href="#theme-${t.id}"><span class="ico c-${t.c}">${I[t.ic] || I.book}</span><div><h3>${esc(t.q)}</h3><p>${esc(t.t)}</p></div><div class="ft">${anaTheme(t) ? ANA : ""}<span>${n} provisions</span>${I.chev.replace("<svg", '<svg width="14" height="14"')}</div></a>`;
 }
 /* a two-column list whose rows line up across the columns: it fills the first column, then the second,
    and each row is as tall as the taller of its two items. Stacks into one list on narrow screens. */
@@ -1099,7 +1099,7 @@ function vTheme(r) {
   const themeRow = x => `<a class="row trow-th" href="#theme-${x.id}"><span class="ico c-${x.c}">${I[x.ic] || I.book}</span><span><span class="tt">${esc(x.q)}</span><span class="ss">${esc(x.t)} · ${x.i.length} provisions</span></span><span class="aux">${I.chev}</span></a>`;
   return `<section class="wrap col">
     <div class="ph"><nav class="crumbs" aria-label="Breadcrumb"><a href="#themes">Themes</a>${I.chev}<span>${esc(t.t)}</span></nav>
-      <span class="ico c-${t.c}" style="width:52px;height:52px;border-radius:14px">${I[t.ic]}</span>
+      <span class="ico c-${t.c}" style="width:52px;height:52px;border-radius:14px">${I[t.ic]}</span>${anaTheme(t) ? ANA : ""}
       <h1 class="lt">${esc(t.q)}</h1><p class="sub">${lx(t.d)}</p>
       <div class="acts"><a class="btn primary" href="${itemHref(t.i[0])}">Read in order ${I.arrow}</a>${shareBtn()}</div></div>
     ${!TEXT && !textErr ? `<p class="eyebrow" style="margin:0 0 10px">Loading summaries…</p>` : ""}
@@ -1144,6 +1144,7 @@ document.addEventListener("toggle", e => { const d = e.target; if (d.matches && 
 /* Three kinds of content: the official text (no label), our plain-words help ("In plain words") and our analysis, the
    basic structure estimates and the next-amendment forecast, which always carries this label. Rulings are not labelled. */
 const ANA = `<span class="ana">${I.gauge}Analysis</span>`;
+const anaTheme = t => t.id === "core";   // the basic structure theme mixes rulings with our estimates
 /* ---- the next amendment: a forecast (data/next.json) ---- */
 function nextTeaser() {
   const N = CORE.next; if (!N) return "";

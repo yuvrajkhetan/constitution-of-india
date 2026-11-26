@@ -115,7 +115,7 @@ svg{flex:none}
 .nxt-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .bschip .ana{margin-left:8px;padding:3px 7px 3px 6px;font-size:10px}.bsb-h .ana{margin-left:auto}
 @media (max-width:560px){.bschip .ana{display:flex;width:max-content;margin:5px 0 0}.bschip{position:relative;padding-right:34px}.bschip>svg:last-child{position:absolute;right:12px;top:50%;transform:translateY(-50%)}}
-.ph>.ana{justify-self:start}
+.ph>.ana{justify-self:start}.theme .ft .ana{margin-right:auto;padding:3px 7px 3px 6px;font-size:10px}
 .sub{color:var(--label-3);font-size:17px}
 .sec{padding-block:clamp(36px,6vw,64px) 0}
 .sh{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
