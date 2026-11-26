@@ -336,7 +336,7 @@ function linkAmd(h) {
 }
 function highlight(html, terms) {
   if (!terms || !terms.length) return html;
-  const rx = new RegExp("(" + terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")", "gi");
+  const rx = new RegExp("\\b(" + terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).sort((a, b) => b.length - a.length).join("|") + ")\\b", "gi");
   return html.split(/(<[^>]+>)/).map(p => p.startsWith("<") ? p : p.replace(rx, "<mark>$1</mark>")).join("");
 }
 function rich(s, ctx, hl) {
@@ -349,14 +349,21 @@ const plain = s => s.replace(/\{\d+\}/g, "").replace(/\s+/g, " ").trim();
 const fnBtns = (h) => (h || []).map(k => `<button class="fn" type="button" data-fn="${k}" aria-label="Official note ${k}" aria-expanded="false">${k}</button>`).join("");
 
 /* ================= search ================= */
-let DOCS = null;
+/* Everything runs on the reader's device. Words are split properly and reduced to their stem (Porter), so "dismissed" finds
+   "dismissal". Results are ranked with BM25 across fields (title, keywords, summary, text, notes), so rare words count for more
+   than common ones and a long question does not need every word in one article. Typos and half-typed words are matched, common
+   abbreviations are expanded, and a few everyday words are bridged to the Constitution's own. Article hits open the clause that
+   matched. Tested by search_eval.js against audit/search_queries.json. */
+let DOCS = null, IDX = null;
+const SCH_NUM = { first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6, seventh: 7, eighth: 8, ninth: 9, tenth: 10, eleventh: 11, twelfth: 12 };
+const ROMAN = { i: 1, ii: 2, iii: 3, iv: 4, v: 5, vi: 6, vii: 7, viii: 8, ix: 9, x: 10, xi: 11, xii: 12 };
 const norm = s => s.toLowerCase().replace(/[‘’`´]/g, "'").replace(/[“”]/g, '"').replace(/[—–]/g, " ");
 function buildDocs() {
   const d = [];
   ORDER.forEach(n => {
     const a = ART.get(n), t = TEXT && TEXT.a[n];
     const body = t ? t.p.map(p => plain(p[1])).join(" ") + (t.st ? " " + t.st : "") : "";
-    d.push({ k: "a", id: n, title: a.t, tl: norm(a.t), sum: t && t.s || "", sl: norm(t && t.s || ""), kw: norm((t && t.k || []).join(" | ")), body, bl: norm(body), nl: t ? norm(t.f.join(" ")) : "", o: a.o });
+    d.push({ k: "a", id: n, title: a.t, tl: norm(a.t), sum: t && t.s || "", sl: norm(t && t.s || ""), kw: norm((t && t.k || []).join(" | ")), body, bl: norm(body), nl: t ? norm(t.f.join(" ")) : "", o: a.o, paras: t ? t.p : null, nb: t && t.b ? t.b.length : 0 });
   });
   THEMES.forEach(t => d.push({ k: "t", id: t.id, title: t.t, tl: norm(t.t + " " + t.q), sum: t.d, sl: norm(t.d), kw: "", body: "", bl: "", nl: "" }));
   PARTS.forEach(p => d.push({ k: "p", id: p.n, title: "Part " + p.n + " · " + p.t, tl: norm(p.t), sum: p.s, sl: norm(p.s || ""), kw: norm((p.k || []).join(" | ")), body: "", bl: "", nl: "" }));
@@ -371,59 +378,210 @@ function buildDocs() {
   AMD.forEach(a => d.push({ k: "m", id: a.n, title: `${nth(a.n)} Amendment (${a.y})`, tl: norm(`${nth(a.n)} amendment ${ordw(a.n)} amendment ${a.y}`), sum: a.h, sl: norm(a.h + " " + a.tags.join(" ")), kw: "", body: "", bl: "", nl: "" }));
   return d;
 }
-const STOP = new Set(["the", "of", "and", "to", "in", "a", "an", "or", "for", "by", "on", "with", "as", "is", "be", "any", "such", "that", "this", "what", "who", "how", "can", "does", "do", "i", "my", "me", "are"]);
-const SCH_NUM = { first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6, seventh: 7, eighth: 8, ninth: 9, tenth: 10, eleventh: 11, twelfth: 12 };
-const ROMAN = { i: 1, ii: 2, iii: 3, iv: 4, v: 5, vi: 6, vii: 7, viii: 8, ix: 9, x: 10, xi: 11, xii: 12 };
-function search(qraw) {
-  const q = norm(qraw.trim()), out = { direct: [], hits: [], terms: [], total: 0 };
-  if (!q) return out;
-  let m;
-  if ((m = q.match(/^(?:art(?:icle)?s?\.?\s*)?(\d{1,3}\s*[a-z]{0,3}(?:-i)?)$/))) { const k = findArt(m[1]); if (k) out.direct.push({ type: "art", id: k }); }
-  if ((m = q.match(/^part\s+([ivxl]+[a-c]?)$/))) { const r = m[1].toUpperCase(); if (PART_BY.has(r)) out.direct.push({ type: "part", id: r }); }
-  if ((m = q.match(/\b(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|eleventh|twelfth)\s+sch/)) || (m = q.match(/\bsch(?:edule)?\.?\s+(\d{1,2}|[ivx]+)\b/)) || (m = q.match(/^(\d{1,2})(?:st|nd|rd|th)\s+sch/))) {
-    const v = m[1], n = SCH_NUM[v] || ROMAN[v] || parseInt(v, 10); if (n >= 1 && n <= 12) out.direct.push({ type: "sch", id: SCH[n - 1].k });
+// Porter stemmer (M. F. Porter, 1980), after the public reference implementation.
+const stem = (() => {
+  const s2 = { ational: "ate", tional: "tion", enci: "ence", anci: "ance", izer: "ize", bli: "ble", alli: "al", entli: "ent", eli: "e", ousli: "ous", ization: "ize", ation: "ate", ator: "ate", alism: "al", iveness: "ive", fulness: "ful", ousness: "ous", aliti: "al", iviti: "ive", biliti: "ble", logi: "log" };
+  const s3 = { icate: "ic", ative: "", alize: "al", iciti: "ic", ical: "ic", ful: "", ness: "" };
+  const c = "[^aeiou]", v = "[aeiouy]", C = c + "[^aeiouy]*", V = v + "[aeiou]*";
+  const mgr0 = new RegExp("^(" + C + ")?" + V + C), meq1 = new RegExp("^(" + C + ")?" + V + C + "(" + V + ")?$"), mgr1 = new RegExp("^(" + C + ")?" + V + C + V + C), sv = new RegExp("^(" + C + ")?" + v);
+  const cvc = new RegExp("^" + C + v + "[^aeiouwxy]$"), dbl = /([^aeiouylsz])\1$/, cache = new Map();
+  return w0 => {
+    if (w0.length < 3 || /\d/.test(w0)) return w0;
+    const hit = cache.get(w0); if (hit) return hit;
+    let w = w0, m, st;
+    const y = w[0] === "y"; if (y) w = "Y" + w.slice(1);
+    if ((m = /^(.+?)(ss|i)es$/.exec(w))) w = m[1] + m[2]; else if ((m = /^(.+?)([^s])s$/.exec(w))) w = m[1] + m[2];
+    if ((m = /^(.+?)eed$/.exec(w))) { if (mgr0.test(m[1])) w = w.slice(0, -1); }
+    else if ((m = /^(.+?)(ed|ing)$/.exec(w)) && sv.test(m[1])) { w = m[1]; if (/(at|bl|iz)$/.test(w)) w += "e"; else if (dbl.test(w)) w = w.slice(0, -1); else if (cvc.test(w)) w += "e"; }
+    if ((m = /^(.+?)y$/.exec(w)) && sv.test(m[1])) w = m[1] + "i";
+    if ((m = /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/.exec(w)) && mgr0.test(m[1])) w = m[1] + s2[m[2]];
+    if ((m = /^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/.exec(w)) && mgr0.test(m[1])) w = m[1] + s3[m[2]];
+    if ((m = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/.exec(w))) { if (mgr1.test(m[1])) w = m[1]; }
+    else if ((m = /^(.+?)(s|t)(ion)$/.exec(w)) && mgr1.test(st = m[1] + m[2])) w = st;
+    if ((m = /^(.+?)e$/.exec(w)) && (mgr1.test(st = m[1]) || (meq1.test(st) && !cvc.test(st)))) w = st;
+    if (/ll$/.test(w) && mgr1.test(w)) w = w.slice(0, -1);
+    if (y) w = "y" + w.slice(1);
+    cache.set(w0, w); return w;
+  };
+})();
+// words in a text: possessives dropped; a hyphenated word gives its parts and the joined form ("co-operative" also "cooperative")
+function toks(s) {
+  const out = [];
+  for (const m of norm(s).replace(/'s\b/g, "").matchAll(/[a-z0-9]+(?:-[a-z0-9]+)*/g)) {
+    const w = m[0];
+    if (w.includes("-")) { w.split("-").forEach(x => x && out.push(x)); out.push(w.replace(/-/g, "")); } else out.push(w);
   }
-  if ((m = q.match(/\b(\d{1,3})(?:st|nd|rd|th)?\s+amend/)) || (m = q.match(/^amendment\s+(\d{1,3})$/))) { const n = +m[1]; if (AMD_BY.has(n)) out.direct.push({ type: "amd", id: n }); }
-  else if ((m = q.match(/([a-z\- ]+?)\s+amendment/))) { const n = AMD_BY_NAME.get(m[1].replace(/^the\s+/, "").replace(/[^a-z]/g, "")); if (n && AMD_BY.has(n)) out.direct.push({ type: "amd", id: n }); }
-  if (/^preamble/.test(q)) out.direct.push({ type: "pre" });
-  if (/basic (structure|feature)|kesavananda|amend(ing)? power|can parliament amend/.test(q)) out.direct.push({ type: "bs" });
-  if (/next amendment|pending (bill|amendment)|amendment bill|forecast|one nation,? one election|simultaneous election|delimitation|seat freeze/.test(q)) out.direct.push({ type: "next" });
-  synHits(q).forEach(d => { if (!out.direct.some(y => y.type === d.type && y.id === d.id)) out.direct.push(d); });
-  const phrase = (q.match(/"([^"]+)"/) || [])[1];
-  const terms = phrase ? [phrase] : q.replace(/[^a-z0-9'\- ]/g, " ").split(/\s+/).filter(t => t.length > 1 && !STOP.has(t));
-  if (!terms.length) return out;
-  out.terms = terms;
-  if (!DOCS || (TEXT && !DOCS.full)) { DOCS = buildDocs(); DOCS.full = !!TEXT; }
-  const full = phrase || q.replace(/[^a-z0-9'\- ]/g, " ").replace(/\s+/g, " ").trim(), res = [];
-  for (const d of DOCS) {
-    let score = 0, ok = true;
-    for (const t of terms) {
-      const inT = d.tl.includes(t), inK = d.kw.includes(t), inS = d.sl.includes(t), inB = d.bl.includes(t), inN = d.nl.includes(t);
-      if (!inT && !inK && !inS && !inB && !inN) { ok = false; break; }
-      if (inT) score += 30;
-      if (inK) score += 18;
-      if (inS) score += 10;
-      if (inB) { let c = 0, i = -1; while ((i = d.bl.indexOf(t, i + 1)) >= 0 && c < 6) c++; score += c * 2; }
-      if (inN && !inT && !inB) score += 1;
-    }
-    if (!ok) continue;
-    if (full.includes(" ")) { if (d.tl.includes(full)) score += 45; if (d.kw.includes(full)) score += 35; if (d.sl.includes(full)) score += 20; if (d.bl.includes(full)) score += 20; }
-    const tt = d.tl.replace(/[.\s]+$/, "");
-    if (tt === full) score += 80; else if (tt.startsWith(full)) score += 30;
-    if (d.o) score *= .35;
-    if (d.k === "s") score *= .7;
-    if (d.k === "m") score *= .8;
-    res.push([score, d]);
-  }
-  if (!res.length && !phrase && terms.some(t => t.includes("-"))) { const r2 = search(qraw.replace(/\b[a-z]+-/gi, " ")); r2.direct = out.direct.concat(r2.direct); return r2; }
-  res.sort((a, b) => b[0] - a[0]);
-  out.total = res.length; out.hits = res.slice(0, 60).map(r => r[1]);
   return out;
 }
-function snippet(d, terms) {
-  const src = d.body; if (!src) return "";
+const FW = [3, 2.2, 1.5, 1, .15], FB = [.3, .5, .6, .75, .75], K1 = 1.2;   // field weights and length normalisation: title, keywords, summary, text, notes
+function buildIdx(D) {
+  const post = new Map(), len = [], avg = [0, 0, 0, 0, 0], vocab = new Map(), pairs = [];
+  D.forEach((d, i) => {
+    const L = [0, 0, 0, 0, 0], P = new Set();
+    [d.tl, d.kw, d.sl, d.bl, d.nl].forEach((txt, f) => {
+      if (!txt) return;
+      const ws = toks(txt); L[f] = ws.length; avg[f] += ws.length;
+      let prev = null;
+      ws.forEach(w => {
+        vocab.set(w, (vocab.get(w) || 0) + 1);
+        const s = stem(w); let p = post.get(s); if (!p) post.set(s, p = new Map());
+        let e = p.get(i); if (!e) p.set(i, e = [0, 0, 0, 0, 0]); e[f]++;
+        if (f < 4 && prev) P.add(prev + " " + s); prev = s;
+      });
+    });
+    len.push(L); pairs.push(P);
+  });
+  const N = D.length; for (let f = 0; f < 5; f++) avg[f] = avg[f] / N || 1;
+  const forms = new Map(), byFirst = new Map();
+  vocab.forEach((n, w) => {
+    const s = stem(w); (forms.get(s) || forms.set(s, []).get(s)).push(w);
+    if (/^[a-z]{3,}$/.test(w)) (byFirst.get(w[0]) || byFirst.set(w[0], []).get(w[0])).push(w);
+  });
+  return { N, post, len, avg, vocab, forms, byFirst, pairs };
+}
+// optimal string alignment distance, giving up past `max`
+function osa(a, b, max) {
+  if (Math.abs(a.length - b.length) > max) return max + 1;
+  let p2 = null, p = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    const r = [i]; let lo = i;
+    for (let j = 1; j <= b.length; j++) {
+      let x = Math.min(p[j] + 1, r[j - 1] + 1, p[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      if (p2 && i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) x = Math.min(x, p2[j - 2] + 1);
+      r.push(x); if (x < lo) lo = x;
+    }
+    if (lo > max) return max + 1;
+    p2 = p; p = r;
+  }
+  return p[b.length];
+}
+const STOP = new Set("the of and to in a an or for by on with as is be any such that this what who whom whose which when where why how can could will would should shall may might must does do did done is are was were been being i me my myself you your we our us it its there their they them he she his her get gets got has have had about from at into onto over than then so just also only very much many some all each every happens happen happened mean means meaning explain tell about want need".split(" "));
+// common abbreviations, read as their full words (the abbreviation itself still counts as a word, since summaries use some)
+const ABBR = [[/\bsc\s*(?:\/|and|&)?\s*st\b/g, "scheduled castes and scheduled tribes"], [/\bj\s*(?:&|and)\s*k\b/g, "jammu and kashmir"], [/\bsc\b(?=.*\b(?:reserv|quota|caste|seat|commission))/g, "scheduled castes"],
+  ...Object.entries({ cji: "chief justice of india", cag: "comptroller and auditor general", cec: "chief election commissioner", eci: "election commission", ec: "election commission", mp: "member of parliament", mps: "members of parliament", mla: "member of the legislative assembly", mlas: "members of the legislative assembly", mlc: "member of the legislative council", ut: "union territory", uts: "union territories", nct: "national capital territory", upsc: "union public service commission", psc: "public service commission", obc: "backward classes", obcs: "backward classes", dpsp: "directive principles of state policy", fr: "fundamental rights", frs: "fundamental rights", gst: "goods and services tax", hc: "high court", sc: "supreme court", st: "scheduled tribes", pm: "prime minister", cm: "chief minister", vp: "vice president", rs: "rajya sabha", ls: "lok sabha" }).map(([a, b]) => [new RegExp("\\b" + a + "\\b", "g"), b])];
+// everyday names for two-word terms the Constitution words differently: each word may match its counterpart
+const PAIR = { "lok sabha": ["house", "people"], "rajya sabha": ["council", "states"], "vidhan sabha": ["legislative", "assembly"], "state assembly": ["legislative", "assembly"], "armed forces": ["defence", "forces"] };
+// a word that means something else next to another word: removing the President is impeachment
+const CTX = [[/^president/, /^(remov|sack|dismiss|fire|oust)/, "impeachment"]];
+// everyday words and the Constitution's own words for them
+const SYNW = { fire: "dismiss remove", fired: "dismiss remove", firing: "dismiss remove", sack: "dismiss remove", sacked: "dismiss remove", jail: "detention custody arrest", jailed: "detention custody arrest", prison: "detention custody", imprison: "detention custody", crime: "offence", crimes: "offence", sign: "assent", signs: "assent", signed: "assent", signature: "assent", salary: "salaries emoluments allowances", pay: "salaries emoluments", job: "services post appointment", jobs: "services post appointment", kids: "children", land: "property estate", lawyer: "legal practitioner", leave: "secede", centre: "union", center: "union", preside: "chairman speaker", presides: "chairman speaker", presiding: "chairman speaker", central: "union", army: "defence", military: "defence", rename: "alter name" };
+function search(qraw) {
+  const q0 = norm(qraw.trim()), out = { direct: [], hits: [], terms: [], total: 0, fix: "" };
+  if (!q0) return out;
+  if (!DOCS || (TEXT && !DOCS.full)) { DOCS = buildDocs(); DOCS.full = !!TEXT; IDX = buildIdx(DOCS); }
+  const I = IDX, typing = !/\s$/.test(qraw);
+  // typo fixes and the completion of a half-typed last word, used for the "Go to" jumps and shown as "Showing results for"
+  const raw = q0.replace(/[^a-z0-9'&\-\/ ]/g, " ").split(/\s+/).filter(Boolean);
+  const fixWord = (w, last) => {
+    if (w.length < 3 || /\d/.test(w) || STOP.has(w) || I.vocab.has(w) || SYNW[w] || I.post.has(stem(w))) return null;
+    if (last && typing) { let best = null; for (const c of I.byFirst.get(w[0]) || []) if (c.length > w.length && c.startsWith(w) && (!best || I.vocab.get(c) > I.vocab.get(best))) best = c; if (best) return { w: best, how: "prefix" }; }
+    const max = w.length >= 8 ? 2 : w.length >= 5 ? 1 : 0; if (!max) return null;
+    let best = null, bd = max + 1;
+    for (const c of I.byFirst.get(w[0]) || []) { const d = osa(w, c, max); if (d < bd || (d === bd && best && I.vocab.get(c) > I.vocab.get(best))) { bd = d; best = c; } }
+    return best && bd <= max ? { w: best, how: "typo" } : null;
+  };
+  const fixes = raw.map((w, i) => fixWord(w, i === raw.length - 1));
+  const qc = raw.map((w, i) => fixes[i] ? fixes[i].w : w).join(" ");
+  if (fixes.some(f => f && f.how === "typo")) out.fix = qc;
+  // "Go to": article numbers, Parts, Schedules, amendments and the hand-made list of synonyms, on the query as typed or as fixed
+  const boost = new Set();
+  const jumps = q => {
+    const D = []; let m;
+    if ((m = q.match(/^(?:art[a-z]*\.?\s*)?(\d{1,3}\s*[a-z]{0,3}(?:-i)?)\s*((?:\(\s*[0-9a-z]{1,4}\s*\))*)$/))) { const k = findArt(m[1]); if (k) D.push({ type: "art", id: k, c: m[2] ? m[2].replace(/[()\s]+/g, " ").trim().split(" ").map(x => /^\d/.test(x) ? x.toUpperCase() : x).join(".") : null }); }
+    if ((m = q.match(/^part\s+([ivxl]+[a-c]?)$/))) { const r = m[1].toUpperCase(); if (PART_BY.has(r)) D.push({ type: "part", id: r }); }
+    if ((m = q.match(/\b(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|eleventh|twelfth)\s+sch/)) || (m = q.match(/\bsch(?:edule)?\.?\s+(\d{1,2}|[ivx]+)\b/)) || (m = q.match(/^(\d{1,2})(?:st|nd|rd|th)\s+sch/))) {
+      const v = m[1], n = SCH_NUM[v] || ROMAN[v] || parseInt(v, 10); if (n >= 1 && n <= 12) D.push({ type: "sch", id: SCH[n - 1].k });
+    }
+    if ((m = q.match(/\b(\d{1,3})(?:st|nd|rd|th)?\s+amend/)) || (m = q.match(/^amendment\s+(\d{1,3})$/))) { const n = +m[1]; if (AMD_BY.has(n)) D.push({ type: "amd", id: n }); }
+    else if ((m = q.match(/([a-z\- ]+?)\s+amendment/))) { const n = AMD_BY_NAME.get(m[1].replace(/^the\s+/, "").replace(/[^a-z]/g, "")); if (n && AMD_BY.has(n)) D.push({ type: "amd", id: n }); }
+    if (/^preamble/.test(q)) D.push({ type: "pre" });
+    if (/basic (structure|feature)|kesavananda|amend(ing)? power|can parliament amend/.test(q)) D.push({ type: "bs" });
+    if (/next amendment|pending (bill|amendment)|amendment bill|forecast|one nation,? one election|simultaneous election|delimitation|seat freeze/.test(q)) D.push({ type: "next" });
+    const sm = synMatch(q), cov = new Set(sm.flatMap(([p]) => p.split(" ")));
+    const left = q.replace(/[^a-z0-9'\- ]/g, " ").split(/\s+/).filter(w => w.length > 1 && !STOP.has(w) && !cov.has(w));
+    const tg = [...new Set(sm.flatMap(([, t]) => t))];
+    if (!left.length) tg.slice(0, 5).map(synTarget).forEach(d => { if (!D.some(y => y.type === d.type && y.id === d.id)) D.push(d); });
+    else tg.forEach(x => boost.add(x.startsWith("t:") ? "t:" + x.slice(2) : x.startsWith("s:") ? "s0:" + x.slice(2) : x === "P" ? "" : "a:" + x));
+    return D;
+  };
+  out.direct = jumps(q0); if (!out.direct.length && qc !== q0) out.direct = jumps(qc);
+  // the words to rank on, after abbreviations; each word may also match its everyday synonyms, typo fix or completion
+  const phrase = (q0.match(/"([^"]+)"/) || [])[1];
+  let qx = " " + (phrase || q0) + " "; const extra = [];
+  for (const [rx, full] of ABBR) qx = qx.replace(rx, m => { extra.push(m.replace(/[^a-z]/g, "")); return full; });
+  const words = [...new Set(toks(qx).filter(w => w.length > 1 && !STOP.has(w)))];
+  if (!words.length) return out;
+  const lastW = words[words.length - 1];
+  const groups = words.map((w, k) => {
+    const alts = [[stem(w), 1]];
+    (SYNW[w] || "").split(" ").filter(Boolean).forEach(x => alts.push([stem(x), .85]));
+    const pr = PAIR[w + " " + words[k + 1]], pl = PAIR[words[k - 1] + " " + w];
+    if (pr) alts.push([stem(pr[0]), .9]); if (pl) alts.push([stem(pl[1]), .9]);
+    CTX.forEach(([a, b, add]) => { if (b.test(w) && words.some(x => a.test(x))) alts.push([stem(add), .9]); });
+    // word forms the stemmer keeps apart ("suspended", "suspension"): longer words also match others that share all but their last two letters
+    if (w.length >= 7) { const pre = w.slice(0, w.length - 2), s0 = stem(w); (I.byFirst.get(w[0]) || []).filter(x => x.startsWith(pre) && stem(x) !== s0).sort((a, b) => I.vocab.get(b) - I.vocab.get(a)).slice(0, 4).forEach(x => alts.push([stem(x), .75])); }
+    const f = fixWord(w, w === lastW);
+    if (f) { if (f.how === "prefix") { const c = (I.byFirst.get(w[0]) || []).filter(x => x.length > w.length && x.startsWith(w)).sort((a, b) => I.vocab.get(b) - I.vocab.get(a)).slice(0, 6); c.forEach(x => alts.push([stem(x), .8])); } else alts.push([stem(f.w), .9]); }
+    return alts.filter(([s]) => I.post.has(s));
+  });
+  const known = groups.filter(g => g.length);
+  extra.forEach(w => { if (!STOP.has(w)) { const s = stem(w); if (I.post.has(s)) known.push(Object.assign([[s, .6]], { bonus: true })); } });
+  if (!known.length) return out;
+  out.terms = [...new Set(known.flatMap(g => g.flatMap(([s]) => I.forms.get(s) || [])))].filter(w => w.length > 2 || /\d/.test(w)).slice(0, 60);
+  const need = known.filter(g => !g.bonus).length;
+  const sc = new Map(), hitc = new Map();
+  known.forEach(g => {
+    const best = new Map();
+    g.forEach(([s, wt]) => {
+      const P = I.post.get(s), idf = Math.log(1 + (I.N - P.size + .5) / (P.size + .5));
+      P.forEach((tf, i) => {
+        let x = 0; for (let f = 0; f < 5; f++) if (tf[f]) x += FW[f] * tf[f] / (1 - FB[f] + FB[f] * I.len[i][f] / I.avg[f]);
+        const v = wt * idf * x * (K1 + 1) / (x + K1);
+        if (v > (best.get(i) || 0)) best.set(i, v);
+      });
+    });
+    best.forEach((v, i) => { sc.set(i, (sc.get(i) || 0) + v); if (!g.bonus) hitc.set(i, (hitc.get(i) || 0) + 1); });
+  });
+  const full = (phrase || qc).replace(/[^a-z0-9'\- ]/g, " ").replace(/\s+/g, " ").trim();
+  const st = words.map(stem), res = [], gs = known.filter(g => !g.bonus).map(g => new Set(g.map(([x]) => x)));
+  sc.forEach((s, i) => {
+    const d = DOCS[i];
+    if (phrase && !(d.tl + " " + d.kw + " " + d.sl + " " + d.bl).includes(phrase)) return;
+    const cov = need ? (hitc.get(i) || 0) / need : 1;
+    if (!cov && need) return;
+    s *= .25 + .75 * cov * cov;
+    let adj = 0; for (let k = 1; k < st.length; k++) if (I.pairs[i].has(st[k - 1] + " " + st[k])) adj++;
+    s *= 1 + Math.min(.4, .12 * adj);
+    if (full.includes(" ")) { if (d.tl.includes(full)) s *= 1.35; else if (d.kw.includes(full) || d.sl.includes(full)) s *= 1.15; }
+    const tt = d.tl.replace(/[.\s]+$/, "").replace(/^the /, "");
+    if (tt === full) s *= 1.6; else if (tt.startsWith(full)) s *= 1.2;
+    // a title that is about the query: the share of its own words the query matches, times the share of the query found in it
+    if (d.tl && gs.length) { const tw = [...new Set(toks(d.tl).filter(w => !STOP.has(w)).map(stem))]; if (tw.length) { const inT = gs.filter(G => tw.some(x => G.has(x))).length; s *= 1 + .6 * (tw.filter(x => gs.some(G => G.has(x))).length / tw.length) * (inT / gs.length); } }
+    if (d.o) s *= .35;
+    if (d.k === "s") s *= .6;
+    if (d.k === "m") s *= .8;
+    if (d.k === "a") s *= 1 + .05 * Math.log2(1 + d.nb);
+    if (boost.has(d.k + ":" + d.id)) s *= 1.3;
+    res.push([s, d]);
+  });
+  res.sort((a, b) => b[0] - a[0]);
+  out.total = res.length; out.hits = res.slice(0, 60).map(r => r[1]); out.score = new Map(res.slice(0, 60).map(([s, d]) => [d, s]));
+  return out;
+}
+// the paragraph of an article that best matches, with its clause id (for the link) when it has one
+function bestPara(d, terms) {
+  if (!d.paras || !d.paras.length) return null;
+  const T = new Set(terms.map(stem)), ids = clauseIds(d.paras);
+  let bi = -1, bs = 0;
+  d.paras.forEach(([, s], i) => { const ws = toks(plain(s)); let n = 0; new Set(ws.map(stem)).forEach(x => { if (T.has(x)) n++; }); if (n > bs) { bs = n; bi = i; } });
+  if (bi < 0) return null;
+  let id = ""; for (let i = bi; i >= 0 && !id; i--) id = ids[i];
+  return { i: bi, txt: plain(d.paras[bi][1]), c: d.paras.length > 1 ? id : "" };
+}
+function snippet(d, terms, src0) {
+  const src = src0 || d.body; if (!src) return "";
   const low = norm(src); let i = -1;
-  for (const t of terms) { i = low.indexOf(t); if (i >= 0) break; }
+  for (const t of terms) { const m = new RegExp("\\b" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b").exec(low); if (m) { i = m.index; break; } }
   if (i < 0) return esc(src.slice(0, 150)) + (src.length > 150 ? "…" : "");
   const s = Math.max(0, i - 60), e = Math.min(src.length, i + 120);
   return (s ? "…" : "") + highlight(esc(src.slice(s, e)), terms) + (e < src.length ? "…" : "");
@@ -1587,6 +1745,13 @@ const SYN = [
 const SYNX = [];
 SYN.forEach(([ph, tg]) => ph.split("|").forEach(p => SYNX.push([p, tg.split(" ")])));
 SYNX.sort((a, b) => b[0].length - a[0].length);
+function synMatch(q) {
+  const s = q.replace(/[^a-z0-9'\- ]/g, " ").replace(/\s+/g, " ").trim(), S = " " + s + " ", out = [];
+  if (!s || /\d/.test(s)) return out;
+  for (const [p, tg] of SYNX) if (p.length <= 3 ? s === p : S.includes(" " + p + " ")) out.push([p, tg]);
+  return out;
+}
+const synTarget = x => x.startsWith("t:") ? { type: "theme", id: x.slice(2) } : x.startsWith("s:") ? { type: "sch", id: x.slice(2) } : x === "P" ? { type: "pre" } : { type: "art", id: x };
 function synHits(q) {
   const s = q.replace(/[^a-z0-9'\- ]/g, " ").replace(/\s+/g, " ").trim(), S = " " + s + " ", out = [];
   if (!s || /\d/.test(s)) return out;
@@ -1801,14 +1966,16 @@ function openSearch(q) {
   dlg.hidden = false; document.documentElement.style.overflow = "hidden";
   if (q != null) sq.value = q;
   sq.focus(); sq.select(); runSearch();
+  setTimeout(prepIdx, 300);   // build the search index while the reader starts typing, after the box has opened
 }
+function prepIdx() { if (TEXT && (!DOCS || !DOCS.full)) { DOCS = buildDocs(); DOCS.full = true; IDX = buildIdx(DOCS); } }
 function closeSearch() { dlg.hidden = true; document.documentElement.style.overflow = ""; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
 let st = 0;
 sq.addEventListener("input", () => { clearTimeout(st); st = setTimeout(runSearch, 50); });
 function runSearch() {
   const q = sq.value, r = search(q);
   items = []; let h = "";
-  const add = (href, k, t, s, terms) => { items.push({ href, terms }); return `<a class="res" href="${href}" data-i="${items.length - 1}" role="option"><div class="k">${esc(k)}</div><div><div class="t">${t}</div>${s ? `<div class="s">${s}</div>` : ""}</div></a>`; };
+  const add = (href, k, t, s, terms) => { items.push({ href, terms }); return `<a class="res" href="${href}" data-i="${items.length - 1}" role="option"><div class="k">${esc(k).replace(/^(Art\. [0-9A-Z-]+)(\(.+)$/, '$1<span class="kc">$2</span>')}</div><div><div class="t">${t}</div>${s ? `<div class="s">${s}</div>` : ""}</div></a>`; };
   if (!q.trim()) {
     h = `<div class="sempty">Type an article number, a word, or a question in your own words.<div class="pills">${["Article 21", "voting age", "freedom of religion", "money bill", '"Finance Commission"', "Seventh Schedule", "42nd Amendment", "emergency"].map(s => `<button class="pill" type="button" data-try="${esc(s)}">${esc(s)}</button>`).join("")}</div></div>`;
     const rec = store.get("recent", []).filter(n => ART.has(n)).slice(0, 4);
@@ -1817,7 +1984,7 @@ function runSearch() {
     if (r.direct.length) {
       h += `<div class="sgrp">Go to</div>`;
       r.direct.forEach(d => {
-        if (d.type === "art") { const a = ART.get(d.id); h += add("#art-" + d.id, "Art. " + d.id, esc(a.t), esc(TEXT && TEXT.a[d.id].s || `Part ${PARTS[a.p].n} · ${PARTS[a.p].t}`)); }
+        if (d.type === "art") { const a = ART.get(d.id); h += add("#art-" + d.id + (d.c ? "." + d.c : ""), "Art. " + d.id + (d.c ? d.c.split(".").map(x => `(${x})`).join("") : ""), esc(a.t), esc(TEXT && TEXT.a[d.id].s || `Part ${PARTS[a.p].n} · ${PARTS[a.p].t}`)); }
         else if (d.type === "part") { const Pp = PARTS[PART_BY.get(d.id)]; h += add("#part-" + d.id, "Part " + d.id, esc(Pp.t), esc(Pp.s || partRange(Pp).range)); }
         else if (d.type === "sch") { const s = SCH[SCH_BY.get(d.id)]; h += add("#sch-" + d.id, "Sch. " + (SCH_BY.get(d.id) + 1), esc(schName(d.id) + ": " + s.t), esc(s.s || s.ref)); }
         else if (d.type === "amd") { const a = AMD_BY.get(d.id); h += add("#amend-" + d.id, nth(d.id), `The Constitution (${ordw(d.id)} Amendment) Act, ${a.y}`, esc(a.h)); }
@@ -1827,18 +1994,32 @@ function runSearch() {
         else h += add("#preamble", "Preamble", "We, the People of India", "");
       });
     }
-    const seen = new Set(items.map(i => i.href));
+    const seen = new Set(items.map(i => i.href.replace(/^(#art-[^.]+)\..*/, "$1")));
     const groups = { a: [], t: [], p: [], g: [], s0: [], s: [], m: [] };
-    r.hits.forEach(d => groups[d.k] && groups[d.k].push(d));
     const T = r.terms;
     const hl = s => highlight(esc(s), T);
-    const arts = groups.a.filter(d => !seen.has("#art-" + d.id));
-    if (arts.length) { h += `<div class="sgrp">Articles${TEXT ? "" : " (titles while the text loads)"}</div>`; arts.slice(0, 25).forEach(d => h += add("#art-" + d.id, "Art. " + d.id, hl(d.title) + (d.o ? ' <span class="tag o">Omitted</span>' : ""), (d.sl && T.some(t => d.sl.includes(t))) || !d.bl ? hl(d.sum) : snippet(d, T), T)); }
-    if (groups.t.length || groups.p.length) { h += `<div class="sgrp">Themes and Parts</div>`; groups.t.slice(0, 3).forEach(d => h += add("#theme-" + d.id, "Theme", hl(d.title), hl(d.sum))); groups.p.slice(0, 3).forEach(d => h += add("#part-" + d.id, "Part " + d.id, hl(d.title.replace(/^Part \S+ · /, "")), hl(d.sum || ""))); }
-    if (groups.s0.length || groups.s.length) { h += `<div class="sgrp">Schedules</div>`; groups.s0.slice(0, 3).forEach(d => h += add("#sch-" + d.id, "Sch. " + (SCH_BY.get(d.id) + 1), hl(d.title), hl(d.sum || ""))); groups.s.slice(0, 8).forEach(d => h += add(`#sch-${d.id}-b${d.b}`, "Sch. " + (SCH_BY.get(d.id) + 1), esc(d.title), snippet(d, T), T)); }
-    if (groups.g.length) { h += `<div class="sgrp">Glossary</div>`; groups.g.slice(0, 4).forEach(d => h += add("#g-" + d.id.toLowerCase().replace(/[^a-z0-9]+/g, "-"), "Term", hl(d.title), snippet(d, T))); }
-    const mm = groups.m.filter(d => !seen.has("#amend-" + d.id));
-    if (mm.length) { h += `<div class="sgrp">Amendments</div>`; mm.slice(0, 4).forEach(d => h += add("#amend-" + d.id, nth(d.id), hl(d.title), hl(d.sum))); }
+    const one = d => {
+      if (d.k === "a") { const bp = TEXT && bestPara(d, T), c = bp && bp.c; return add("#art-" + d.id + (c ? "." + c : ""), "Art. " + d.id + (c ? c.split(".").map(x => `(${x})`).join("") : ""), hl(d.title) + (d.o ? ' <span class="tag o">Omitted</span>' : ""), (d.sl && T.some(t => new RegExp("\\b" + t + "\\b").test(d.sl))) || !d.bl ? hl(d.sum) : snippet(d, T, bp && bp.txt), T); }
+      if (d.k === "t") return add("#theme-" + d.id, "Theme", hl(d.title), hl(d.sum));
+      if (d.k === "p") return add("#part-" + d.id, "Part " + d.id, hl(d.title.replace(/^Part \S+ · /, "")), hl(d.sum || ""));
+      if (d.k === "s0") return add("#sch-" + d.id, "Sch. " + (SCH_BY.get(d.id) + 1), hl(d.title), hl(d.sum || ""));
+      if (d.k === "s") return add(`#sch-${d.id}-b${d.b}`, "Sch. " + (SCH_BY.get(d.id) + 1), esc(d.title), snippet(d, T), T);
+      if (d.k === "g") return add("#g-" + d.id.toLowerCase().replace(/[^a-z0-9]+/g, "-"), "Term", hl(d.title), snippet(d, T));
+      return add("#amend-" + d.id, nth(d.id), hl(d.title), hl(d.sum));
+    };
+    const key = d => d.k === "a" ? "#art-" + d.id : d.k === "s0" ? "#sch-" + d.id : d.k === "p" ? "#part-" + d.id : d.k === "t" ? "#theme-" + d.id : d.k === "m" ? "#amend-" + d.id : "";
+    // a Part, theme or Schedule that outranks every article is shown first, not under the articles
+    const top = r.hits[0], firstArt = r.hits.find(d => d.k === "a");
+    let bestD = null;
+    if (top && top.k !== "a" && !(top.k === "s" ? seen.has("#sch-" + top.id) : seen.has(key(top))) && (!firstArt || r.score.get(top) >= r.score.get(firstArt))) { bestD = top; h += `<div class="sgrp">Best match</div>` + one(top); seen.add(key(top)); }
+    r.hits.forEach(d => d !== bestD && groups[d.k] && !seen.has(key(d)) && groups[d.k].push(d));
+    const arts = groups.a;
+    if (arts.length) { h += `<div class="sgrp">Articles${TEXT ? "" : " (titles while the text loads)"}</div>`; arts.slice(0, 25).forEach(d => h += one(d)); }
+    if (groups.t.length || groups.p.length) { h += `<div class="sgrp">Themes and Parts</div>`; groups.t.slice(0, 3).forEach(d => h += one(d)); groups.p.slice(0, 3).forEach(d => h += one(d)); }
+    if (groups.s0.length || groups.s.length) { h += `<div class="sgrp">Schedules</div>`; groups.s0.slice(0, 3).forEach(d => h += one(d)); groups.s.slice(0, 8).forEach(d => h += one(d)); }
+    if (groups.g.length) { h += `<div class="sgrp">Glossary</div>`; groups.g.slice(0, 4).forEach(d => h += one(d)); }
+    if (groups.m.length) { h += `<div class="sgrp">Amendments</div>`; groups.m.slice(0, 4).forEach(d => h += one(d)); }
+    if (r.fix && items.length) h = `<div class="snote">Showing results for “${esc(r.fix)}”</div>` + h;
     if (!items.length) h = `<div class="sempty">No results for “${esc(q)}”. Try fewer or different words, or one of these.<div class="pills">${["Fundamental Rights", "President", "Election Commission", "Governor", "Seventh Schedule"].map(s => `<button class="pill" type="button" data-try="${esc(s)}">${esc(s)}</button>`).join("")}</div></div>`;
   }
   sres.innerHTML = h; sel = 0; markSel();

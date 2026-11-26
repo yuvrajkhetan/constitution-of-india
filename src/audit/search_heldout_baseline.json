@@ -1,0 +1,411 @@
+{
+ "summary": {
+  "n": 42,
+  "hit1": 16,
+  "hit3": 22,
+  "hit10": 23,
+  "mrr": 0.449,
+  "none": 12
+ },
+ "rows": [
+  {
+   "g": "Held out",
+   "q": "article 14",
+   "rank": 1,
+   "n": 32,
+   "top": [
+    "a:14",
+    "a:31C",
+    "a:363"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "part xviii",
+   "rank": 1,
+   "n": 1,
+   "top": [
+    "p:XVIII"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "ninth schedule",
+   "rank": 1,
+   "n": 20,
+   "top": [
+    "s:NINTH",
+    "a:31B",
+    "a:338"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "44th amendment",
+   "rank": 1,
+   "n": 2,
+   "top": [
+    "m:44",
+    "a:105"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "right against exploitation",
+   "rank": 0,
+   "n": 2,
+   "top": [
+    "a:39",
+    "p:III"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "freedom of speech",
+   "rank": 1,
+   "n": 7,
+   "top": [
+    "a:19",
+    "t:speech",
+    "a:105"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "election of the vice president",
+   "rank": 2,
+   "n": 16,
+   "top": [
+    "a:63",
+    "a:66",
+    "a:324"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "rights of the accused",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "consolidated fund of india",
+   "rank": 1,
+   "n": 28,
+   "top": [
+    "a:266",
+    "a:283",
+    "a:112"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "contingency fund",
+   "rank": 1,
+   "n": 5,
+   "top": [
+    "a:267",
+    "a:283",
+    "a:110"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "inter-state council",
+   "rank": 1,
+   "n": 5,
+   "top": [
+    "a:263",
+    "a:279A",
+    "a:269A"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "public service commissions",
+   "rank": 2,
+   "n": 13,
+   "top": [
+    "a:320",
+    "a:315",
+    "a:378"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "how many members in the lok sabha",
+   "rank": 1,
+   "n": 2,
+   "top": [
+    "a:81",
+    "a:83"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "who appoints the attorney general",
+   "rank": 1,
+   "n": 1,
+   "top": [
+    "a:76"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "can the governor pardon a prisoner",
+   "rank": 5,
+   "n": 5,
+   "top": [
+    "a:153",
+    "a:155",
+    "a:163"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "how is the chief justice removed",
+   "rank": 2,
+   "n": 2,
+   "top": [
+    "a:217",
+    "a:124"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "who can become a citizen",
+   "rank": 1,
+   "n": 6,
+   "top": [
+    "a:5",
+    "a:11",
+    "t:citizenship"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "can a law make something a crime after i did it",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "right to a lawyer when arrested",
+   "rank": 1,
+   "n": 3,
+   "top": [
+    "a:22",
+    "a:21",
+    "t:arrest"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "who chairs the gst council",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "can the president dissolve the lok sabha",
+   "rank": 3,
+   "n": 4,
+   "top": [
+    "a:81",
+    "a:83",
+    "a:85"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "how often is the finance commission set up",
+   "rank": 1,
+   "n": 1,
+   "top": [
+    "a:280"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "language for letters between states",
+   "rank": 0,
+   "n": 5,
+   "top": [
+    "a:343",
+    "a:345",
+    "a:348"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "special status of nagaland",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "sikkim",
+   "rank": 1,
+   "n": 11,
+   "top": [
+    "a:371F",
+    "a:2A",
+    "a:279A"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "maximum strength of the rajya sabha",
+   "rank": 1,
+   "n": 1,
+   "top": [
+    "a:80"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "minister for tribal welfare in odisha",
+   "rank": 1,
+   "n": 1,
+   "top": [
+    "a:164"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "parlament",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "goverment of india act",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "constitution amendmnt",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "fundmental duties",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "presdent rule",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "habeus corpus",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "pm appointment",
+   "rank": 0,
+   "n": 2,
+   "top": [
+    "a:371J",
+    "a:279A"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "hc judges",
+   "rank": 0,
+   "n": 3,
+   "top": [
+    "a:124",
+    "a:214",
+    "t:courts"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "cm appointment",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "eci",
+   "rank": 0,
+   "n": 29,
+   "top": [
+    "a:371A",
+    "a:371H",
+    "a:103"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "sack the governor",
+   "rank": 0,
+   "n": 3,
+   "top": [
+    "a:153",
+    "a:155",
+    "a:163"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "jailed without being told why",
+   "rank": 0,
+   "n": 0,
+   "top": []
+  },
+  {
+   "g": "Held out",
+   "q": "pay of judges",
+   "rank": 0,
+   "n": 6,
+   "top": [
+    "a:124",
+    "a:214",
+    "t:courts"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "directiv",
+   "rank": 3,
+   "n": 8,
+   "top": [
+    "a:351",
+    "a:31C",
+    "a:36"
+   ]
+  },
+  {
+   "g": "Held out",
+   "q": "amendm",
+   "rank": 2,
+   "n": 14,
+   "top": [
+    "a:4",
+    "a:368",
+    "a:394A"
+   ]
+  }
+ ]
+}

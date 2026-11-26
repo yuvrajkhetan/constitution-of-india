@@ -1,0 +1,278 @@
+{
+ "about": "Held-out search test set, written 26 November 2026 before the new search engine and not used while tuning it. Same format as search_queries.json.",
+ "groups": [
+  {
+   "g": "Held out",
+   "q": [
+    {
+     "q": "article 14",
+     "ok": [
+      "a:14"
+     ]
+    },
+    {
+     "q": "part xviii",
+     "ok": [
+      "p:XVIII"
+     ]
+    },
+    {
+     "q": "ninth schedule",
+     "ok": [
+      "s:NINTH"
+     ]
+    },
+    {
+     "q": "44th amendment",
+     "ok": [
+      "m:44"
+     ]
+    },
+    {
+     "q": "right against exploitation",
+     "ok": [
+      "a:23",
+      "a:24"
+     ]
+    },
+    {
+     "q": "freedom of speech",
+     "ok": [
+      "a:19",
+      "t:speech"
+     ]
+    },
+    {
+     "q": "election of the vice president",
+     "ok": [
+      "a:66"
+     ]
+    },
+    {
+     "q": "rights of the accused",
+     "ok": [
+      "a:20",
+      "a:22",
+      "t:arrest"
+     ]
+    },
+    {
+     "q": "consolidated fund of india",
+     "ok": [
+      "a:266"
+     ]
+    },
+    {
+     "q": "contingency fund",
+     "ok": [
+      "a:267"
+     ]
+    },
+    {
+     "q": "inter-state council",
+     "ok": [
+      "a:263"
+     ]
+    },
+    {
+     "q": "public service commissions",
+     "ok": [
+      "a:315"
+     ]
+    },
+    {
+     "q": "how many members in the lok sabha",
+     "ok": [
+      "a:81"
+     ]
+    },
+    {
+     "q": "who appoints the attorney general",
+     "ok": [
+      "a:76"
+     ]
+    },
+    {
+     "q": "can the governor pardon a prisoner",
+     "ok": [
+      "a:161"
+     ]
+    },
+    {
+     "q": "how is the chief justice removed",
+     "ok": [
+      "a:124"
+     ]
+    },
+    {
+     "q": "who can become a citizen",
+     "ok": [
+      "p:II",
+      "a:5",
+      "t:citizenship"
+     ]
+    },
+    {
+     "q": "can a law make something a crime after i did it",
+     "ok": [
+      "a:20"
+     ]
+    },
+    {
+     "q": "right to a lawyer when arrested",
+     "ok": [
+      "a:22"
+     ]
+    },
+    {
+     "q": "who chairs the gst council",
+     "ok": [
+      "a:279A"
+     ]
+    },
+    {
+     "q": "can the president dissolve the lok sabha",
+     "ok": [
+      "a:85"
+     ]
+    },
+    {
+     "q": "how often is the finance commission set up",
+     "ok": [
+      "a:280"
+     ]
+    },
+    {
+     "q": "language for letters between states",
+     "ok": [
+      "a:346"
+     ]
+    },
+    {
+     "q": "special status of nagaland",
+     "ok": [
+      "a:371A"
+     ]
+    },
+    {
+     "q": "sikkim",
+     "ok": [
+      "a:371F"
+     ]
+    },
+    {
+     "q": "maximum strength of the rajya sabha",
+     "ok": [
+      "a:80"
+     ]
+    },
+    {
+     "q": "minister for tribal welfare in odisha",
+     "ok": [
+      "a:164"
+     ]
+    },
+    {
+     "q": "parlament",
+     "ok": [
+      "a:79"
+     ]
+    },
+    {
+     "q": "goverment of india act",
+     "ok": [
+      "a:395"
+     ]
+    },
+    {
+     "q": "constitution amendmnt",
+     "ok": [
+      "a:368",
+      "t:amending"
+     ]
+    },
+    {
+     "q": "fundmental duties",
+     "ok": [
+      "a:51A",
+      "p:IVA",
+      "t:duties"
+     ]
+    },
+    {
+     "q": "presdent rule",
+     "ok": [
+      "a:356"
+     ]
+    },
+    {
+     "q": "habeus corpus",
+     "ok": [
+      "a:32",
+      "a:226"
+     ]
+    },
+    {
+     "q": "pm appointment",
+     "ok": [
+      "a:75"
+     ]
+    },
+    {
+     "q": "hc judges",
+     "ok": [
+      "a:217"
+     ]
+    },
+    {
+     "q": "cm appointment",
+     "ok": [
+      "a:164"
+     ]
+    },
+    {
+     "q": "eci",
+     "ok": [
+      "a:324"
+     ]
+    },
+    {
+     "q": "sack the governor",
+     "ok": [
+      "a:156"
+     ]
+    },
+    {
+     "q": "jailed without being told why",
+     "ok": [
+      "a:22"
+     ]
+    },
+    {
+     "q": "pay of judges",
+     "ok": [
+      "s:SECOND",
+      "a:125",
+      "a:221"
+     ]
+    },
+    {
+     "q": "directiv",
+     "ok": [
+      "p:IV",
+      "a:36",
+      "a:37",
+      "t:dpsp"
+     ]
+    },
+    {
+     "q": "amendm",
+     "ok": [
+      "a:368",
+      "t:amending"
+     ]
+    }
+   ]
+  }
+ ]
+}

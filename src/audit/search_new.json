@@ -1,0 +1,1876 @@
+{
+ "summary": {
+  "n": 170,
+  "hit1": 138,
+  "hit3": 166,
+  "hit10": 169,
+  "mrr": 0.891,
+  "none": 0
+ },
+ "rows": [
+  {
+   "g": "Exact references",
+   "q": "article 21",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:21",
+    "a:359",
+    "a:243F"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "art 370",
+   "rank": 1,
+   "n": 28,
+   "top": [
+    "a:370",
+    "a:80",
+    "a:171"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "21a",
+   "rank": 1,
+   "n": 2,
+   "top": [
+    "a:21A",
+    "m:86"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "article 243zh",
+   "rank": 1,
+   "n": 34,
+   "top": [
+    "a:243ZH",
+    "g:article",
+    "a:232"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "part iii",
+   "rank": 1,
+   "n": 39,
+   "top": [
+    "p:III",
+    "a:359",
+    "a:36"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "seventh schedule",
+   "rank": 1,
+   "n": 38,
+   "top": [
+    "s:SEVENTH",
+    "a:246",
+    "a:334"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "schedule 8",
+   "rank": 1,
+   "n": 37,
+   "top": [
+    "s:EIGHTH",
+    "g:schedule",
+    "a:342"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "42nd amendment",
+   "rank": 1,
+   "n": 22,
+   "top": [
+    "m:42",
+    "a:368",
+    "a:4"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "preamble",
+   "rank": 1,
+   "n": 2,
+   "top": [
+    "pre",
+    "m:42"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "article 19(1)(a)",
+   "rank": 1,
+   "n": 44,
+   "top": [
+    "a:19",
+    "a:358",
+    "a:305"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "tenth schedule",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "s:TENTH",
+    "a:191",
+    "a:361B"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "first amendment",
+   "rank": 1,
+   "n": 37,
+   "top": [
+    "m:1",
+    "a:4",
+    "a:1"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "article 356",
+   "rank": 1,
+   "n": 38,
+   "top": [
+    "a:356",
+    "a:357",
+    "a:232"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "art. 32",
+   "rank": 1,
+   "n": 31,
+   "top": [
+    "a:32",
+    "a:139",
+    "a:226"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "part ixa",
+   "rank": 1,
+   "n": 35,
+   "top": [
+    "p:IXA",
+    "m:74",
+    "a:32"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "101st amendment",
+   "rank": 1,
+   "n": 22,
+   "top": [
+    "m:101",
+    "a:368",
+    "a:4"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "sixth schedule",
+   "rank": 1,
+   "n": 43,
+   "top": [
+    "s:SIXTH",
+    "a:244",
+    "a:371B"
+   ]
+  },
+  {
+   "g": "Exact references",
+   "q": "article 51a",
+   "rank": 1,
+   "n": 38,
+   "top": [
+    "a:51A",
+    "p:IVA",
+    "a:232"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "right to equality",
+   "rank": 1,
+   "n": 36,
+   "top": [
+    "a:14",
+    "a:39",
+    "a:25"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "untouchability",
+   "rank": 1,
+   "n": 3,
+   "top": [
+    "a:17",
+    "a:15",
+    "t:justice"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "freedom of religion",
+   "rank": 1,
+   "n": 32,
+   "top": [
+    "a:25",
+    "a:26",
+    "a:27"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "right to constitutional remedies",
+   "rank": 1,
+   "n": 35,
+   "top": [
+    "a:32",
+    "a:13",
+    "a:35"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "writs",
+   "rank": 1,
+   "n": 6,
+   "top": [
+    "a:32",
+    "a:226",
+    "a:139"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "money bill",
+   "rank": 1,
+   "n": 41,
+   "top": [
+    "a:110",
+    "a:199",
+    "a:198"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "finance commission",
+   "rank": 1,
+   "n": 36,
+   "top": [
+    "a:280",
+    "a:243Y",
+    "a:281"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "election commission",
+   "rank": 1,
+   "n": 38,
+   "top": [
+    "a:324",
+    "t:elections",
+    "a:326"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "comptroller and auditor general",
+   "rank": 1,
+   "n": 45,
+   "top": [
+    "a:148",
+    "a:149",
+    "t:watchdogs"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "attorney general",
+   "rank": 1,
+   "n": 44,
+   "top": [
+    "a:76",
+    "a:88",
+    "a:139A"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "advocate general",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:165",
+    "a:177",
+    "a:227"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "president's rule",
+   "rank": 1,
+   "n": 31,
+   "top": [
+    "a:356",
+    "a:118",
+    "a:145"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "national emergency",
+   "rank": 1,
+   "n": 47,
+   "top": [
+    "a:352",
+    "a:358",
+    "a:359"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "financial emergency",
+   "rank": 1,
+   "n": 39,
+   "top": [
+    "a:360",
+    "a:354",
+    "a:352"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "official language",
+   "rank": 1,
+   "n": 41,
+   "top": [
+    "a:343",
+    "a:345",
+    "a:348"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "languages schedule",
+   "rank": 1,
+   "n": 43,
+   "top": [
+    "s:EIGHTH",
+    "a:351",
+    "a:344"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "panchayats",
+   "rank": 2,
+   "n": 34,
+   "top": [
+    "a:243A",
+    "a:243B",
+    "a:243G"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "municipalities",
+   "rank": 1,
+   "n": 35,
+   "top": [
+    "a:243Q",
+    "a:243W",
+    "t:local"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "co-operative societies",
+   "rank": 2,
+   "n": 31,
+   "top": [
+    "a:43B",
+    "a:243ZH",
+    "g:co-operative-society"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "fundamental duties",
+   "rank": 1,
+   "n": 40,
+   "top": [
+    "a:51A",
+    "t:duties",
+    "p:IVA"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "directive principles",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:37",
+    "a:38",
+    "t:dpsp"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "uniform civil code",
+   "rank": 1,
+   "n": 37,
+   "top": [
+    "a:44",
+    "a:133",
+    "a:144"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "cow slaughter",
+   "rank": 1,
+   "n": 2,
+   "top": [
+    "a:48",
+    "s:TWELFTH"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "abolition of titles",
+   "rank": 1,
+   "n": 23,
+   "top": [
+    "a:18",
+    "a:393",
+    "a:17"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "child labour",
+   "rank": 1,
+   "n": 17,
+   "top": [
+    "a:24",
+    "t:children",
+    "a:39"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "human trafficking",
+   "rank": 1,
+   "n": 10,
+   "top": [
+    "a:23",
+    "a:42",
+    "a:51A"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "minority educational institutions",
+   "rank": 1,
+   "n": 46,
+   "top": [
+    "a:30",
+    "a:28",
+    "a:29"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "right to property",
+   "rank": 1,
+   "n": 43,
+   "top": [
+    "a:300A",
+    "t:property",
+    "a:295"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "pardon",
+   "rank": 1,
+   "n": 3,
+   "top": [
+    "a:72",
+    "a:161",
+    "t:arrest"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "ordinance",
+   "rank": 1,
+   "n": 19,
+   "top": [
+    "a:123",
+    "a:213",
+    "a:239B"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "impeachment of the president",
+   "rank": 1,
+   "n": 27,
+   "top": [
+    "a:61",
+    "a:56",
+    "a:361"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "removal of judges",
+   "rank": 1,
+   "n": 36,
+   "top": [
+    "a:124",
+    "a:217",
+    "a:214"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "inter-state water disputes",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:262",
+    "a:263",
+    "a:288"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "gst council",
+   "rank": 1,
+   "n": 44,
+   "top": [
+    "a:279A",
+    "a:246A",
+    "a:269A"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "composition of rajya sabha",
+   "rank": 1,
+   "n": 31,
+   "top": [
+    "a:80",
+    "a:243R",
+    "a:171"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "speaker of the lok sabha",
+   "rank": 3,
+   "n": 36,
+   "top": [
+    "a:81",
+    "a:83",
+    "a:93"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "vice-president",
+   "rank": 1,
+   "n": 34,
+   "top": [
+    "a:63",
+    "a:66",
+    "a:67"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "council of ministers",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:74",
+    "a:75",
+    "a:163"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "high court writ jurisdiction",
+   "rank": 1,
+   "n": 33,
+   "top": [
+    "a:226",
+    "a:225",
+    "a:230"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "special leave to appeal",
+   "rank": 1,
+   "n": 36,
+   "top": [
+    "a:136",
+    "a:374",
+    "a:134A"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "contempt of court",
+   "rank": 1,
+   "n": 32,
+   "top": [
+    "a:129",
+    "a:215",
+    "a:142"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "citizenship",
+   "rank": 1,
+   "n": 13,
+   "top": [
+    "a:5",
+    "a:11",
+    "t:citizenship"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "scheduled areas",
+   "rank": 1,
+   "n": 20,
+   "top": [
+    "a:244",
+    "s:FIFTH",
+    "s:SIXTH"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "tribal areas in assam",
+   "rank": 1,
+   "n": 44,
+   "top": [
+    "a:244",
+    "a:244A",
+    "a:371B"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "union territories",
+   "rank": 1,
+   "n": 45,
+   "top": [
+    "p:VIII",
+    "a:239",
+    "a:243L"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "delhi",
+   "rank": 1,
+   "n": 16,
+   "top": [
+    "a:239AA",
+    "a:239AB",
+    "a:130"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "jammu and kashmir",
+   "rank": 1,
+   "n": 13,
+   "top": [
+    "a:370",
+    "a:152",
+    "a:308"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "forms of oath",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "s:THIRD",
+    "a:60",
+    "a:188"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "union list",
+   "rank": 1,
+   "n": 40,
+   "top": [
+    "a:246",
+    "s:SEVENTH",
+    "t:federal"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "anti-defection law",
+   "rank": 1,
+   "n": 39,
+   "top": [
+    "s:TENTH",
+    "a:191",
+    "a:255"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "basic structure",
+   "rank": 1,
+   "n": 5,
+   "top": [
+    "bs",
+    "t:core",
+    "a:31A"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "salaries of judges",
+   "rank": 1,
+   "n": 44,
+   "top": [
+    "s:SECOND",
+    "a:106",
+    "a:195"
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": "seats in rajya sabha for each state",
+   "rank": 1,
+   "n": 31,
+   "top": [
+    "s:FOURTH",
+    "a:80",
+    "a:84"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can police arrest me without a warrant",
+   "rank": 1,
+   "n": 37,
+   "top": [
+    "a:22",
+    "a:226",
+    "a:32"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "minimum age to become president",
+   "rank": 3,
+   "n": 27,
+   "top": [
+    "a:157",
+    "a:243V",
+    "a:58"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "minimum age to become an mp",
+   "rank": 2,
+   "n": 30,
+   "top": [
+    "a:173",
+    "a:84",
+    "a:243V"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "how many judges in the supreme court",
+   "rank": 1,
+   "n": 37,
+   "top": [
+    "a:124",
+    "a:128",
+    "a:127"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can i be fired from a government job",
+   "rank": 2,
+   "n": 38,
+   "top": [
+    "t:services",
+    "a:311",
+    "a:317"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who appoints the chief election commissioner",
+   "rank": 1,
+   "n": 36,
+   "top": [
+    "a:324",
+    "a:243K",
+    "a:124A"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "what is the voting age",
+   "rank": 1,
+   "n": 35,
+   "top": [
+    "a:326",
+    "a:66",
+    "a:124"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "how long is the term of the lok sabha",
+   "rank": 3,
+   "n": 32,
+   "top": [
+    "a:67",
+    "a:81",
+    "a:83"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "how long is the president's term",
+   "rank": 2,
+   "n": 29,
+   "top": [
+    "a:67",
+    "a:56",
+    "a:62"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who appoints the governor",
+   "rank": 1,
+   "n": 30,
+   "top": [
+    "a:155",
+    "a:153",
+    "a:157"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can parliament change the boundaries of a state",
+   "rank": 1,
+   "n": 33,
+   "top": [
+    "a:3",
+    "a:82",
+    "a:170"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "how is a new state created",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:3",
+    "a:2",
+    "a:4"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can the president refuse to sign a bill",
+   "rank": 1,
+   "n": 31,
+   "top": [
+    "a:111",
+    "a:200",
+    "a:201"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "what if the governor does not sign a bill",
+   "rank": 1,
+   "n": 27,
+   "top": [
+    "a:200",
+    "a:201",
+    "a:111"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who commands the armed forces",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:53",
+    "a:33",
+    "a:136"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can a person be punished twice for the same crime",
+   "rank": 1,
+   "n": 36,
+   "top": [
+    "a:20",
+    "a:35",
+    "a:161"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can i be forced to be a witness against myself",
+   "rank": 1,
+   "n": 41,
+   "top": [
+    "a:20",
+    "a:136",
+    "a:72"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "free legal aid",
+   "rank": 1,
+   "n": 39,
+   "top": [
+    "a:39A",
+    "a:301",
+    "a:21A"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "equal pay for equal work",
+   "rank": 1,
+   "n": 43,
+   "top": [
+    "a:39",
+    "a:14",
+    "a:39A"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can i practise any profession or business",
+   "rank": 1,
+   "n": 34,
+   "top": [
+    "a:19",
+    "a:25",
+    "a:276"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can i live anywhere in india",
+   "rank": 4,
+   "n": 32,
+   "top": [
+    "a:8",
+    "a:14",
+    "a:261"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can the government take my land",
+   "rank": 5,
+   "n": 36,
+   "top": [
+    "a:289",
+    "a:296",
+    "a:294"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "how are rajya sabha members elected",
+   "rank": 1,
+   "n": 30,
+   "top": [
+    "a:80",
+    "a:84",
+    "a:243R"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who elects the president",
+   "rank": 1,
+   "n": 34,
+   "top": [
+    "a:54",
+    "a:58",
+    "a:55"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "how is the prime minister appointed",
+   "rank": 1,
+   "n": 32,
+   "top": [
+    "a:75",
+    "a:124A",
+    "a:78"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can the president be removed",
+   "rank": 1,
+   "n": 27,
+   "top": [
+    "a:61",
+    "a:392",
+    "a:56"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who decides if an mla has defected",
+   "rank": 1,
+   "n": 30,
+   "top": [
+    "a:191",
+    "a:170",
+    "a:333"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who controls the police",
+   "rank": 28,
+   "n": 38,
+   "top": [
+    "a:235",
+    "a:312",
+    "a:33"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who makes laws on education",
+   "rank": 7,
+   "n": 33,
+   "top": [
+    "a:30",
+    "a:243ZO",
+    "a:15"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "how much can a state borrow",
+   "rank": 1,
+   "n": 33,
+   "top": [
+    "a:293",
+    "a:199",
+    "a:110"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who audits government accounts",
+   "rank": 2,
+   "n": 35,
+   "top": [
+    "a:243ZM",
+    "a:149",
+    "a:243ZP"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can the centre give orders to a state",
+   "rank": 3,
+   "n": 28,
+   "top": [
+    "a:371C",
+    "a:339",
+    "a:365"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can english be used in the supreme court",
+   "rank": 1,
+   "n": 31,
+   "top": [
+    "a:348",
+    "a:140",
+    "a:262"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "how is the constitution amended",
+   "rank": 2,
+   "n": 34,
+   "top": [
+    "p:XX",
+    "a:368",
+    "a:239A"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can minorities run their own schools",
+   "rank": 1,
+   "n": 39,
+   "top": [
+    "a:30",
+    "a:29",
+    "a:28"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can workers form a union",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:19",
+    "a:39",
+    "a:41"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can children work in factories",
+   "rank": 1,
+   "n": 37,
+   "top": [
+    "a:24",
+    "a:39",
+    "a:45"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "what are the duties of citizens",
+   "rank": 1,
+   "n": 35,
+   "top": [
+    "a:51A",
+    "t:duties",
+    "a:5"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "is school education free",
+   "rank": 1,
+   "n": 46,
+   "top": [
+    "a:21A",
+    "a:45",
+    "a:28"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "reservation in promotions",
+   "rank": 2,
+   "n": 45,
+   "top": [
+    "a:15",
+    "a:16",
+    "a:330"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "seats reserved for women in the lok sabha",
+   "rank": 1,
+   "n": 36,
+   "top": [
+    "a:330A",
+    "a:334A",
+    "a:330"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "seats for scheduled castes in the lok sabha",
+   "rank": 1,
+   "n": 35,
+   "top": [
+    "a:330",
+    "a:330A",
+    "a:334"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "are fundamental rights suspended during an emergency",
+   "rank": 1,
+   "n": 38,
+   "top": [
+    "a:359",
+    "a:32",
+    "a:358"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who appoints high court judges",
+   "rank": 1,
+   "n": 37,
+   "top": [
+    "a:217",
+    "a:224A",
+    "a:219"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "what is the salary of the president",
+   "rank": 1,
+   "n": 34,
+   "top": [
+    "s:SECOND",
+    "a:186",
+    "a:59"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "what is the national language",
+   "rank": 1,
+   "n": 43,
+   "top": [
+    "a:343",
+    "a:345",
+    "a:348"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "can parliament make laws on state subjects",
+   "rank": 3,
+   "n": 29,
+   "top": [
+    "a:246",
+    "a:245",
+    "a:250"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who can be a judge of the supreme court",
+   "rank": 2,
+   "n": 37,
+   "top": [
+    "a:128",
+    "a:124",
+    "a:127"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "how long can an ordinance last",
+   "rank": 1,
+   "n": 38,
+   "top": [
+    "a:123",
+    "a:356",
+    "a:352"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "when must parliament meet",
+   "rank": 3,
+   "n": 27,
+   "top": [
+    "a:100",
+    "a:83",
+    "a:85"
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": "who presides over the rajya sabha",
+   "rank": 1,
+   "n": 33,
+   "top": [
+    "a:89",
+    "a:97",
+    "a:64"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "fundemental rights",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:12",
+    "a:13",
+    "a:32"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "presidnet",
+   "rank": 1,
+   "n": 27,
+   "top": [
+    "a:52",
+    "a:54",
+    "a:56"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "parliment",
+   "rank": 2,
+   "n": 26,
+   "top": [
+    "a:98",
+    "a:79",
+    "a:11"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "govenor",
+   "rank": 1,
+   "n": 34,
+   "top": [
+    "a:153",
+    "a:155",
+    "a:163"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "electon commission",
+   "rank": 1,
+   "n": 38,
+   "top": [
+    "a:324",
+    "t:elections",
+    "a:326"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "emergancy",
+   "rank": 1,
+   "n": 22,
+   "top": [
+    "a:352",
+    "a:353",
+    "a:250"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "citizenshp",
+   "rank": 1,
+   "n": 34,
+   "top": [
+    "a:5",
+    "a:11",
+    "t:citizenship"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "preambel",
+   "rank": 1,
+   "n": 2,
+   "top": [
+    "pre",
+    "m:42"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "untouchibility",
+   "rank": 1,
+   "n": 2,
+   "top": [
+    "a:17",
+    "t:justice"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "judical review",
+   "rank": 1,
+   "n": 39,
+   "top": [
+    "a:13",
+    "a:32",
+    "a:226"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "panchayath",
+   "rank": 2,
+   "n": 30,
+   "top": [
+    "a:243A",
+    "a:243B",
+    "a:243G"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "constitusion amendment",
+   "rank": 2,
+   "n": 35,
+   "top": [
+    "p:XX",
+    "a:368",
+    "a:239A"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "suprem court",
+   "rank": 3,
+   "n": 34,
+   "top": [
+    "a:129",
+    "a:130",
+    "a:124"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "artical 21",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:21",
+    "a:359",
+    "a:243F"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "finanace commission",
+   "rank": 1,
+   "n": 38,
+   "top": [
+    "a:280",
+    "a:243Y",
+    "a:281"
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": "directve principles",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:37",
+    "a:38",
+    "t:dpsp"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "cji",
+   "rank": 1,
+   "n": 37,
+   "top": [
+    "a:126",
+    "a:124B",
+    "a:130"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "cag",
+   "rank": 1,
+   "n": 45,
+   "top": [
+    "a:148",
+    "a:149",
+    "t:watchdogs"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "cec",
+   "rank": 1,
+   "n": 40,
+   "top": [
+    "a:324",
+    "a:243K",
+    "a:124B"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "mla qualifications",
+   "rank": 1,
+   "n": 30,
+   "top": [
+    "a:173",
+    "a:171",
+    "a:170"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "mp disqualification",
+   "rank": 2,
+   "n": 37,
+   "top": [
+    "a:103",
+    "a:102",
+    "a:101"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "ut administration",
+   "rank": 1,
+   "n": 43,
+   "top": [
+    "a:239",
+    "a:243ZB",
+    "a:243L"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "j&k",
+   "rank": 1,
+   "n": 13,
+   "top": [
+    "a:370",
+    "a:152",
+    "a:308"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "upsc",
+   "rank": 1,
+   "n": 35,
+   "top": [
+    "a:315",
+    "a:320",
+    "t:services"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "obc reservation",
+   "rank": 1,
+   "n": 41,
+   "top": [
+    "a:16",
+    "a:15",
+    "a:342A"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "dpsp",
+   "rank": 1,
+   "n": 33,
+   "top": [
+    "p:IV",
+    "a:31C",
+    "a:39"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "nct of delhi",
+   "rank": 1,
+   "n": 45,
+   "top": [
+    "a:239AA",
+    "a:239AB",
+    "a:54"
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": "sc st commission",
+   "rank": 1,
+   "n": 45,
+   "top": [
+    "a:338",
+    "a:341",
+    "a:46"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "fired from government job",
+   "rank": 2,
+   "n": 38,
+   "top": [
+    "t:services",
+    "a:311",
+    "a:317"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "kicked out of the party",
+   "rank": 1,
+   "n": 41,
+   "top": [
+    "s:TENTH",
+    "a:363",
+    "a:361B"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "jail without trial",
+   "rank": 2,
+   "n": 36,
+   "top": [
+    "t:arrest",
+    "a:22",
+    "a:243ZQ"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "freedom of the press",
+   "rank": 1,
+   "n": 20,
+   "top": [
+    "a:19",
+    "t:speech",
+    "a:301"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "salary of mps",
+   "rank": 1,
+   "n": 29,
+   "top": [
+    "a:106",
+    "a:195",
+    "a:158"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "dismiss the chief minister",
+   "rank": 1,
+   "n": 44,
+   "top": [
+    "a:164",
+    "a:163",
+    "a:167"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "dissolve the state assembly",
+   "rank": 2,
+   "n": 27,
+   "top": [
+    "a:170",
+    "a:174",
+    "a:172"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "dissolve the lok sabha",
+   "rank": 2,
+   "n": 33,
+   "top": [
+    "a:83",
+    "a:85",
+    "a:107"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "rename a state",
+   "rank": 1,
+   "n": 41,
+   "top": [
+    "a:3",
+    "a:4",
+    "a:1"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "cow protection",
+   "rank": 1,
+   "n": 42,
+   "top": [
+    "a:48",
+    "a:29",
+    "a:48A"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "right to privacy",
+   "rank": 1,
+   "n": 36,
+   "top": [
+    "a:21",
+    "g:rights",
+    "a:32"
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": "right to protest",
+   "rank": 1,
+   "n": 36,
+   "top": [
+    "a:19",
+    "t:speech",
+    "a:29"
+   ]
+  },
+  {
+   "g": "Half-typed words",
+   "q": "fundam",
+   "rank": 1,
+   "n": 24,
+   "top": [
+    "p:IVA",
+    "a:51A",
+    "a:13"
+   ]
+  },
+  {
+   "g": "Half-typed words",
+   "q": "untoucha",
+   "rank": 1,
+   "n": 3,
+   "top": [
+    "a:17",
+    "a:15",
+    "t:justice"
+   ]
+  },
+  {
+   "g": "Half-typed words",
+   "q": "emergen",
+   "rank": 2,
+   "n": 22,
+   "top": [
+    "p:XVIII",
+    "a:352",
+    "a:353"
+   ]
+  },
+  {
+   "g": "Half-typed words",
+   "q": "preamb",
+   "rank": 1,
+   "n": 2,
+   "top": [
+    "pre",
+    "m:42"
+   ]
+  },
+  {
+   "g": "Half-typed words",
+   "q": "panchay",
+   "rank": 2,
+   "n": 30,
+   "top": [
+    "a:243A",
+    "a:243B",
+    "a:243G"
+   ]
+  },
+  {
+   "g": "Half-typed words",
+   "q": "municip",
+   "rank": 2,
+   "n": 28,
+   "top": [
+    "g:municipality",
+    "a:243Q",
+    "a:243ZA"
+   ]
+  },
+  {
+   "g": "Half-typed words",
+   "q": "habeas",
+   "rank": 2,
+   "n": 3,
+   "top": [
+    "a:139",
+    "a:32",
+    "a:226"
+   ]
+  },
+  {
+   "g": "Half-typed words",
+   "q": "citizensh",
+   "rank": 1,
+   "n": 34,
+   "top": [
+    "a:5",
+    "a:11",
+    "t:citizenship"
+   ]
+  }
+ ]
+}

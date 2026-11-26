@@ -1,0 +1,1155 @@
+{
+ "about": "Search test set, written 26 November 2026 before any change to the search code. Each query lists the results that count as a correct answer: a:N article (any clause of it), p:X Part, s:KEY Schedule (or any paragraph in it), t:ID theme, m:N amendment, pre Preamble, bs basic structure page. Scored by search_eval.js on the rank of the first correct result in the list the reader sees.",
+ "groups": [
+  {
+   "g": "Exact references",
+   "q": [
+    {
+     "q": "article 21",
+     "ok": [
+      "a:21"
+     ]
+    },
+    {
+     "q": "art 370",
+     "ok": [
+      "a:370"
+     ]
+    },
+    {
+     "q": "21a",
+     "ok": [
+      "a:21A"
+     ]
+    },
+    {
+     "q": "article 243zh",
+     "ok": [
+      "a:243ZH"
+     ]
+    },
+    {
+     "q": "part iii",
+     "ok": [
+      "p:III"
+     ]
+    },
+    {
+     "q": "seventh schedule",
+     "ok": [
+      "s:SEVENTH"
+     ]
+    },
+    {
+     "q": "schedule 8",
+     "ok": [
+      "s:EIGHTH"
+     ]
+    },
+    {
+     "q": "42nd amendment",
+     "ok": [
+      "m:42"
+     ]
+    },
+    {
+     "q": "preamble",
+     "ok": [
+      "pre"
+     ]
+    },
+    {
+     "q": "article 19(1)(a)",
+     "ok": [
+      "a:19"
+     ]
+    },
+    {
+     "q": "tenth schedule",
+     "ok": [
+      "s:TENTH"
+     ]
+    },
+    {
+     "q": "first amendment",
+     "ok": [
+      "m:1"
+     ]
+    },
+    {
+     "q": "article 356",
+     "ok": [
+      "a:356"
+     ]
+    },
+    {
+     "q": "art. 32",
+     "ok": [
+      "a:32"
+     ]
+    },
+    {
+     "q": "part ixa",
+     "ok": [
+      "p:IXA"
+     ]
+    },
+    {
+     "q": "101st amendment",
+     "ok": [
+      "m:101"
+     ]
+    },
+    {
+     "q": "sixth schedule",
+     "ok": [
+      "s:SIXTH"
+     ]
+    },
+    {
+     "q": "article 51a",
+     "ok": [
+      "a:51A"
+     ]
+    }
+   ]
+  },
+  {
+   "g": "Topics",
+   "q": [
+    {
+     "q": "right to equality",
+     "ok": [
+      "a:14"
+     ]
+    },
+    {
+     "q": "untouchability",
+     "ok": [
+      "a:17"
+     ]
+    },
+    {
+     "q": "freedom of religion",
+     "ok": [
+      "a:25",
+      "t:religion"
+     ]
+    },
+    {
+     "q": "right to constitutional remedies",
+     "ok": [
+      "a:32"
+     ]
+    },
+    {
+     "q": "writs",
+     "ok": [
+      "a:32",
+      "a:226"
+     ]
+    },
+    {
+     "q": "money bill",
+     "ok": [
+      "a:110"
+     ]
+    },
+    {
+     "q": "finance commission",
+     "ok": [
+      "a:280"
+     ]
+    },
+    {
+     "q": "election commission",
+     "ok": [
+      "a:324"
+     ]
+    },
+    {
+     "q": "comptroller and auditor general",
+     "ok": [
+      "a:148"
+     ]
+    },
+    {
+     "q": "attorney general",
+     "ok": [
+      "a:76"
+     ]
+    },
+    {
+     "q": "advocate general",
+     "ok": [
+      "a:165"
+     ]
+    },
+    {
+     "q": "president's rule",
+     "ok": [
+      "a:356"
+     ]
+    },
+    {
+     "q": "national emergency",
+     "ok": [
+      "a:352"
+     ]
+    },
+    {
+     "q": "financial emergency",
+     "ok": [
+      "a:360"
+     ]
+    },
+    {
+     "q": "official language",
+     "ok": [
+      "a:343"
+     ]
+    },
+    {
+     "q": "languages schedule",
+     "ok": [
+      "s:EIGHTH"
+     ]
+    },
+    {
+     "q": "panchayats",
+     "ok": [
+      "p:IX",
+      "a:243",
+      "a:243B",
+      "t:local"
+     ]
+    },
+    {
+     "q": "municipalities",
+     "ok": [
+      "p:IXA",
+      "a:243P",
+      "a:243Q",
+      "t:local"
+     ]
+    },
+    {
+     "q": "co-operative societies",
+     "ok": [
+      "p:IXB",
+      "a:243ZH",
+      "a:243Z-I",
+      "a:243ZJ"
+     ]
+    },
+    {
+     "q": "fundamental duties",
+     "ok": [
+      "a:51A",
+      "p:IVA",
+      "t:duties"
+     ]
+    },
+    {
+     "q": "directive principles",
+     "ok": [
+      "p:IV",
+      "a:36",
+      "a:37",
+      "t:dpsp"
+     ]
+    },
+    {
+     "q": "uniform civil code",
+     "ok": [
+      "a:44"
+     ]
+    },
+    {
+     "q": "cow slaughter",
+     "ok": [
+      "a:48"
+     ]
+    },
+    {
+     "q": "abolition of titles",
+     "ok": [
+      "a:18"
+     ]
+    },
+    {
+     "q": "child labour",
+     "ok": [
+      "a:24"
+     ]
+    },
+    {
+     "q": "human trafficking",
+     "ok": [
+      "a:23"
+     ]
+    },
+    {
+     "q": "minority educational institutions",
+     "ok": [
+      "a:30"
+     ]
+    },
+    {
+     "q": "right to property",
+     "ok": [
+      "a:300A",
+      "t:property"
+     ]
+    },
+    {
+     "q": "pardon",
+     "ok": [
+      "a:72",
+      "a:161"
+     ]
+    },
+    {
+     "q": "ordinance",
+     "ok": [
+      "a:123",
+      "a:213"
+     ]
+    },
+    {
+     "q": "impeachment of the president",
+     "ok": [
+      "a:61"
+     ]
+    },
+    {
+     "q": "removal of judges",
+     "ok": [
+      "a:124",
+      "a:217"
+     ]
+    },
+    {
+     "q": "inter-state water disputes",
+     "ok": [
+      "a:262"
+     ]
+    },
+    {
+     "q": "gst council",
+     "ok": [
+      "a:279A"
+     ]
+    },
+    {
+     "q": "composition of rajya sabha",
+     "ok": [
+      "a:80"
+     ]
+    },
+    {
+     "q": "speaker of the lok sabha",
+     "ok": [
+      "a:93"
+     ]
+    },
+    {
+     "q": "vice-president",
+     "ok": [
+      "a:63"
+     ]
+    },
+    {
+     "q": "council of ministers",
+     "ok": [
+      "a:74",
+      "a:75"
+     ]
+    },
+    {
+     "q": "high court writ jurisdiction",
+     "ok": [
+      "a:226"
+     ]
+    },
+    {
+     "q": "special leave to appeal",
+     "ok": [
+      "a:136"
+     ]
+    },
+    {
+     "q": "contempt of court",
+     "ok": [
+      "a:129",
+      "a:215"
+     ]
+    },
+    {
+     "q": "citizenship",
+     "ok": [
+      "p:II",
+      "a:5",
+      "t:citizenship"
+     ]
+    },
+    {
+     "q": "scheduled areas",
+     "ok": [
+      "a:244",
+      "s:FIFTH"
+     ]
+    },
+    {
+     "q": "tribal areas in assam",
+     "ok": [
+      "s:SIXTH",
+      "a:244"
+     ]
+    },
+    {
+     "q": "union territories",
+     "ok": [
+      "a:239",
+      "p:VIII",
+      "t:territories"
+     ]
+    },
+    {
+     "q": "delhi",
+     "ok": [
+      "a:239AA",
+      "t:territories"
+     ]
+    },
+    {
+     "q": "jammu and kashmir",
+     "ok": [
+      "a:370"
+     ]
+    },
+    {
+     "q": "forms of oath",
+     "ok": [
+      "s:THIRD"
+     ]
+    },
+    {
+     "q": "union list",
+     "ok": [
+      "s:SEVENTH",
+      "a:246"
+     ]
+    },
+    {
+     "q": "anti-defection law",
+     "ok": [
+      "s:TENTH"
+     ]
+    },
+    {
+     "q": "basic structure",
+     "ok": [
+      "bs"
+     ]
+    },
+    {
+     "q": "salaries of judges",
+     "ok": [
+      "s:SECOND",
+      "a:125",
+      "a:221"
+     ]
+    },
+    {
+     "q": "seats in rajya sabha for each state",
+     "ok": [
+      "s:FOURTH",
+      "a:80"
+     ]
+    }
+   ]
+  },
+  {
+   "g": "Questions in plain words",
+   "q": [
+    {
+     "q": "can police arrest me without a warrant",
+     "ok": [
+      "a:22",
+      "t:arrest"
+     ]
+    },
+    {
+     "q": "minimum age to become president",
+     "ok": [
+      "a:58"
+     ]
+    },
+    {
+     "q": "minimum age to become an mp",
+     "ok": [
+      "a:84"
+     ]
+    },
+    {
+     "q": "how many judges in the supreme court",
+     "ok": [
+      "a:124"
+     ]
+    },
+    {
+     "q": "can i be fired from a government job",
+     "ok": [
+      "a:311"
+     ]
+    },
+    {
+     "q": "who appoints the chief election commissioner",
+     "ok": [
+      "a:324"
+     ]
+    },
+    {
+     "q": "what is the voting age",
+     "ok": [
+      "a:326"
+     ]
+    },
+    {
+     "q": "how long is the term of the lok sabha",
+     "ok": [
+      "a:83"
+     ]
+    },
+    {
+     "q": "how long is the president's term",
+     "ok": [
+      "a:56"
+     ]
+    },
+    {
+     "q": "who appoints the governor",
+     "ok": [
+      "a:155"
+     ]
+    },
+    {
+     "q": "can parliament change the boundaries of a state",
+     "ok": [
+      "a:3"
+     ]
+    },
+    {
+     "q": "how is a new state created",
+     "ok": [
+      "a:2",
+      "a:3"
+     ]
+    },
+    {
+     "q": "can the president refuse to sign a bill",
+     "ok": [
+      "a:111"
+     ]
+    },
+    {
+     "q": "what if the governor does not sign a bill",
+     "ok": [
+      "a:200",
+      "a:201"
+     ]
+    },
+    {
+     "q": "who commands the armed forces",
+     "ok": [
+      "a:53"
+     ]
+    },
+    {
+     "q": "can a person be punished twice for the same crime",
+     "ok": [
+      "a:20"
+     ]
+    },
+    {
+     "q": "can i be forced to be a witness against myself",
+     "ok": [
+      "a:20"
+     ]
+    },
+    {
+     "q": "free legal aid",
+     "ok": [
+      "a:39A"
+     ]
+    },
+    {
+     "q": "equal pay for equal work",
+     "ok": [
+      "a:39"
+     ]
+    },
+    {
+     "q": "can i practise any profession or business",
+     "ok": [
+      "a:19"
+     ]
+    },
+    {
+     "q": "can i live anywhere in india",
+     "ok": [
+      "a:19"
+     ]
+    },
+    {
+     "q": "can the government take my land",
+     "ok": [
+      "a:300A",
+      "a:31A"
+     ]
+    },
+    {
+     "q": "how are rajya sabha members elected",
+     "ok": [
+      "a:80"
+     ]
+    },
+    {
+     "q": "who elects the president",
+     "ok": [
+      "a:54",
+      "a:55"
+     ]
+    },
+    {
+     "q": "how is the prime minister appointed",
+     "ok": [
+      "a:75"
+     ]
+    },
+    {
+     "q": "can the president be removed",
+     "ok": [
+      "a:61"
+     ]
+    },
+    {
+     "q": "who decides if an mla has defected",
+     "ok": [
+      "s:TENTH",
+      "a:191"
+     ]
+    },
+    {
+     "q": "who controls the police",
+     "ok": [
+      "s:SEVENTH"
+     ]
+    },
+    {
+     "q": "who makes laws on education",
+     "ok": [
+      "s:SEVENTH",
+      "a:246",
+      "t:education"
+     ]
+    },
+    {
+     "q": "how much can a state borrow",
+     "ok": [
+      "a:293"
+     ]
+    },
+    {
+     "q": "who audits government accounts",
+     "ok": [
+      "a:148",
+      "a:149",
+      "a:151"
+     ]
+    },
+    {
+     "q": "can the centre give orders to a state",
+     "ok": [
+      "a:256",
+      "a:257",
+      "a:365"
+     ]
+    },
+    {
+     "q": "can english be used in the supreme court",
+     "ok": [
+      "a:348"
+     ]
+    },
+    {
+     "q": "how is the constitution amended",
+     "ok": [
+      "a:368",
+      "t:amending"
+     ]
+    },
+    {
+     "q": "can minorities run their own schools",
+     "ok": [
+      "a:30"
+     ]
+    },
+    {
+     "q": "can workers form a union",
+     "ok": [
+      "a:19"
+     ]
+    },
+    {
+     "q": "can children work in factories",
+     "ok": [
+      "a:24"
+     ]
+    },
+    {
+     "q": "what are the duties of citizens",
+     "ok": [
+      "a:51A",
+      "t:duties"
+     ]
+    },
+    {
+     "q": "is school education free",
+     "ok": [
+      "a:21A",
+      "a:45"
+     ]
+    },
+    {
+     "q": "reservation in promotions",
+     "ok": [
+      "a:16"
+     ]
+    },
+    {
+     "q": "seats reserved for women in the lok sabha",
+     "ok": [
+      "a:330A"
+     ]
+    },
+    {
+     "q": "seats for scheduled castes in the lok sabha",
+     "ok": [
+      "a:330"
+     ]
+    },
+    {
+     "q": "are fundamental rights suspended during an emergency",
+     "ok": [
+      "a:358",
+      "a:359"
+     ]
+    },
+    {
+     "q": "who appoints high court judges",
+     "ok": [
+      "a:217"
+     ]
+    },
+    {
+     "q": "what is the salary of the president",
+     "ok": [
+      "a:59",
+      "s:SECOND"
+     ]
+    },
+    {
+     "q": "what is the national language",
+     "ok": [
+      "a:343",
+      "a:351"
+     ]
+    },
+    {
+     "q": "can parliament make laws on state subjects",
+     "ok": [
+      "a:249",
+      "a:250",
+      "a:252",
+      "a:253"
+     ]
+    },
+    {
+     "q": "who can be a judge of the supreme court",
+     "ok": [
+      "a:124"
+     ]
+    },
+    {
+     "q": "how long can an ordinance last",
+     "ok": [
+      "a:123",
+      "a:213"
+     ]
+    },
+    {
+     "q": "when must parliament meet",
+     "ok": [
+      "a:85"
+     ]
+    },
+    {
+     "q": "who presides over the rajya sabha",
+     "ok": [
+      "a:89",
+      "a:64"
+     ]
+    }
+   ]
+  },
+  {
+   "g": "Typos",
+   "q": [
+    {
+     "q": "fundemental rights",
+     "ok": [
+      "p:III",
+      "a:12",
+      "t:rights"
+     ]
+    },
+    {
+     "q": "presidnet",
+     "ok": [
+      "a:52"
+     ]
+    },
+    {
+     "q": "parliment",
+     "ok": [
+      "a:79"
+     ]
+    },
+    {
+     "q": "govenor",
+     "ok": [
+      "a:153",
+      "a:155"
+     ]
+    },
+    {
+     "q": "electon commission",
+     "ok": [
+      "a:324"
+     ]
+    },
+    {
+     "q": "emergancy",
+     "ok": [
+      "a:352",
+      "t:emergency"
+     ]
+    },
+    {
+     "q": "citizenshp",
+     "ok": [
+      "p:II",
+      "a:5",
+      "t:citizenship"
+     ]
+    },
+    {
+     "q": "preambel",
+     "ok": [
+      "pre"
+     ]
+    },
+    {
+     "q": "untouchibility",
+     "ok": [
+      "a:17"
+     ]
+    },
+    {
+     "q": "judical review",
+     "ok": [
+      "a:13",
+      "a:32",
+      "a:226",
+      "t:core"
+     ]
+    },
+    {
+     "q": "panchayath",
+     "ok": [
+      "p:IX",
+      "a:243",
+      "a:243B",
+      "t:local"
+     ]
+    },
+    {
+     "q": "constitusion amendment",
+     "ok": [
+      "a:368",
+      "t:amending"
+     ]
+    },
+    {
+     "q": "suprem court",
+     "ok": [
+      "a:124"
+     ]
+    },
+    {
+     "q": "artical 21",
+     "ok": [
+      "a:21"
+     ]
+    },
+    {
+     "q": "finanace commission",
+     "ok": [
+      "a:280"
+     ]
+    },
+    {
+     "q": "directve principles",
+     "ok": [
+      "p:IV",
+      "a:36",
+      "a:37",
+      "t:dpsp"
+     ]
+    }
+   ]
+  },
+  {
+   "g": "Abbreviations",
+   "q": [
+    {
+     "q": "cji",
+     "ok": [
+      "a:124",
+      "a:126"
+     ]
+    },
+    {
+     "q": "cag",
+     "ok": [
+      "a:148"
+     ]
+    },
+    {
+     "q": "cec",
+     "ok": [
+      "a:324"
+     ]
+    },
+    {
+     "q": "mla qualifications",
+     "ok": [
+      "a:173"
+     ]
+    },
+    {
+     "q": "mp disqualification",
+     "ok": [
+      "a:102"
+     ]
+    },
+    {
+     "q": "ut administration",
+     "ok": [
+      "a:239"
+     ]
+    },
+    {
+     "q": "j&k",
+     "ok": [
+      "a:370"
+     ]
+    },
+    {
+     "q": "upsc",
+     "ok": [
+      "a:315",
+      "a:320"
+     ]
+    },
+    {
+     "q": "obc reservation",
+     "ok": [
+      "a:15",
+      "a:16"
+     ]
+    },
+    {
+     "q": "dpsp",
+     "ok": [
+      "p:IV",
+      "a:36",
+      "a:37",
+      "t:dpsp"
+     ]
+    },
+    {
+     "q": "nct of delhi",
+     "ok": [
+      "a:239AA"
+     ]
+    },
+    {
+     "q": "sc st commission",
+     "ok": [
+      "a:338",
+      "a:338A"
+     ]
+    }
+   ]
+  },
+  {
+   "g": "Everyday words",
+   "q": [
+    {
+     "q": "fired from government job",
+     "ok": [
+      "a:311"
+     ]
+    },
+    {
+     "q": "kicked out of the party",
+     "ok": [
+      "s:TENTH"
+     ]
+    },
+    {
+     "q": "jail without trial",
+     "ok": [
+      "a:22"
+     ]
+    },
+    {
+     "q": "freedom of the press",
+     "ok": [
+      "a:19",
+      "t:speech"
+     ]
+    },
+    {
+     "q": "salary of mps",
+     "ok": [
+      "a:106"
+     ]
+    },
+    {
+     "q": "dismiss the chief minister",
+     "ok": [
+      "a:164"
+     ]
+    },
+    {
+     "q": "dissolve the state assembly",
+     "ok": [
+      "a:174"
+     ]
+    },
+    {
+     "q": "dissolve the lok sabha",
+     "ok": [
+      "a:85"
+     ]
+    },
+    {
+     "q": "rename a state",
+     "ok": [
+      "a:3"
+     ]
+    },
+    {
+     "q": "cow protection",
+     "ok": [
+      "a:48"
+     ]
+    },
+    {
+     "q": "right to privacy",
+     "ok": [
+      "a:21"
+     ]
+    },
+    {
+     "q": "right to protest",
+     "ok": [
+      "a:19"
+     ]
+    }
+   ]
+  },
+  {
+   "g": "Half-typed words",
+   "q": [
+    {
+     "q": "fundam",
+     "ok": [
+      "p:III",
+      "p:IVA",
+      "a:12",
+      "a:51A",
+      "t:rights",
+      "t:duties"
+     ]
+    },
+    {
+     "q": "untoucha",
+     "ok": [
+      "a:17"
+     ]
+    },
+    {
+     "q": "emergen",
+     "ok": [
+      "a:352",
+      "t:emergency"
+     ]
+    },
+    {
+     "q": "preamb",
+     "ok": [
+      "pre"
+     ]
+    },
+    {
+     "q": "panchay",
+     "ok": [
+      "p:IX",
+      "a:243",
+      "a:243B",
+      "t:local"
+     ]
+    },
+    {
+     "q": "municip",
+     "ok": [
+      "p:IXA",
+      "a:243P",
+      "a:243Q",
+      "t:local"
+     ]
+    },
+    {
+     "q": "habeas",
+     "ok": [
+      "a:32",
+      "a:226"
+     ]
+    },
+    {
+     "q": "citizensh",
+     "ok": [
+      "p:II",
+      "a:5",
+      "t:citizenship"
+     ]
+    }
+   ]
+  }
+ ]
+}
