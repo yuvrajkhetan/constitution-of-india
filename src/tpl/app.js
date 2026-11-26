@@ -269,7 +269,7 @@ function quiltBlock(seed) {
 }
 
 /* ================= full text (loaded after first paint) ================= */
-let TEXT = null, textErr = false;
+let TEXT = null, textErr = false, bsJumped = null;
 /* On a first visit straight to an article, its Part's small file (t/PART.json) can arrive before the full text.
    Until then the article page reads from it; every other page waits for the full text. */
 let EARLY = null, earlyFor = null;
@@ -1297,7 +1297,7 @@ function vBS(r) {
     <div class="ph"><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the features the Court has recognised, our estimate for every provision, and the amendments the Court has struck down.</p></div>
 
     <section class="sec" aria-labelledby="bs-feat"><div class="sh"><div><h2 id="bs-feat">The basic features</h2><p>The Court has never given a closed list. These are the ${Object.keys(B.feat).length} features it has named, first those a majority of the Court has recognised, then those named only by some judges. Open one for the provisions that carry it most directly and the judgments behind it.</p></div></div>
-      ${["rec", "op", "ls"].map(st => { const L = Object.entries(B.feat).filter(([, f]) => f.st === st); return L.length ? `<h3 class="bfg">${FST[st]} <span>${L.length}</span></h3><div class="card bfl">${L.map(([id, f]) => { const cs = carriers(id); return `<details class="bfr" id="f-${id}"><summary><span class="bfr-t"><span class="bfr-h"><b>${esc(f.t)}</b></span><span class="one">${lx(f.s)}</span></span>${I.chev}</summary><div class="bfr-b">${f.q ? `<blockquote class="bq"><p>“${esc(f.q.t)}”</p><cite>${esc(f.q.by)}, ${srcLink(f.q.src, f.q.at)}</cite></blockquote>` : ""}${cs.length ? `<p class="bfk">Carried most directly by</p><div class="pills bfp">${cs.map(([h, l, b]) => `<a class="pill" href="${h}"><span class="sw b${b}" aria-hidden="true"></span>${esc(l)}</a>`).join("")}</div>` : ""}${f.sb ? `<p class="bfk">Struck down for breaching it</p><ul class="bfs">${f.sb.map(s => `<li>${lx(s.what)}. <span>${esc(s.case)}</span></li>`).join("")}</ul>` : ""}${srcLine(f)}</div></details>`; }).join("")}</div>` : ""; }).join("")}
+      ${["rec", "op", "ls"].map(st => { const L = Object.entries(B.feat).filter(([, f]) => f.st === st); return L.length ? `<h3 class="bfg">${FST[st]} <span>${L.length}</span></h3><div class="card bfl">${L.map(([id, f]) => { const cs = carriers(id); return `<details class="bfr" id="f-${id}"><summary><span class="bfr-t"><span class="bfr-h"><b>${esc(f.t)}</b></span><span class="one">${lx(f.s)}</span></span>${I.chev}</summary><div class="bfr-b">${f.q ? `<blockquote class="bq"><p>“${esc(f.q.t)}”</p><cite>${esc(f.q.by)}, ${srcLink(f.q.src, f.q.at)}</cite></blockquote>` : ""}${cs.length ? `<p class="bfk">Carried most directly by ${ANA}</p><div class="pills bfp">${cs.map(([h, l, b]) => `<a class="pill" href="${h}"><span class="sw b${b}" aria-hidden="true"></span>${esc(l)}</a>`).join("")}</div>` : ""}${f.sb ? `<p class="bfk">Struck down for breaching it</p><ul class="bfs">${f.sb.map(s => `<li>${lx(s.what)}. <span>${esc(s.case)}</span></li>`).join("")}</ul>` : ""}${(() => { const rest = f.q ? (f.src || []).filter(k => k !== f.q.src) : f.src || []; return rest.length ? `<p class="src">${f.q ? "Also: " : "Source: "}${rest.map(k => srcLink(k, f.at && f.at[k])).join("; ")}</p>` : ""; })()}</div></details>`; }).join("")}</div>` : ""; }).join("")}
     </section>
 
 
@@ -1791,6 +1791,8 @@ function after(r, keepY, changed) {
   if (wantY != null && (TEXT || textErr || !needsText() || (r.name === "art" && artText(r.id)))) { window.scrollTo(0, wantY); wantY = null; return; }
   if (wantY != null) { window.scrollTo(0, 0); return; }
   if (r.name === "art" && r.c && artText(r.id) && $(`#text p[data-c="${r.c}"]`)) { selectClause(r.c, true); return; }
+  // a link to one basic feature (#basic-structure-jr) opens and scrolls to it once its row exists, even if the text arrives later
+  if (r.name === "bs" && r.f && bsJumped !== location.hash) { const e = document.getElementById(r.f === "method" ? "bs-method-s" : r.f === "struck" ? "bs-settled" : "f-" + r.f); if (e) { bsJumped = location.hash; if (e.tagName === "DETAILS") e.open = true; e.scrollIntoView({ block: "start" }); return; } }
   if (keepY != null && !changed) { window.scrollTo(0, keepY); return; }
   const mk = HL && $("#view mark");
   if (mk) mk.scrollIntoView({ block: "center" });

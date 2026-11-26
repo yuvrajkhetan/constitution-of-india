@@ -201,6 +201,12 @@
    ],
    "at": {
     "MINERVA": "p. 240"
+   },
+   "q": {
+    "t": "Indeed, a limited amending power is one of the basic features of our Constitution and therefore, the limitations on that power cannot be destroyed.",
+    "by": "Chandrachud CJ, for the majority",
+    "src": "MINERVA",
+    "at": "p. 240"
    }
   },
   "jr": {
@@ -211,6 +217,12 @@
    "at": {
     "LCK": "p. 1237",
     "COELHO": "para 130"
+   },
+   "q": {
+    "t": "We, therefore, hold that the power of judicial review over legislative action vested in the High Courts under Articles 226 and in this Court under Article 32 of the Constitution is an integral and essential feature of the Constitution, constituting part of its basic structure.",
+    "by": "Ahmadi CJ, for the seven-judge bench",
+    "src": "LCK",
+    "at": "p. 1237"
    }
   },
   "indep": {
@@ -219,6 +231,12 @@
    ],
    "at": {
     "NJAC": "paras 205 and 244"
+   },
+   "q": {
+    "t": "The expectation from the judiciary, to safeguard the rights of the citizens of this country, can only be ensured, by keeping it absolutely insulated and independent, from the other organs of governance.",
+    "by": "Khehar J",
+    "src": "NJAC",
+    "at": "para 205, p. 463"
    }
   },
   "rol": {
@@ -231,6 +249,12 @@
     "SAMBAMURTHY": "p. 889",
     "COELHO": "para 130",
     "RAJNARAIN": "pp. 418 and 665"
+   },
+   "q": {
+    "t": "...the rule of law which is clearly a basic and essential feature of the Constitution. It is a basic principle of the rule of law that the exercise of power by the executive or any other authority must not only be conditioned by the Constitution but must also be in accordance with law...",
+    "by": "Bhagwati CJ, for the Court",
+    "src": "SAMBAMURTHY",
+    "at": "p. 889"
    }
   },
   "equality": {
@@ -241,6 +265,12 @@
    "at": {
     "MINERVA": "p. 263",
     "COELHO": "para 114"
+   },
+   "q": {
+    "t": "India's constitutional history has led us to include the essence of each of our fundamental rights in the basic structure of our Constitution.",
+    "by": "Sabharwal CJ, for the nine-judge bench",
+    "src": "COELHO",
+    "at": "para 114, p. 760"
    }
   },
   "balance": {
@@ -249,6 +279,12 @@
    ],
    "at": {
     "MINERVA": "p. 255"
+   },
+   "q": {
+    "t": "To give absolute primacy to one over the other is to disturb the harmony of the Constitution. This harmony and balance between fundamental rights and directive principles is an essential feature of the basic structure of the Constitution.",
+    "by": "Chandrachud CJ, for the majority",
+    "src": "MINERVA",
+    "at": "p. 255"
    }
   },
   "democracy": {
@@ -259,6 +295,12 @@
    "at": {
     "KB": "p. 165 (Sikri CJ)",
     "BOMMAI": "para 13 (Sawant J)"
+   },
+   "q": {
+    "t": "Democracy and federalism are the essential features of our Constitution and are part of its basic structure.",
+    "by": "Sawant J, for Kuldip Singh J and himself",
+    "src": "BOMMAI",
+    "at": "para 13, pp. 742-743"
    }
   },
   "elections": {
@@ -267,6 +309,12 @@
    ],
    "at": {
     "RAJNARAIN": "pp. 471-474 (Khanna J)"
+   },
+   "q": {
+    "t": "...I strike down clause (4) of article 329A on the ground that it violates the principle of free and fair elections which is an essential postulate of democracy and which in its turn is a part of the basic structure of the Constitution...",
+    "by": "Khanna J",
+    "src": "RAJNARAIN",
+    "at": "p. 474"
    }
   },
   "secular": {
@@ -281,6 +329,12 @@
     "BOMMAI": "conclusion (10) (Jeevan Reddy J)",
     "COELHO": "para 125",
     "BALRAM": "para 4"
+   },
+   "q": {
+    "t": "Secularism is one of the basic features of the Constitution. While freedom of religion is guaranteed to all persons in India, from the point of view of the State, the religion, faith or belief of a person is immaterial.",
+    "by": "Jeevan Reddy J, for S.C. Agrawal J and himself",
+    "src": "BOMMAI",
+    "at": "conclusion (10), p. 897"
    }
   },
   "federal": {
@@ -291,6 +345,12 @@
    "at": {
     "KB": "pp. 165-166 (Sikri CJ)",
     "BOMMAI": "para 15 (Sawant J)"
+   },
+   "q": {
+    "t": "The above discussion thus shows that the States have an independent constitutional existence and they have as important a role to play in the political, social, educational and cultural life of the people as the Union. They are neither satellites nor agents of the Centre.",
+    "by": "Sawant J, for Kuldip Singh J and himself",
+    "src": "BOMMAI",
+    "at": "para 15, p. 746"
    }
   },
   "sop": {
@@ -301,6 +361,12 @@
    "at": {
     "KB": "pp. 165-166 (Sikri CJ)",
     "COELHO": "para 130"
+   },
+   "q": {
+    "t": "Equality, rule of law, judicial review and separation of powers form parts of the basic structure of the Constitution. ... All these would be redundant if the legislative, executive and judicial powers are vested in one organ.",
+    "by": "Sabharwal CJ, for the nine-judge bench",
+    "src": "COELHO",
+    "at": "para 130, p. 764"
    }
   },
   "supremacy": {
@@ -309,6 +375,12 @@
    ],
    "at": {
     "KB": "p. 165 (Sikri CJ)"
+   },
+   "q": {
+    "t": "The true position is that every provision of the Constitution can be amended provided in the result the basic foundation and structure of the constitution remains the same. The basic structure may be said to consist of the following features : (1) Supremacy of the Constitution; ...",
+    "by": "Sikri CJ",
+    "src": "KB",
+    "at": "p. 165"
    }
   },
   "sovereign": {
@@ -317,6 +389,12 @@
    ],
    "at": {
     "KB": "pp. 280-281 (Shelat and Grover JJ) and p. 322 (Hegde and Mukherjea JJ)"
+   },
+   "q": {
+    "t": "... the Parliament has no power to abrogate or emasculate the basic elements or fundamental features of the Constitution such as the sovereignty of India, the democratic character of our polity, the unity of the country, ...",
+    "by": "Hegde and Mukherjea JJ",
+    "src": "KB",
+    "at": "p. 322"
    }
   },
   "parl": {
@@ -325,6 +403,12 @@
    ],
    "at": {
     "KB": "p. 518 (Jaganmohan Reddy J)"
+   },
+   "q": {
+    "t": "A sovereign democratic republic, Parliamentary democracy, the three organs of the State, certainly in my view constitute the basic structure.",
+    "by": "Jaganmohan Reddy J",
+    "src": "KB",
+    "at": "p. 518"
    }
   },
   "access": {
@@ -333,6 +417,12 @@
    ],
    "at": {
     "COELHO": "para 147"
+   },
+   "q": {
+    "t": "The existence of the power of Parliament to amend the Constitution at will, with requisite voting strength, so as to make any kind of laws that excludes Part III including power of judicial review under Article 32 is incompatible with the basic structure doctrine.",
+    "by": "Sabharwal CJ, for the nine-judge bench",
+    "src": "COELHO",
+    "at": "para 148, p. 770"
    }
   }
  },
