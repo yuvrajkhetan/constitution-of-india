@@ -1143,7 +1143,7 @@ function amdRefs(a) {
 document.addEventListener("toggle", e => { const d = e.target; if (d.matches && d.matches("details[data-amd]") && d.open && !d.querySelector(".pills")) d.insertAdjacentHTML("beforeend", amdRefs(AMD_BY.get(+d.dataset.amd))); }, true);
 /* Three kinds of content: the official text (no label), our plain-words help ("In plain words") and our analysis, the
    basic structure estimates and the next-amendment forecast, which always carries this label. Rulings are not labelled. */
-const ANA = `<span class="ana">${I.gauge}Our analysis</span>`;
+const ANA = `<span class="ana">${I.gauge}Analysis</span>`;
 /* ---- the next amendment: a forecast (data/next.json) ---- */
 function nextTeaser() {
   const N = CORE.next; if (!N) return "";
