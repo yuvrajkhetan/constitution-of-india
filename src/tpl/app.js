@@ -67,6 +67,7 @@ const I = {
   shuffle: P('<path d="M4 7h3c4 0 6 10 10 10h3M17 4l3 3-3 3M4 17h3c1.6 0 2.8-1.6 3.9-3.6M13.1 9.6C14.2 8 15.4 7 17 7h3M17 14l3 3-3 3"/>'),
   info: P('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'),
   alertc: P('<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>'),
+  gauge: P('<path d="M12 14l4-4"/><path d="M3.3 19a9 9 0 1 1 17.4 0"/>'),
   gavel: P('<path d="M14 13l-7.5 7.5a2.1 2.1 0 01-3-3L11 10"/><path d="M16 16l6-6"/><path d="M8 8l6-6"/><path d="M9 7l8 8"/><path d="M21 11l-8-8"/>'),
   arrow: P('<path d="M5 12h14M13 6l6 6-6 6"/>'),
   // theme icons
@@ -690,7 +691,7 @@ function vHome() {
   </section>
   <section class="wrap sec">
     <div class="sh"><div><h2>The basic structure</h2><p>What Parliament cannot change even by amending the Constitution, as the Supreme Court has held since 1973, with our estimate for every provision.</p></div><a class="more" href="#basic-structure">Explore ${I.chev}</a></div>
-    <a class="card bshome" href="#basic-structure">${bsCap()}<div class="bsbar" aria-hidden="true">${CORE.bsc.map((n, i) => `<span class="b${i}" style="flex:${n}"></span>`).join("")}</div>${bsLegend(CORE.bsc)}</a>
+    <a class="card bshome" href="#basic-structure">${ANA}${bsCap()}<div class="bsbar" aria-hidden="true">${CORE.bsc.map((n, i) => `<span class="b${i}" style="flex:${n}"></span>`).join("")}</div>${bsLegend(CORE.bsc)}</a>
   </section>
   </section>`;
 }
@@ -1140,10 +1141,13 @@ function amdRefs(a) {
   return `<div class="pills">${a.refs.map(x => { const [l, h] = label(x); return `<a class="pill" href="${h}">${esc(l)}</a>`; }).join("")}</div>`;
 }
 document.addEventListener("toggle", e => { const d = e.target; if (d.matches && d.matches("details[data-amd]") && d.open && !d.querySelector(".pills")) d.insertAdjacentHTML("beforeend", amdRefs(AMD_BY.get(+d.dataset.amd))); }, true);
+/* Three kinds of content: the official text (no label), our plain-words help ("In plain words") and our analysis, the
+   basic structure estimates and the next-amendment forecast, which always carries this label. Rulings are not labelled. */
+const ANA = `<span class="ana">${I.gauge}Our analysis</span>`;
 /* ---- the next amendment: a forecast (data/next.json) ---- */
 function nextTeaser() {
   const N = CORE.next; if (!N) return "";
-  return `<a class="card nxt" href="#next-amendment"><span class="eyebrow">What might come next</span><p>${esc(N.headline)}</p>
+  return `<a class="card nxt" href="#next-amendment"><span class="nxt-h"><span class="eyebrow">What might come next</span>${ANA}</span><p>${esc(N.headline)}</p>
     <span class="nxw">${N.when.map(w => `<span><i class="sw b${w.band}" aria-hidden="true"></i>${esc(w.by.replace(/,.*$/, ""))}: <b>${BAND[w.band].t}</b></span>`).join("")}</span>
     <span class="more">See the forecast ${I.chev}</span></a>`;
 }
@@ -1165,7 +1169,7 @@ function nextTiles(N) {
   return `<div class="nxtiles">${N.cands.slice().sort((a, b) => a.band - b.band).map(c => `<a class="card nxtile" href="#next-amendment" data-jump="nx-${c.id}"><span class="t">${esc(c.s)}</span><span class="m">${bsScale(c.band)}<span>${BAND[c.band].t}</span></span><span class="stg">${esc(c.tag)}</span></a>`).join("")}</div>`;
 }
 function vNext() {
-  const head = `<div class="ph"><nav class="crumbs" aria-label="Breadcrumb"><a href="#amendments">Amendments</a>${I.chev}<span>The next amendment</span></nav><h1 class="lt">The next amendment</h1><p class="sub">When the Constitution may next be amended, and on what. Our estimate as on ${new Date(CORE.next.asOnIso + "T00:00:00Z").toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" })}, built from the Bills now in Parliament, the deadlines the Constitution sets itself and the record of past amendments.</p></div>`;
+  const head = `<div class="ph"><nav class="crumbs" aria-label="Breadcrumb"><a href="#amendments">Amendments</a>${I.chev}<span>The next amendment</span></nav>${ANA}<h1 class="lt">The next amendment</h1><p class="sub">When the Constitution may next be amended, and on what. Our estimate as on ${new Date(CORE.next.asOnIso + "T00:00:00Z").toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" })}, built from the Bills now in Parliament, the deadlines the Constitution sets itself and the record of past amendments.</p></div>`;
   if (!TEXT || !TEXT.next) return `<section class="wrap col nx" style="--col:920px">${head}${textErr || TEXT ? errBox() : loadBox()}</section>`;
   const N = TEXT.next, sw = b => `<span class="sw b${b}" aria-hidden="true"></span>`;
   const srcs = list => list && list.length ? `<p class="src">Source: ${list.map(([l, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`).join("; ")}</p>` : "";
@@ -1243,13 +1247,13 @@ const bsScale = b => `<span class="bscale l${6 - b}${b === 0 ? " held" : ""}" ro
 function bsChip(kind, id) {
   const v = bsOf(kind, id); if (!v || v.b == null) return "";
   const B = BAND[v.b];
-  return `<a class="bschip b${v.b}" href="#bsbox" data-jump="bsbox"><span class="bsc-l">Basic structure</span>${bsScale(v.b)}<span class="bsc-t"><b>${B.t}</b>${v.b ? ` <span class="rng">${B.r}</span>` : ""}</span>${I.chev}</a>`;
+  return `<a class="bschip b${v.b}" href="#bsbox" data-jump="bsbox"><span class="bsc-l">Basic structure</span>${bsScale(v.b)}<span class="bsc-t"><b>${B.t}</b>${v.b ? ` <span class="rng">${B.r}</span>${ANA}` : ""}</span>${I.chev}</a>`;
 }
 function bsBox(kind, id) {
   const v = bsOf(kind, id); if (!v) return "";
   const B = v.b == null ? null : BAND[v.b];
   return `<section class="block" aria-labelledby="bsbox-h"><h2 id="bsbox-h">Basic structure</h2><div class="card bsbox" id="bsbox">
-    ${B ? `<div class="bsb-h"><span class="sw b${v.b}" aria-hidden="true"></span><div><b>${B.t}</b>${v.b ? `<small>Our estimate: ${B.r}</small>` : ""}</div></div>
+    ${B ? `<div class="bsb-h"><span class="sw b${v.b}" aria-hidden="true"></span><div><b>${B.t}</b>${v.b ? `<small>Our estimate: ${B.r}</small>` : ""}</div>${v.b ? ANA : ""}</div>
     <p class="q">Could Parliament repeal or substantially change this ${kind === "sch" ? "Schedule" : "provision"} by amendment without breaching the basic structure?</p>
     <p>${lx(v.why)}</p>${featChips(v.f, v.b)}` : ""}
     ${v.note ? `<p class="bsn">${I.info}<span>${lx(v.note)}</span></p>` : ""}
@@ -1292,7 +1296,7 @@ function vBS(r) {
     <div class="ph"><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
     ${bsSum()}
 
-    <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2><p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is part of the basic structure. Select a level above, such as Likely, to pick it out; the list below shows its provisions and why.</p></div></div>
+    <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2>${ANA}<p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is part of the basic structure. Select a level above, such as Likely, to pick it out; the list below shows its provisions and why.</p></div></div>
       <div class="card bsmap">${bsMap()}</div>
       <div class="bslist" id="bslist"><h3>${BAND[bsSel].t}${BAND[bsSel].r ? ` <small>${BAND[bsSel].r}</small>` : ""}</h3>${bsList()}</div>
     </section>
@@ -1605,7 +1609,7 @@ const amdChartNow = sel => (amdView === "year" ? amdYearChart(sel) : amdChart(se
 // a button picks its provisions out of the map below) and the same numbers as a table. Counts come from CORE.bsc, as on the home page.
 function bsSum() {
   const A = CORE.bsc, tA = A.reduce((a, b) => a + b, 0), pc = pct100(A), p1 = v => (100 * v / tA).toFixed(1) + "%";
-  return `<div class="card bs-sum">${bsCap()}<div class="shbar" aria-hidden="true">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} (${p1(v)})"></span>` : "").join("")}</div>
+  return `<div class="card bs-sum">${ANA}${bsCap()}<div class="shbar" aria-hidden="true">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} (${p1(v)})"></span>` : "").join("")}</div>
     <div class="bss-g">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><span class="n"><b>${A[i]}</b> <span class="pc">${pc[i]}%</span></span><span class="lv">${b.t}</span>${b.r ? `<small>${b.r}</small>` : ""}</button>`).join("")}</div>
     <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Likelihood</th><th scope="col">Provisions</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${p1(A[i])}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td></tr></tbody></table></details></div>`;
 }
@@ -1619,7 +1623,13 @@ function vAbout() {
       <h2>The official text</h2>
       <p>Every article, heading, Schedule and official note comes from <b>The Constitution of India [As on ${esc(CORE.meta.asOn)}]</b>, published by the Legislative Department, Ministry of Law and Justice, Government of India. It includes every amendment up to the ${esc(CORE.meta.upTo)}. We changed only the layout, so it reads well on a screen. Where the official text marks a later change in square brackets with an official note, we keep both. For any legal purpose, rely on the official publication.</p>
       <h2>What we added</h2>
-      <p>These are not part of the Constitution. They are there to help you read it, and are labelled where they appear.</p>
+      <p>These are not part of the Constitution. They are there to help you read it, and are labelled where they appear. There are three kinds of content here:</p>
+      <ul>
+        <li><b>The official text</b>, exactly as published. It carries no label.</li>
+        <li><b>Our plain-words help</b>: summaries, themes, the glossary and the history of each article. It is marked <i>In plain words</i> where it sits next to the text.</li>
+        <li><b>Our analysis</b>: the basic structure estimates and the forecast of the next amendment. It is built from official sources and cites them, but it is our judgement, so it always carries the label ${ANA}. The Supreme Court's own rulings on those pages are not our analysis, and are not labelled.</li>
+      </ul>
+      <p>The details:</p>
       <ul>
         <li><b>Plain-language summaries</b> of every article, Part and Schedule, written from the official text. In November 2026 each summary was checked clause by clause against that text, and corrected where needed.</li>
         <li><b>Themes</b>, which group related provisions by subject. The grouping is ours.</li>
