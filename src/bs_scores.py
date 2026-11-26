@@ -188,6 +188,12 @@ for k, (b, w, f) in SCH_BAND.items():
 sch = {k: [BANDS.index(b), wi[w]] for k, (b, w, f) in SCH_BAND.items()}
 for k, v in S['features'].items(): FEAT[k].update(src=v['src'], at=v['at'])
 assert all('src' in f for f in FEAT.values()), [k for k, f in FEAT.items() if 'src' not in f]
+# reading order for the basic features: the kind of State, how power is divided, people's rights, the courts that protect them,
+# and last the limit on amendment that guards them all; within each status group (the page groups by status)
+FEAT_ORDER = ['democracy', 'secular', 'federal', 'sop', 'rol', 'equality', 'balance', 'jr', 'indep', 'access', 'amend',
+              'sovereign', 'parl', 'elections', 'supremacy']
+assert sorted(FEAT_ORDER) == sorted(FEAT), set(FEAT) ^ set(FEAT_ORDER)
+FEAT = {k: FEAT[k] for k in FEAT_ORDER}
 data = dict(feat=FEAT, why=[[w, f] for w, f in WHY], art=art, sch=sch, note=NOTE, schnote=SCH_NOTE, settled=S)
 json.dump(data, open('data/bs.json', 'w'), ensure_ascii=False, separators=(',', ':'))
 import collections
