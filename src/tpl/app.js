@@ -1294,10 +1294,16 @@ function vBS(r) {
   const srcLink = (k, at) => { const s = src[k] || k, u = (s.match(/https?:\/\/\S+/) || [])[0]; const label = s.replace(/,?\s*https?:\/\/\S+/, ""); return (u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(label)}</a>` : esc(label)) + (at ? `, ${esc(at)}` : ""); };
   const srcLine = o => o.src && o.src.length ? `<p class="src">Source: ${o.src.map(k => srcLink(k, o.at && o.at[k])).join("; ")}</p>` : "";
   return `<section class="wrap bs col" style="--col:920px">
-    <div class="ph"><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the Court's rulings, the features it has recognised, and our estimate for every provision.</p></div>
-    ${bsSum()}
+    <div class="ph"><h1 class="lt">The basic structure</h1><p class="sub">Parliament can amend almost any part of the Constitution. Since 1973, though, the Supreme Court has held that an amendment cannot destroy the Constitution's <em>basic structure</em>. This page sets out the features the Court has recognised, our estimate for every provision, and the amendments the Court has struck down.</p></div>
 
-    <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2>${ANA}<p>Each square is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is part of the basic structure. Select a level above, such as Likely, to pick it out; the list below shows its provisions and why.</p></div></div>
+    <section class="sec" aria-labelledby="bs-feat"><div class="sh"><div><h2 id="bs-feat">The basic features</h2><p>The Court has never given a closed list. These are the ${Object.keys(B.feat).length} features it has named. Open one for the provisions that carry it most directly and the judgments behind it.</p></div></div>
+      <div class="card bfl">${Object.entries(B.feat).map(([id, f]) => { const cs = carriers(id); return `<details class="bfr" id="f-${id}"><summary><span class="bfr-t"><span class="bfr-h"><b>${esc(f.t)}</b><span class="tag ${f.st}">${FST[f.st]}</span></span><span class="one">${lx(f.s)}</span></span>${I.chev}</summary><div class="bfr-b"><p class="c">${esc(f.c)}</p>${srcLine(f)}${cs.length ? `<div class="pills">${cs.slice(0, 8).map(([h, l]) => `<a class="pill" href="${h}">${esc(l)}</a>`).join("")}${cs.length > 8 ? `<span class="pill">+${cs.length - 8} more</span>` : ""}</div>` : ""}</div></details>`; }).join("")}</div>
+    </section>
+
+
+    <section class="sec" aria-labelledby="bs-map"><div class="sh"><div><h2 id="bs-map">Every provision, estimated</h2>${ANA}<p>How likely each provision is to be part of the basic structure, using the features above and the Court's rulings. Only "Decided by the Supreme Court" is the Court's own word; every other level is our estimate.</p></div></div>
+      ${bsSum()}
+      <p class="bsmap-h">Each square below is an article in force, grouped by Part, plus the Preamble and the twelve Schedules (${total} in all). The darker the square, the more likely it is part of the basic structure. Select a level above, such as Likely, to pick it out; the list below shows its provisions and why.</p>
       <div class="card bsmap">${bsMap()}</div>
       <div class="bslist" id="bslist"><h3>${BAND[bsSel].t}${BAND[bsSel].r ? ` <small>${BAND[bsSel].r}</small>` : ""}</h3>${bsList()}</div>
     </section>
@@ -1308,9 +1314,6 @@ function vBS(r) {
       <div class="card bsother"><h3>Upheld, or held to be outside the basic structure</h3><ul>${S.outside_or_upheld.map(o => `<li>${lx(o.what)}. <span class="c">${esc(o.case)}</span>${srcLine(o)}</li>`).join("")}</ul></div>
     </section>
 
-    <section class="sec" aria-labelledby="bs-feat"><div class="sh"><div><h2 id="bs-feat">The basic features</h2><p>The Court has never given a closed list. These are the features it has named, and the provisions that carry them most directly.</p></div></div>
-      <div class="bsfeat">${Object.entries(B.feat).map(([id, f]) => { const cs = carriers(id); return `<article class="card bf" id="f-${id}"><span class="tag ${f.st}">${FST[f.st]}</span><h3>${esc(f.t)}</h3><p>${lx(f.s)}</p><p class="c">${esc(f.c)}</p>${srcLine(f)}${cs.length ? `<div class="pills">${cs.slice(0, 8).map(([h, l]) => `<a class="pill" href="${h}">${esc(l)}</a>`).join("")}${cs.length > 8 ? `<span class="pill">+${cs.length - 8} more</span>` : ""}</div>` : ""}</article>`; }).join("")}</div>
-    </section>
 
     <section class="sec" aria-labelledby="bs-method" id="bs-method-s"><div class="sh"><div><h2 id="bs-method">How the estimates work</h2></div></div>
       <div class="card bsmeth">
@@ -1610,7 +1613,7 @@ const amdChartNow = sel => (amdView === "year" ? amdYearChart(sel) : amdChart(se
 // a button picks its provisions out of the map below) and the same numbers as a table. Counts come from CORE.bsc, as on the home page.
 function bsSum() {
   const A = CORE.bsc, tA = A.reduce((a, b) => a + b, 0), pc = pct100(A), p1 = v => (100 * v / tA).toFixed(1) + "%";
-  return `<div class="card bs-sum">${ANA}${bsCap()}<div class="shbar" aria-hidden="true">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} (${p1(v)})"></span>` : "").join("")}</div>
+  return `<div class="card bs-sum">${bsCap()}<div class="shbar" aria-hidden="true">${A.map((v, i) => v ? `<span class="sx b${i}" style="flex:${v}" data-tip="${esc(BAND[i].t)}: ${v} (${p1(v)})"></span>` : "").join("")}</div>
     <div class="bss-g">${BAND.map((b, i) => `<button type="button" class="bss" data-bsel="${i}" aria-pressed="${bsPick && bsSel === i}"><span class="sw b${i}" aria-hidden="true"></span><span class="n"><b>${A[i]}</b> <span class="pc">${pc[i]}%</span></span><span class="lv">${b.t}</span>${b.r ? `<small>${b.r}</small>` : ""}</button>`).join("")}</div>
     <details><summary>Show as a table</summary><table class="stbl"><thead><tr><th scope="col">Likelihood</th><th scope="col">Provisions</th><th scope="col">Share</th></tr></thead><tbody>${BAND.map((b, i) => `<tr><th scope="row"><span class="sw b${i}" aria-hidden="true"></span>${b.t}</th><td>${A[i]}</td><td>${p1(A[i])}</td></tr>`).join("")}<tr class="tot"><th scope="row">Total</th><td>${tA}</td><td>100%</td></tr></tbody></table></details></div>`;
 }
@@ -1793,7 +1796,7 @@ function after(r, keepY, changed) {
   if (mk) mk.scrollIntoView({ block: "center" });
   else if (r.name === "sch" && r.b != null && $("#b-" + r.b)) $("#b-" + r.b).scrollIntoView({ block: "start" });
   else if (r.name === "amend" && r.id && $("#amd-" + r.id)) $("#amd-" + r.id).scrollIntoView({ block: "center" });
-  else if (r.name === "bs" && r.f) { const e = document.getElementById(r.f === "method" ? "bs-method-s" : r.f === "struck" ? "bs-settled" : "f-" + r.f); if (e) e.scrollIntoView({ block: "start" }); }
+  else if (r.name === "bs" && r.f) { const e = document.getElementById(r.f === "method" ? "bs-method-s" : r.f === "struck" ? "bs-settled" : "f-" + r.f); if (e && e.tagName === "DETAILS") e.open = true; if (e) e.scrollIntoView({ block: "start" }); }
   else if (r.name === "glossary" && r.term) { const e = document.getElementById("g-" + r.term); if (e) e.scrollIntoView({ block: "center" }); }
   else window.scrollTo(0, 0);
   if (TEXT) HL = null;
