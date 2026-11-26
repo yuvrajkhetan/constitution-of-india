@@ -38,6 +38,7 @@ node make_icons.js && python3 build_site.py     # only when the mark, favicon (t
 python3 test.py               # runs check_text.py (official text vs src/source), then the Playwright regression; also run qa_crawl.js for every route on 5 devices
 bash lh.sh "http://localhost:8766/preview.html#art-21"   # Lighthouse
 node gaps.js                  # spacing: the gap between neighbouring blocks on each page, desktop and phone
+node rows_flush.js            # rows in rounded cards sit flush with the card edges, so highlights fill the corners
 ```
 
 Before pushing: tests pass, no console errors, no horizontal scroll at 320px, Lighthouse accessibility 100.
