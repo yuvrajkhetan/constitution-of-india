@@ -187,6 +187,11 @@ for k, (b, w, f) in SCH_BAND.items():
     if w not in wi: wi[w] = len(WHY); WHY.append((w, f.split()))
 sch = {k: [BANDS.index(b), wi[w]] for k, (b, w, f) in SCH_BAND.items()}
 for k, v in S['features'].items(): FEAT[k].update(src=v['src'], at=v['at'])
+for k, v in S['features'].items():
+    if v.get('q'): FEAT[k]['q'] = v['q']   # what the Court said, verbatim from the printed S.C.R. page
+# amendments struck down for breaching a feature: only where the majority's own reasoning names it (bs_settled.json "feat")
+for s in S['struck_bs']:
+    for k in s.get('feat', []): FEAT[k].setdefault('sb', []).append({'what': s['what'], 'case': s['case']})
 assert all('src' in f for f in FEAT.values()), [k for k, f in FEAT.items() if 'src' not in f]
 # reading order for the basic features: the kind of State, how power is divided, people's rights, the courts that protect them,
 # and last the limit on amendment that guards them all; within each status group (the page groups by status)

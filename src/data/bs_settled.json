@@ -63,7 +63,10 @@
    ],
    "at": {
     "MINERVA": "pp. 255-256"
-   }
+   },
+   "feat": [
+    "balance"
+   ]
   },
   {
    "prov": [
@@ -78,7 +81,10 @@
    ],
    "at": {
     "MINERVA": "pp. 240-242"
-   }
+   },
+   "feat": [
+    "amend"
+   ]
   },
   {
    "prov": [
@@ -93,7 +99,10 @@
    ],
    "at": {
     "SAMBAMURTHY": "pp. 889-890"
-   }
+   },
+   "feat": [
+    "rol"
+   ]
   },
   {
    "prov": [
@@ -108,7 +117,10 @@
    ],
    "at": {
     "LCK": "pp. 1237 and 1250"
-   }
+   },
+   "feat": [
+    "jr"
+   ]
   },
   {
    "prov": [
@@ -133,7 +145,11 @@
    ],
    "at": {
     "NJAC": "para 244 (Khehar J), pp. 492-493, and Order of the Court, paras 2 and 4, pp. 1055-1056"
-   }
+   },
+   "feat": [
+    "indep",
+    "sop"
+   ]
   }
  ],
  "struck_other": [
