@@ -49,10 +49,12 @@ Last updated: 24 November 2026.
 
 ## Parked
 
+- **Basic features by strength**: a first group of features the Court has used to strike down an amendment (each checked against the majority reasoning; Raj Narain's judges gave different reasons). Owner, 26 November 2026: "stick to two groups for now".
 - **Manuscript-inspired design** (frames, teal, lotus in the border; mockups made 23 November 2026). Owner: "do nothing for now".
 
 ## Done
 
+- **26 November 2026**: basic structure page reorganised. The basic features open the page as compact rows grouped "Recognised by the Court" and "Named by some judges", in reading order, each opening to its provisions and judgments; the estimates follow as one section under the Analysis label.
 - **26 November 2026**: an "Analysis" label on our estimates and forecast (the basic structure levels, chip and card, the next-amendment page and teaser, the basic structure theme, retitled "The basic structure"), never on rulings; the About page now names the three kinds of content.
 - **26 November 2026**: smarter search. BM25 ranking over stemmed words, typo and half-typed word matching, abbreviations, Lok Sabha / Rajya Sabha bridges, clause-level results, "Best match" and "Showing results for". Measured with 170 test questions written first (top 3: 69% to 98%; no results: 35 to 0) and 42 held-out ones (top 1: 38% to 69%; top 3: 52% to 83%); both now run in `test.py`.
 - **24 November 2026**: struck down by the Supreme Court. All 106 amendments checked against the judgments; the nine rulings that struck down words of the Constitution now show as one box and clause labels on 31 article and Schedule pages (`data/struck.json`), and Part IXB (Rajendra N. Shah, 2021) joined the basic structure page. Corrected: Raj Narain struck down Article 329A(4) only (one judge also held clause (5) void), and the NJAC Order of the Court citation. Not yet checked: Supreme Court judgments from May to November 2026, which Courrt lacks.
