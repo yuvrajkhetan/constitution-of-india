@@ -7,6 +7,11 @@ import hashlib
 assert js.count("__TEXTV__") == 2  # text.json and the per-Part files are versioned together
 js = js.replace("__TEXTV__", hashlib.sha1(open("site/text.json", "rb").read()).hexdigest()[:10])
 core = open("site/core.json").read().replace("</", "<\\/")
+# when the site's content last changed: shown in the footer and on the About page. Change it by hand whenever readers
+# would see something new (text, notes, summaries, analysis, features), not for purely technical rebuilds.
+UPDATED = "26 November 2026"
+assert shell.count("__UPDATED__") == 1 and js.count("__UPDATED__") == 1, "last-updated placeholders"
+shell = shell.replace("__UPDATED__", UPDATED); js = js.replace("__UPDATED__", UPDATED)
 page = shell.replace("/*CSS*/", css).replace("/*CORE*/", core).replace("/*JS*/", js)
 open("site/index.html", "w").write(page)
 # share tags for the GitHub Pages copy; link previews need absolute URLs

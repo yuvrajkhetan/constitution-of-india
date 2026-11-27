@@ -58,5 +58,6 @@ Before pushing: tests pass, no console errors, no horizontal scroll at 320px, Li
 - `pageURL()` in `app.js` points copied links at the claude.ai artifact URL only when the page runs inside a frame. On GitHub Pages it uses the page's own address.
 - `text.json` loads after first paint. Code that needs it must handle the loading state. On a first visit straight to an article, the page also fetches that Part's small file (`t/<Part>.json`, written by `make_data.py`) and draws the article from it; read article text through `artText()` and basic structure data through `bsData()`, which use whichever has arrived.
 - Commit both the `src/` change and the rebuilt root files.
+- "Last updated" (footer and About page) comes from `UPDATED` in `build_site.py`. Change it whenever readers would see something new (text, notes, summaries, analysis, features), not for purely technical rebuilds. It is separate from the official text's "as on" date.
 - `make_icons.js` makes `favicon.svg`/`.ico`, `apple-touch-icon.png` and the 1200x630 `og.png` share image from the built page. The share tags use absolute GitHub Pages URLs (`SITE` in `build_site.py`); the artifact ignores them.
 - `test.py` needs Python Playwright at the same version as the Node one: `pip install playwright==$(node -p "require('playwright/package.json').version")`.

@@ -172,7 +172,7 @@ svg{flex:none}
 .spot span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .spot kbd{font:600 12px/1 var(--sys);padding:5px 8px;border-radius:7px;background:var(--fill-2);color:var(--label-3)}
 .hero .pills{justify-content:center;margin-top:18px}
-.asof{margin-top:18px;font-size:13px;color:var(--label-3)}
+.asof{margin-top:18px;font-size:13px;color:var(--label-3)}.ph>.asof{margin-top:0}
 .resume{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .resume .eyebrow{margin-right:4px}
 

@@ -1622,7 +1622,7 @@ function bsSum() {
 function vAbout() {
   const NC = AMD.filter(a => a.nc).length;
   return `<section class="wrap about col" style="--col:700px">
-    <div class="ph"><h1 class="lt">How this was made</h1><p class="sub">What on this site is the official text, what we added to help you read it, and where everything comes from.</p></div>
+    <div class="ph"><h1 class="lt">How this was made</h1><p class="sub">What on this site is the official text, what we added to help you read it, and where everything comes from.</p><p class="asof">Last updated __UPDATED__</p></div>
     <div class="card prose">
       <h2>The official text</h2>
       <p>Every article, heading, Schedule and official note comes from <b>The Constitution of India [As on ${esc(CORE.meta.asOn)}]</b>, published by the Legislative Department, Ministry of Law and Justice, Government of India. It includes every amendment up to the ${esc(CORE.meta.upTo)}. We changed only the layout, so it reads well on a screen. Where the official text marks a later change in square brackets with an official note, we keep both. For any legal purpose, rely on the official publication.</p>
