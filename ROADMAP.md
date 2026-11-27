@@ -47,6 +47,16 @@ Last updated: 24 November 2026.
 | 14 | **Neutral citations** (for example 2015 INSC 285) beside the S.C.R. citations, once confirmed on the Supreme Court's own site | Improvement | S | Most came only from Courrt's records, so they were left out |
 | 15 | **Preamble row chevron** in Contents is a shade lighter than the Part rows' | Improvement | S | Cosmetic |
 
+## Watch list
+
+Developments to act on when they happen, checked 27 November 2026. Official sources only (sansad.in, PIB, the Gazette, the Supreme Court's own site).
+
+- **Winter Session 2026** (expected early December, not yet summoned): if the Government brings back a delimitation amendment (the 131st Amendment Bill was defeated on 17 April 2026), update the forecast at once, not only after the session.
+- **Ladakh, proposed Article 371K** (Home Ministry proposal, September 2026): add to the forecast if a Bill is introduced.
+- **Jammu and Kashmir statehood** (Assembly resolution, 28 September 2026): a Reorganisation Act would change the First Schedule and Fourth Schedule by ordinary law, and the next official edition would carry it.
+- **Supreme Court**: the challenge to the Election Commission appointments law sent to a Constitution Bench (23 September 2026; touches "free and fair elections"); the Sabarimala nine-judge reference (reserved 14 May 2026; Articles 25 and 26); the plea against delaying women's reservation (Article 334A). Any ruling striking down an amendment goes into `struck.json` and `bs_settled.json`.
+- **Next English edition**: the Legislative Department's 26 November 2026 release covered the 22 Eighth Schedule languages only; the latest English edition is still "As on 10th September, 2026".
+
 ## Parked
 
 - **Basic features by strength**: a first group of features the Court has used to strike down an amendment (each checked against the majority reasoning; Raj Narain's judges gave different reasons). Owner, 26 November 2026: "stick to two groups for now".
