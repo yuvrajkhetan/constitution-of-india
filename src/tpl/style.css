@@ -463,7 +463,7 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .foot{margin-top:0;padding-block:28px 40px;border-top:.5px solid var(--sep);font-size:13px;color:var(--label-3)}
 .foot p{margin-bottom:6px}
 .foot nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px}
-.foot nav a{color:var(--label-2)}
+.foot nav a{color:var(--label-2)}.foot p a,.asof a{color:var(--label-2);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 
 /* ---------- touch & phone refinements ---------- */
 html{-webkit-tap-highlight-color:transparent}

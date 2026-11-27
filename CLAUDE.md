@@ -1,6 +1,6 @@
 # Constitution of India reader
 
-Public, unbranded reader of the Constitution of India for citizens and students. Live on GitHub Pages from this repo's root (`index.html`, `text.json`, `fonts/`). A copy is also published as a claude.ai artifact.
+Public, unbranded reader of the Constitution of India for citizens and students (no logo or organisation branding; the footer and About page credit "Created by Yuvraj Khetan", linked to his LinkedIn, and nothing else does). Live on GitHub Pages from this repo's root (`index.html`, `text.json`, `fonts/`). A copy is also published as a claude.ai artifact.
 
 ## Rules
 
