@@ -14,7 +14,7 @@ Last updated: 28 November 2026.
 | # | Item | Type | Size | Why it ranks here |
 |---|---|---|---|---|
 | 1 | **Refresh the next amendment forecast** after the Winter Session of Parliament ends (due late December 2026): re-check pending Bills on sansad.in and update `asOn` | Improvement | S | Our own rule; the forecast goes stale otherwise |
-| 2 | **Corrections note** on the About page: what was fixed in the official text and when (for example, November 2026: seven States restored to the First Schedule, Third Schedule oaths, missing official notes; the 102nd Amendment date on Article 366), and the one misprint we correct (Form IV). Owner to decide: Article 194's note 1 dates the 44th Amendment's s. 45 cancellation 19 June 1979, while seven other notes on the same section give 20 June 1979; we show the note's date as printed | Feature | S | Being open about fixes builds trust in an unofficial reader |
+| 2 | **Corrections note** on the About page: what was fixed in the official text and when (for example, November 2026: seven States restored to the First Schedule, Third Schedule oaths, missing official notes; the 102nd Amendment date on Article 366), and the one misprint we correct (Form IV). Also: Article 194's note 1 dates the 44th Amendment's s. 45 cancellation 19 June 1979, while seven other notes on the same section give 20 June 1979; at the owner's choice (28 November 2026) the history shows 20 June with a line explaining why, and the note stays as printed | Feature | S | Being open about fixes builds trust in an unofficial reader |
 | 3 | **"Report an error" link** on every article and Schedule page (pre-filled email or GitHub issue naming the page) | Feature | S | Turns readers into a second line of checking |
 
 ## High value, bigger

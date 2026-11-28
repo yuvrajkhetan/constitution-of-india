@@ -223,6 +223,8 @@ for n,x in TA.items():
 # wording and date must be in the note itself, unless the step carries its own explanation (x), as the 102nd's date does.
 from hist import RX_C, ordnum
 def _nth(n): return f"{n}{'th' if 10<=n%100<=20 else {1:'st',2:'nd',3:'rd'}.get(n%10,'th')}"
+_ORDW={44:'Forty-fourth'}
+def _ordword(n): return _ORDW[n]
 def _dmy(d): y,m,dd=d.split('-'); return f"{int(dd)}-{int(m)}-{y}"
 _CH=json.load(open('data/hist_chain.json')); _CH.pop('_about')
 for key,steps in _CH.items():
@@ -240,7 +242,10 @@ for key,steps in _CH.items():
         if st.get('r'): assert 'retrospective' in note, ('hist_chain: not retrospective', key)
         if st.get('n')==2: assert re.search(r'not (?:notified|enforced)|to be notified',note), ('hist_chain: note does not say never in force', key)
         x=st.get('x','')
-        if st['v']=='undo': x=x or f"Cancelled the {_nth(steps[i-1]['a'])} Amendment's change, which never came into force."
+        if st.get('same'):  # a date taken from other notes on the same section of the same Act: they must agree on it
+            others=[f for nn,xx in TA.items() for f in xx.get('f',[]) if isinstance(a,int) and re.search(r'\(%s\s+Amendment\)'%re.escape(_ordword(a)),f,re.I) and st['same']+' ' in f.replace(',',' ')]
+            assert sum(_dmy(st['d']) in f for f in others)>=3 and st['d']!='' , ('hist_chain: other notes do not support this date', key, st['d'])
+        if st['v']=='undo': x=f"Cancelled the {_nth(steps[i-1]['a'])} Amendment's change, which never came into force." + (' '+x if x else '')
         if st.get('n')==2 and not x: x=f"Never brought into force. The {_nth(steps[i+1]['a'])} Amendment cancelled it." if i+1<len(steps) and steps[i+1]['v']=='undo' else "Never brought into force."
         assert '—' not in x
         nw=st.get('nw','')  # only words written into the data and checked above, never inferred from the next step
