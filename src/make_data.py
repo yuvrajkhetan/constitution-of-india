@@ -204,6 +204,13 @@ for (n,i),x in zip(_seq,_res): _fh.setdefault(n,[]).append([x['a'],x['v'],x['o']
 for n in ORDER:
     if n in _fh: TA[n]['fh']=_fh[n]
 if 'P' in _fh: core['pre']=dict(c['pre'],fh=_fh['P'])
+# Dates the official edition gets wrong, confirmed from the Gazette. Only our history timeline changes; the official note
+# is shown exactly as printed. Each entry: article, note number, Act, the date it should show, and the line readers see.
+DATE_FIX=[('366',7,102,'2018-08-15','The official edition dates this 14 August 2018, the date of the notification. The Act came into force on 15 August 2018 (Gazette of India, S.O. 3989(E), 14 August 2018).')]
+for art,k,act,d,why in DATE_FIX:
+    row=TA[art]['fh'][k-1]
+    assert row[0]==act and row[3]!=d, ('DATE_FIX no longer matches', art, k, row)
+    row[3]=d; row.append(why)
 text=dict(a=TA,s=TS,g=gl,bs=BS,next=NX)
 os.makedirs('site',exist_ok=True)
 json.dump(core,open('site/core.json','w'),ensure_ascii=False,separators=(',',':'))

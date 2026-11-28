@@ -14,7 +14,7 @@ Last updated: 24 November 2026.
 | # | Item | Type | Size | Why it ranks here |
 |---|---|---|---|---|
 | 1 | **Refresh the next amendment forecast** after the Winter Session of Parliament ends (due late December 2026): re-check pending Bills on sansad.in and update `asOn` | Improvement | S | Our own rule; the forecast goes stale otherwise |
-| 2 | **Corrections note** on the About page: what was fixed in the official text and when (for example, November 2026: seven States restored to the First Schedule, Third Schedule oaths, missing official notes), and the one misprint we correct (Form IV) | Feature | S | Being open about fixes builds trust in an unofficial reader |
+| 2 | **Corrections note** on the About page: what was fixed in the official text and when (for example, November 2026: seven States restored to the First Schedule, Third Schedule oaths, missing official notes; the 102nd Amendment date on Article 366), and the one misprint we correct (Form IV) | Feature | S | Being open about fixes builds trust in an unofficial reader |
 | 3 | **"Report an error" link** on every article and Schedule page (pre-filled email or GitHub issue naming the page) | Feature | S | Turns readers into a second line of checking |
 
 ## High value, bigger
@@ -62,6 +62,7 @@ Developments to act on when they happen, checked 27 November 2026. Official sour
 
 ## Done
 
+- **28 November 2026**: Article 366(26C) history now shows the 102nd Amendment in force from 15 August 2018 (Gazette S.O. 3989(E)); the official note keeps the edition's 14 August date, and a line explains the difference (`DATE_FIX` in `make_data.py`). Include it in the Corrections note (item 2).
 - **28 November 2026**: neutral citations on all 17 cited judgments, from the Supreme Court's e-S.C.R. records (they match every citation printed on the official PDFs).
 - **28 November 2026**: all 106 amendment summaries and dates checked against the Acts themselves (evidence in `src/audit/amendments_2026-11-28/`): 40 summaries corrected or made specific, 12 dates fixed or filled in (the 10th Amendment showed 2020 instead of 1961; eight had none), 19 missing references added. The 88th Amendment is now shown as never brought into force.
 - **28 November 2026**: official sources saved (`src/source/SOURCES.md`): the 1949 Gazette publishing the Constitution as passed, official copies of all 106 Amendment Acts, the 2025 assent opinion. Every cited judgment except L. Chandra Kumar now links to the Supreme Court's own copy; printed neutral citations added; the 2025 assent opinion noted on Articles 200 and 201.

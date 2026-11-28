@@ -1558,7 +1558,7 @@ function timelineHTML(f, sc, fh, hn, kind) {
   const where = k => { const s = sc && sc[k]; if (!s || !s.where) return ""; const w = esc(s.where.replace(/^an omission in /, "in ").replace(/^an omission$/, "")); if (!w) return ""; return s.none ? `<span class="whr">${w}</span>` : `<button class="lnk" type="button" data-goto-fn="${k}">${w}</button>`; };
   let added = null;
   fh.forEach((x, i) => {
-    const k = i + 1, [a, v, o, d, r, inv, pend] = x;
+    const k = i + 1, [a, v, o, d, r, inv, pend, fix] = x;
     if (v === "see" || v === "other" && a == null) { other.push(k); return; }
     const amd = typeof a === "number" ? AMD_BY.get(a) : null;
     const yr = d ? d.slice(0, 4) : amd ? String(amd.y) : (String(a || "").match(/\d{4}/) || [""])[0];
@@ -1569,7 +1569,7 @@ function timelineHTML(f, sc, fh, hn, kind) {
       if (!ev.has(key)) ev.set(key, { sort, yr: pend ? "" : yr, when, act: a, items: [] });
       const isHead = hn && hn.includes(k) && (v === "ins" || v === "add") && kind === "art";
       if (isHead) added = key;
-      ev.get(key).items.push({ k, v: isHead ? "art" : v, o });
+      ev.get(key).items.push({ k, v: isHead ? "art" : v, o, fix });
     }
     if (inv) {
       const key = "court|" + inv + "|" + k;
@@ -1579,7 +1579,7 @@ function timelineHTML(f, sc, fh, hn, kind) {
   const list = [...ev.values()].sort((a, b) => a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : 0);
   const item = it => {
     const lab = it.v === "art" ? (kind === "art" ? "This article was added" : "Added") : VERB[it.v] || "Changed";
-    const old = it.o ? `<span class="old">${it.v === "omit" ? "Removed wording" : "Earlier wording"}: “${esc(it.o)}”</span>` : "";
+    const old = (it.o ? `<span class="old">${it.v === "omit" ? "Removed wording" : "Earlier wording"}: “${esc(it.o)}”</span>` : "") + (it.fix ? `<span class="old">${esc(it.fix)}</span>` : "");
     return `<li><span class="vb v-${it.v}">${lab}</span>${it.v === "art" ? "" : where(it.k)}<button class="fn" type="button" data-fn="${it.k}" aria-label="Official note ${it.k}" aria-expanded="false">${it.k}</button>${old}</li>`;
   };
   const root = added ? "" : `<li class="ev root"><span class="yr">1949</span><div><div class="eh"><b>In the Constitution as adopted</b><span>26 November 1949</span></div></div></li>`;
