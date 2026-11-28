@@ -121,7 +121,7 @@ Everything the site's text and history rest on, saved here so it does not depend
 | 102 | `acts/102.pdf` | Gazette of India (archive.org mirror of egazette.nic.in): https://archive.org/details/in.gazette.central.e.2018-08-11.188471 |
 | 103 | `acts/103.pdf` | Gazette of India (archive.org mirror of egazette.nic.in): https://archive.org/details/in.gazette.central.e.2019-01-12.195175 |
 | 104 | `acts/104.pdf` | Gazette of India (archive.org mirror of egazette.nic.in): https://archive.org/details/in.gazette.central.e.2020-01-22.215637 |
-| 105 | only in `acts/compilation_LS2008.pdf` (and `acts/105_hindi_only.pdf`, the Hindi authoritative text) | Not found as an individual official copy |
+| 105 | `acts/105.pdf` (and `acts/105_hindi_only.pdf`, the Hindi authoritative text) | Gazette of India Extraordinary, Part II Section 1, No. 52, 19 August 2021: a scan of a printed copy supplied by the owner, 28 November 2021. The handwritten note of commencement (15 September 2021, S.O. 4063(E)) on page 1 is not part of the Gazette. |
 | 106 | `acts/106.pdf` | Gazette of India (archive.org mirror of egazette.nic.in): https://archive.org/details/in.gazette.central.e.2023-09-28.249053 |
 
 Text layers: Acts 99 to 104 and 106 are born-digital; most others carry OCR that needs checking against the page image; Acts 1, 9, 15 to 20, 22, 27 to 29 and 88 to 98 are images only.
@@ -129,11 +129,11 @@ Text layers: Acts 99 to 104 and 106 are born-digital; most others carry OCR that
 ## Judgments
 
 - `judgments/Special_Reference_1_of_2025_opinion_2025-11-20.pdf`: *In re Assent, Withholding or Reservation of Bills* (Special Reference No. 1 of 2025), opinion of 20 November 2025, 2025 INSC 1333, from https://api.sci.gov.in/supremecourt/2025/39157/39157_2025_1_1501_66169_Judgement_20-Nov-2025.pdf .
+- `judgments/Indira_Nehru_Gandhi_v_Raj_Narain_1976_2_SCR_347.pdf`: the official Supreme Court Reports text, [1976] 2 S.C.R. 347 (330 pages, 300 dpi scan, image only), supplied by the owner on 28 November 2026. Sharper than the mirror copy.
 - Other judgments are linked from `data/bs_settled.json`; their official S.C.R. PDFs are mirrored at https://indian-supreme-court-judgments.s3.amazonaws.com (`/data/pdf/year=YYYY/english/FILE`).
 
 ## Not found (28 November 2026)
 
 - The Hindi half of the 10 September 2026 diglot edition: only on legislative.gov.in, which refuses automated downloads.
-- The Constitution (One Hundred and Fifth Amendment) Act, 2021 in English: only the Hindi authoritative text was found.
 - Individual official copies of Acts 21, 35, 36, 37, 42, 70, 77, 85, 86 and 87 (all are in the Lok Sabha compilation).
-- Copies on the Supreme Court's own servers of Indira Nehru Gandhi v Raj Narain (1975) and L. Chandra Kumar v Union of India (1997); their official S.C.R. PDFs are in the mirror above.
+- Links on the Supreme Court's own servers for Indira Nehru Gandhi v Raj Narain (1975) and L. Chandra Kumar v Union of India (1997). Their official S.C.R. texts are saved or mirrored above. A copy of L. Chandra Kumar exported from Indian Kanoon was offered but is not an official source.
