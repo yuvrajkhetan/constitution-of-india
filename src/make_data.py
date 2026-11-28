@@ -204,13 +204,34 @@ for (n,i),x in zip(_seq,_res): _fh.setdefault(n,[]).append([x['a'],x['v'],x['o']
 for n in ORDER:
     if n in _fh: TA[n]['fh']=_fh[n]
 if 'P' in _fh: core['pre']=dict(c['pre'],fh=_fh['P'])
-# Dates the official edition gets wrong, confirmed from the Gazette. Only our history timeline changes; the official note
-# is shown exactly as printed. Each entry: article, note number, Act, the date it should show, and the line readers see.
-DATE_FIX=[('366',7,102,'2018-08-15','The official edition dates this 14 August 2018, the date of the notification. The Act came into force on 15 August 2018 (Gazette of India, S.O. 3989(E), 14 August 2018).')]
-for art,k,act,d,why in DATE_FIX:
-    row=TA[art]['fh'][k-1]
-    assert row[0]==act and row[3]!=d, ('DATE_FIX no longer matches', art, k, row)
-    row[3]=d; row.append(why)
+# Official notes that record several changes in a row ("subs. by the 42nd ... and further subs. by the 44th ...").
+# data/hist_chain.json lists each step; it replaces the single row the parser makes for that note. Every Act, earlier
+# wording and date must be in the note itself, unless the step carries its own explanation (x), as the 102nd's date does.
+from hist import RX_C, ordnum
+def _nth(n): return f"{n}{'th' if 10<=n%100<=20 else {1:'st',2:'nd',3:'rd'}.get(n%10,'th')}"
+def _dmy(d): y,m,dd=d.split('-'); return f"{int(dd)}-{int(m)}-{y}"
+_CH=json.load(open('data/hist_chain.json')); _CH.pop('_about')
+for key,steps in _CH.items():
+    art,k=key.split(':'); k=int(k); note=TA[art]['f'][k-1]; old=TA[art]['fh'][k-1]
+    acts={ordnum(m.group(1)) for m in RX_C.finditer(note)}
+    if 'ibid' in note: acts|={ordnum(m.group(1)) for m in RX_C.finditer(TA[art]['f'][k-2])}  # ibid. points back to the note before
+    rows=[]
+    for i,st in enumerate(steps):
+        a=st['a']
+        assert (a in acts) if isinstance(a,int) else (a in note), ('hist_chain: Act not in note', key, a)
+        for w in ('o','nw'):
+            if st.get(w): assert ('“%s”'%st[w] in note or '"%s"'%st[w] in note or '“%s"'%st[w] in note or '"%s”'%st[w] in note), ('hist_chain: words not in note', key, st[w])
+        if st.get('d') and not st.get('x'): assert re.search(r'w\.?\s*e\.?\s*f\.?\s*0?%s\b'%re.escape(_dmy(st['d'])).replace('\\-','\\s*-\\s*0?'),note), ('hist_chain: date not in note', key, st['d'])
+        if st.get('r'): assert 'retrospective' in note, ('hist_chain: not retrospective', key)
+        if st.get('n')==2: assert re.search(r'not (?:notified|enforced)|to be notified',note), ('hist_chain: note does not say never in force', key)
+        x=st.get('x','')
+        if st['v']=='undo': x=x or f"Cancelled the {_nth(steps[i-1]['a'])} Amendment's change, which never came into force."
+        if st.get('n')==2 and not x: x=f"Never brought into force. The {_nth(steps[i+1]['a'])} Amendment cancelled it." if i+1<len(steps) and steps[i+1]['v']=='undo' else "Never brought into force."
+        assert '—' not in x
+        nw=st.get('nw','') or (steps[i+1].get('o','') if st['v']=='subs' and i+1<len(steps) and steps[i+1]['v']=='subs' else '')
+        # the last flag marks an earlier step: the timeline then leaves out today's wording from its place label
+        rows.append([a,st['v'],st.get('o',''),st.get('d',''),st.get('r',0),'',st.get('n',0),x,st.get('w',''),nw,1 if i<len(steps)-1 else 0])
+    TA[art]['fh'][k-1]=rows
 text=dict(a=TA,s=TS,g=gl,bs=BS,next=NX)
 os.makedirs('site',exist_ok=True)
 json.dump(core,open('site/core.json','w'),ensure_ascii=False,separators=(',',':'))

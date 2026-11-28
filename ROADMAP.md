@@ -62,6 +62,7 @@ Developments to act on when they happen, checked 27 November 2026. Official sour
 
 ## Done
 
+- **28 November 2026**: History timelines show every step an official note records, not just the first (40 notes on 33 articles, listed in `src/data/hist_chain.json` and checked against the notes). Article 334 now shows each extension from 1980 to 2020; changes made in 1976 and undone in 1978 or 1979 show both steps; 15 rows that paired one Act with another's date are fixed; "ibid." now points to the Act cited last (Articles 270 and 352).
 - **28 November 2026**: Article 366(26C) history now shows the 102nd Amendment in force from 15 August 2018 (Gazette S.O. 3989(E)); the official note keeps the edition's 14 August date, and a line explains the difference (`DATE_FIX` in `make_data.py`). Include it in the Corrections note (item 2).
 - **28 November 2026**: neutral citations on all 17 cited judgments, from the Supreme Court's e-S.C.R. records (they match every citation printed on the official PDFs).
 - **28 November 2026**: all 106 amendment summaries and dates checked against the Acts themselves (evidence in `src/audit/amendments_2026-11-28/`): 40 summaries corrected or made specific, 12 dates fixed or filled in (the 10th Amendment showed 2020 instead of 1961; eight had none), 19 missing references added. The 88th Amendment is now shown as never brought into force.

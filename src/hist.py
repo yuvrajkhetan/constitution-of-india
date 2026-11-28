@@ -48,6 +48,8 @@ def parse_all(seq):
             if mo and re.match(r'^(Added|Subs|Ins|Omitted|Paragraph)',f): act=mo.group(1)
         if act is None and re.search(r'\bibid\b',f): act=last
         if act is not None: last=act
+        ms=list(RX_C.finditer(f))
+        if ms: last=ordnum(ms[-1].group(1))  # a later ibid. points to the Act cited last
         w=RX_W.search(f)
         d=f"{w.group(3)}-{int(w.group(2)):02d}-{int(w.group(1)):02d}" if w else ''
         v=verb(f)

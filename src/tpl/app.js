@@ -1548,39 +1548,42 @@ function toggleKeys(force) {
 }
 
 /* ================= history from the official footnotes ================= */
-const VERB = { ins: "Added", add: "Added", subs: "Replaced", omit: "Removed", renum: "Renumbered", pend: "Not yet in force", inv: "Declared invalid", other: "Changed" };
+const VERB = { ins: "Added", add: "Added", subs: "Replaced", omit: "Removed", renum: "Renumbered", undo: "Cancelled", pend: "Not yet in force", inv: "Declared invalid", other: "Changed" };
 /* the part of a clause that begins "Provided that" (lawyers call it a proviso) */
 const PROV = "the \u201cProvided that\u201d part of ";
 const actLabel = a => typeof a === "number" ? `<a href="#amend-${a}">${nth(a)} Amendment Act</a>` : a ? esc(String(a).replace(/^C\.O\. (\d+)$/, "Constitution Order $1")) : "Not stated in the note";
 function timelineHTML(f, sc, fh, hn, kind) {
   if (!f || !f.length || !fh) return histHTML(f, sc);
   const ev = new Map(), other = [];
-  const where = k => { const s = sc && sc[k]; if (!s || !s.where) return ""; const w = esc(s.where.replace(/^an omission in /, "in ").replace(/^an omission$/, "")); if (!w) return ""; return s.none ? `<span class="whr">${w}</span>` : `<button class="lnk" type="button" data-goto-fn="${k}">${w}</button>`; };
+  // an earlier step of a note keeps only the clause from its place: the quoted words are today's, not that step's
+  const where = (k, early) => { const s = sc && sc[k]; if (!s || !s.where) return ""; const w = esc(s.where.replace(/^an omission in /, "in ").replace(/^an omission$/, "").replace(early ? /^the words? “[^”]*” ?/ : /^$/, "")); if (!w) return ""; return s.none ? `<span class="whr">${w}</span>` : `<button class="lnk" type="button" data-goto-fn="${k}">${w}</button>`; };
   let added = null;
-  fh.forEach((x, i) => {
-    const k = i + 1, [a, v, o, d, r, inv, pend, fix] = x;
+  // a row is [act, verb, old words, date, retrospective, invalid year, pending (1 not yet notified, 2 never in force),
+  // extra line, place, new words, earlier step]; a note that records several changes in a row holds a list of rows
+  fh.forEach((x0, i) => (Array.isArray(x0[0]) ? x0 : [x0]).forEach(x => {
+    const k = i + 1, [a, v, o, d, r, inv, pend, fix, w, nw, early] = x;
     if (v === "see" || v === "other" && a == null) { other.push(k); return; }
     const amd = typeof a === "number" ? AMD_BY.get(a) : null;
     const yr = d ? d.slice(0, 4) : amd ? String(amd.y) : (String(a || "").match(/\d{4}/) || [""])[0];
-    const sort = pend ? "9999" : d || (amd && amd.wef) || (yr ? yr + "-12-31" : "0000");
-    const when = pend ? "Date not yet notified" : d ? "In force from " + fmtDate(d) : r ? "With retrospective effect" : yr;
+    const sort = pend === 1 ? "9999" : d || (amd && amd.wef) || (yr ? yr + "-12-31" : "0000");
+    const when = pend === 2 ? "Never brought into force" : pend ? "Date not yet notified" : d ? "In force from " + fmtDate(d) : r ? "With retrospective effect" : yr;
     if (v !== "inv") {
       const key = (a == null ? "?" : a) + "|" + when;
-      if (!ev.has(key)) ev.set(key, { sort, yr: pend ? "" : yr, when, act: a, items: [] });
+      if (!ev.has(key)) ev.set(key, { sort, yr: pend === 1 ? "" : yr, when, act: a, items: [] });
       const isHead = hn && hn.includes(k) && (v === "ins" || v === "add") && kind === "art";
       if (isHead) added = key;
-      ev.get(key).items.push({ k, v: isHead ? "art" : v, o, fix });
+      ev.get(key).items.push({ k, v: isHead ? "art" : v, o, fix, w, nw, early });
     }
     if (inv) {
       const key = "court|" + inv + "|" + k;
       ev.set(key, { sort: inv + "-12-31", yr: inv, when: "Supreme Court, " + inv, court: true, items: [{ k, v: "inv", o: "" }] });
     }
-  });
+   }));
   const list = [...ev.values()].sort((a, b) => a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : 0);
   const item = it => {
     const lab = it.v === "art" ? (kind === "art" ? "This article was added" : "Added") : VERB[it.v] || "Changed";
-    const old = (it.o ? `<span class="old">${it.v === "omit" ? "Removed wording" : "Earlier wording"}: “${esc(it.o)}”</span>` : "") + (it.fix ? `<span class="old">${esc(it.fix)}</span>` : "");
-    return `<li><span class="vb v-${it.v}">${lab}</span>${it.v === "art" ? "" : where(it.k)}<button class="fn" type="button" data-fn="${it.k}" aria-label="Official note ${it.k}" aria-expanded="false">${it.k}</button>${old}</li>`;
+    const old = (it.o && it.nw ? `<span class="old">“${esc(it.o)}” became “${esc(it.nw)}”</span>` : it.o ? `<span class="old">${it.v === "omit" ? "Removed wording" : "Earlier wording"}: “${esc(it.o)}”</span>` : "") + (it.fix ? `<span class="old">${esc(it.fix)}</span>` : "");
+    return `<li><span class="vb v-${it.v}">${lab}</span>${it.v === "art" ? "" : it.w ? `<span class="whr">${esc(it.w)}</span>` : where(it.k, it.early)}<button class="fn" type="button" data-fn="${it.k}" aria-label="Official note ${it.k}" aria-expanded="false">${it.k}</button>${old}</li>`;
   };
   const root = added ? "" : `<li class="ev root"><span class="yr">1949</span><div><div class="eh"><b>In the Constitution as adopted</b><span>26 November 1949</span></div></div></li>`;
   return `<section class="block" aria-labelledby="hh"><h2 id="hh">History <small>Built from the ${f.length} official note${f.length > 1 ? "s" : ""}</small></h2>

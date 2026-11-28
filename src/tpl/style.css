@@ -905,7 +905,7 @@ kbd{display:inline-block;min-width:22px;padding:2px 6px;border-radius:6px;backgr
 .tline li li{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:14.5px;color:var(--label-2)}
 .tline .vb{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--fill-2);color:var(--label)}
 .tline .vb.v-ins,.tline .vb.v-add,.tline .vb.v-art{background:var(--green-tint)}
-.tline .vb.v-omit,.tline .vb.v-inv{background:var(--saffron-tint)}
+.tline .vb.v-omit,.tline .vb.v-inv,.tline .vb.v-undo{background:var(--saffron-tint)}
 .tline .vb.v-subs{background:var(--navy-tint)}
 .tline .old{flex-basis:100%;font-family:var(--serif);font-size:15px;color:var(--label-2)}
 .tline .whr{color:var(--label-2)}
