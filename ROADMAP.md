@@ -42,7 +42,6 @@ Last updated: 24 November 2026.
 
 | # | Item | Type | Size | Notes |
 |---|---|---|---|---|
-| 14 | **Neutral citations for older judgments**: 12 of the 16 cited judgments (Kesavananda to Janhit Abhiyan) have neutral citations only in the Supreme Court's e-S.C.R. records, which need a captcha; confirm them there and add | Improvement | S | Printed citations added 28 November 2026 for Article 370, Property Owners, Anjum Kadari, Balram Singh and the 2025 Reference |
 | 15 | **Preamble row chevron** in Contents is a shade lighter than the Part rows' | Improvement | S | Cosmetic |
 
 ## Watch list
@@ -63,6 +62,7 @@ Developments to act on when they happen, checked 27 November 2026. Official sour
 
 ## Done
 
+- **28 November 2026**: neutral citations on all 17 cited judgments, from the Supreme Court's e-S.C.R. records (they match every citation printed on the official PDFs).
 - **28 November 2026**: all 106 amendment summaries and dates checked against the Acts themselves (evidence in `src/audit/amendments_2026-11-28/`): 40 summaries corrected or made specific, 12 dates fixed or filled in (the 10th Amendment showed 2020 instead of 1961; eight had none), 19 missing references added. The 88th Amendment is now shown as never brought into force.
 - **28 November 2026**: official sources saved (`src/source/SOURCES.md`): the 1949 Gazette publishing the Constitution as passed, official copies of all 106 Amendment Acts, the 2025 assent opinion. Every cited judgment except L. Chandra Kumar now links to the Supreme Court's own copy; printed neutral citations added; the 2025 assent opinion noted on Articles 200 and 201.
 - **26 November 2026**: basic features open to the judges' own words: one quote per feature from its leading judgment, read from the printed S.C.R. page and cited by page; every provision that carries it with its level; and, for six features, the amendment struck down for breaching it. Even spacing across the site (`gaps.js`).
