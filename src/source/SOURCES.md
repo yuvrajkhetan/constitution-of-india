@@ -121,7 +121,7 @@ Everything the site's text and history rest on, saved here so it does not depend
 | 102 | `acts/102.pdf` | Gazette of India (archive.org mirror of egazette.nic.in): https://archive.org/details/in.gazette.central.e.2018-08-11.188471 |
 | 103 | `acts/103.pdf` | Gazette of India (archive.org mirror of egazette.nic.in): https://archive.org/details/in.gazette.central.e.2019-01-12.195175 |
 | 104 | `acts/104.pdf` | Gazette of India (archive.org mirror of egazette.nic.in): https://archive.org/details/in.gazette.central.e.2020-01-22.215637 |
-| 105 | `acts/105.pdf` (and `acts/105_hindi_only.pdf`, the Hindi authoritative text) | Gazette of India Extraordinary, Part II Section 1, No. 52, 19 August 2021: a scan of a printed copy supplied by the owner, 28 November 2021. The handwritten note of commencement (15 September 2021, S.O. 4063(E)) on page 1 is not part of the Gazette. |
+| 105 | `acts/105.pdf` (and `acts/105_hindi_only.pdf`, the Hindi authoritative text) | Gazette of India Extraordinary, Part II Section 1, No. 52, 19 August 2021: a scan of a printed copy supplied by the owner, 28 November 2026. The handwritten note of commencement (15 September 2021, S.O. 4063(E)) on page 1 is not part of the Gazette. |
 | 106 | `acts/106.pdf` | Gazette of India (archive.org mirror of egazette.nic.in): https://archive.org/details/in.gazette.central.e.2023-09-28.249053 |
 
 Text layers: Acts 99 to 104 and 106 are born-digital; most others carry OCR that needs checking against the page image; Acts 1, 9, 15 to 20, 22, 27 to 29 and 88 to 98 are images only.
