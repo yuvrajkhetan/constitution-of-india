@@ -55,6 +55,7 @@ Developments to act on when they happen, checked 27 November 2026. Official sour
 - **Ladakh, proposed Article 371K** (Home Ministry proposal, September 2026): add to the forecast if a Bill is introduced.
 - **Jammu and Kashmir statehood** (Assembly resolution, 28 September 2026): a Reorganisation Act would change the First Schedule and Fourth Schedule by ordinary law, and the next official edition would carry it.
 - **Supreme Court**: the challenge to the Election Commission appointments law sent to a Constitution Bench (23 September 2026; touches "free and fair elections"); the Sabarimala nine-judge reference (reserved 14 May 2026; Articles 25 and 26); the plea against delaying women's reservation (Article 334A). Any ruling striking down an amendment goes into `struck.json` and `bs_settled.json`.
+- **L. Chandra Kumar link**: https://api.sci.gov.in/jonew/judis/19912.pdf is the Supreme Court's own copy (owner confirmed, 28 November 2026) but the PDF does not load yet. Recheck now and then; when it loads, add it to `LCK` in `bs_settled.json`.
 - **Next English edition**: the Legislative Department's 26 November 2026 release covered the 22 Eighth Schedule languages only; the latest English edition is still "As on 10th September, 2026".
 
 ## Parked
