@@ -204,6 +204,20 @@ for (n,i),x in zip(_seq,_res): _fh.setdefault(n,[]).append([x['a'],x['v'],x['o']
 for n in ORDER:
     if n in _fh: TA[n]['fh']=_fh[n]
 if 'P' in _fh: core['pre']=dict(c['pre'],fh=_fh['P'])
+# "ibid." means the Act cited just before; when that was a Part or Chapter heading's note, the parser can't see it.
+# Each fix is checked: the note must say ibid. and the Act's own text must name the article. Then every ibid. row is
+# checked the same way, so a wrong guess can't slip in unnoticed.
+def _act_has_art(k,n):
+    t=re.sub(r'\s+',' ',open(f'source/acts/text/{k:03d}.txt').read())
+    return bool(re.search(r'\b(?:article|articles|arts?\.)\s(?:[\dA-Z, -]*?(?:and )?)?'+re.escape(n.replace('-',''))+r'\b|'+re.escape(n)+r'\.',t)) or n in t
+IBID_FIX={('239',1):7,('394A',1):58}
+for (n,k),act in IBID_FIX.items():
+    assert 'ibid' in TA[n]['f'][k-1] and _act_has_art(act,n), ('IBID_FIX no longer fits', n, k)
+    TA[n]['fh'][k-1][0]=act
+for n,x in TA.items():
+    for i,f in enumerate(x.get('f',[])):
+        a=x['fh'][i][0]
+        if re.search(r'\bibid\b',f) and isinstance(a,int): assert _act_has_art(a,n), ('ibid. points to an Act that never mentions this article', n, i+1, a)
 # Official notes that record several changes in a row ("subs. by the 42nd ... and further subs. by the 44th ...").
 # data/hist_chain.json lists each step; it replaces the single row the parser makes for that note. Every Act, earlier
 # wording and date must be in the note itself, unless the step carries its own explanation (x), as the 102nd's date does.
@@ -250,20 +264,55 @@ for _n,_x in TA.items():
     for _r in _x.get('fh',[]):
         for _rr in (_r if _r and isinstance(_r[0],list) else [_r]):
             if isinstance(_rr[0],int) and _rr[3]: _note_dates[_rr[0]].add(_rr[3])
+# status lines of omitted articles and Part or Chapter heading notes are official notes too
+from hist import RX_W
+def _dated(t):
+    for m in RX_C.finditer(t):
+        w=RX_W.search(t,m.end())
+        if w: yield ordnum(m.group(1)), f"{w.group(3)}-{int(w.group(2)):02d}-{int(w.group(1)):02d}"
+for _x in TA.values():
+    if _x.get('st'):
+        for _a,_d in _dated(_x['st']): _note_dates[_a].add(_d)
+for _P in c['parts']:
+    for _l,_t in _P['f']:
+        for _a,_d in _dated(_t): _note_dates[_a].add(_d)
+def _in_order(q,t,gap=15):
+    """the words of q appear in t in order, with at most a few marginal-note words between neighbours; a word the scan
+    splits at a line end ("Naga- article land") may have marginal-note words inside it too"""
+    tok=lambda w: w.replace('"','').replace("'",'').strip(',.;:')
+    tw=[tok(w) for w in t.split()]
+    qw=[tok(w) for w in re.sub(r'(\w)- ([a-z])',r'\1\2',q).split()]
+    def at(j,word):
+        if tw[j]==word: return j+1
+        if tw[j].endswith('-') and len(tw[j])>1:
+            for m in range(j+1,min(j+9,len(tw))):
+                if tw[j][:-1]+tw[m]==word: return m+1
+        return None
+    for st in range(len(tw)):
+        j=at(st,qw[0])
+        if j is None: continue
+        for w in qw[1:]:
+            nxt=next((r for r in (at(x,w) for x in range(j,min(j+gap+1,len(tw)))) if r),None)
+            if nxt is None: break
+            j=nxt
+        else: return True
+    return False
 _HA=json.load(open('data/hist_acts.json'))
 for st in _HA['steps']:
     art,k=st['art'],st['act']; assert art in TA, ('hist_acts: no such article', art)
     t=_act_text(k); q=_nz(st['q'])
-    assert q in t, ('hist_acts: amending words not in the Act', k, st['sec'], q[:80])
+    assert q in t or (st.get('qgap') and _in_order(q,t)), ('hist_acts: amending words not in the Act', k, st['sec'], q[:80])
     for w in ('o','nw'):
-        if st.get(w): assert _nz(st[w]) in t, ('hist_acts: words not in the Act', k, st[w])
+        if st.get(w): assert _nz(st[w]) in t or _in_order(_nz(st[w]),t), ('hist_acts: words not in the Act', k, st[w])
     d=st.get('d','')
     if d:
         src=st['dsrc']
         if src in ('act','assent'): assert d in _act_dates(k), ('hist_acts: date not in the Act', k, d)
         else: assert src=='note' and d in _note_dates[k], ('hist_acts: no official note gives this date', k, d)
     x=st.get('x',''); assert '—' not in x
-    TA[art].setdefault('fa',[]).append([k,st['v'],st.get('o',''),d,st.get('r',0),'',st.get('n',0),x,st.get('w',''),st.get('nw',''),0,st['sec']])
+    pdf=f'src/source/acts/{k:03d}.pdf'
+    if not os.path.exists(pdf[4:]): assert str(k) in _HA['_comp_pages'], ('hist_acts: no copy of the Act to link to', k); pdf=f"src/source/acts/compilation_LS2008.pdf#page={_HA['_comp_pages'][str(k)]}"
+    TA[art].setdefault('fa',[]).append([k,st['v'],st.get('o',''),d,st.get('r',0),'',st.get('n',0),x,st.get('w',''),st.get('nw',''),0,st['sec'],pdf])
 text=dict(a=TA,s=TS,g=gl,bs=BS,next=NX)
 os.makedirs('site',exist_ok=True)
 json.dump(core,open('site/core.json','w'),ensure_ascii=False,separators=(',',':'))

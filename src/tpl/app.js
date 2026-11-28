@@ -1551,12 +1551,13 @@ function toggleKeys(force) {
 const VERB = { ins: "Added", add: "Added", subs: "Replaced", omit: "Removed", renum: "Renumbered", undo: "Cancelled", pend: "Not yet in force", inv: "Declared invalid", other: "Changed" };
 /* the part of a clause that begins "Provided that" (lawyers call it a proviso) */
 const PROV = "the \u201cProvided that\u201d part of ";
-// our saved official copy of an Amendment Act (src/source/acts), served by GitHub Pages; absolute so it also works in the artifact
-const ACT_PDF = n => `__SITE__src/source/acts/${String(n).padStart(3, "0")}.pdf`;
+// links to our saved official sources (src/source) go to GitHub Pages, so they also work in the artifact
+const SITE_URL = "__SITE__";
 const actLabel = a => typeof a === "number" ? `<a href="#amend-${a}">${nth(a)} Amendment Act</a>` : a ? esc(String(a).replace(/^C\.O\. (\d+)$/, "Constitution Order $1")) : "Not stated in the note";
 // fa: changes the official notes leave out, taken from the Amendment Act itself; same row shape plus the Act's section
 function timelineHTML(f, sc, fh, hn, kind, fa) {
-  if (!f || !f.length || !fh) return histHTML(f, sc);
+  if (!(fa && fa.length) && (!f || !f.length || !fh)) return histHTML(f, sc);
+  f = f || []; fh = fh || [];
   const ev = new Map(), other = [];
   // an earlier step of a note keeps only the clause from its place: the quoted words are today's, not that step's
   const where = (k, early) => { const s = sc && sc[k]; if (!s || !s.where) return ""; const w = esc(s.where.replace(/^an omission in /, "in ").replace(/^an omission$/, "").replace(early ? /^the words? “[^”]*” ?/ : /^$/, "")); if (!w) return ""; return s.none ? `<span class="whr">${w}</span>` : `<button class="lnk" type="button" data-goto-fn="${k}">${w}</button>`; };
@@ -1583,28 +1584,29 @@ function timelineHTML(f, sc, fh, hn, kind, fa) {
     }
   }));
   (fa || []).forEach(x => {
-    const [a, v, o, d, r, , pend, fix, w, nw, , sec] = x, amd = AMD_BY.get(a);
+    const [a, v, o, d, r, , pend, fix, w, nw, , sec, pdf] = x, amd = AMD_BY.get(a);
     const yr = d ? d.slice(0, 4) : String(amd ? amd.y : ""), sort = d || (yr + "-12-31");
     const when = pend === 2 ? "Never brought into force" : d ? "In force from " + fmtDate(d) : r ? "With retrospective effect" : yr;
     const key = a + "|" + when;
     if (!ev.has(key)) ev.set(key, { sort, yr, when, act: a, items: [] });
     const isHead = kind === "art" && !w && (v === "ins" || v === "add");
     if (isHead) added = key;
-    ev.get(key).items.push({ v: isHead ? "art" : v, o, fix, w, nw, act: a, sec });
+    ev.get(key).items.push({ v: isHead ? "art" : v, o, fix, w, nw, act: a, sec, pdf });
   });
   const list = [...ev.values()].sort((a, b) => a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : 0);
   const item = it => {
     const lab = it.v === "art" ? (kind === "art" ? "This article was added" : "Added") : VERB[it.v] || "Changed";
-    const old = (it.o && it.nw ? `<span class="old">“${esc(it.o)}” became “${esc(it.nw)}”</span>` : it.o ? `<span class="old">${it.v === "omit" ? "Removed wording" : "Earlier wording"}: “${esc(it.o)}”</span>` : "") + (it.fix ? `<span class="old">${esc(it.fix)}</span>` : "");
-    const src = it.sec ? `<a class="actsrc" href="${ACT_PDF(it.act)}" target="_blank" rel="noopener" aria-label="Section ${esc(it.sec)} of the ${nth(it.act)} Amendment Act (official copy, opens a PDF)">s.\u00a0${esc(it.sec)} of the Act</a>` : `<button class="fn" type="button" data-fn="${it.k}" aria-label="Official note ${it.k}" aria-expanded="false">${it.k}</button>`;
+    const old = (it.o && it.nw ? `<span class="old">“${esc(it.o)}” became “${esc(it.nw)}”</span>` : it.o ? `<span class="old">${it.v === "omit" ? "Removed wording" : "Earlier wording"}: “${esc(it.o)}”</span>` : it.nw ? `<span class="old">New wording: “${esc(it.nw)}”</span>` : "") + (it.fix ? `<span class="old">${esc(it.fix)}</span>` : "");
+    const src = it.sec ? `<a class="actsrc" href="${SITE_URL}${esc(it.pdf)}" target="_blank" rel="noopener" aria-label="Section ${esc(it.sec)} of the ${nth(it.act)} Amendment Act (official copy, opens a PDF)">s.\u00a0${esc(it.sec)} of the Act</a>` : `<button class="fn" type="button" data-fn="${it.k}" aria-label="Official note ${it.k}" aria-expanded="false">${it.k}</button>`;
     return `<li><span class="vb v-${it.v}">${lab}</span>${it.v === "art" ? "" : it.w ? `<span class="whr">${esc(it.w)}</span>` : where(it.k, it.early)}${src}${old}</li>`;
   };
   const root = added ? "" : `<li class="ev root"><span class="yr">1949</span><div><div class="eh"><b>In the Constitution as adopted</b><span>26 November 1949</span></div></div></li>`;
   const nActs = new Set((fa || []).map(x => x[0])).size;
-  return `<section class="block" aria-labelledby="hh"><h2 id="hh">History <small>Built from the ${f.length} official note${f.length > 1 ? "s" : ""}${nActs ? ` and ${nActs === 1 ? "one Amendment Act" : nActs + " Amendment Acts"}` : ""}</small></h2>
+  const fromActs = nActs === 1 ? "one Amendment Act" : nActs + " Amendment Acts";
+  return `<section class="block" aria-labelledby="hh"><h2 id="hh">History <small>Built from ${f.length ? `the ${f.length} official note${f.length > 1 ? "s" : ""}${nActs ? " and " + fromActs : ""}` : fromActs}</small></h2>
     <ol class="tline">${root}${list.map(e => `<li class="ev${e.court ? " court" : ""}"><span class="yr">${e.yr || "·"}</span><div><div class="eh"><b>${e.court ? "Declared invalid by the Supreme Court" : actLabel(e.act)}</b><span>${e.court ? "" : esc(e.when)}</span></div><ul>${e.items.map(item).join("")}</ul></div></li>`).join("")}</ol>
     ${other.length ? `<p class="tl-other">Other official notes: ${other.map(k => `<button class="fn" type="button" data-fn="${k}" aria-label="Official note ${k}" aria-expanded="false">${k}</button>`).join(" ")}</p>` : ""}
-    <details class="allnotes"><summary>All official notes, word for word</summary>${histHTML(f, sc).replace(/^<section[^>]*><h2[^>]*>.*?<\/h2>/, "").replace(/<\/section>$/, "")}</details>
+    ${f.length ? `<details class="allnotes"><summary>All official notes, word for word</summary>${histHTML(f, sc).replace(/^<section[^>]*><h2[^>]*>.*?<\/h2>/, "").replace(/<\/section>$/, "")}</details>` : ""}
   </section>`;
 }
 

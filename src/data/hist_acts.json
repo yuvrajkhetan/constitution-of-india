@@ -1,4 +1,1383 @@
 {
-  "_about": "Changes to articles that no official note records (usually because a later Act replaced the same words and the edition kept only the latest note), taken from the Amendment Acts themselves. make_data.py checks each against the Act's text in source/acts/text/NNN.txt. Fields: art, act, sec (section of the Act), v (ins, subs, omit, renum, add), w (place), o (earlier words), nw (new words), d (date in force), dsrc (how the date is known: 'act' = the Act's own commencement words, 'assent' = the Act is silent so it took effect on assent, 'note' = an official note gives this Act's date), r (retrospective), n (2 = never brought into force), x (an extra line for readers), q (the Act's own amending words, for the check).",
-  "steps": []
+ "_about": "Changes to articles that no official note records (usually because a later Act replaced the same words and the edition kept only the latest note), taken from the Amendment Acts themselves. make_data.py checks each against the Act's text in source/acts/text/NNN.txt. Fields: art, act, sec (section of the Act), v (ins, subs, omit, renum, add), w (place), o (earlier words), nw (new words), d (date in force), dsrc (how the date is known: 'act' = the Act's own commencement words, 'assent' = the Act is silent so it took effect on assent, 'note' = an official note gives this Act's date), r (retrospective), n (2 = never brought into force), x (an extra line for readers), q (the Act's own amending words, for the check; qgap 1 = marginal notes in the scan interrupt them, so the words are matched in order).",
+ "steps": [
+  {
+   "art": "81",
+   "act": 2,
+   "sec": "2",
+   "v": "omit",
+   "w": "sub-clause (b) of clause (1)",
+   "o": "not less than one member for every 750,000 of the population and",
+   "d": "1953-05-01",
+   "dsrc": "assent",
+   "q": "In sub-clause (b) of clause (1) of article 81 of the Constitution, the words and figures \"not less than one member for every 750,000 of the population and\" shall be omitted."
+  },
+  {
+   "art": "31",
+   "act": 4,
+   "sec": "2",
+   "v": "subs",
+   "w": "clause (2)",
+   "d": "1955-04-27",
+   "dsrc": "note",
+   "q": "In article 31 of the Constitution, for clause (2), the following clauses shall be substituted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "231",
+   "act": 7,
+   "sec": "16",
+   "v": "subs",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "For articles 230, 231 and 232 of the Constitution, the follow- ing articles shall be substituted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "232",
+   "act": 7,
+   "sec": "16",
+   "v": "subs",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "For articles 230, 231 and 232 of the Constitution, the follow- ing articles shall be substituted, namely: —",
+   "x": "The Act replaced articles 230, 231 and 232 with new articles 230 and 231.",
+   "qgap": 1
+  },
+  {
+   "art": "238",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit Part VII.",
+   "x": "The Act omitted Part VII, which held only this article."
+  },
+  {
+   "art": "242",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit article 242."
+  },
+  {
+   "art": "243",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "w": "the original article 243, with Part IX",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit Part IX.",
+   "x": "The original Part IX covered the territories in Part D of the First Schedule. Today's article 243 was added in 1993."
+  },
+  {
+   "art": "259",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit article 259."
+  },
+  {
+   "art": "269",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "subs",
+   "w": "clause (2)",
+   "o": "States specified in Part C of the First Schedule",
+   "nw": "Union territories",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 269.—In clause (2), for \"States specified in Part C of the First Schedule\" substitute \"Union territories\"."
+  },
+  {
+   "art": "270",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "subs",
+   "w": "clause (2)",
+   "o": "States specified in Part C of the First Schedule",
+   "nw": "Union territories",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 270.—In clauses (2) and (3), for \"States specified in Part C of the First Schedule\" substitute \"Union territories\"."
+  },
+  {
+   "art": "270",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "subs",
+   "w": "clause (3)",
+   "o": "States specified in Part C of the First Schedule",
+   "nw": "Union territories",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 270.—In clauses (2) and (3), for \"States specified in Part C of the First Schedule\" substitute \"Union territories\"."
+  },
+  {
+   "art": "278",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit article 278."
+  },
+  {
+   "art": "280",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "w": "sub-clause (c) of clause (3)",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 280.—In clause (3), omit sub-clause (c) and re-letter sub- clause (d) as sub-clause (c)."
+  },
+  {
+   "art": "280",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "renum",
+   "w": "sub-clause (d) of clause (3)",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 280.—In clause (3), omit sub-clause (c) and re-letter sub- clause (d) as sub-clause (c)."
+  },
+  {
+   "art": "291",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "w": "the clause number",
+   "o": "(1)",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 291.—Omit \"(1)\" and clause (2)."
+  },
+  {
+   "art": "291",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "w": "clause (2)",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 291.—Omit \"(1)\" and clause (2)."
+  },
+  {
+   "art": "306",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit article 306."
+  },
+  {
+   "art": "311",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "w": "clause (2)",
+   "o": "or Rajpramukh",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 311.—In clause (2), omit \"or Rajpramukh\"."
+  },
+  {
+   "art": "31A",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "subs",
+   "w": "sub-clause (a) of clause (2)",
+   "o": "Travancore-Cochin",
+   "nw": "Kerala",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 31A.—In sub-clause (a) of clause (2), for \"Travancore- Cochin\" substitute \"Kerala\"."
+  },
+  {
+   "art": "350B",
+   "act": 7,
+   "sec": "21",
+   "v": "ins",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "After article 350 of the Constitution, the following articles shall be inserted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "362",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "o": "clause (1) of",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Article 362.—Omit \"clause (1) of\"."
+  },
+  {
+   "art": "379",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "380",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "381",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "382",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "383",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "384",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "385",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "386",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "387",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "388",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "389",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "390",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "391",
+   "act": 7,
+   "sec": "29(1), Sch.",
+   "v": "omit",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "Omit articles 379 to 391, both inclusive."
+  },
+  {
+   "art": "82",
+   "act": 7,
+   "sec": "4",
+   "v": "subs",
+   "d": "1956-11-01",
+   "dsrc": "note",
+   "q": "4 For articles 81 and 82 of the Constitution, the following articles shall be substituted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "334",
+   "act": 8,
+   "sec": "2",
+   "v": "subs",
+   "o": "ten years",
+   "nw": "twenty years",
+   "d": "1960-01-05",
+   "dsrc": "assent",
+   "q": "In article 334 of the Constitution, for the words \"ten years\", the words \"twenty years\" shall be substituted.",
+   "qgap": 1
+  },
+  {
+   "art": "71",
+   "act": 11,
+   "sec": "3",
+   "v": "ins",
+   "w": "after clause (3)",
+   "d": "1961-12-19",
+   "dsrc": "note",
+   "q": "In article 71 of the Constitution, after clause (3), the following clause shall be inserted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "240",
+   "act": 12,
+   "sec": "3",
+   "v": "ins",
+   "w": "clause (1), after entry (c)",
+   "nw": "(d) Goa, Daman and Diu.",
+   "d": "1961-12-20",
+   "dsrc": "act",
+   "q": "In article 240 of the Constitution, in clause (I), after entry (c), the following entry shall be inserted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "81",
+   "act": 14,
+   "sec": "2",
+   "v": "subs",
+   "w": "sub-clause (b) of clause (1)",
+   "o": "twenty members",
+   "nw": "twenty-five members",
+   "d": "1962-12-28",
+   "dsrc": "assent",
+   "q": "In article 81 of the Constitution, in sub-clause (b) of clause (1), for the words \"twenty members\", the words \"twenty-five members\" shall be substituted.",
+   "qgap": 1
+  },
+  {
+   "art": "226",
+   "act": 15,
+   "sec": "8(a)",
+   "v": "ins",
+   "w": "after clause (1)",
+   "d": "1963-10-05",
+   "dsrc": "note",
+   "q": "In article 226 of the Constitution— (a) after clause (1), the following clause shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "226",
+   "act": 15,
+   "sec": "8(b)",
+   "v": "subs",
+   "w": "clause (2)",
+   "o": "clause (1)",
+   "nw": "clause (1) or clause (1A)",
+   "d": "1963-10-05",
+   "dsrc": "note",
+   "q": "(b) in clause (2), for the words, brackets and figure “clause (1)”, the words, brackets, figures and letter “clause (1) or clause (1A)” shall be substituted."
+  },
+  {
+   "art": "297",
+   "act": 15,
+   "sec": "9",
+   "v": "ins",
+   "w": "after the words “territorial waters”",
+   "nw": "or the continental shelf",
+   "d": "1963-10-05",
+   "dsrc": "note",
+   "q": "In article 297 of the Constitution, after the words “territorial waters”, the words “or the continental shelf” shall be inserted.",
+   "qgap": 1
+  },
+  {
+   "art": "330",
+   "act": 23,
+   "sec": "2",
+   "v": "subs",
+   "w": "sub-clause (b) of clause (1)",
+   "o": "except the Scheduled Tribes in the tribal areas of Assam",
+   "nw": "except the Scheduled Tribes in the tribal areas of Assam and in Nagaland",
+   "d": "1970-01-23",
+   "dsrc": "note",
+   "q": "In article 330 of the Constitution, in sub-clause (b) of clause (1), for the words \"except the Scheduled Tribes in the tribal areas of Assam\", the words \"except the Scheduled Tribes in the tribal areas of Assam and in Nagaland\" shall be substituted.",
+   "qgap": 1
+  },
+  {
+   "art": "332",
+   "act": 23,
+   "sec": "3",
+   "v": "subs",
+   "w": "clause (1)",
+   "o": "except the Scheduled Tribes in the tribal areas of Assam",
+   "nw": "except the Scheduled Tribes in the tribal areas of Assam and in Nagaland",
+   "d": "1970-01-23",
+   "dsrc": "note",
+   "q": "In article 3.32- of the Constitute, ifi clause (1), for the words \"except the Schedule^ Tribes in the tribal areas of Assam\", the words \"except the Scheduled Tribes in the tribal areas of Assam and in Naga- land\" shall be substituted.",
+   "qgap": 1
+  },
+  {
+   "art": "334",
+   "act": 23,
+   "sec": "5",
+   "v": "subs",
+   "o": "twenty years",
+   "nw": "thirty years",
+   "d": "1970-01-23",
+   "dsrc": "note",
+   "q": "In article 334 of the Constitution, for the words \"twenty years\", the words \"thirty years\" shall be substituted.",
+   "qgap": 1
+  },
+  {
+   "art": "31",
+   "act": 25,
+   "sec": "2(a)",
+   "v": "subs",
+   "w": "clause (2)",
+   "d": "1972-04-20",
+   "dsrc": "note",
+   "q": "(a) for clause (2), the following clause shall be substituted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "31",
+   "act": 25,
+   "sec": "2(b)",
+   "v": "ins",
+   "w": "clause (2B)",
+   "d": "1972-04-20",
+   "dsrc": "note",
+   "q": "(b) after clause (2A), the following clause shall be inserted, namely: —"
+  },
+  {
+   "art": "291",
+   "act": 26,
+   "sec": "2",
+   "v": "omit",
+   "d": "1971-12-28",
+   "dsrc": "note",
+   "q": "Articles 291 and 362 of the Constitution shall be omitted."
+  },
+  {
+   "art": "362",
+   "act": 26,
+   "sec": "2",
+   "v": "omit",
+   "d": "1971-12-28",
+   "dsrc": "note",
+   "q": "Articles 291 and 362 of the Constitution shall be omitted."
+  },
+  {
+   "art": "239A",
+   "act": 27,
+   "sec": "2",
+   "v": "subs",
+   "w": "clause (1)",
+   "o": "Goa, Daman and Diu, and Pondicherry",
+   "nw": "Goa, Daman and Diu, Pondicherry and Mizoram",
+   "d": "1972-02-15",
+   "dsrc": "note",
+   "q": "In article 239A of the Constitution, in clause (1), for the words “Goa, Daman and Diu, and Pondicherry”, the words “Goa, Daman and Diu, Pondicherry and Mizoram” shall be substituted.",
+   "qgap": 1
+  },
+  {
+   "art": "314",
+   "act": 28,
+   "sec": "3",
+   "v": "omit",
+   "d": "1972-08-29",
+   "dsrc": "note",
+   "q": "Article 314 of the Constitution shall be omitted."
+  },
+  {
+   "art": "332",
+   "act": 31,
+   "sec": "4(1)",
+   "v": "subs",
+   "w": "clause (1)",
+   "o": "except the Scheduled Tribes in the tribal areas of Assam and in Nagaland",
+   "d": "1973-10-17",
+   "dsrc": "note",
+   "q": "In article 332 of the Constitution, in clause (1), for the words \"except the Scheduled Tribes in the tribal areas of Assam and in Naga- land\", the words \"except the Scheduled Tribes in the tribal areas of Assam, in Nagaland and in Meghalaya\" shall be substituted.",
+   "qgap": 1
+  },
+  {
+   "art": "371E",
+   "act": 32,
+   "sec": "3",
+   "v": "ins",
+   "d": "1974-07-01",
+   "dsrc": "note",
+   "q": "After article 371C of the Constitution, the following articles shall be inserted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "2A",
+   "act": 36,
+   "sec": "5(a)",
+   "v": "omit",
+   "d": "1975-04-26",
+   "dsrc": "note",
+   "q": "(a) article 2A shall be omitted;"
+  },
+  {
+   "art": "239A",
+   "act": 37,
+   "sec": "2",
+   "v": "subs",
+   "w": "clause (1)",
+   "o": "Pondicherry and Mizoram",
+   "nw": "Pondicherry, Mizoram and Arunachal Pradesh",
+   "d": "1975-05-03",
+   "dsrc": "assent",
+   "q": "In article 239A of the Constitution, in clause(1), for the words “Pondicherry and Mizoram”, the words “Pondicherry, Mizoram and Arunachal Pradesh” shall be substituted.",
+   "qgap": 1
+  },
+  {
+   "art": "240",
+   "act": 37,
+   "sec": "3",
+   "v": "subs",
+   "w": "both the provisos to clause (1)",
+   "o": "Pondicherry or Mizoram",
+   "nw": "Pondicherry, Mizoram or Arunachal Pradesh",
+   "d": "1975-05-03",
+   "dsrc": "assent",
+   "q": "In article 240 of the Constitution, in clause(1), in both the provisos, for the words “Pondicherry or Mizoram”, the words “Pondicherry, Mizoram or Arunachal Pradesh” shall be substituted.",
+   "qgap": 1
+  },
+  {
+   "art": "323A",
+   "act": 42,
+   "sec": "46",
+   "v": "ins",
+   "d": "1977-01-03",
+   "dsrc": "note",
+   "q": "After Part XIV of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "323B",
+   "act": 42,
+   "sec": "46",
+   "v": "ins",
+   "d": "1977-01-03",
+   "dsrc": "note",
+   "q": "After Part XIV of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "51A",
+   "act": 42,
+   "sec": "11",
+   "v": "ins",
+   "d": "1977-01-03",
+   "dsrc": "note",
+   "q": "After Part IV of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "131A",
+   "act": 43,
+   "sec": "4(1)",
+   "v": "omit",
+   "d": "1978-04-13",
+   "dsrc": "note",
+   "q": "Article 131 A of the Constitution shall be omitted."
+  },
+  {
+   "art": "144A",
+   "act": 43,
+   "sec": "5(1)",
+   "v": "omit",
+   "d": "1978-04-13",
+   "dsrc": "note",
+   "q": "Article 144A of the Constitution shall be omitted."
+  },
+  {
+   "art": "226A",
+   "act": 43,
+   "sec": "8(1)",
+   "v": "omit",
+   "d": "1978-04-13",
+   "dsrc": "note",
+   "q": "Article 226A of the Constitution shall be omitted."
+  },
+  {
+   "art": "228A",
+   "act": 43,
+   "sec": "10(1)",
+   "v": "omit",
+   "d": "1978-04-13",
+   "dsrc": "note",
+   "q": "Article 228A of the Constitution shall be omitted."
+  },
+  {
+   "art": "31D",
+   "act": 43,
+   "sec": "2",
+   "v": "omit",
+   "d": "1978-04-13",
+   "dsrc": "note",
+   "q": "Article 31D of the Constitution shall be omitted."
+  },
+  {
+   "art": "32A",
+   "act": 43,
+   "sec": "3(1)",
+   "v": "omit",
+   "d": "1978-04-13",
+   "dsrc": "note",
+   "q": "Article 32A of the Constitution shall be omitted."
+  },
+  {
+   "art": "257A",
+   "act": 44,
+   "sec": "33",
+   "v": "omit",
+   "d": "1979-06-20",
+   "dsrc": "note",
+   "q": "Article 257A of the Constitution shall be omitted."
+  },
+  {
+   "art": "300A",
+   "act": 44,
+   "sec": "34",
+   "v": "ins",
+   "d": "1979-06-20",
+   "dsrc": "note",
+   "q": "In Part XII of the Constitution, after Chapter III, the following Chapter shall be inserted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "31",
+   "act": 44,
+   "sec": "6",
+   "v": "omit",
+   "d": "1979-06-20",
+   "dsrc": "note",
+   "q": "Article 31 of the Constitution shall be omitted."
+  },
+  {
+   "art": "329A",
+   "act": 44,
+   "sec": "36",
+   "v": "omit",
+   "d": "1979-06-20",
+   "dsrc": "note",
+   "q": "Article 329A of the Constitution shall be omitted."
+  },
+  {
+   "art": "286",
+   "act": 46,
+   "sec": "3",
+   "v": "subs",
+   "w": "clause (3)",
+   "d": "1983-02-02",
+   "dsrc": "note",
+   "q": "In article 286 of the Constitution, for clause (3), the following clause shall be substituted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "356",
+   "act": 48,
+   "sec": "2",
+   "v": "ins",
+   "w": "clause (5)",
+   "d": "1984-08-26",
+   "dsrc": "assent",
+   "q": "In article 356 of the Constitution, in clause (5), the following proviso shall be inserted at the end, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "356",
+   "act": 59,
+   "sec": "2",
+   "v": "subs",
+   "w": "the proviso to clause (5)",
+   "d": "1988-03-30",
+   "dsrc": "note",
+   "q": "In article 356 of the Constitution, in clause (5), for the proviso, the following proviso shall be substituted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "359A",
+   "act": 63,
+   "sec": "3",
+   "v": "omit",
+   "d": "1990-01-06",
+   "dsrc": "note",
+   "q": "Article 359A of the Constitution shall be omitted."
+  },
+  {
+   "art": "239AB",
+   "act": 69,
+   "sec": "2",
+   "v": "ins",
+   "d": "1992-02-01",
+   "dsrc": "note",
+   "q": "After article 239A of the Constitution, the following articles shall be inserted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "w": "a new article 243, in a new Part IX",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243-I",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243A",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243B",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243C",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243D",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243E",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243F",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243G",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243H",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243J",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243K",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243L",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243M",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243N",
+   "act": 73,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-04-24",
+   "dsrc": "note",
+   "q": "After Part VIII of the Constitution, the following Part shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "243P",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243Q",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243R",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243S",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243T",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243U",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243V",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243W",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243X",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243Y",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243Z",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243ZA",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243ZB",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243ZC",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243ZD",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243ZE",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243ZF",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "243ZG",
+   "act": 74,
+   "sec": "2",
+   "v": "ins",
+   "d": "1993-06-01",
+   "dsrc": "note",
+   "q": "After Part IX of the Constitution, the following Part shall be in- serted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "272",
+   "act": 80,
+   "sec": "4(1)",
+   "v": "omit",
+   "d": "2000-06-09",
+   "dsrc": "note",
+   "q": "Article 272 of the Constitution shall be omitted."
+  },
+  {
+   "art": "243Z-I",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZH",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZJ",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZK",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZL",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZM",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZN",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZO",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZP",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZQ",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZR",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZS",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "243ZT",
+   "act": 97,
+   "sec": "4",
+   "v": "ins",
+   "d": "2012-02-15",
+   "dsrc": "note",
+   "q": "After Part IXA of the Constitution, the following Part shall be inserted, namely:-"
+  },
+  {
+   "art": "124B",
+   "act": 99,
+   "sec": "3",
+   "v": "ins",
+   "d": "2015-04-13",
+   "dsrc": "note",
+   "q": "After article 124 of the Constitution, the following articles shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "124C",
+   "act": 99,
+   "sec": "3",
+   "v": "ins",
+   "d": "2015-04-13",
+   "dsrc": "note",
+   "q": "After article 124 of the Constitution, the following articles shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "268A",
+   "act": 101,
+   "sec": "7",
+   "v": "omit",
+   "d": "2016-09-16",
+   "dsrc": "note",
+   "q": "Article 268A of the Constitution, as inserted by section 2 of the Constitution (Eighty-eighth Amendment) Act, 2003 shall be omitted.",
+   "qgap": 1
+  },
+  {
+   "art": "31A",
+   "act": 4,
+   "sec": "3(b)(i)",
+   "v": "ins",
+   "w": "sub-clause (a) of clause (2), after the word \"grant\"",
+   "nw": "and in the States of Madras and Travancore-Cochin, any janmam right",
+   "d": "1955-04-27",
+   "dsrc": "note",
+   "q": "in clause (2),— (i) in sub-clause (a), after the word \"grant\", the words \"and in the States of Madras and Travancore-Cochin, any janmam right\" shall be, and shall be deemed always to have been, inserted; and"
+  },
+  {
+   "art": "269",
+   "act": 6,
+   "sec": "3(a)",
+   "v": "ins",
+   "w": "clause (1), after sub-clause (f)",
+   "d": "1956-09-11",
+   "dsrc": "note",
+   "q": "In article 269 of the Constitution,— (a) in clause (1), after sub-clause (f), the following aub- clause shall be inserted, namely:—",
+   "qgap": 1
+  },
+  {
+   "art": "240",
+   "act": 27,
+   "sec": "4(a)(i)",
+   "v": "ins",
+   "w": "clause (1), after entry (e)",
+   "nw": "(f) Mizoram; (g) Arunachal Pradesh:",
+   "d": "1972-02-15",
+   "dsrc": "note",
+   "q": "(i) after entry (e), the following entries shall be inserted, namely:—"
+  },
+  {
+   "art": "240",
+   "act": 27,
+   "sec": "4(a)(ii)",
+   "v": "subs",
+   "w": "the proviso to clause (1)",
+   "o": "Union territory of Goa, Daman and Diu or Pondicherry",
+   "nw": "Union territory of Goa, Daman and Diu, Pondicherry or Mizoram",
+   "d": "1972-02-15",
+   "dsrc": "note",
+   "q": "(ii) in the proviso, for the words “Union territory of Goa, Daman and Diu or Pondicherry”, the words “Union territory of Goa, Daman and Diu, Pondicherry or Mizoram” shall be substituted;"
+  },
+  {
+   "art": "81",
+   "act": 31,
+   "sec": "2(a)(i)",
+   "v": "subs",
+   "w": "sub-clause (a) of clause (1)",
+   "o": "five hundred members",
+   "nw": "five hundred and twenty-five members",
+   "d": "1973-10-17",
+   "dsrc": "note",
+   "q": "(i) in sub-clause (a), for the words \"five hundred mem- bers\", the words \"five hundred and twenty-five members\" shall be substituted and"
+  },
+  {
+   "art": "330",
+   "act": 31,
+   "sec": "3(1)(a)",
+   "v": "subs",
+   "w": "sub-clause (b) of clause (1)",
+   "o": "except the Scheduled Tribes in the tribal areas of Assam and in Nagaland, and",
+   "d": "1973-10-17",
+   "dsrc": "note",
+   "q": "(a) in sub-clause (b) of clause (I), for the words \"except the Scheduled Tribes in the tribal areas of Assam and in Nagaland, and\", the following shall be substituted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "352",
+   "act": 42,
+   "sec": "48(b)",
+   "v": "ins",
+   "w": "sub-clause (a) of clause (2), after the word “revoked”",
+   "nw": "or varied",
+   "d": "1977-01-03",
+   "dsrc": "note",
+   "q": "(b) In clause (2), in sub-clause (a), after the word “revoked”, the words “or varied” shall be inserted;"
+  },
+  {
+   "art": "352",
+   "act": 42,
+   "sec": "48(c)",
+   "v": "ins",
+   "w": "clause (2A)",
+   "d": "1977-01-03",
+   "dsrc": "note",
+   "q": "(c) after clause (2), the following clause shall be inserted, namely:—"
+  },
+  {
+   "art": "269",
+   "act": 46,
+   "sec": "2(a)",
+   "v": "ins",
+   "w": "sub-clause (h) of clause (1) (inserted after sub-clause (g))",
+   "d": "1983-02-02",
+   "dsrc": "note",
+   "q": "In article 269 of the Constitution,— (a) in clause (1), after sub-clause ( g ) , t h e following sub-clause shall be inserted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "338",
+   "act": 65,
+   "sec": "2(a)",
+   "v": "subs",
+   "w": "the marginal heading",
+   "nw": "National Commission for Scheduled Castes and Scheduled Tribes.",
+   "d": "1992-03-12",
+   "dsrc": "note",
+   "q": "In article 338 of the Constitution,— (a) for the marginal heading, the following marginal heading shall be substituted, namely: —",
+   "qgap": 1
+  },
+  {
+   "art": "330",
+   "act": 84,
+   "sec": "6",
+   "v": "subs",
+   "w": "the proviso to the Explanation",
+   "o": "1971",
+   "nw": "1991",
+   "d": "2002-02-21",
+   "dsrc": "note",
+   "q": "In article 330 of the Constitution, in the proviso to the Explanation, for the figures \"2000\" and \" 1971\", the figures \"2026\" and \"1991\" shall respectively be substituted.",
+   "qgap": 1
+  }
+ ],
+ "_comp_pages": {
+  "_about": "Acts with no Gazette copy of their own link to their page in the Lok Sabha Secretariat compilation (source/acts/compilation_LS2008.pdf).",
+  "36": 482,
+  "37": 488,
+  "42": 506
+ }
 }
