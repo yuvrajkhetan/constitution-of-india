@@ -1,0 +1,377 @@
+[
+ {
+  "n": 1,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/001.pdf p.1 (image): title dated “[18th June, 1951]”, no commencement clause; ss. 2-14 amend arts 15, 19, insert 31A, 31B, substitute 85, amend 87, substitute 174, amend 176, 341, 342, 372, 376, add Ninth Schedule (src/source/acts/compilation_LS2008.pdf PDF pp.367-373). Footnotes in src/source/Constitution_of_India_10.9.2026.pdf.txt: “(w.e.f. 18-6-1951)”.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 2,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/002.pdf p.1: “received the assent of the President on the 1st May, 1953”; s.2: “In sub-clause (b) of clause (1) of article 81 of the Constitution, the words and figures “not less than one member for every 750,000 of the population and” shall be omitted.” No commencement clause, so in force on assent.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 3,
+  "verdict": "fix",
+  "issues": [
+   "The summary does not say which List entry 33 is in. Each of the three Lists has an entry 33; the Act replaced entry 33 of List III, the Concurrent List.",
+   "It also leaves out what changed: the new entry adds foodstuffs, cattle fodder, raw cotton and cotton seed, and raw jute (and imported goods of the same kind as products of Union-controlled industries)."
+  ],
+  "evidence": "src/source/acts/003.pdf p.1: assent 22nd February 1955; s.2: “In the Seventh Schedule to the Constitution, for entry 33 of List III, the following entry shall be substituted, namely:— “33. Trade and commerce in, and the production, supply and distribution of,— (a) the products of any industry where the control of such industry by the Union is declared by Parliament by law to be expedient in the public interest, and imported goods of the same kind as such products; (b) foodstuffs, including edible oilseeds and oils; (c) cattle fodder, including oilcakes and other concentrates; (d) raw cotton, whether ginned or unginned, and cotton seed; and (e) raw jute.” Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “Subs. by the Constitution (Third Amendment) Act, 1954, s. 2 for entry 33 (w.e.f. 22-2-1955).”",
+  "proposed_one_liner": "Replaced entry 33 of the Concurrent List in the Seventh Schedule, adding foodstuffs, cattle fodder, raw cotton, cotton seed and raw jute to the trade and production subjects that both Parliament and the States can make laws on.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 4,
+  "verdict": "fix",
+  "issues": [
+   "Leaves out section 2, a major change: it replaced Article 31(2) so that no law for acquiring property could be challenged in court on the ground that the compensation was not adequate, and added Article 31(2A).",
+   "refs should include a:31 (the Article was later omitted, but the site has an a:31 page)."
+  ],
+  "evidence": "src/source/acts/004.pdf (text layer): “2. In article 31 of the Constitution, for clause (2), the following clauses shall be substituted ... “(2) No property shall be compulsorily acquired or requisitioned save for a public purpose and save by authority of a law which provides for compensation ... and no such law shall be called in question in any court on the ground that the compensation provided by that law is not adequate. (2A) Where a law does not provide for the transfer of the ownership or right to possession of any property to the State ... it shall not be deemed to provide for the compulsory acquisition or requisitioning of property”. Assent [27th April 1955]. Same in src/source/acts/compilation_LS2008.pdf PDF pp.375-376.",
+  "proposed_one_liner": "Replaced Article 31(2) so that courts could not question a law for taking property on the ground that the compensation was not adequate, and added Article 31(2A). Also replaced Article 31A(1) and Article 305, and added entries 14 to 20 to the Ninth Schedule.",
+  "refs_add": [
+   "a:31"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 5,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/005.pdf: assent [24th December, 1955]; s.2: “In article 3 of the Constitution, for the proviso, the following proviso shall be substituted” (the new proviso lets the President set a period for the State Legislature to give its views). Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “(w.e.f. 24-12-1955)”.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 6,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/006.pdf: assent [11th September, 1956]; s.2 inserts entry 92A in the Union List and substitutes entry 54 of the State List; s.3 inserts art 269(1)(g) and 269(3); s.4 omits the Explanation to 286(1) and substitutes 286(2) and (3). Footnotes in src/source/Constitution_of_India_10.9.2026.pdf.txt: “(w.e.f. 11-9-1956)”.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 7,
+  "verdict": "fix",
+  "issues": [
+   "“removed Part A, B and C categories” is incomplete: there were four categories (Parts A, B, C and D of the First Schedule), and the Act replaced them with two, States and Union territories. The summary never mentions that it created Union territories, which is the main structural change.",
+   "refs miss Article 231 (common High Courts, s.16), Article 232 (omitted by s.16; the a:232 page carries that note) and Article 350B (Special Officer for linguistic minorities, s.21)."
+  ],
+  "evidence": "src/source/acts/007.pdf p.1: “It shall come into force on the 1st day of November, 1956.” (assent 19 October 1956). s.17: “for the heading “THE STATES IN PART C OF THE FIRST SCHEDULE”, the heading “THE UNION TERRITORIES” shall be substituted; and (b) for articles 239 and 240, the following articles shall be substituted”. s.16: “For articles 230, 231 and 232 of the Constitution, the following articles shall be substituted” (new 230 and 231: “Parliament may by law establish a common High Court for two or more States”). s.21: “After article 350 of the Constitution, the following articles shall be inserted ... 350A ... 350B. (1) There shall be a Special Officer for linguistic minorities”. Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “Arts. 350A and 350B ins. by s.21., ibid. (w.e.f. 1-11-1956).”",
+  "proposed_one_liner": "Reorganised the States: replaced the Part A, B, C and D categories with States and Union territories, and replaced Articles 81, 82, 170, 239 and 240. Also added Articles 258A, 290A, 350A and 350B, among others.",
+  "refs_add": [
+   "a:231",
+   "a:232",
+   "a:350B"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 8,
+  "verdict": "fix",
+  "issues": [
+   "The date is shown as the assent date, but the Act has no commencement clause, so it came into force on the day of assent, 5 January 1960 (General Clauses Act, 1897, s.5). The label can be “In force”."
+  ],
+  "evidence": "src/source/acts/008.pdf: “The following Act of Parliament received the assent of the President on the 5th January, 1960”; title “THE CONSTITUTION (EIGHTH AMENDMENT) ACT, 1959 [5th January, 1960]”; only two sections, s.1 short title and s.2 “In article 334 of the Constitution, for the words “ten years” the words “twenty years” shall be substituted.” No commencement provision. No footnote in the 2026 edition (the words were later replaced).",
+  "proposed_date": "1960-01-05",
+  "proposed_date_label": "In force",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 9,
+  "verdict": "fix",
+  "issues": [
+   "The summary says the territories were no longer part of Assam, Punjab, West Bengal and Tripura. The Act made that happen only “as from the appointed day”, which the Central Government could fix separately for each State. Only the Punjab part was brought into force, on 17 January 1961. The official 2026 text shows the Ninth Amendment exclusion only in Punjab’s entry; the Assam, West Bengal (Berubari) and Tripura parts never took effect and were later dealt with by the 100th Amendment (2015).",
+   "The summary also leaves out why: the transfer of these territories to Pakistan under the India-Pakistan agreements of 1958 to 1960.",
+   "site_date 17 January 1961 is right, but only for the Punjab part."
+  ],
+  "evidence": "src/source/acts/009.pdf p.1 (image): long title “to give effect to the transfer of certain territories to Pakistan in pursuance of the agreements entered into between the Governments of India and Pakistan” [28th December, 1960]; s.2(a): “appointed day” means such date as the Central Government may, by notification ... appoint ... and different dates may be appointed for the transfer of such territories from different States and from the Union territory of Tripura”; s.3: “As from the appointed day, in the First Schedule”; printed footnote: “17-1-1961 for Pt. II of the Sch. I, vide Notification No. G.S.R. 73, dated 14-1-1961”. In src/source/Constitution_of_India_10.9.2026.pdf.txt line 11206, only Punjab’s entry carries “4. Added by the Constitution (Ninth Amendment) Act, 1960, s. 3 (w.e.f. 17-1-1961).” The Assam, West Bengal and Tripura entries instead say “notwithstanding anything contained in clause (a) [(c), (d)] of section 3 of the Constitution (Ninth Amendment) Act, 1960” (100th Amendment).",
+  "proposed_one_liner": "Provided for handing certain border areas to Pakistan under the India-Pakistan agreements of 1958 to 1960, by taking them out of Assam, Punjab, West Bengal and Tripura in the First Schedule from dates to be notified. Only the Punjab part took effect, on 17 January 1961.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 10,
+  "verdict": "fix",
+  "issues": [
+   "site_date 2020-01-26 is wrong. That is the date of the Dadra and Nagar Haveli and Daman and Diu (Merger of Union territories) Act, 2019, which later replaced the entry. The Tenth Amendment is deemed to have come into force on 11 August 1961 (assent 16 August 1961)."
+  ],
+  "evidence": "src/source/acts/010.pdf: assent [16th August, 1961]; s.1(2): “It shall be deemed to have come into force on the 11th day of August, 1961.” src/source/Constitution_of_India_10.9.2026.pdf.txt line 11479: “Entry 4 relating to Dadra and Nagar Haveli was ins. by the Constitution (Tenth Amendment) Act, 1961, s.2 (w.e.f. 11-8-1961).” and line 5699: “for entry (c) which was ins. by the Constitution (Tenth Amendment) Act, 1961, s.3 (w.e.f. 11-8-1961).”",
+  "proposed_date": "1961-08-11",
+  "proposed_date_label": "In force",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 11,
+  "verdict": "fix",
+  "issues": [
+   "Leaves out section 3, which added Article 71(4): the election of a President or Vice-President cannot be challenged because of a vacancy in the electoral college. refs miss a:71 (the clause is still in Article 71 today).",
+   "The summary does not say what replaced the joint meeting: an electoral college of the members of both Houses."
+  ],
+  "evidence": "src/source/acts/011.pdf: assent [19th December, 1961]; s.2: “In article 66 of the Constitution, in clause (1), for the words “members of both Houses of Parliament assembled at a joint meeting”, the words “members of an electoral college consisting of the members of both Houses of Parliament” shall be substituted.” s.3: “In article 71 of the Constitution, after clause (3), the following clause shall be inserted, namely: “(4) The election of a person as President or Vice-President shall not be called in question on the ground of the existence of any vacancy for whatever reason among the members of the electoral college electing him.”” (The compilation, PDF p.422, misprints “the House of Parliament”.)",
+  "proposed_one_liner": "Had the Vice-President elected by an electoral college of the members of both Houses of Parliament, instead of at a joint meeting of the two Houses (Article 66). Added Article 71(4): a vacancy in the electoral college is no ground to challenge the election of a President or Vice-President.",
+  "refs_add": [
+   "a:71"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 12,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/012.pdf: assent [27th March, 1962]; s.1(2): “It shall be deemed to have come into force on the 20th day of December, 1961.” s.2 adds entry 8 Goa, Daman and Diu to the First Schedule; s.3 adds “(d) Goa, Daman and Diu” to article 240(1).",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 13,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/013.pdf: assent [28th December, 1962]; s.1(2): “It shall come into force on such date as the Central Government may, by notification in the Official Gazette, appoint.” s.2 substitutes the Part XXI heading “TEMPORARY, TRANSITIONAL AND SPECIAL PROVISIONS” and inserts art 371A. Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “Art. 371A ins. by the Constitution (Thirteenth Amendment) Act, 1962, s. 2 (w.e.f. 1-12-1963).”",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 14,
+  "verdict": "fix",
+  "issues": [
+   "Leaves out that the Act made Pondicherry a Union territory (First Schedule entry 9 and Article 240(1)(e)); the summary says only “added to ... the First Schedule”.",
+   "Leaves out section 2 (Article 81: Lok Sabha seats for Union territories raised from 20 to 25) and section 6 (Fourth Schedule: one Rajya Sabha seat for Pondicherry, total 225 to 226). refs miss a:81 and s:FOURTH.",
+   "Dates: assent and general commencement 28 December 1962, but section 3 (First Schedule) and section 5(a) (Article 240 entry) are deemed in force from 16 August 1962. site_date 1962-12-28 is right for the rest."
+  ],
+  "evidence": "src/source/acts/014.pdf (same Gazette as 013): assent [28th December, 1962]; s.2: “In article 81 ... for the words “twenty members”, the words “twenty-five members” shall be substituted.” s.3: “9. Pondicherry— The territories which immediately before the sixteenth day of August, 1962, were comprised in the French Establishments in India known as Pondicherry, Karikal, Mahe and Yanam”. s.6: “In the Fourth Schedule ... after entry 20, the entry “21. Pondicherry ... 1” shall be inserted; (b) for the figures “225”, the figures “226” shall be substituted.” s.7: “Section 3 and clause (a) of section 5 shall be deemed to have come into force on the 16th day of August, 1962.” src/source/Constitution_of_India_10.9.2026.pdf.txt line 5702: “Ins. by the Constitution (Fourteenth Amendment) Act, 1962, s. 5 (w.e.f. 16-8-1962).”",
+  "proposed_one_liner": "Made Pondicherry a Union territory (First Schedule and Article 240), with effect from 16 August 1962. Added Article 239A so Parliament could create a legislature and Council of Ministers for certain Union territories, raised Lok Sabha seats for Union territories from 20 to 25 (Article 81), and gave Pondicherry a Rajya Sabha seat.",
+  "refs_add": [
+   "a:81",
+   "s:FOURTH"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 15,
+  "verdict": "fix",
+  "issues": [
+   "Leaves out section 8, a major change: new Article 226(1A) let a High Court issue writs wherever the cause of action arises, even if the Government or person is based elsewhere. refs miss a:226.",
+   "Also changed Article 297 (adds the continental shelf to things vested in the Union); refs miss a:297.",
+   "The summary says only that the retirement age was “changed”; it was raised from 60 to 62 (Articles 217 and 224)."
+  ],
+  "evidence": "src/source/acts/015.pdf pp.1-2 (image; 016.pdf is the same file): [5th October, 1963]; s.4(a): “in clause (1), for the words “sixty years”, the words “sixty-two years” shall be substituted”; s.8: “In article 226 of the Constitution,— (a) after clause (1), the following clause shall be inserted, namely:— “(1A) The power conferred by clause (1) to issue directions, orders or writs to any Government, authority or person may also be exercised by any High Court exercising jurisdiction in relation to the territories within which the cause of action, wholly or in part, arises ...””; s.9: “In article 297 of the Constitution, after the words “territorial waters”, the words “or the continental shelf” shall be inserted.” Footnotes in src/source/Constitution_of_India_10.9.2026.pdf.txt: “(w.e.f. 5-10-1963)”.",
+  "proposed_one_liner": "Raised the retirement age of High Court judges from 60 to 62 (Articles 217 and 224), added Article 224A on retired judges sitting again, and let a High Court issue writs wherever the cause of action arises (Article 226). Also changed Articles 124, 128, 222, 297, 311 and 316.",
+  "refs_add": [
+   "a:226",
+   "a:297"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 16,
+  "verdict": "fix",
+  "issues": [
+   "The summary does not say what the Act did: it let laws restrict freedom of speech, assembly and association in the interests of “the sovereignty and integrity of India” (Article 19(2), (3) and (4)), and added a promise to uphold the sovereignty and integrity of India to the oaths for candidates, MPs, MLAs, ministers and judges. “changed qualifications” hides that the new qualification is taking this oath."
+  ],
+  "evidence": "src/source/acts/016.pdf p.4 (image): [5th October, 1963]; s.2: “(a) in clause (2), after the words “in the interests of”, the words “the sovereignty and integrity of India,” shall be inserted; (b) in clauses (3) and (4), after the words “in the interests of”, the words “the sovereignty and integrity of India or” shall be inserted.” s.3: “(a) is a citizen of India, and makes and subscribes before some person authorized in that behalf by the Election Commission an oath or affirmation according to the form set out for the purpose in the Third Schedule”; s.5 inserts “that I will uphold the sovereignty and integrity of India” in Forms I, IV, V, VIII and new Forms III and VII.",
+  "proposed_one_liner": "Allowed reasonable limits on free speech, assembly and association in the interests of the sovereignty and integrity of India (Article 19). Added a promise to uphold the sovereignty and integrity of India to the oaths in the Third Schedule, and made candidates for Parliament and State Legislatures take an oath (Articles 84 and 173).",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 17,
+  "verdict": "fix",
+  "issues": [
+   "The summary does not say what changed in Article 31A, which is the main change: the meaning of “estate” was widened to cover land held under raiyatwari settlement and other farm land, and a new proviso said land within the ceiling limit that a person cultivates himself can be taken only if compensation is at least its market value."
+  ],
+  "evidence": "src/source/acts/017.pdf p.1 (image): [20th June, 1964]; s.2(i): “Provided further that where any law makes any provision for the acquisition by the State of any estate and where any land comprised therein is held by a person under his personal cultivation, it shall not be lawful for the State to acquire any portion of such land as is within the ceiling limit applicable to him ... unless the law ... provides for payment of compensation at a rate which shall not be less than the market value thereof.”; s.2(ii) substitutes sub-clause (a) “and shall be deemed always to have been substituted”, adding “(ii) any land held under ryotwari settlement; (iii) any land held or let for purposes of agriculture” (src/source/acts/compilation_LS2008.pdf PDF pp.438-439).",
+  "proposed_one_liner": "Widened the meaning of “estate” in Article 31A to cover raiyatwari and other farm land, and said land within the ceiling limit that a person farms himself can be taken only at market value or more. Added entries 21 to 64 to the Ninth Schedule.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 18,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/018.pdf p.1 (image): [27th August, 1966]; s.2: “In article 3 of the Constitution, the following Explanations shall be inserted at the end” (State includes a Union territory; Parliament may unite part of a State or Union territory to another). Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “(w.e.f. 27-8-1966)”.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 19,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/019.pdf p.2 (image): [11th December, 1966]; s.2: “In article 324 of the Constitution, in clause (1), the words “including the appointment of election tribunals for the decision of doubts and disputes arising out of or in connection with elections to Parliament and to the Legislatures of States” shall be omitted.” No commencement clause.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 20,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/020.pdf pp.3-4 (image): [22nd December, 1966]; s.2 inserts art 233A validating appointments of district judges and their judgments. Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “(w.e.f. 22-12-1966)”.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 21,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "No Gazette copy; src/source/acts/compilation_LS2008.pdf PDF p.446: [10th April, 1967]; s.2: “(a) entries 12 to 14 shall be re-numbered as entries 13 to 15 respectively, and (b) before entry “13” as so re-numbered, the entry “12. Sindhi” shall be inserted.” Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “Added by the Constitution (Twenty-first Amendment) Act, 1967, s. 2 (w.e.f. 10-4-1967).”",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 22,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/022.pdf p.1 (image): [25th September, 1969]; s.2 inserts art 244A (autonomous State within Assam), s.3 inserts art 275(1A), s.4 inserts art 371B. Footnotes in src/source/Constitution_of_India_10.9.2026.pdf.txt: “(w.e.f. 25-9-1969)”.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 23,
+  "verdict": "fix",
+  "issues": [
+   "Leaves out sections 2 and 3, which changed Articles 330 and 332 so that no seats were reserved for Scheduled Tribes in Nagaland (as already for the tribal areas of Assam). refs miss a:330 and a:332.",
+   "“changed how Anglo-Indian members are nominated” is vague: Article 333 now let the Governor nominate only one Anglo-Indian member to an Assembly, instead of as many as he thought fit."
+  ],
+  "evidence": "src/source/acts/023.pdf: assent [23rd January, 1970]; s.2: “In article 330 ... for the words “except the Scheduled Tribes in the tribal areas of Assam”, the words “except the Scheduled Tribes in the tribal areas of Assam and in Nagaland” shall be substituted.” s.3: same change in article 332(1). s.4(1): “for the words “nominate such number of members of the community to the Assembly as he considers appropriate”, the words “nominate one member of that community to the Assembly” shall be substituted.” s.5: “for the words “twenty years”, the words “thirty years” shall be substituted.” (The compilation, PDF p.449, misprints the short title as “(Twentieth amendment)”.)",
+  "proposed_one_liner": "Extended the time limit for reserved seats and Anglo-Indian nomination in Article 334 from twenty to thirty years. Limited Anglo-Indian nomination to one member per State Assembly (Article 333), and reserved no seats for Scheduled Tribes in Nagaland (Articles 330 and 332).",
+  "refs_add": [
+   "a:330",
+   "a:332"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 24,
+  "verdict": "fix",
+  "issues": [
+   "Leaves out a major change: the President must now give assent to a Bill amending the Constitution (Article 368(2)).",
+   "“added clauses to Articles 13 and 368” hides the main point: the new clauses say Parliament may amend any provision of the Constitution, and that Article 13 (laws against Fundamental Rights are void) does not apply to amendments."
+  ],
+  "evidence": "src/source/acts/024.pdf: assent [5th November, 1971]; s.2: “(4) Nothing in this article shall apply to any amendment of this Constitution made under article 368.” s.3: marginal heading “Power of Parliament to amend the Constitution and procedure therefor.”; “(1) Notwithstanding anything in this Constitution, Parliament may in exercise of its constituent power amend by way of addition, variation or repeal any provision of this Constitution”; “(c) in clause (2) as so re-numbered, for the words “it shall be presented to the President for his assent and upon such assent being given to the Bill”, the words “it shall be presented to the President who shall give his assent to the Bill and thereupon” shall be substituted”; “(3) Nothing in article 13 shall apply to any amendment made under this article.”",
+  "proposed_one_liner": "Said Parliament may amend any provision of the Constitution under Article 368, and that Article 13 does not apply to such amendments (Articles 13(4), 368(1) and 368(3)). Made it compulsory for the President to give assent to a Bill amending the Constitution.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 25,
+  "verdict": "fix",
+  "issues": [
+   "Leaves out section 2, a major change to Article 31: “compensation” was replaced by an “amount” that the law fixes, which no court could question as not adequate or because it was not paid in cash; and new Article 31(2B) said Article 19(1)(f) does not apply to such laws. refs miss a:31.",
+   "The summary should name the Directive Principles: Article 39(b) and (c)."
+  ],
+  "evidence": "src/source/acts/025.pdf: assent 20th April, 1972; s.2: “(a) for clause (2), the following clause shall be substituted ... for an amount which may be fixed by such law ... and no such law shall be called in question in any court on the ground that the amount so fixed or determined is not adequate or that the whole or any part of such amount is to be given otherwise than in cash”; “(b) after clause (2A), the following clause shall be inserted, namely:— “(2B) Nothing in sub-clause (f) of clause (1) of article 19 shall affect any such law as is referred to in clause (2).”” s.3: “no law giving effect to the policy of the State towards securing the principles specified in clause (b) or clause (c) of article 39 shall be deemed to be void”. (The compilation, PDF p.452, misprints “for clause (2A)”.)",
+  "proposed_one_liner": "Replaced “compensation” with an “amount” in Article 31(2), which courts could not question as too low, and said Article 19(1)(f) does not apply to such laws. Added Article 31C, protecting laws that give effect to the Directive Principles in Article 39(b) and (c).",
+  "refs_add": [
+   "a:31"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 26,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/026.pdf: assent [28th December, 1971]; s.2: “Articles 291 and 362 of the Constitution shall be omitted.” s.3 inserts art 363A; s.4 substitutes art 366(22). Footnotes in src/source/Constitution_of_India_10.9.2026.pdf.txt: “(w.e.f. 28-12-1971)”.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 27,
+  "verdict": "fix",
+  "issues": [
+   "Leaves out section 2, which added Mizoram to Article 239A (Union territories that may have a legislature). refs miss a:239A. The summary also does not say that Article 240 gained Mizoram and Arunachal Pradesh.",
+   "Split commencement: sections 1 and 3 (Article 239B) came into force at once, on 30 December 1971; the rest on 15 February 1972 by notification. site_date 1972-02-15 is right for most of the Act; the official footnote dates Article 239B from 30-12-1971."
+  ],
+  "evidence": "src/source/acts/027.pdf pp.1, 3 (image): [30th December, 1971]; s.1(2): “This section and section 3 shall come into force at once and the remaining provisions of this Act shall come into force on such date, being a date not earlier than the day appointed under clause (b) of section 2 of the North-Eastern Areas (Reorganisation) Act, 1971, as the Central Government may, by notification in the Official Gazette, appoint.” Handwritten note: “15-2-1972 vide Notfn. No. G.S.R. 73(E), dt. 14-2-1972”. s.2: “for the words “Goa, Daman and Diu, and Pondicherry”, the words “Goa, Daman and Diu, Pondicherry and Mizoram” shall be substituted.” s.4: “(f) Mizoram; (g) Arunachal Pradesh”. src/source/Constitution_of_India_10.9.2026.pdf.txt line 5653: “Ins. by the Constitution (Twenty-seventh Amendment) Act, 1971, s. 3 (w.e.f. 30-12-1971).”; line 5747: “s. 4 (w.e.f. 15-2-1972).”",
+  "proposed_one_liner": "Added Article 371C for the Hill Areas of Manipur and Article 239B, letting Union territory administrators make Ordinances (in force from 30 December 1971). Added Mizoram to Article 239A, and Mizoram and Arunachal Pradesh to Article 240.",
+  "refs_add": [
+   "a:239A"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 28,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/028.pdf p.1 (image): [27th August, 1972]; s.1(2): “It shall come into force on such date as the Central Government may, by notification in the Official Gazette, appoint.” Handwritten: “29-8-1972; Vide G.S.R. 391(E), dt. 29-8-1972”. s.2 inserts art 312A; s.3: “Article 314 of the Constitution shall be omitted.” Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “(w.e.f. 29-8-1972)”.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 29,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/029.pdf (image): [9th June, 1972]; s.2: “In the Ninth Schedule to the Constitution, after entry 64 and before the Explanation, the following entries shall be inserted ... 65. The Kerala Land Reforms (Amendment) Act, 1969 ... 66. The Kerala Land Reforms (Amendment) Act, 1971”.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 30,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/030.pdf: assent [22nd February, 1973]; s.1(2) commencement by notification; s.2 substitutes art 133(1). Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “Subs. by the Constitution (Thirtieth Amendment) Act, 1972, s. 2, for cl. (1) (w.e.f. 27-2-1973).”",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 31,
+  "verdict": "fix",
+  "issues": [
+   "Leaves out section 4, which changed Article 332 (no reserved Assembly seats for Scheduled Tribes in Meghalaya). refs miss a:332.",
+   "“Changed the number of Lok Sabha members” does not say the direction: the cap for States rose from 500 to 525 and the cap for Union territories fell from 25 to 20."
+  ],
+  "evidence": "src/source/acts/031.pdf: assent 17th October, 1973; s.2: “(i) in sub-clause (a), for the words “five hundred members”, the words “five hundred and twenty-five members” shall be substituted; and (ii) in sub-clause (b), for the words “twenty-five members”, the words “twenty members” shall be substituted”; s.3 amends art 330; s.4(1): “In article 332 of the Constitution, in clause (1), for the words “except the Scheduled Tribes in the tribal areas of Assam and in Nagaland”, the words “except the Scheduled Tribes in the tribal areas of Assam, in Nagaland and in Meghalaya” shall be substituted.”",
+  "proposed_one_liner": "Raised the most Lok Sabha seats for States from 500 to 525 and cut those for Union territories from 25 to 20 (Article 81). Changed the seats reserved for Scheduled Tribes in the North-East (Articles 330 and 332).",
+  "refs_add": [
+   "a:332"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 32,
+  "verdict": "fix",
+  "issues": [
+   "refs miss a:371E (the University for Andhra Pradesh), inserted by the same section as Article 371D. The summary itself is fine."
+  ],
+  "evidence": "src/source/acts/032.pdf: assent 3rd May, 1974; s.1(2) commencement by notification; s.3: “After article 371C of the Constitution, the following articles shall be inserted ... 371E. Parliament may by law provide for the establishment of a University in the State of Andhra Pradesh.” Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “Art 371D and Art 371E ins. by the Constitution (Thirty-second Amendment) Act, 1973, s. 3 (w.e.f. 1-7-1974).”",
+  "refs_add": [
+   "a:371E"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 33,
+  "verdict": "fix",
+  "issues": [
+   "The summary does not say the Act is about resignations: a resignation by an MP or MLA now takes effect only when the Speaker or Chairman accepts it, and they must not accept it if it is not voluntary or genuine."
+  ],
+  "evidence": "src/source/acts/033.pdf: assent [19th May, 1974]; s.2: “(b) resigns his seat by writing under his hand addressed to the Chairman or the Speaker, as the case may be, and his resignation is accepted by the Chairman or the Speaker”; proviso: “if from information received or otherwise and after making such inquiry as he thinks fit, the Chairman or the Speaker, as the case may be, is satisfied that such resignation is not voluntary or genuine, he shall not accept such resignation.” s.3: the same for article 190(3).",
+  "proposed_one_liner": "Said a resignation by an MP or MLA takes effect only when the Speaker or Chairman accepts it, and must be refused if it is not voluntary or genuine (Articles 101 and 190).",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 34,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/034.pdf: assent [7th September, 1974]; s.2: “In the Ninth Schedule to the Constitution, after entry 66 and before the Explanation, the following entries shall be inserted” (entries 67 to 86). Footnote in src/source/Constitution_of_India_10.9.2026.pdf.txt: “Entries 67 to 86 ins.. by the Constitution (Thirty-fourth Amendment) Act, 1974, s. 2 (w.e.f. 7-9-1974).”",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 35,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "No Gazette copy; src/source/acts/compilation_LS2008.pdf PDF pp.476-482: assent [22nd February, 1975]; s.1(2): “It shall come into force on such date as the Central Government may, by notification in Official Gazette, appoint.” s.2: “2A. Sikkim, which comprises the territories specified in the Tenth Schedule, shall be associated with the Union on the terms and conditions set out in that Schedule.” ss.3-4 amend arts 80(1), 81(1); s.5 adds the Tenth Schedule. src/source/Constitution_of_India_10.9.2026.pdf.txt line 1105: “Ins. by the Constitution (Thirty-fifth Amendment) Act, 1974, s. 2 (w.e.f. 1-3-1975).” Note: the Act says “associated with the Union”; “associate State” is the usual name, not the Act’s word.",
+  "refs_add": [],
+  "refs_remove": []
+ }
+]

@@ -66,7 +66,7 @@ H.setdefault('72',{"h":"Added clause (3B) to Article 332, fixing how many seats 
 amd=[]
 for a in raw:
     h=H[str(a['n'])]
-    amd.append({"n":a['n'],"y":a['y'],"wef":a['wef'],"h":h['h'],"tags":h['tags'],"refs":a['refs']})
+    amd.append({"n":a['n'],"y":a['y'],"wef":a['wef'],"h":h['h'],"tags":h['tags'],"refs":a['refs'],**({"wl":a['wl']} if a.get('wl') else {})})
 # Acts this edition no longer cites in any footnote, because what they changed was later replaced or lapsed.
 # Only official Government of India / Parliament sources are used; gaps are stated, not filled.
 LD="Legislative Department, Ministry of Law and Justice"
@@ -75,7 +75,7 @@ amd+=[
   "h":"Struck out the words \u201cnot less than one member for every 750,000 of the population and\u201d from Article 81(1)(b), on how Lok Sabha seats were allotted, so constituencies could be re-adjusted after the census without breaching that limit.",
   "what":"Articles 81 and 82 were later replaced as a whole by the Seventh Amendment Act, 1956 (in force 1 November 1956), so the wording it changed no longer exists. Today's Article 81 is that later version.",
   "src":[["Act text, "+LD,"https://www.legislative.gov.in/static/uploads/2025/07/38ef0247f825a631d62ae585a9bf529c.pdf"]]},
- {"wl":"Assent","n":8,"y":1959,"wef":"1960-01-05","nc":1,"tags":["reservation","elections"],"refs":["a:334"],
+ {"wl":"In force","n":8,"y":1959,"wef":"1960-01-05","nc":1,"tags":["reservation","elections"],"refs":["a:334"],
   "h":"Changed \u201cten years\u201d to \u201ctwenty years\u201d in Article 334, the time limit on reserved seats for Scheduled Castes and Scheduled Tribes and on Anglo-Indian nomination.",
   "what":"Later Acts kept extending the limit and rewrote the words it inserted. Article 334 now reads eighty years for reserved seats and seventy years for Anglo-Indian nomination, set by the 104th Amendment (2019).",
   "src":[["Act text, "+LD,"https://www.legislative.gov.in/static/uploads/2025/07/0cf16c3f1479074a87011e066396733e.pdf"]]},
@@ -83,11 +83,11 @@ amd+=[
   "h":"Added Goa, Daman and Diu as a Union territory in the First Schedule and in Article 240(1), with effect from 20 December 1961, after they were acquired by India.",
   "what":"Goa became a State under the Goa, Daman and Diu Reorganisation Act, 1987, which rewrote the First Schedule entry. Daman and Diu stayed a Union territory until it merged with Dadra and Nagar Haveli in 2020, when entry (d) of Article 240(1) was omitted.",
   "src":[["Act text, "+LD,"https://www.legislative.gov.in/static/uploads/2025/07/90f537a2f96e5304e088b723b665d426.pdf"],["Act and objects, National Portal of India","https://www.india.gov.in/my-government/constitution-india/amendments/constitution-india-twelfth-amendment-act-196"]]},
- {"wl":"Assent","n":37,"y":1975,"wef":"1975-05-03","nc":1,"tags":["union territories","legislature"],"refs":["a:239A","a:240"],
+ {"wl":"In force","n":37,"y":1975,"wef":"1975-05-03","nc":1,"tags":["union territories","legislature"],"refs":["a:239A","a:240"],
   "h":"Added Arunachal Pradesh to Article 239A, so the Union territory could have a Legislative Assembly and a Council of Ministers, and limited the President's power under Article 240 to make regulations for it once an Assembly existed.",
   "what":"Arunachal Pradesh became a full State under the State of Arunachal Pradesh Act, 1986 (in force 20 February 1987), so neither article applies to it any more. Article 239A now names only Puducherry, and the official note to Article 240 records Arunachal Pradesh's entry being removed by that Act.",
   "src":[["Act text, "+LD,"https://www.legislative.gov.in/static/uploads/2025/07/e758d6fb56d08150e4359287a75266c1.pdf"]]},
- {"wl":"Assent","n":48,"y":1984,"wef":"1984-08-26","nc":1,"tags":["president's rule","punjab"],"refs":["a:356"],
+ {"wl":"In force","n":48,"y":1984,"wef":"1984-08-26","nc":1,"tags":["president's rule","punjab"],"refs":["a:356"],
   "h":"Let President's Rule in Punjab, proclaimed on 6 October 1983, continue for up to two years instead of one by adding a condition to Article 356(5).",
   "what":"It applied to one Proclamation only and stopped mattering once that Proclamation ended. That condition in Article 356(5) has since been removed and rewritten by later Acts; it now refers to the Punjab Proclamation of 11 May 1987.",
   "src":[["Act text, "+LD,"https://www.legislative.gov.in/static/uploads/2025/07/1b65d89d6107c526d5dc2102f3dcf479.pdf"],["National Portal of India","https://www.india.gov.in/my-government/constitution-india/amendments/constitution-india-forty-eighth-amendment-act-1984"]]},

@@ -1,0 +1,384 @@
+[
+ {
+  "n": 36,
+  "verdict": "fix",
+  "issues": [
+   "The Act also changed the Fourth Schedule, giving Sikkim one seat in the Council of States (s. 4). The one-liner leaves this out and s:FOURTH is missing from refs.",
+   "The Act also omitted the old Tenth Schedule (the associate-State Schedule, s. 5(d)); the one-liner's 'related wording' covers it only loosely. Not added to refs because today's Tenth Schedule is a different one (anti-defection).",
+   "Date 1975-04-26 is right: the Act is deemed in force on the day the Council of States passed the Bill; assent was 16 May 1975."
+  ],
+  "evidence": "compilation_LS2008.pdf PDF p.483-484: '4. In the Fourth Schedule to the Constitution, in the Table— (a) after entry 21, the following entry shall be inserted, namely:— \"22. Sikkim. ……. 1\"'; '5. ... (a) article 2A shall be omitted; ... (d) the Tenth Schedule shall be omitted.' p.482-483: '(2) It shall be deemed to have come into force on the date on which the Bill ... is passed by the Council of States.' src/source/Constitution_of_India_10.9.2026.pdf.txt line 1092: 'Omitted by the Constitution (Thirty-sixth Amendment) Act, 1975, s. 5 (w.e.f. 26-4-1975).'",
+  "proposed_one_liner": "Made Sikkim a State: added it to the First Schedule, gave it a seat in the Council of States in the Fourth Schedule, and added Article 371F with special provisions for it. Removed Article 2A and the old Tenth Schedule, which had made Sikkim an associate State, and related wording in Articles 80 and 81.",
+  "refs_add": [
+   "s:FOURTH"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 37,
+  "verdict": "fix",
+  "issues": [
+   "The Act has no commencement clause, so it came into force on assent, 3 May 1975. The date is right but can be labelled 'In force' instead of 'Assent'. No footnote survives in the current edition (Arunachal Pradesh later became a State).",
+   "Read from the Lok Sabha compilation only (no Gazette copy in src/source/acts)."
+  ],
+  "evidence": "compilation_LS2008.pdf PDF p.484: 'THE CONSTITUTION (THIRTY-SEVENTH AMENDMENT) ACT, 1975 ... [3rd May, 1975] ... 1. This Act may be called the Constitution (Thirty-seventh Amendment) Act, 1975. 2. In article 239A ... for the words \"Pondicherry and Mizoram\", the words \"Pondicherry, Mizoram and Arunachal Pradesh\" shall be substituted. 3. In article 240 ... in both the provisos ...'",
+  "proposed_date": "1975-05-03",
+  "proposed_date_label": "In force",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 38,
+  "verdict": "fix",
+  "issues": [
+   "site_date is empty. The Act has no commencement clause, so it came into force on assent, 1 August 1975; every section says the clause 'shall be deemed always to have been inserted' (the footnotes say 'with retrospective effect').",
+   "One-liner is accurate (123(4), 213(4), 239B(4), 352(5), 360(5) were omitted and 356(5) replaced by the 44th Amendment; 359(1A) remains)."
+  ],
+  "evidence": "src/source/acts/038.pdf p.1: 'The following Act of Parliament received the assent of the President on the 1st August, 1975 ... 2. In article 123 of the Constitution, after clause (3), the following clause shall be inserted, and shall be deemed always to have been inserted'. src/source/Constitution_of_India_10.9.2026.pdf.txt line 3272: 'Ins. by the Constitution (Thirty-eighth Amendment) Act, 1975, s. 2 (with retrospective effect)'.",
+  "proposed_date": "1975-08-01",
+  "proposed_date_label": "In force",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 39,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/039.pdf p.1-3: s.2 'For article 71 ... the following article shall be substituted', s.3 amends article 329, s.4 'after article 329, the following article shall be inserted ... 329A', s.5 Ninth Schedule entries 87 to 124; assent 10 August 1975. src/source/Constitution_of_India_10.9.2026.pdf.txt line 8453: 'Ins. by the Constitution (Thirty-ninth Amendment) Act, 1975, s. 4 (w.e.f. 10-8-1975).'",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 40,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner leaves out the main change of the new Article 297: it added India's exclusive economic zone (its seabed resources and all its other resources vest in the Union) and let Parliament set the limits of all maritime zones."
+  ],
+  "evidence": "src/source/acts/040.pdf p.639-640: '297. (1) All lands, minerals and other things of value underlying the ocean within the territorial waters, or the continental shelf, or the exclusive economic zone, of India shall vest in the Union ... (2) All other resources of the exclusive economic zone of India shall also vest in the Union ... (3) The limits of the territorial waters, the continental shelf, the exclusive economic zone, and other maritime zones, of India shall be such as may be specified ... by or under any law made by Parliament'. src/source/Constitution_of_India_10.9.2026.pdf.txt line 7723: 'Subs. by the Constitution (Fortieth Amendment) Act, 1976, s. 2 (w.e.f. 27-5-1976).'",
+  "proposed_one_liner": "Replaced Article 297 so that resources in India's territorial waters, continental shelf and exclusive economic zone belong to the Union, with their limits set by Parliament. Also added Ninth Schedule entries 125 to 188.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 41,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner does not say the direction or the new age, and reads as if it covers all Public Service Commissions. The Act raised the age only for members of State and Joint Commissions, from sixty to sixty-two; the Union Commission's age (sixty-five) was not touched."
+  ],
+  "evidence": "src/source/acts/041.pdf p.247: '2. In article 316 of the Constitution, in clause (2), for the words \"sixty years\", the words \"sixty-two years\" shall be substituted.' src/source/Constitution_of_India_10.9.2026.pdf.txt lines 8050-8068: Article 316(2) '... in the case of the Union Commission, the age of sixty-five years, and in the case of a State Commission or a Joint Commission, the age of [sixty-two years]'; footnote 'Subs. by the Constitution (Forty-first Amendment) Act, 1976, s. 2, for \"sixty years\" (w.e.f. 7-9-1976).'",
+  "proposed_one_liner": "Raised the retirement age of members of State and Joint Public Service Commissions in Article 316(2) from sixty to sixty-two years.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 42,
+  "verdict": "ok",
+  "issues": [
+   "Main claims check out (Preamble words, Part IVA, Part XIVA, Articles 39A, 43A, 48A, six-year terms in Articles 83 and 172, Emergency changes; s. 4 on Article 31C and s. 55 on Article 368 struck down). Refs match the Act's sections.",
+   "Note on the date: the Act came into force in stages by notification. 1977-01-03 is the first date (most sections, including the Preamble); many sections from 1 February 1977 (e.g. ss. 23-26, 37-42, 54), s. 27 (Article 150) from 1 April 1977, and ss. 18, 21, 22, 31 and 35 were never notified. The site could say so.",
+   "Read from the Lok Sabha compilation only (no Gazette copy in src/source/acts)."
+  ],
+  "evidence": "compilation_LS2008.pdf PDF p.506: '(2) It shall come into force on such date as the Central Government may, by notification in the Official Gazette, appoint and different dates may be appointed for different provisions of this Act.' src/source/Constitution_of_India_10.9.2026.pdf.txt: 'Forty-second Amendment) Act, 1976, s. 5 (w.e.f. 03-01-1977)'; 's. 38 for art. 226 (w.e.f. 1-2-1977)'; 's. 27, for art.150 (w.e.f. 1-4-1977)'; 's. 18 (date not notified)'; 's. 21 (date to be notified)'.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 43,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/043.pdf p.117-118: assent 13 April 1978; ss. 2, 3, 4, 5, 8, 10 omit Articles 31D, 32A, 131A, 144A, 226A, 228A; s. 6 amends article 145, s. 7 article 226, s. 9 article 228, s. 11 'In article 366 of the Constitution, clause (4A) and clause (26A) shall be omitted.' src/source/Constitution_of_India_10.9.2026.pdf.txt line 3685: 's. 6, for \"articles 131A and 139A\" (w.e.f. 13-4-1978).'",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 44,
+  "verdict": "ok",
+  "issues": [
+   "Main claims check out (s. 2 and s. 6 remove Article 19(1)(f) and Article 31, s. 34 adds Article 300A, s. 37 'armed rebellion', s. 40 keeps Articles 20 and 21, ss. 13 and 24 restore five-year terms). Refs match the Act's sections (100, 102, 118, 189, 191, 208 come from s. 45, which cancelled unnotified sections of the 42nd Act).",
+   "Note on the date: the Act came into force in stages. 1979-06-20 is the first main date; ss. 17-20 and 30 from 1 August 1979; s. 24 (the five-year term for State Assemblies, Article 172) and s. 43 (Article 371F) from 6 September 1979; s. 3 (Article 22, preventive detention) has never been notified. The one-liner's 'brought House terms back to five years' took effect for Lok Sabha on 20 June 1979 and for State Assemblies on 6 September 1979."
+  ],
+  "evidence": "src/source/acts/044.pdf p.1: '(2) It shall come into force on such date as the Central Government may, by notification in the Official Gazette, appoint and different dates may be appointed for different provisions of this Act.' src/source/Constitution_of_India_10.9.2026.pdf.txt line 2553-2554: 'further subs. by the Constitution (Forty-fourth Amendment) Act, 1978, s. 13, for \"six years\" (w.e.f. 20-6-1979)'; line 4187-4188: 's. 24, for \"six years\" (w.e.f. 6-9-1979)'; line 3559: 's. 20 (w.e.f. 1-8-1979)'; line 1478: 'Cl. (4) shall stand substituted by the Constitution (Forty-fourth Amendment) Act, 1978, s. 3 (date yet to be notified)'.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 45,
+  "verdict": "fix",
+  "issues": [
+   "site_date is empty. The Act says it is deemed to have come into force on 25 January 1980 (assent was 14 April 1980)."
+  ],
+  "evidence": "src/source/acts/045.pdf p.191: '(2) It shall be deemed to have come into force on the 25th day of January, 1980. 2. In article 334 of the Constitution for the words \"thirty years\", the words \"forty years\" shall be substituted.' src/source/Constitution_of_India_10.9.2026.pdf.txt line 8675-8676: '\"forty years\" subs. for \"thirty years\" by the Constitution (Forty-fifth Amendment) Act, 1980, s. 2 (w.e.f. 25-1-1980).'",
+  "proposed_date": "1980-01-25",
+  "proposed_date_label": "In force",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 46,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner calls it 'Union sales tax rules', which misses the main change: new Article 366(29A) treats works contracts, hire-purchase, hiring out goods, supply by clubs and serving food as sales, so they can be taxed as sales (mostly by the States).",
+   "It says 'Seventh Schedule entries' but only one entry was added (Union List entry 92B).",
+   "s. 3 replaced Article 286(3); Article 286 is missing from the one-liner and from refs."
+  ],
+  "evidence": "src/source/acts/046.pdf p.1-2: s.2 Article 269 '(h) taxes on the consignment of goods ... in the course of inter-State trade or commerce'; '3. In article 286 of the Constitution, for clause (3), the following clause shall be substituted'; '4. In article 366 ... after clause (29), the following clause shall be inserted, namely:— (29A) \"tax on the sale or purchase of goods\" includes— ... (b) a tax on the transfer of property in goods ... involved in the execution of a works contract; (c) a tax on the delivery of goods on hire-purchase ... (f) a tax on the supply ... of goods, being food or any other article for human consumption'; '5. In the Seventh Schedule ... in List I—Union List, after entry 92A, the following entry shall be inserted, namely:— \"92B. ...\"'. Assent 2 February 1983. src/source/Constitution_of_India_10.9.2026.pdf.txt line 13774: 'Ins. by the Constitution (Forty-sixth Amendment) Act, 1982, s. 5 (w.e.f. 2-2-1983).'",
+  "proposed_one_liner": "Added clause (29A) to Article 366 so that works contracts, hire-purchase, hiring out goods and serving food count as sales and can be taxed as sales. Also added a tax on inter-State consignments of goods (Article 269 and Union List entry 92B) and replaced Article 286(3).",
+  "refs_add": [
+   "a:286"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 47,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/047.pdf p.1-2: assent 26 August 1984; '2. In the Ninth Schedule ... after entry 188 ... the following entries shall be inserted' (189 to 202). src/source/Constitution_of_India_10.9.2026.pdf.txt line 14576: 'Entries 189 to 202 were ins. by the Constitution (Forty-seventh Amendment) Act, 1984, s. 2 (w.e.f. 26-8-1984).'",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 48,
+  "verdict": "fix",
+  "issues": [
+   "The Act has no commencement clause, so it came into force on assent, 26 August 1984. The date is right but can be labelled 'In force'. One-liner is accurate (proviso to Article 356(5) for the 6 October 1983 Punjab Proclamation, 'one year' read as 'two years')."
+  ],
+  "evidence": "src/source/acts/048.pdf p.1-2: 'received the assent of the President on the 26th August, 1984 ... 1. This Act may be called the Constitution (Forty-eighth Amendment) Act, 1984. 2. In article 356 of the Constitution, in clause (5), the following proviso shall be inserted at the end ... Proclamation issued under clause (1) on the 6th day of October, 1983 with respect to the State of Punjab, the reference in this clause to \"any period beyond the expiration of one year\" shall be construed as a reference to \"any period beyond the expiration of two years\".'",
+  "proposed_date": "1984-08-26",
+  "proposed_date_label": "In force",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 49,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner never mentions Tripura, which is the whole point of the Act: it brought the tribal areas of Tripura under the Sixth Schedule (Article 244, Fifth Schedule para 1, Sixth Schedule heading, paras 1, 17, 20 and new Part IIA of the table) and added paragraph 12AA on how laws apply there."
+  ],
+  "evidence": "src/source/acts/049.pdf p.1-3: '2. In article 244 ... for the words \"and Meghalaya\", the words \", Meghalaya and Tripura\" shall be substituted'; '(c) after paragraph 12A, the following paragraph shall be inserted ... \"12AA. Application of Acts of Parliament and of the Legislature of the State of Tripura to the autonomous district and autonomous regions in the State of Tripura'; '(f) ... \"PART IIA Tripura Tribal Areas District.\"'. Commencement by notification; src/source/Constitution_of_India_10.9.2026.pdf.txt line 6670: 'Subs. by the Constitution (Forty-ninth Amendment) Act, 1984, s. 2, for \"and Meghalaya\" (w.e.f. 1-4-1985).'",
+  "proposed_one_liner": "Brought the tribal areas of Tripura under the Sixth Schedule by changing Article 244 and the Fifth and Sixth Schedules, and added paragraph 12AA on how Central and State laws apply there.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 50,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner does not say what changed. The new Article 33 extended Parliament's power to limit Fundamental Rights beyond the armed forces and public order forces to staff of intelligence and counter-intelligence bodies and of the telecommunication systems of these forces and bodies. (The 1950 Article 33 named only the Armed Forces and the Forces charged with the maintenance of public order.)"
+  ],
+  "evidence": "src/source/acts/050.pdf p.1-2: '33. Parliament may, by law, determine to what extent any of the rights conferred by this Part shall, in their application to,— (a) the members of the Armed Forces; or (b) the members of the Forces charged with the maintenance of public order; or (c) persons employed in any bureau or other organisation established by the State for purposes of intelligence or counter intelligence; or (d) persons employed in, or in connection with, the telecommunication systems set up for the purposes of any Force, bureau or organisation referred to in clauses (a) to (c), be restricted or abrogated'. Assent 11 September 1984, no commencement clause. src/source/Constitution_of_India_10.9.2026.pdf.txt line 1780: 'Subs. by the Constitution (Fiftieth Amendment) Act, 1984, s. 2, for art. 33 (w.e.f. 11-9-1984).'",
+  "proposed_one_liner": "Replaced Article 33 so that Parliament's power to limit Fundamental Rights for the armed forces and police forces also covers staff of intelligence agencies and of their telecommunication systems.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 51,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner says the Act changed reservation 'for Scheduled Castes and Scheduled Tribes', but it concerns Scheduled Tribes only, and it does not say what changed. It narrowed the exception in Articles 330 and 332 to 'the autonomous districts of Assam', so Scheduled Tribes got reserved seats in the Lok Sabha outside those districts and in the Assemblies of Nagaland and Meghalaya, from the next elections."
+  ],
+  "evidence": "src/source/acts/051.pdf p.1-2: '2. (1) In article 330 ... for sub-clause (b), the following sub-clause shall be substituted, namely:— \"(b) the Scheduled Tribes except the Scheduled Tribes in the autonomous districts of Assam; and\"'; '3. (1) In article 332 ... for the words \"except the Scheduled Tribes in the tribal areas of Assam, in Nagaland and in Meghalaya\", the words \"except the Scheduled Tribes in the autonomous districts of Assam\" shall be substituted. (2) ... shall not affect any representation in the Legislative Assembly of the State of Nagaland or ... Meghalaya until the dissolution'. src/source/Constitution_of_India_10.9.2026.pdf.txt line 8488: 'Subs. By the Constitution (Fifty-first Amendment) Act, 1984, s. 2, for sub-clause (b) (w.e.f. 16-6-1986).'",
+  "proposed_one_liner": "Narrowed the exceptions in Articles 330 and 332 to the autonomous districts of Assam, so that seats are reserved for Scheduled Tribes in the Lok Sabha elsewhere in the North East and in the Assemblies of Nagaland and Meghalaya.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 52,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/052.pdf p.1-2: ss. 2-5 amend articles 101, 102, 190, 191 ('A person shall be disqualified for being a member of either House of Parliament if he is so disqualified under the Tenth Schedule'); '6. After the Ninth Schedule to the Constitution, the following Schedule shall be added ... TENTH SCHEDULE'. Commencement by notification; src/source/Constitution_of_India_10.9.2026.pdf.txt line 14851: 'Tenth Schedule added by the Constitution (Fifty-second Amendment) Act, 1985, s. 6 (w.e.f. 1-3-1985).'",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 53,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/053.pdf p.1-2: '2. After article 371F of the Constitution, the following article shall be inserted, namely:— \"371G. ...\"'; commencement by notification. src/source/Constitution_of_India_10.9.2026.pdf.txt line 10704: 'Art. 371G ins. by the Constitution (Fifty-third Amendment) Act, 1986.s. 2 (w.e.f. 20-2-1987).'",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 54,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner does not say what changed. Articles 125(1) and 221(1) now let Parliament set judges' salaries by law (the Second Schedule figures apply only until it does), and the Second Schedule salaries were raised: Chief Justice of India 5,000 to 10,000 rupees a month, other Supreme Court judges 4,000 to 9,000, High Court Chief Justices 4,000 to 9,000, other High Court judges 3,500 to 8,000.",
+   "Date 1986-04-01 is right: the Act (assent 14 March 1987) is deemed in force from 1 April 1986."
+  ],
+  "evidence": "src/source/acts/054.pdf p.1-2: '(2) It shall be deemed to have come into force on the 1st day of April, 1986. 2. In article 125 ... \"(1) There shall be paid to the Judges of the Supreme Court such salaries as may be determined by Parliament by law and, until provision in that behalf is so made, such salaries as are specified in the Second Schedule.\"'; '4. In the Second Schedule ... (i) for the figures and word \"5,000 rupees\", the figures and word \"10,000 rupees\" shall be substituted; (ii) for ... \"4,000 rupees\" ... \"9,000 rupees\" ... (b) ... \"4,000 rupees\" ... \"9,000 rupees\" ... \"3,500 rupees\" ... \"8,000 rupees\"'. src/source/Constitution_of_India_10.9.2026.pdf.txt line 3377: 's. 2, for cl. (1) (w.e.f. 1-4-1986)'.",
+  "proposed_one_liner": "Let Parliament set the salaries of Supreme Court and High Court judges by law (Articles 125 and 221), and raised the salaries in the Second Schedule, for example the Chief Justice of India's from 5,000 to 10,000 rupees a month.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 55,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/055.pdf p.1-2: '2. After article 371G of the Constitution, the following article shall be inserted, namely:— \"371H. ...\"'; commencement by notification. src/source/Constitution_of_India_10.9.2026.pdf.txt line 10706: 'Art. 371H ins. by the Constitution (Fifty-fifth Amendment) Act, 1986, s. 2 (w.e.f. 20-2-1987).'",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 56,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/056.pdf p.1-2: '\"371-I. Notwithstanding anything in this Constitution, the Legislative Assembly of the State of Goa shall consist of not less than thirty members.\"'; commencement by notification. src/source/Constitution_of_India_10.9.2026.pdf.txt line 10746: 'Art. 371-I ins. by the Constitution (Fifty-sixth Amendment) Act, 1987, s. 2 (w.e.f. 30-5-1987).'",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 57,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner mentions Scheduled Castes, but the new clause (3A) of Article 332 is about Scheduled Tribes only, and only in Arunachal Pradesh, Meghalaya, Mizoram and Nagaland. It also does not say what the clause does: until seats are readjusted after the first census after 2000, it fixes the share of Assembly seats reserved for Scheduled Tribes in those four States by their share of the existing Assembly (all seats but one where every member is a tribal member)."
+  ],
+  "evidence": "src/source/acts/057.pdf p.1-2: '\"(3A) Notwithstanding anything contained in clause (3), until the taking effect, under article 170, of the re-adjustment, on the basis of the first census after the year 2000, of the number of seats in the Legislative Assemblies of the States of Arunachal Pradesh, Meghalaya, Mizoram and Nagaland, the seats which shall be reserved for the Scheduled Tribes in the Legislative Assembly of any such State shall be,— (a) if all the seats ... are held by members of the Scheduled Tribes, all the seats except one; (b) in any other case, such number of seats as bears to the total number of seats, a proportion not less than the number ... of members belonging to the Scheduled Tribes in the existing Assembly bears to the total number of seats'. src/source/Constitution_of_India_10.9.2026.pdf.txt line 8542: 'Ins. by the Constitution (Fifty-seventh Amendment) Act, 1987, s. 2 (w.e.f. 21-9-1987).'",
+  "proposed_one_liner": "Added Article 332(3A), which fixes how many Assembly seats are reserved for Scheduled Tribes in Arunachal Pradesh, Meghalaya, Mizoram and Nagaland until seats are readjusted after the first census after 2000.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 58,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/058.pdf p.1-2: assent 9 December 1987, no commencement clause; '2. In Part XXII ... in the heading, after the word \"COMMENCEMENT\", the words \", AUTHORITATIVE TEXT IN HINDI\" shall be inserted. 3. After article 394 ... \"394A. ...\"'. src/source/Constitution_of_India_10.9.2026.pdf.txt lines 11034-11035: 'Ins. by the Constitution (Fifty-eighth Amendment) Act, 1987, s. 2 (w.e.f. 9-12-1987). Art 394A, Ins. by s. 3, ibid. (w.e.f. 9-12-1987).'",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 59,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner leaves out s. 2, which replaced the proviso to Article 356(5) so that its limits did not apply to the 11 May 1987 President's Rule in Punjab; a:356 is missing from refs.",
+   "'Applying the Emergency Part to Punjab' is unclear: Article 359A changed the Emergency Part for Punjab, allowing an Emergency there on the ground of internal disturbance and letting only Article 20 (not Article 21) stay protected.",
+   "'It ceased to operate after two years' is not quite what happened: s. 3(2) set it to lapse two years after 30 March 1988, but the 63rd Amendment omitted Article 359A earlier, on 6 January 1990."
+  ],
+  "evidence": "src/source/acts/059.pdf p.1-2: '2. In article 356 of the Constitution, in clause (5), for the proviso, the following proviso shall be substituted, namely:— \"Provided that nothing in this clause shall apply to the Proclamation issued under clause (1) on the 11th day of May, 1987 with respect to the State of Punjab.\"'; '359A ... (b) the integrity of India is threatened by internal disturbance in the whole or any part of the territory of Punjab ... (c) in article 359, for the words and figures \"articles 20 and 21\" ... \"article 20\" shall be substituted'; '(2) ... shall cease to operate on the expiry of a period of two years from the commencement of this Act'. src/source/Constitution_of_India_10.9.2026.pdf.txt lines 9629-9630: '359A. [Application of this Part to the State of Punjab.].—Omitted by the Constitution (Sixty-third Amendment) Act, 1989, s. 3 (w.e.f. 6-1-1990).'",
+  "proposed_one_liner": "Added Article 359A, which let an Emergency be declared in Punjab over internal disturbance and let Article 21 be suspended there, and freed the 1987 President's Rule in Punjab from the limits in Article 356(5). The 63rd Amendment removed both in 1990.",
+  "refs_add": [
+   "a:356"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 60,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner does not give the new figure or the direction: the limit was raised from 250 to 2,500 rupees a year."
+  ],
+  "evidence": "src/source/acts/060.pdf p.1: '2. In article 276 of the Constitution, in clause (2),— (a) for the words \"two hundred and fifty rupees\", the words \"two thousand and five hundred rupees\" shall be substituted; (b) the proviso shall be omitted.' src/source/Constitution_of_India_10.9.2026.pdf.txt line 7309: 'Subs. by the Constitution (Sixtieth Amendment) Act, 1988, s. 2, for \"two hundred and fifty rupees\" (w.e.f. 20-12-1988).'",
+  "proposed_one_liner": "Raised the yearly limit on State taxes on professions, trades and jobs in Article 276(2) from 250 to 2,500 rupees, and removed the exception attached to it.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 61,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/061.pdf p.1: assent 28 March 1989; '2. In article 326 of the Constitution, for the words \"twenty-one years\", the words \"eighteen years\" shall be substituted.' src/source/Constitution_of_India_10.9.2026.pdf.txt line 8420: '(w.e.f. 28-3-1989)'.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 62,
+  "verdict": "fix",
+  "issues": [
+   "site_date is empty. The Act is deemed in force from the day its Bill was introduced in the Council of States; the official footnote gives 20 December 1989 (assent was 25 January 1990)."
+  ],
+  "evidence": "src/source/acts/062.pdf p.1: '(2) It shall be deemed to have come into force on the date on which the Bill for this Act is introduced in the Council of States. 2. In article 334 of the Constitution, for the words \"forty years\", the words \"fifty years\" shall be substituted.' src/source/Constitution_of_India_10.9.2026.pdf.txt line 8674: 'Constitution (Sixty-second Amendment) Act, 1989, s. 2 (w.e.f. 20-12-1989).'",
+  "proposed_date": "1989-12-20",
+  "proposed_date_label": "In force",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 63,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/063.pdf p.1 (checked on the rendered page; the text layer misreads 6th as 8th): 'received the assent of the President on the 6th January, 1990 ... (2) It shall come into force with immediate effect. 2. In article 356 of the Constitution, in clause (5), the proviso shall be omitted. 3. Article 359A of the Constitution shall be omitted.' src/source/Constitution_of_India_10.9.2026.pdf.txt line 9630: 's. 3 (w.e.f. 6-1-1990)'.",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 64,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner does not say what the Act did. It was about the 11 May 1987 President's Rule in Punjab: it let it last up to three years and six months instead of three years (new proviso to Article 356(4)), and again freed it from the limits in Article 356(5)."
+  ],
+  "evidence": "src/source/acts/064.pdf p.1-2: '(a) in clause (4), after the second proviso, the following proviso shall be inserted ... \"Provided also that in the case of the Proclamation issued under clause (1) on the 11th day of May, 1987 with respect to the State of Punjab, the reference in the first proviso to this clause to \"three years\" shall be construed as a reference to \"three years and six months\".\" (b) in clause (5), the following proviso shall be inserted at the end ... \"Provided that nothing in this clause shall apply to the Proclamation issued under clause (1) on the 11th day of May, 1987 with respect to the State of Punjab.\"' src/source/Constitution_of_India_10.9.2026.pdf.txt line 9470: 'Ins. by the Constitution (Sixty-fourth Amendment) Act, 1990, s. 2 (w.e.f. 16-4-1990).'",
+  "proposed_one_liner": "Let President's Rule in Punjab, proclaimed on 11 May 1987, last up to three years and six months instead of three years, and freed it from the limits in Article 356(5).",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 65,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner says 'a National Commission for Scheduled Castes', but the Act set up a National Commission for Scheduled Castes and Scheduled Tribes. It also replaced clauses (1) and (2) with nine new clauses (1) to (9) on the Commission's members, duties, reports and civil-court powers, which is why old clause (3) became clause (10)."
+  ],
+  "evidence": "src/source/acts/065.pdf p.1-3: '(a) for the marginal heading ... \"National Commission for Scheduled Castes and Scheduled Tribes.\"; (b) for clauses (1) and (2), the following clauses shall be substituted, namely:— \"(1) There shall be a Commission for the Scheduled Castes and Scheduled Tribes to be known as the National Commission for the Scheduled Castes and Scheduled Tribes. ... (9) The Union and every State Government shall consult the Commission on all major policy matters affecting Scheduled Castes and Scheduled Tribes.\"; (c) existing clause (3) shall be renumbered as clause (10).' src/source/Constitution_of_India_10.9.2026.pdf.txt line 8756: 'Subs. by the Constitution (Sixty-fifth Amendment) Act, 1990, s. 2, for cls. (1) and (2) (w.e.f. 12-3-1992).'",
+  "proposed_one_liner": "Set up a National Commission for Scheduled Castes and Scheduled Tribes, replacing Article 338(1) and (2) with new clauses (1) to (9) on its members, duties and powers, and renumbering clause (3) as clause (10).",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 66,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "src/source/acts/066.pdf p.1-4: assent 7 June 1990, no commencement clause; '2. In the Ninth Schedule ... after entry 202 ... the following entries shall be inserted' (203 to 257). src/source/Constitution_of_India_10.9.2026.pdf.txt line 14613: 'Entries 203 to 257 were ins. by the Constitution (Sixty-sixth Amendment) Act, 1990, s. 2 (w.e.f. 7-6-1990).'",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 67,
+  "verdict": "fix",
+  "issues": [
+   "site_date is empty. The Act has no commencement clause, so it came into force on assent, 4 October 1990, which the official footnote confirms.",
+   "The one-liner does not say what the Act did: it let President's Rule in Punjab (proclaimed 11 May 1987) last up to four years instead of three years and six months."
+  ],
+  "evidence": "src/source/acts/067.pdf p.1-2: 'received the assent of the President on the 4th October, 1990 ... 2. In article 356 of the Constitution, in clause (4), in the third proviso, for the words \"three years and six months\", the words \"four years\" shall be substituted'. src/source/Constitution_of_India_10.9.2026.pdf.txt line 9471: 'Subs. by the Constitution (Sixty-seventh Amendment) Act, 1990, s. 2 (w.e.f. 4-10-1990)'.",
+  "proposed_one_liner": "Let President's Rule in Punjab, proclaimed on 11 May 1987, last up to four years instead of three years and six months (Article 356(4)).",
+  "proposed_date": "1990-10-04",
+  "proposed_date_label": "In force",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 68,
+  "verdict": "fix",
+  "issues": [
+   "site_date is empty. The Act has no commencement clause, so it came into force on assent, 12 March 1991, which the official footnote confirms.",
+   "The one-liner does not say what the Act did: it let President's Rule in Punjab (proclaimed 11 May 1987) last up to five years instead of four."
+  ],
+  "evidence": "src/source/acts/068.pdf p.1-2: 'received the assent of the President on the 12th March, 1991 ... 2. In article 356 of the Constitution, in clause (4), in the third proviso, for the words \"four years\", the words \"five years\" shall be substituted.' src/source/Constitution_of_India_10.9.2026.pdf.txt lines 9472-9473: 'further subs. by the Constitution (Sixty-eighth Amendment) Act, 1991, s. 2 (w.e.f. 12-3-1991).'",
+  "proposed_one_liner": "Let President's Rule in Punjab, proclaimed on 11 May 1987, last up to five years instead of four (Article 356(4)).",
+  "proposed_date": "1991-03-12",
+  "proposed_date_label": "In force",
+  "refs_add": [],
+  "refs_remove": []
+ },
+ {
+  "n": 69,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner names Articles 239AA and 239AB, but refs list only a:239AA; a:239AB is missing."
+  ],
+  "evidence": "src/source/acts/069.pdf p.1-4: '2. After article 239A of the Constitution, the following articles shall be inserted, namely:— \"239AA. ...\" ... \"239AB. If the President, on receipt of a report from the Lieutenant Governor ...\"'. Commencement by notification. src/source/Constitution_of_India_10.9.2026.pdf.txt lines 5529-5530: 'Arts 239AA and 239 AB ins. by the Constitution (Sixty-ninth Amendment) Act, 1991, s. 2 (w.e.f. 1-2-1992).'",
+  "refs_add": [
+   "a:239AB"
+  ],
+  "refs_remove": []
+ },
+ {
+  "n": 70,
+  "verdict": "fix",
+  "issues": [
+   "The one-liner does not say what the Act did. s. 2 added an Explanation to Article 54 so that, for electing the President (Articles 54 and 55), 'State' includes the National Capital Territory of Delhi and Pondicherry, so their elected MLAs vote. s. 3 added Article 239AA(7)(b): a law under clause (7)(a) is not an amendment of the Constitution under Article 368.",
+   "Dates differ by section: s. 3 (Article 239AA) is deemed in force from 21 December 1991 (the site's date), but s. 2 (Article 54) came into force by notification only on 1 June 1995. The site could say so; 1991-12-21 is right as the first date.",
+   "Read from the Lok Sabha compilation only (no Gazette copy in src/source/acts). The compilation gives assent as 12 August 1992."
+  ],
+  "evidence": "compilation_LS2008.pdf PDF p.618-619: '(2) Section 3 of this Act shall be deemed to have come into force on the 21st day of December, 1991 and section 2 shall come into force on such date as the Central Government may, by notification in the Official Gazette, appoint. 2. In article 54 ... \"Explanation—In this article and in article 55, \"State\" includes the National Capital Territory of Delhi and the Union territory of Pondicherry.\" 3. In article 239AA ... \"(b) Any such law as is referred to in sub-clause (a) shall not be deemed to be an amendment of this Constitution for the purposes of article 368 ...\"'. src/source/Constitution_of_India_10.9.2026.pdf.txt line 2032: 'Ins. by the Constitution (Seventieth Amendment) Act, 1992, s. 2 (w.e.f. 1-6-1995).'; line 5611: 'Subs. by the Constitution (Seventieth Amendment) Act, 1992, s. 3, for \"(7)\" (w.e.f. 21-12-1991).'",
+  "proposed_one_liner": "Let the elected members of the Delhi and Pondicherry Assemblies vote in the election of the President, by adding an Explanation to Article 54. Also added Article 239AA(7)(b), so a law made under Article 239AA(7)(a) does not count as an amendment of the Constitution.",
+  "refs_add": [],
+  "refs_remove": []
+ }
+]

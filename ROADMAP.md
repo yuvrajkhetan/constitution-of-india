@@ -27,7 +27,6 @@ Last updated: 24 November 2026.
 | 5a | **Glossary terms the Court has defined**: "procedure established by law" (Maneka Gandhi), "the State" in Article 12, "reasonable restrictions", "creamy layer" (Indra Sawhney), each cited to the judgment | Improvement | S to M | Extends terms.json, which already allows a judgment as the source |
 | 5b | **"Why this amendment happened"** on amendment pages: amendments that answered a judgment (1st after Champakam Dorairajan, 24th after Golak Nath, 77th onwards after Indra Sawhney, 105th after the Maratha reservation case) and the Court's later ruling on them, from the judgments and official Act texts | Feature | M, **needs mockups** | Makes the history of amendments readable as a conversation between Parliament and the Court |
 | 6 | **Hindi**: the official Hindi text (authoritative under Article 394A), then summaries | Feature | L, **needs mockups** | Biggest step up in reach. Needs the edition's Hindi text as a source; `src/source/` has only English |
-| 7 | **Check the amendment one-liners against the Acts themselves**: Courrt holds only 3 of 106 Acts, so use the Legislative Department's official Act texts | Improvement | M | 8 one-liners were corrected from the official notes; the rest have not been read against their Acts |
 
 ## Worth doing
 
@@ -64,6 +63,7 @@ Developments to act on when they happen, checked 27 November 2026. Official sour
 
 ## Done
 
+- **28 November 2026**: all 106 amendment summaries and dates checked against the Acts themselves (evidence in `src/audit/amendments_2026-11-28/`): 40 summaries corrected or made specific, 12 dates fixed or filled in (the 10th Amendment showed 2020 instead of 1961; eight had none), 19 missing references added. The 88th Amendment is now shown as never brought into force.
 - **28 November 2026**: official sources saved (`src/source/SOURCES.md`): the 1949 Gazette publishing the Constitution as passed, official copies of all 106 Amendment Acts, the 2025 assent opinion. Every cited judgment except L. Chandra Kumar now links to the Supreme Court's own copy; printed neutral citations added; the 2025 assent opinion noted on Articles 200 and 201.
 - **26 November 2026**: basic features open to the judges' own words: one quote per feature from its leading judgment, read from the printed S.C.R. page and cited by page; every provision that carries it with its level; and, for six features, the amendment struck down for breaching it. Even spacing across the site (`gaps.js`).
 - **26 November 2026**: basic structure page reorganised. The basic features open the page as compact rows grouped "Recognised by the Court" and "Named by some judges", in reading order, each opening to its provisions and judgments; the estimates follow as one section under the Analysis label.

@@ -1,0 +1,268 @@
+[
+ {
+  "n": 71,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "071.pdf p.1-2: \"existing entry 7 shall be re-numbered as entry 8, and before entry 8 as so re-numbered, the entry \\\"7. Konkani.\\\" shall be inserted\"; \"\\\"9. Manipuri.\\\"\"; \"\\\"11. Nepali.\\\"\"; assent \"[31st August, 1992.]\", no commencement clause. Constitution_of_India_10.9.2026.pdf.txt l.14133: \"Ins. by the Constitution (Seventy-first Amendment) Act, 1992, s. 2 (w.e.f. 31-8-1992).\"",
+  "note": "Correct but vague; could name the three languages added: Konkani, Manipuri and Nepali."
+ },
+ {
+  "n": 72,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "072.pdf p.1: \"(2) It shall come into force on such date as the Central Government may, by notification in the Official Gazette, appoint\"; \"In article 332 of the Constitution, after clause (3A), the following clause shall be inserted ... \\\"(3B) Notwithstanding anything contained in clause (3), until the re-adjustment, under article 170, takes effect ...\" Constitution_of_India_10.9.2026.pdf.txt l.8577: \"Ins. by the Constitition (Seventy-second Amendment) Act, 1992, s. 2 (w.e.f. 5-12-1992).\""
+ },
+ {
+  "n": 73,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "073.pdf: s.1(2) \"It shall come into force on such date as the Central Government may ... appoint\"; s.2 inserts Part IX; s.3 \"In clause (3) of article 280 of the Constitution, after sub-clause (b), the following sub-clause shall be inserted\"; s.4 adds the Eleventh Schedule. Constitution_of_India_10.9.2026.pdf.txt l.5792 and l.15022: \"(w.e.f. 24-4-1993)\"."
+ },
+ {
+  "n": 74,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "074.pdf: s.2 \"After Part IX of the Constitution, the following Part shall be inserted\"; s.3 \"In clause (3) of article 280 of the Constitution, sub-clause (c) shall be re-lettered as sub-clause (d) ... the following sub-clause shall be inserted\"; s.4 adds \"TWELFTH SCHEDULE (Article 243W)\". Constitution_of_India_10.9.2026.pdf.txt l.6093: \"Part IXA ins. by the Constitution (Seventy-fourth Amendment) Act, 1992, s. 2 (w.e.f. 1-6-1993).\""
+ },
+ {
+  "n": 75,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "075.pdf p.1: \"(2) It shall come into force on such date as the Central Government may ... appoint\"; \"In article 323B ... in clause (2),— (a) sub-clauses (h) and (i) shall be re-lettered as sub-clauses (i) and (j), and before sub-clause (i) ... \\\"(h) rent, its regulation and control and tenancy issues ...\\\"\". Constitution_of_India_10.9.2026.pdf.txt l.8305: \"Ins. by the Constitution (Seventy-fifth Amendment) Act, 1993, s. 2 (w.e.f. 15-5-1994).\""
+ },
+ {
+  "n": 76,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "076.pdf p.1: \"In the Ninth Schedule to the Constitution, after entry 257 and before the Explanation, the following entry shall be inserted ... \\\"257A. The Tamil Nadu Backward Classes, Scheduled Castes and Scheduled Tribes (Reservation of Seats in Educational Institutions and of appointments or posts in the Services under the State) Act, 1993\\\"\". Assent \"[31st August, 1994.]\". Constitution_of_India_10.9.2026.pdf.txt l.14722: \"(w.e.f. 31-8-1994)\"."
+ },
+ {
+  "n": 77,
+  "verdict": "fix",
+  "issues": [
+   "The summary says only that Article 16 was \"added to\". It leaves out the main change: new clause (4A) allows reservation in promotions for Scheduled Castes and Scheduled Tribes."
+  ],
+  "evidence": "compilation_LS2008.pdf PDF p.653 (Act 77, no Gazette copy): \"[17th June, 1995]\"; \"In article 16 of the Constitution after clause (4), the following clause shall be inserted ... \\\"(4A) Nothing in this article shall prevent the State from making any provision for reservation in matters of promotion to any class or classes of posts in the services under the State in favour of the Scheduled Castes and the Scheduled Tribes which, in the opinion of the State, are not adequately represented in the services under the State.\\\"\" Constitution_of_India_10.9.2026.pdf.txt l.1338: \"(w.e.f. 17-6-1995)\". Date is right.",
+  "proposed_one_liner": "Added Article 16(4A), which lets the State reserve posts in promotions for Scheduled Castes and Scheduled Tribes who are not adequately represented in its services."
+ },
+ {
+  "n": 78,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "078.pdf p.1-2: \"In the Ninth Schedule to the Constitution, after entry 257A and before the Explanation, the following entries shall be inserted\" (entries \"258.\" to \"284. The West Bengal Land Reforms Tribunal Act, 1991\"). Assent \"[30th August, 1995]\". Constitution_of_India_10.9.2026.pdf.txt l.14756: \"Entries 258 to 284 ins. by the Constitution (Seventy-eighth Amendment) Act, 1995, s. 2 (w.e.f. 30-8-1995).\""
+ },
+ {
+  "n": 79,
+  "verdict": "fix",
+  "issues": [
+   "site_date is empty. The Act fixes its own start date: 25 January 2000 (assent was 21 January 2000)."
+  ],
+  "evidence": "079.pdf p.1: \"(2) It shall come into force on the 25th day of January, 2000.\"; \"In article 334 of the Constitution, for the words \\\"fifty years\\\", the words \\\"sixty years\\\" shall be substituted.\" Constitution_of_India_10.9.2026.pdf.txt l.8672: \"\\\"sixty years\\\" subs. for \\\"fifty years\\\" by the Constitution (Seventy-ninth Amendment) Act, 1999, s. 2 (w.e.f. 25-1-2000).\"",
+  "proposed_date": "2000-01-25",
+  "proposed_date_label": "In force"
+ },
+ {
+  "n": 80,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "080.pdf: s.2 \"In article 269 ... for clauses (1) and (2), the following clauses shall be substituted\"; s.3 \"For article 270 ... the following article shall be substituted and shall be deemed to have been substituted with effect from the 1st day of April, 1996\"; s.4(1) \"Article 272 of the Constitution shall be omitted.\" No commencement clause; assent \"[9th June, 2000.]\". Constitution_of_India_10.9.2026.pdf.txt l.7101 \"(w.e.f. 9-6-2000)\", l.7146 \"Subs. ... for art. 270 (w.e.f. 1-4-1996)\", l.7176 art. 272 omitted \"(w.e.f. 9-6-2000)\".",
+  "note": "Date 9 June 2000 is right for the Act, but the new Article 270 is deemed to apply from 1 April 1996. Worth saying if the site shows per-section dates."
+ },
+ {
+  "n": 81,
+  "verdict": "fix",
+  "issues": [
+   "The summary says only that Article 16 was \"added to\". It leaves out what new clause (4B) does: reserved vacancies left unfilled can be carried forward and do not count toward the fifty per cent ceiling of the later year."
+  ],
+  "evidence": "081.pdf p.1-2: \"after clause (4A), the following clause shall be inserted ... \\\"(4B) Nothing in this article shall prevent the State from considering any unfilled vacancies of a year which are reserved ... as a separate class of vacancies to be filled up in any succeeding year or years and such class of vacancies shall not be considered together with the vacancies of the year in which they are being filled up for determining the ceiling of fifty per cent. reservation on total number of vacancies of that year\\\"\". Assent \"[9th June, 2000.]\"; Constitution_of_India_10.9.2026.pdf.txt l.1341 \"(w.e.f. 9-6-2000)\".",
+  "proposed_one_liner": "Added Article 16(4B), which lets reserved vacancies left unfilled in a year be carried forward to later years. These carried-forward vacancies do not count toward the fifty per cent limit on reservation for the later year."
+ },
+ {
+  "n": 82,
+  "verdict": "fix",
+  "issues": [
+   "The summary only names the topic. It leaves out what the new proviso does: it allows relaxed qualifying marks or lower standards of evaluation for Scheduled Castes and Scheduled Tribes, for reservation in promotions."
+  ],
+  "evidence": "082.pdf p.1: \"In Article 335 of the Constitution, the following proviso shall be inserted at the end ... \\\"Provided that nothing in this article shall prevent in making of any provision in favour of the members of the Scheduled Castes and the Scheduled Tribes for relaxation in qualifying marks in any examination or lowering the standards of evaluation, for reservation in matters of promotion to any class or classes of services or posts in connection with the affairs of the Union or of a State.\\\"\" Assent \"[8th September, 2000.]\"; Constitution_of_India_10.9.2026.pdf.txt l.8719 \"(w.e.f. 8-9-2000)\".",
+  "proposed_one_liner": "Added a proviso to Article 335 that lets the State relax qualifying marks or lower standards of evaluation for Scheduled Castes and Scheduled Tribes, for reservation in promotions in Union and State services."
+ },
+ {
+  "n": 83,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "083.pdf p.1: \"In article 243M ... after clause (3), the following clause shall be inserted ... \\\"(3A) Nothing in article 243D, relating to reservation of seats for the Scheduled Castes, shall apply to the State of Arunachal Pradesh.\\\"\" Assent \"[8th September, 2000.]\"; Constitution_of_India_10.9.2026.pdf.txt l.6063 \"(w.e.f. 8-9-2000)\".",
+  "note": "Correct but vague; the change is that seats in Panchayats in Arunachal Pradesh are not reserved for Scheduled Castes."
+ },
+ {
+  "n": 84,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "084.pdf: ss.2-7 substitute \"2026\" for \"2000\" in arts 55, 81, 82, 170, 330 and 332, and add references to the \"1991 census\" for dividing States into constituencies. Assent \"[21st February, 2002]\", no commencement clause. Constitution_of_India_10.9.2026.pdf.txt l.2073 etc.: \"(w.e.f. 21-2-2002)\".",
+  "note": "Correct but vague; it froze seat numbers until the first census after 2026 while letting constituencies be redrawn on the 1991 census."
+ },
+ {
+  "n": 85,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "compilation_LS2008.pdf PDF p.664: \"(2) It shall be deemed to have come into force on the 17th day of June, 1995.\"; \"in clause (4A), for the words \\\"in matters of promotion to any class\\\", the words \\\"in matters of promotion, with consequential seniority, to any class\\\" shall be substituted\"; assent \"[4th January, 2002]\". Constitution_of_India_10.9.2026.pdf.txt l.1339: \"Subs. ... for certain words (retrospectively) (w.e.f. 17-6-1995).\"",
+  "note": "Date and summary are correct. Optional clearer wording: \"Changed Article 16(4A) so that Scheduled Castes and Scheduled Tribes promoted under reservation also keep the seniority that comes with the promotion. The change counts from 17 June 1995, though the Act was passed in January 2002.\""
+ },
+ {
+  "n": 86,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "compilation_LS2008.pdf PDF p.665: \"(2) It shall come into force on such date as the Central Government may ... appoint\"; s.2 inserts \"21A. The State shall provide free and compulsory education to all children of the age of six to fourteen years\"; s.3 substitutes Article 45; s.4 adds 51A \"(k) who is a parent or guardian to provide opportunities for education to his child\". Constitution_of_India_10.9.2026.pdf.txt l.1456, 1934, 1993: \"(w.e.f. 1-4-2010)\"."
+ },
+ {
+  "n": 87,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "compilation_LS2008.pdf PDF p.666: \"[22nd June, 2003]\", no commencement clause; ss.2-5 substitute \"2001\" for \"1991\" in arts 81, 82, 170 and 330. Constitution_of_India_10.9.2026.pdf.txt l.2509 etc.: \"(w.e.f. 22-6-2003)\"."
+ },
+ {
+  "n": 88,
+  "verdict": "fix",
+  "issues": [
+   "site_date is empty while the label says \"In force\". The Act was never brought into force, so there is no in-force date. Show the assent date, 15 January 2004, labelled \"Assent\"."
+  ],
+  "evidence": "088.pdf p.1: \"received the assent of the President on the 15th January, 2004\"; \"[15th January, 2004.]\"; \"(2) It shall come into force on such date as the Central Government may, by notification in the Official Gazette, appoint.\" p.2: s.2 inserts \"268A. (1) Taxes on services shall be levied by the Government of India\"; s.3 amends article 270(1); s.4 inserts \"92C. Taxes on services.\" Constitution_of_India_10.9.2026.pdf.txt l.7063: \"(date not notifed)\"; l.13775: \"Entry 92C was ins. by the Constitution (Eighty-eighth Amendment) Act, 2003, s. 4 (which was not enforced)\".",
+  "proposed_date": "2004-01-15",
+  "proposed_date_label": "Assent"
+ },
+ {
+  "n": 89,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "089.pdf p.1: \"(2) It shall come into force on such date as the Central Government may ... appoint\"; s.2 substitutes the heading \"National Commission for Scheduled Castes\" and clauses (1), (2) of art. 338 and omits \"and Scheduled Tribes\" in cls (5), (9), (10); p.2 s.3 inserts \"338A. (1) There shall be a Commission for the Scheduled Tribes\". Constitution_of_India_10.9.2026.pdf.txt l.8754, 8810: \"(w.e.f. 19-2-2004)\"."
+ },
+ {
+  "n": 90,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "090.pdf p.1: no commencement clause; \"[28th September, 2003.]\"; \"In article 332 ... in clause (6), the following proviso shall be inserted ... for elections to the Legislative Assembly of the State of Assam, the representation of the Scheduled Tribes and non-Scheduled Tribes in the constituencies included in the Bodoland Territorial Areas District ... shall be maintained.\" Constitution_of_India_10.9.2026.pdf.txt l.8582: \"(w.e.f. 28-9-2003)\".",
+  "note": "Correct but vague; the change keeps the existing balance of Scheduled Tribe and other seats in the Bodoland area of Assam."
+ },
+ {
+  "n": 91,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "091.pdf p.1: \"[1st January, 2004.]\", no commencement clause; s.2 inserts 75(1A) \"shall not exceed fifteen per cent. of the total number of members of the House of the People\" and (1B); p.2 s.3 inserts 164(1A), (1B); s.4 inserts \"361B. Disqualification for appointment on remunerative political post\"; p.3 s.5 \"(c) paragraph 3 shall be omitted\" (Tenth Schedule). Constitution_of_India_10.9.2026.pdf.txt l.2349, 3953, 9759, 14898: \"(w.e.f. 1-1-2004)\"."
+ },
+ {
+  "n": 92,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "092.pdf p.1-2: inserts \"3. Bodo.\", \"4. Dogri.\", \"10. Maithili.\", \"18. Santhali.\" and renumbers. \"[7th January, 2004.]\", no commencement clause. Constitution_of_India_10.9.2026.pdf.txt l.14130: \"(w.e.f. 7-1-2004)\".",
+  "note": "Could name the four languages: Bodo, Dogri, Maithili and Santhali."
+ },
+ {
+  "n": 93,
+  "verdict": "fix",
+  "issues": [
+   "The summary says only that Article 15 was \"added to\". It leaves out the main change: new clause (5) allows special provisions, such as reserved seats, for backward classes, Scheduled Castes and Scheduled Tribes in admission to educational institutions, including private ones, but not minority institutions."
+  ],
+  "evidence": "093.pdf p.1: \"(2) It shall come into force on such date as the Central Government may ... appoint\"; p.2: \"(5) Nothing in this article or in sub-clause (g) of clause (1) of article 19 shall prevent the State from making any special provision, by law, for the advancement of any socially and educationally backward classes of citizens or for the Scheduled Castes or the Scheduled Tribes in so far as such special provisions relate to their admission to educational institutions including private educational institutions, whether aided or unaided by the State, other than the minority educational institutions referred to in clause (1) of article 30.\" Constitution_of_India_10.9.2026.pdf.txt l.1295: \"(w.e.f. 20-1-2006)\". Date is right.",
+  "proposed_one_liner": "Added Article 15(5), which lets the State make special provisions for backward classes, Scheduled Castes and Scheduled Tribes in admission to educational institutions, including private ones, aided or unaided. Minority institutions are left out."
+ },
+ {
+  "n": 94,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "094.pdf p.1: \"In article 164 of the Constitution, in clause (1), in the proviso, for the word \\\"Bihar\\\", the words \\\"Chhattisgarh, Jharkhand\\\" shall be substituted.\" \"[12th June, 2006.]\", no commencement clause. Constitution_of_India_10.9.2026.pdf.txt l.3949: \"(w.e.f. 12-6-2006)\".",
+  "note": "Could say it put \"Chhattisgarh, Jharkhand\" in place of \"Bihar\" in the list of States that must have a Minister for tribal welfare."
+ },
+ {
+  "n": 95,
+  "verdict": "fix",
+  "issues": [
+   "site_date is empty. The Act fixes its own start date: 25 January 2010 (assent was 18 January 2010)."
+  ],
+  "evidence": "095.pdf p.1: \"(2) It shall come into force on the 25th day of January, 2010.\"; \"In article 334 of the Constitution, for the words \\\"sixty years\\\", the words \\\"seventy years\\\" shall be substituted.\" Constitution_of_India_10.9.2026.pdf.txt l.8671: \"the Constitution (Ninety-fifth Amendment) Act, 2009, s.2 (w.e.f. 25-1-2010)\".",
+  "proposed_date": "2010-01-25",
+  "proposed_date_label": "In force"
+ },
+ {
+  "n": 96,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "096.pdf p.1: \"In the Eighth Schedule to the Constitution, in entry 15, for the word \\\"Oriya\\\", the word \\\"Odia\\\" shall be substituted.\" \"[23rd September, 2011.]\", no commencement clause. Constitution_of_India_10.9.2026.pdf.txt l.14137: \"(w.e.f. 23-9-2011)\"."
+ },
+ {
+  "n": 97,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "097.pdf p.1: \"(2) It shall come into force on such date as the Central Government may ... appoint\"; s.2 art. 19(1)(c) \"after the words \\\"or unions\\\", the words \\\"or co-operative societies\\\" shall be inserted\"; s.3 inserts \"43B\"; p.2 s.4 inserts \"PART IXB THE CO-OPERATIVE SOCIETIES\". Constitution_of_India_10.9.2026.pdf.txt l.1933 (art 43B) and l.6455 (Part IXB): \"(w.e.f. 15-2-2012)\"; but l.1378 (art 19): \"(w.e.f. 8-2-2012)\".",
+  "note": "Site date 15 Feb 2012 matches the edition for Article 43B and Part IXB. The edition gives 8 Feb 2012 for the Article 19 change from the same Act, which looks like an error in the edition (the Act has a single commencement clause); not checked against the notification itself."
+ },
+ {
+  "n": 98,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "098.pdf p.1: \"(2) It shall come into force on such date as the Central Government may ... appoint\"; \"After article 371-I of the Constitution, the following article shall be inserted ... \\\"371J. (1) The President may, by order made with respect to the State of Karnataka\\\"\". Constitution_of_India_10.9.2026.pdf.txt l.10748: \"Art. 371J ins. by the Constitution (Ninety-eighth Amendment) Act, 2012, s. 2 (w.e.f. 1-10-2013).\""
+ },
+ {
+  "n": 99,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "099.txt: s.1(2) notified commencement; s.2 art. 124(2); s.3 inserts 124A-124C; s.4 art. 127; s.5 art. 128; s.6 art. 217; s.7 art. 222; s.8 art. 224; s.9 art. 224A; s.10 \"In article 231 ... sub-clause (a) shall be omitted.\" Constitution_of_India_10.9.2026.pdf.txt l.3276: \"(w.e.f. 13-4-2015). This amendment has been struck down by the Supreme Court\"."
+ },
+ {
+  "n": 100,
+  "verdict": "fix",
+  "issues": [
+   "The summary says only that the First Schedule was \"added to\". It leaves out what the Act is for: carrying out the 1974 land boundary agreement with Bangladesh and its 2011 protocol, under which the two countries exchanged enclaves. It also does not only add land: territory transferred to Bangladesh is excluded from West Bengal and Meghalaya."
+  ],
+  "evidence": "100.txt p.1: \"An Act further to amend the Constitution of India to give effect to the acquiring of territories by India and transfer of certain territories to Bangladesh in pursuance of the agreement and its protocol\"; s.3 \"As from the appointed day, in the First Schedule ... (a) ... Assam ... (b) ... West Bengal, ... \\\"and also the territories referred to in Part III of the First Schedule but excluding the territories referred to in Part III of the Second Schedule\\\" ... (c) ... Meghalaya ... (d) ... Tripura\". Constitution_of_India_10.9.2026.pdf.txt l.11081: \"Added by the Constitution (One Hundredth Amendment) Act, 2015, s. 3 (w.e.f. 31-7-2015).\" Date is right.",
+  "proposed_one_liner": "Changed the First Schedule to carry out the 1974 land boundary agreement with Bangladesh and its 2011 protocol, under which the two countries exchanged enclaves. The changes are to the territories of Assam, West Bengal, Meghalaya and Tripura."
+ },
+ {
+  "n": 101,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "101.txt: s.1(2) notified commencement; s.2 \"After article 246 ... inserted\" (246A); ss.3-11 amend 248, 249, 250, 268, omit 268A, amend 269, insert 269A, amend 270, 271; s.12 inserts 279A; ss.13-17 amend 286, 366, 368, Sixth Schedule para 8, Seventh Schedule. Constitution_of_India_10.9.2026.pdf.txt l.6745 etc.: \"(w.e.f. 16-9-2016)\"; l.7349 (s.12, Article 279A): \"Ins. by the Constitution (One Hundred and First Amendment) Act, 2016, s. 12 (w.e.f. 12-9-2016).\"",
+  "note": "Came into force in two steps: section 12 (Article 279A, the GST Council) on 12 Sept 2016, the rest on 16 Sept 2016. The site date is right for most of the Act; consider saying the GST Council article started four days earlier."
+ },
+ {
+  "n": 102,
+  "verdict": "ok",
+  "issues": [],
+  "evidence": "102.txt: s.1(2) notified commencement; s.2 omits words in art. 338(10); s.3 inserts 338B; s.4 inserts 342A; s.5 inserts 366(26C). Assent \"[11th August, 2018.]\". Constitution_of_India_10.9.2026.pdf.txt l.8808, 8899, 9061: \"(w.e.f. 15-8-2018)\"; l.9998: \"Cl. (26C) was ins. by the Constitution (One Hundred and second Amendment) Act, 2018, s. 5 (w.e.f. 14-8-2018)\".",
+  "note": "The edition gives 14 Aug 2018 for clause (26C) but 15 Aug 2018 for every other section of the same Act, which has a single commencement clause; 15 Aug 2018 looks right and 14 Aug is probably the notification date. Not checked against the notification itself."
+ },
+ {
+  "n": 103,
+  "verdict": "fix",
+  "issues": [
+   "The summary only says Articles 15 and 16 were \"added to\". It leaves out the main change: up to ten per cent reservation in education and public jobs for economically weaker sections who are outside the existing reserved groups."
+  ],
+  "evidence": "103.txt p.1-2: \"(6) Nothing in this article or sub-clause (g) of clause (1) of article 19 or clause (2) of article 29 shall prevent the State from making,— (a) any special provision for the advancement of any economically weaker sections of citizens other than the classes mentioned in clauses (4) and (5); and (b) ... admission to educational institutions including private educational institutions ... subject to a maximum of ten per cent. of the total seats in each category.\"; art. 16 \"(6) ... reservation of appointments or posts in favour of any economically weaker sections of citizens other than the classes mentioned in clause (4), in addition to the existing reservation and subject to a maximum of ten per cent. of the posts in each category.\" Constitution_of_India_10.9.2026.pdf.txt l.1296, 1376: \"(w.e.f. 14-1-2019)\". Date is right.",
+  "proposed_one_liner": "Added Article 15(6) and Article 16(6) for economically weaker sections of citizens who are not in the groups that already have reservation. The State may reserve up to ten per cent of seats in educational institutions and of posts in public employment for them, on top of existing reservations."
+ },
+ {
+  "n": 104,
+  "verdict": "fix",
+  "issues": [
+   "The summary leaves out a major change. The Act extended reserved seats for Scheduled Castes and Scheduled Tribes (clause (a)) to eighty years, but kept seventy years for nominating Anglo-Indian members (clause (b)), so that nomination ended on 25 January 2020."
+  ],
+  "evidence": "104.txt p.1-2: \"(2) It shall come into force on the 25th day of January, 2020.\"; \"(b) in the long line, after clauses (a) and (b), for the words \\\"seventy years\\\", the words \\\"eighty years in respect of clause (a) and seventy years in respect of clause (b)\\\" shall be substituted.\" Constitution_of_India_10.9.2026.pdf.txt l.8669: \"Subs. by the Constitution (One Hundred and Fourth Amendment) Act, 2019, s. 2, for \\\"seventy years\\\" (w.e.f. 25-1-2020).\" Date is right.",
+  "proposed_one_liner": "Extended reserved seats for Scheduled Castes and Scheduled Tribes in Article 334 from seventy to eighty years, and replaced its heading. It kept the seventy-year limit for nominated Anglo-Indian members, so their nomination ended in January 2020."
+ },
+ {
+  "n": 105,
+  "verdict": "fix",
+  "issues": [
+   "The summary names the Articles but leaves out the main change: the President's list of socially and educationally backward classes became a \"Central List\" for the Central Government only, and every State and Union territory may make its own list by law."
+  ],
+  "evidence": "105.pdf p.1: \"(2) It shall come into force on such date as the Central Government may ... appoint\" (assent \"[18th August, 2021.]\"); p.2: s.2 adds to 338B(9) \"Provided that nothing in this clause shall apply for the purposes of clause (3) of article 342A.\"; s.3 \"the socially and educationally backward classes in the Central List which shall for the purposes of the Central Government\" and \"(3) Notwithstanding anything contained in clauses (1) and (2), every State or Union territory may, by law, prepare and maintain, for its own purposes, a list of socially and educationally backward classes, entries in which may be different from the Central List.\"; s.4 substitutes 366(26C). Constitution_of_India_10.9.2026.pdf.txt l.8980, 9063: \"(w.e.f. 15-9-2021)\". Date is right.",
+  "proposed_one_liner": "Changed Articles 338B, 342A and 366(26C) so that the President's list of socially and educationally backward classes is a Central List, used by the Central Government. Each State and Union territory may make its own list by law, which can differ from the Central List."
+ },
+ {
+  "n": 106,
+  "verdict": "fix",
+  "issues": [
+   "The summary says the reservation starts after \"the first census after 2023\". The Act says the first census taken after the Act comes into force, which the edition gives as 16 April 2026, so \"after 2023\" is wrong."
+  ],
+  "evidence": "106.txt p.2: \"334A. (1) ... shall come into effect after an exercise of delimitation is undertaken for this purpose after the relevant figures for the first census taken after commencement of the Constitution (One Hundred and Sixth Amendment) Act, 2023 have been published and shall cease to have effect on the expiration of a period of fifteen years from such commencement. (2) ... shall continue till such date as the Parliament may by law determine.\" s.1(2): \"It shall come into force on such date as the Central Government may, by notification in the Official Gazette, appoint.\" Constitution_of_India_10.9.2026.pdf.txt l.5531, 8502, 8589, 8677: \"(w.e.f. 16-4-2026)\". Date 16 April 2026 is right for the Act itself.",
+  "proposed_one_liner": "Added Articles 330A, 332A and 334A, reserving about one-third of seats for women in the Lok Sabha and State Assemblies, and added the same for the Delhi Assembly to Article 239AA. The reservation starts only after the first census taken after the Act came into force and a fresh delimitation based on it, and lasts fifteen years unless Parliament extends it."
+ }
+]
