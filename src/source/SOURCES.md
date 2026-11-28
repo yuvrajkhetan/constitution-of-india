@@ -137,3 +137,7 @@ Text layers: Acts 99 to 104 and 106 are born-digital; most others carry OCR that
 - The Hindi half of the 10 September 2026 diglot edition: only on legislative.gov.in, which refuses automated downloads.
 - Individual official copies of Acts 21, 35, 36, 37, 42, 70, 77, 85, 86 and 87 (all are in the Lok Sabha compilation).
 - A link on the Supreme Court's own servers for L. Chandra Kumar v Union of India (1997): https://api.sci.gov.in/jonew/judis/19912.pdf is the right link (owner confirmed) but the PDF does not load, in a browser or here (28 November 2026); the site cites the S.C.R. without a link until it does. Raj Narain is at https://api.sci.gov.in/jonew/judis/21398.pdf, identical to the saved copy. Their official S.C.R. texts are saved or mirrored above. A copy of L. Chandra Kumar exported from Indian Kanoon was offered but is not an official source.
+
+## Notifications
+
+- `notifications/SO_3989E_2018-08-14_102nd_commencement.pdf`: Gazette of India, Extraordinary, Part II, Section 3(ii), No. 3187, 14 August 2018. S.O. 3989(E) appoints 15 August 2018 as the date the Constitution (One Hundred and Second Amendment) Act, 2018 came into force. Copy from the Internet Archive's mirror of the e-Gazette (identifier `in.gazette.central.e.2018-08-14.188561`). Used for the date on Article 366's history.

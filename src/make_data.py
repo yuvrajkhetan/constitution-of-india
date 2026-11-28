@@ -233,7 +233,8 @@ for key,steps in _CH.items():
     for i,st in enumerate(steps):
         a=st['a']
         assert (a in acts) if isinstance(a,int) else (a in note), ('hist_chain: Act not in note', key, a)
-        for w in ('o','nw'):
+        if st.get('nw') and not (f'"{st["nw"]}' in note or f'“{st["nw"]}' in note): assert re.search(r'["“]'+re.escape(st['nw'])+r'\b',note), ('hist_chain: new words not in note', key, st['nw'])  # may open a longer quote
+        for w in ('o',) + (('nw',) if '“%s”'%st.get('nw','') in note or '"%s"'%st.get('nw','') in note else ()):
             if st.get(w): assert ('“%s”'%st[w] in note or '"%s"'%st[w] in note or '“%s"'%st[w] in note or '"%s”'%st[w] in note), ('hist_chain: words not in note', key, st[w])
         if st.get('d') and not st.get('x'): assert re.search(r'w\.?\s*e\.?\s*f\.?\s*0?%s\b'%re.escape(_dmy(st['d'])).replace('\\-','\\s*-\\s*0?'),note), ('hist_chain: date not in note', key, st['d'])
         if st.get('r'): assert 'retrospective' in note, ('hist_chain: not retrospective', key)
@@ -242,7 +243,7 @@ for key,steps in _CH.items():
         if st['v']=='undo': x=x or f"Cancelled the {_nth(steps[i-1]['a'])} Amendment's change, which never came into force."
         if st.get('n')==2 and not x: x=f"Never brought into force. The {_nth(steps[i+1]['a'])} Amendment cancelled it." if i+1<len(steps) and steps[i+1]['v']=='undo' else "Never brought into force."
         assert '—' not in x
-        nw=st.get('nw','') or (steps[i+1].get('o','') if st['v']=='subs' and i+1<len(steps) and steps[i+1]['v']=='subs' else '')
+        nw=st.get('nw','')  # only words written into the data and checked above, never inferred from the next step
         # the last flag marks an earlier step: the timeline then leaves out today's wording from its place label
         rows.append([a,st['v'],st.get('o',''),st.get('d',''),st.get('r',0),'',st.get('n',0),x,st.get('w',''),nw,1 if i<len(steps)-1 else 0])
     TA[art]['fh'][k-1]=rows
@@ -309,6 +310,7 @@ for st in _HA['steps']:
         src=st['dsrc']
         if src in ('act','assent'): assert d in _act_dates(k), ('hist_acts: date not in the Act', k, d)
         else: assert src=='note' and d in _note_dates[k], ('hist_acts: no official note gives this date', k, d)
+    if st.get('r'): assert re.search(r'deemed always|retrospective',t), ('hist_acts: retrospective, but the Act never says so', k, st['sec'])
     x=st.get('x',''); assert '—' not in x
     pdf=f'src/source/acts/{k:03d}.pdf'
     if not os.path.exists(pdf[4:]): assert str(k) in _HA['_comp_pages'], ('hist_acts: no copy of the Act to link to', k); pdf=f"src/source/acts/compilation_LS2008.pdf#page={_HA['_comp_pages'][str(k)]}"

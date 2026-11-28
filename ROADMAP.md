@@ -7,14 +7,14 @@ added where they rank, finished items move to **Done** with the date, and anythi
 Size: **S** (an hour or two), **M** (a day or so), **L** (several days). Items marked **needs mockups** change a
 page, a feature or navigation, so they get phone and desktop screenshots and the owner's yes before going live.
 
-Last updated: 24 November 2026.
+Last updated: 28 November 2026.
 
 ## Next up
 
 | # | Item | Type | Size | Why it ranks here |
 |---|---|---|---|---|
 | 1 | **Refresh the next amendment forecast** after the Winter Session of Parliament ends (due late December 2026): re-check pending Bills on sansad.in and update `asOn` | Improvement | S | Our own rule; the forecast goes stale otherwise |
-| 2 | **Corrections note** on the About page: what was fixed in the official text and when (for example, November 2026: seven States restored to the First Schedule, Third Schedule oaths, missing official notes; the 102nd Amendment date on Article 366), and the one misprint we correct (Form IV) | Feature | S | Being open about fixes builds trust in an unofficial reader |
+| 2 | **Corrections note** on the About page: what was fixed in the official text and when (for example, November 2026: seven States restored to the First Schedule, Third Schedule oaths, missing official notes; the 102nd Amendment date on Article 366), and the one misprint we correct (Form IV). Owner to decide: Article 194's note 1 dates the 44th Amendment's s. 45 cancellation 19 June 1979, while seven other notes on the same section give 20 June 1979; we show the note's date as printed | Feature | S | Being open about fixes builds trust in an unofficial reader |
 | 3 | **"Report an error" link** on every article and Schedule page (pre-filled email or GitHub issue naming the page) | Feature | S | Turns readers into a second line of checking |
 
 ## High value, bigger
@@ -33,7 +33,7 @@ Last updated: 24 November 2026.
 | # | Item | Type | Size | Notes |
 |---|---|---|---|---|
 | 8 | **Learning mode for students**: short question cards per Part or theme, built from the summaries | Feature | M, **needs mockups** | Brings students back |
-| 9 | **"What this article looked like before"**: earlier wording where the official notes quote it (for example Article 31C before Minerva Mills) | Feature | M, **needs mockups** | Only from the official notes |
+| 9 | **"What this article looked like before"**: the text as it stood on any date, from the 1950 text plus every recorded change (official notes, `hist_chain.json`, `hist_acts.json`) | Feature | L, **needs mockups** | The Lok Sabha compilation (`src/source/acts/compilation_LS2008.pdf`, Annexure E, PDF pages 899 onwards) prints the Constitution as adopted as clean digital text, a second source beside the 1949 Gazette scan. The histories now record every change, so this is mostly assembly and display work |
 | 10 | **Laws made under an article** (Article 3 to the State Reorganisation Acts, 21A to the Right to Education Act), linking the Legislative Department's copies | Feature | M, **needs mockups** | Courrt can help find them; never link to Courrt |
 | 11 | **Offline reading**: installable, readable without a connection | Feature | M | Helps readers with patchy data; parked earlier, no cost concerns found |
 | 12 | **Shorter pause when large pages open on slow phones** (basic structure, articles with the Contents sidebar): build below-the-fold parts after the first paint | Improvement | M | The fade-in itself is smooth; the pause is up to a few hundred ms on slow phones. Needs care with scroll positions and in-page links |
@@ -62,6 +62,7 @@ Developments to act on when they happen, checked 27 November 2026. Official sour
 
 ## Done
 
+- **28 November 2026**: History check. Every displayed wording from the Gazette scans proofread against the page images (26 pages); all 136 Act steps and 40 multi-step notes verified again, independently, against the Acts and notes; every article's history checked against the Lok Sabha Secretariat's table of provisions amended (Acts 1 to 94), which lists none we lack. Fixes: Article 243O added; the 4th Amendment's change to 31A marked retrospective; the 42nd Amendment's change to Article 356 now shows its own new words ("one year"); clearer places and extra lines on 31, 243, 280, 330, 332 and 356; the Gazette notification for the 102nd Amendment's date saved under `src/source/notifications/`.
 - **28 November 2026**: History timelines now include changes no official note records, taken from the Amendment Acts themselves (135 steps on 109 articles, `src/data/hist_acts.json`, each checked word for word against the Act's text in `src/source/acts/text/`). Article 334 shows all seven extensions from 1960; removed articles (such as 31) and articles added with a whole Part (such as 243A to 243ZT) now have a history. Each step names the Act's section and links to our copy of it. Also fixed "ibid." on Articles 239 and 394A, now checked against the Acts at every build.
 - **28 November 2026**: History timelines show every step an official note records, not just the first (40 notes on 33 articles, listed in `src/data/hist_chain.json` and checked against the notes). Article 334 now shows each extension from 1980 to 2020; changes made in 1976 and undone in 1978 or 1979 show both steps; 15 rows that paired one Act with another's date are fixed; "ibid." now points to the Act cited last (Articles 270 and 352).
 - **28 November 2026**: Article 366(26C) history now shows the 102nd Amendment in force from 15 August 2018 (Gazette S.O. 3989(E)); the official note keeps the edition's 14 August date, and a line explains the difference (`DATE_FIX` in `make_data.py`). Include it in the Corrections note (item 2).
