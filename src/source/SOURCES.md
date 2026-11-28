@@ -136,4 +136,4 @@ Text layers: Acts 99 to 104 and 106 are born-digital; most others carry OCR that
 
 - The Hindi half of the 10 September 2026 diglot edition: only on legislative.gov.in, which refuses automated downloads.
 - Individual official copies of Acts 21, 35, 36, 37, 42, 70, 77, 85, 86 and 87 (all are in the Lok Sabha compilation).
-- Links on the Supreme Court's own servers for Indira Nehru Gandhi v Raj Narain (1975) and L. Chandra Kumar v Union of India (1997). Their official S.C.R. texts are saved or mirrored above. A copy of L. Chandra Kumar exported from Indian Kanoon was offered but is not an official source.
+- A link on the Supreme Court's own servers for L. Chandra Kumar v Union of India (1997): https://api.sci.gov.in/jonew/judis/19912.pdf was offered but returns an empty file to automated requests (28 November 2026). Raj Narain is at https://api.sci.gov.in/jonew/judis/21398.pdf, identical to the saved copy. Their official S.C.R. texts are saved or mirrored above. A copy of L. Chandra Kumar exported from Indian Kanoon was offered but is not an official source.
