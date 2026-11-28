@@ -43,8 +43,7 @@ Last updated: 24 November 2026.
 
 | # | Item | Type | Size | Notes |
 |---|---|---|---|---|
-| 13 | **2025 Presidential Reference** on assent to Bills: check against the Supreme Court's own PDF and, if it holds, add it back to "Separation of powers" | Improvement | S | Dropped because Courrt lacks it |
-| 14 | **Neutral citations** (for example 2015 INSC 285) beside the S.C.R. citations, once confirmed on the Supreme Court's own site | Improvement | S | Most came only from Courrt's records, so they were left out |
+| 14 | **Neutral citations for older judgments**: 12 of the 16 cited judgments (Kesavananda to Janhit Abhiyan) have neutral citations only in the Supreme Court's e-S.C.R. records, which need a captcha; confirm them there and add | Improvement | S | Printed citations added 28 November 2026 for Article 370, Property Owners, Anjum Kadari, Balram Singh and the 2025 Reference |
 | 15 | **Preamble row chevron** in Contents is a shade lighter than the Part rows' | Improvement | S | Cosmetic |
 
 ## Watch list
@@ -65,6 +64,7 @@ Developments to act on when they happen, checked 27 November 2026. Official sour
 
 ## Done
 
+- **28 November 2026**: official sources saved (`src/source/SOURCES.md`): the 1949 Gazette publishing the Constitution as passed, official copies of all 106 Amendment Acts, the 2025 assent opinion. Every cited judgment except L. Chandra Kumar now links to the Supreme Court's own copy; printed neutral citations added; the 2025 assent opinion noted on Articles 200 and 201.
 - **26 November 2026**: basic features open to the judges' own words: one quote per feature from its leading judgment, read from the printed S.C.R. page and cited by page; every provision that carries it with its level; and, for six features, the amendment struck down for breaching it. Even spacing across the site (`gaps.js`).
 - **26 November 2026**: basic structure page reorganised. The basic features open the page as compact rows grouped "Recognised by the Court" and "Named by some judges", in reading order, each opening to its provisions and judgments; the estimates follow as one section under the Analysis label.
 - **26 November 2026**: an "Analysis" label on our estimates and forecast (the basic structure levels, chip and card, the next-amendment page and teaser, the basic structure theme, retitled "The basic structure"), never on rulings; the About page now names the three kinds of content.

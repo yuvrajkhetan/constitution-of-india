@@ -35,6 +35,8 @@ FEAT = {
 
 # ---------- notes on clauses struck down (from layer 1)
 NOTE = {
+ '200': 'In an advisory opinion of 20 November 2025 (Special Reference No. 1 of 2025, under Article 143; 2025 INSC 1333, para 165), the Supreme Court said a Governor has three options on a Bill: assent, reserve it for the President, or withhold assent and return it with comments (not for a Money Bill). Courts cannot review that choice or set deadlines, but where inaction is prolonged, unexplained and indefinite a court can order the Governor to decide within a reasonable time. There is no "deemed assent".',
+ '201': 'In an advisory opinion of 20 November 2025 (Special Reference No. 1 of 2025, under Article 143; 2025 INSC 1333, para 165), the Supreme Court said the President\'s decision under this article cannot be reviewed by courts, and courts cannot set deadlines for it. The President need not ask the Court for its opinion every time a Governor reserves a Bill.',
  '300A': 'Kesavananda Bharati (Khanna J) held that the right to property is not part of the basic structure.',
  '356': 'S.R. Bommai (1994) held that a Proclamation under this article is open to judicial review.',
  '370': 'In re Article 370 (2023) upheld the 2019 decision that it no longer applies, and called it a temporary provision.',
