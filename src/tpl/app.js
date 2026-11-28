@@ -979,7 +979,7 @@ function vArt(r) {
     if (t.st) main += `<div class="status">${I.info}<div><b>Omitted.</b> ${linkAmd(esc(t.st.replace(/^Omitted\.?\s*/, "")))}</div></div>`;
     else { const CID = clauseIds(t.p), anyC = CID.some(Boolean); main += `<section class="block" aria-labelledby="ot" style="margin-top:20px"><h2 id="ot">Official text${anyC ? `<small class="chint">Select a clause to link to it or cite it</small>` : ""}</h2>${t.f && t.f.length ? `<p class="nhint">The numbers in the text open its official notes. Most record when and how it was changed.</p>` : ""}<div class="text" id="text">${t.p.map(([l, s], i) => `${SDM.tag[i] || ""}<p class="l${Math.min(4, l)}${pin[i] || SDM.set.has(i) ? " noted" : ""}${CID[i] ? " hc" : ""}" data-i="${i}" data-l="${l}"${CID[i] ? ` data-c="${CID[i]}" id="c-${CID[i]}"` : ""} data-s="${SC ? Object.keys(SC).filter(k => SC[k].idx.includes(i)).join(" ") : ""}">${CID[i] ? `<button class="clk" type="button" data-clause="${CID[i]}" aria-label="Select ${clauseCite(n, CID[i])}">${I.link}</button>` : ""}${rich(s, "art", HL)}</p>`).join("")}</div></section>`; }
     main += bsBox("art", n);
-    main += timelineHTML(t.f, SC, t.fh, t.h, "art");
+    main += timelineHTML(t.f, SC, t.fh, t.h, "art", t.fa);
     const themes = THEMES_OF.get("art-" + n) || [];
     if ((t.r && t.r.length) || (t.b && t.b.length) || themes.length) {
       main += `<section class="block"><h2>Connections</h2><div class="card links" style="padding:18px">`;
@@ -1551,8 +1551,11 @@ function toggleKeys(force) {
 const VERB = { ins: "Added", add: "Added", subs: "Replaced", omit: "Removed", renum: "Renumbered", undo: "Cancelled", pend: "Not yet in force", inv: "Declared invalid", other: "Changed" };
 /* the part of a clause that begins "Provided that" (lawyers call it a proviso) */
 const PROV = "the \u201cProvided that\u201d part of ";
+// our saved official copy of an Amendment Act (src/source/acts), served by GitHub Pages; absolute so it also works in the artifact
+const ACT_PDF = n => `__SITE__src/source/acts/${String(n).padStart(3, "0")}.pdf`;
 const actLabel = a => typeof a === "number" ? `<a href="#amend-${a}">${nth(a)} Amendment Act</a>` : a ? esc(String(a).replace(/^C\.O\. (\d+)$/, "Constitution Order $1")) : "Not stated in the note";
-function timelineHTML(f, sc, fh, hn, kind) {
+// fa: changes the official notes leave out, taken from the Amendment Act itself; same row shape plus the Act's section
+function timelineHTML(f, sc, fh, hn, kind, fa) {
   if (!f || !f.length || !fh) return histHTML(f, sc);
   const ev = new Map(), other = [];
   // an earlier step of a note keeps only the clause from its place: the quoted words are today's, not that step's
@@ -1578,15 +1581,27 @@ function timelineHTML(f, sc, fh, hn, kind) {
       const key = "court|" + inv + "|" + k;
       ev.set(key, { sort: inv + "-12-31", yr: inv, when: "Supreme Court, " + inv, court: true, items: [{ k, v: "inv", o: "" }] });
     }
-   }));
+  }));
+  (fa || []).forEach(x => {
+    const [a, v, o, d, r, , pend, fix, w, nw, , sec] = x, amd = AMD_BY.get(a);
+    const yr = d ? d.slice(0, 4) : String(amd ? amd.y : ""), sort = d || (yr + "-12-31");
+    const when = pend === 2 ? "Never brought into force" : d ? "In force from " + fmtDate(d) : r ? "With retrospective effect" : yr;
+    const key = a + "|" + when;
+    if (!ev.has(key)) ev.set(key, { sort, yr, when, act: a, items: [] });
+    const isHead = kind === "art" && !w && (v === "ins" || v === "add");
+    if (isHead) added = key;
+    ev.get(key).items.push({ v: isHead ? "art" : v, o, fix, w, nw, act: a, sec });
+  });
   const list = [...ev.values()].sort((a, b) => a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : 0);
   const item = it => {
     const lab = it.v === "art" ? (kind === "art" ? "This article was added" : "Added") : VERB[it.v] || "Changed";
     const old = (it.o && it.nw ? `<span class="old">“${esc(it.o)}” became “${esc(it.nw)}”</span>` : it.o ? `<span class="old">${it.v === "omit" ? "Removed wording" : "Earlier wording"}: “${esc(it.o)}”</span>` : "") + (it.fix ? `<span class="old">${esc(it.fix)}</span>` : "");
-    return `<li><span class="vb v-${it.v}">${lab}</span>${it.v === "art" ? "" : it.w ? `<span class="whr">${esc(it.w)}</span>` : where(it.k, it.early)}<button class="fn" type="button" data-fn="${it.k}" aria-label="Official note ${it.k}" aria-expanded="false">${it.k}</button>${old}</li>`;
+    const src = it.sec ? `<a class="actsrc" href="${ACT_PDF(it.act)}" target="_blank" rel="noopener" aria-label="Section ${esc(it.sec)} of the ${nth(it.act)} Amendment Act (official copy, opens a PDF)">s.\u00a0${esc(it.sec)} of the Act</a>` : `<button class="fn" type="button" data-fn="${it.k}" aria-label="Official note ${it.k}" aria-expanded="false">${it.k}</button>`;
+    return `<li><span class="vb v-${it.v}">${lab}</span>${it.v === "art" ? "" : it.w ? `<span class="whr">${esc(it.w)}</span>` : where(it.k, it.early)}${src}${old}</li>`;
   };
   const root = added ? "" : `<li class="ev root"><span class="yr">1949</span><div><div class="eh"><b>In the Constitution as adopted</b><span>26 November 1949</span></div></div></li>`;
-  return `<section class="block" aria-labelledby="hh"><h2 id="hh">History <small>Built from the ${f.length} official note${f.length > 1 ? "s" : ""}</small></h2>
+  const nActs = new Set((fa || []).map(x => x[0])).size;
+  return `<section class="block" aria-labelledby="hh"><h2 id="hh">History <small>Built from the ${f.length} official note${f.length > 1 ? "s" : ""}${nActs ? ` and ${nActs === 1 ? "one Amendment Act" : nActs + " Amendment Acts"}` : ""}</small></h2>
     <ol class="tline">${root}${list.map(e => `<li class="ev${e.court ? " court" : ""}"><span class="yr">${e.yr || "·"}</span><div><div class="eh"><b>${e.court ? "Declared invalid by the Supreme Court" : actLabel(e.act)}</b><span>${e.court ? "" : esc(e.when)}</span></div><ul>${e.items.map(item).join("")}</ul></div></li>`).join("")}</ol>
     ${other.length ? `<p class="tl-other">Other official notes: ${other.map(k => `<button class="fn" type="button" data-fn="${k}" aria-label="Official note ${k}" aria-expanded="false">${k}</button>`).join(" ")}</p>` : ""}
     <details class="allnotes"><summary>All official notes, word for word</summary>${histHTML(f, sc).replace(/^<section[^>]*><h2[^>]*>.*?<\/h2>/, "").replace(/<\/section>$/, "")}</details>
@@ -1641,7 +1656,7 @@ function vAbout() {
         <li><b>Plain-language summaries</b> of every article, Part and Schedule, written from the official text. In November 2026 each summary was checked clause by clause against that text, and corrected where needed.</li>
         <li><b>Themes</b>, which group related provisions by subject. The grouping is ours.</li>
         <li><b>Connections</b> between articles, found by reading where one article's text names another.</li>
-        <li><b>History</b> on each article, built from its official notes: which Act changed what, when, and the earlier wording where the note gives it. The full notes are always one tap away. We don't yet show the whole 1950 text side by side, because we haven't found an official copy of it that can be read reliably by machine. We will add it if one becomes available.</li>
+        <li><b>History</b> on each article, built from its official notes: which Act changed what, when, and the earlier wording where the note gives it. The official edition usually keeps a note only for the latest change, so where an earlier change has no note we took it from the Amendment Act itself, and the timeline names the Act's section and links to our copy of it. The full notes are always one tap away. We don't yet show the whole 1950 text side by side, because we haven't found an official copy of it that can be read reliably by machine. We will add it if one becomes available.</li>
         <li><b>The glossary</b> quotes the Constitution's own definitions. Only the grouping and links are ours.</li>
         <li><b>Facts and charts</b>, counted directly from the official text.</li>
         <li><b>The next amendment</b>, our estimate of when the Constitution may next be amended and on what, from the Bills in Parliament, the Constitution's own deadlines and the record of past amendments. <a href="#next-amendment">See the forecast and its method</a>.</li>

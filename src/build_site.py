@@ -10,12 +10,13 @@ core = open("site/core.json").read().replace("</", "<\\/")
 # when the site's content last changed: shown in the footer and on the About page. Change it by hand whenever readers
 # would see something new (text, notes, summaries, analysis, features), not for purely technical rebuilds.
 UPDATED = "28 November 2026"
+# the GitHub Pages address: share tags and links to our saved official sources need absolute URLs
+SITE = "https://yuvrajkhetan.github.io/constitution-of-india/"
 assert shell.count("__UPDATED__") == 1 and js.count("__UPDATED__") == 1, "last-updated placeholders"
-shell = shell.replace("__UPDATED__", UPDATED); js = js.replace("__UPDATED__", UPDATED)
+shell = shell.replace("__UPDATED__", UPDATED); js = js.replace("__UPDATED__", UPDATED).replace("__SITE__", SITE)
 page = shell.replace("/*CSS*/", css).replace("/*CORE*/", core).replace("/*JS*/", js)
 open("site/index.html", "w").write(page)
 # share tags for the GitHub Pages copy; link previews need absolute URLs
-SITE = "https://yuvrajkhetan.github.io/constitution-of-india/"
 HEAD = (f'<meta property="og:url" content="{SITE}"><meta property="og:image" content="{SITE}og.png">'
         '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
         '<meta property="og:image:alt" content="The Constitution of India: every article in the official words, with a plain-English summary. A patchwork quilt of Indian textiles frames the title.">'

@@ -232,6 +232,38 @@ for key,steps in _CH.items():
         # the last flag marks an earlier step: the timeline then leaves out today's wording from its place label
         rows.append([a,st['v'],st.get('o',''),st.get('d',''),st.get('r',0),'',st.get('n',0),x,st.get('w',''),nw,1 if i<len(steps)-1 else 0])
     TA[art]['fh'][k-1]=rows
+# Changes the official notes leave out, from the Amendment Acts themselves (data/hist_acts.json). Each step's amending
+# words must be in the Act's text (source/acts/text), and its date must come from the Act or from an official note.
+_MON={m:i+1 for i,m in enumerate('January February March April May June July August September October November December'.split())}
+def _nz(t): return re.sub(r'\s+',' ',t.replace('“','"').replace('”','"').replace('‘',"'").replace('’',"'")).strip()
+_ACT_T={}
+def _act_text(k):
+    if k not in _ACT_T: _ACT_T[k]=_nz(open(f'source/acts/text/{k:03d}.txt').read())
+    return _ACT_T[k]
+def _act_dates(k):
+    out=set()
+    for dd,mm,yy in re.findall(r'(\d{1,2})(?:st|nd|rd|th)?\s*(?:day of\s*)?(January|February|March|April|May|June|July|August|September|October|November|December),?\s*(\d{4})',_act_text(k)):
+        out.add(f"{yy}-{_MON[mm]:02d}-{int(dd):02d}")
+    return out
+_note_dates=collections.defaultdict(set)
+for _n,_x in TA.items():
+    for _r in _x.get('fh',[]):
+        for _rr in (_r if _r and isinstance(_r[0],list) else [_r]):
+            if isinstance(_rr[0],int) and _rr[3]: _note_dates[_rr[0]].add(_rr[3])
+_HA=json.load(open('data/hist_acts.json'))
+for st in _HA['steps']:
+    art,k=st['art'],st['act']; assert art in TA, ('hist_acts: no such article', art)
+    t=_act_text(k); q=_nz(st['q'])
+    assert q in t, ('hist_acts: amending words not in the Act', k, st['sec'], q[:80])
+    for w in ('o','nw'):
+        if st.get(w): assert _nz(st[w]) in t, ('hist_acts: words not in the Act', k, st[w])
+    d=st.get('d','')
+    if d:
+        src=st['dsrc']
+        if src in ('act','assent'): assert d in _act_dates(k), ('hist_acts: date not in the Act', k, d)
+        else: assert src=='note' and d in _note_dates[k], ('hist_acts: no official note gives this date', k, d)
+    x=st.get('x',''); assert '—' not in x
+    TA[art].setdefault('fa',[]).append([k,st['v'],st.get('o',''),d,st.get('r',0),'',st.get('n',0),x,st.get('w',''),st.get('nw',''),0,st['sec']])
 text=dict(a=TA,s=TS,g=gl,bs=BS,next=NX)
 os.makedirs('site',exist_ok=True)
 json.dump(core,open('site/core.json','w'),ensure_ascii=False,separators=(',',':'))

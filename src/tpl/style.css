@@ -909,7 +909,9 @@ kbd{display:inline-block;min-width:22px;padding:2px 6px;border-radius:6px;backgr
 .tline .vb.v-subs{background:var(--navy-tint)}
 .tline .old{flex-basis:100%;font-family:var(--serif);font-size:15px;color:var(--label-2)}
 .tline .whr{color:var(--label-2)}
-.tline a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.tline .actsrc{font:600 12px/1.2 var(--sys);color:var(--navy);padding:3px 8px;border-radius:999px;background:var(--fill-2);text-decoration:none;white-space:nowrap}
+.tline .actsrc:hover{background:var(--fill)}
+.tline a:not(.actsrc){text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .tl-other{font-size:14px;color:var(--label-3);margin:10px 4px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .allnotes{margin-top:10px}.allnotes>summary{cursor:pointer;font-size:14.5px;color:var(--navy);padding:6px 4px;font-weight:500}
 .allnotes .hist{margin-top:6px}

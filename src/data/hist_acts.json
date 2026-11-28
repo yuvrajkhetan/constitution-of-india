@@ -1,0 +1,4 @@
+{
+  "_about": "Changes to articles that no official note records (usually because a later Act replaced the same words and the edition kept only the latest note), taken from the Amendment Acts themselves. make_data.py checks each against the Act's text in source/acts/text/NNN.txt. Fields: art, act, sec (section of the Act), v (ins, subs, omit, renum, add), w (place), o (earlier words), nw (new words), d (date in force), dsrc (how the date is known: 'act' = the Act's own commencement words, 'assent' = the Act is silent so it took effect on assent, 'note' = an official note gives this Act's date), r (retrospective), n (2 = never brought into force), x (an extra line for readers), q (the Act's own amending words, for the check).",
+  "steps": []
+}
